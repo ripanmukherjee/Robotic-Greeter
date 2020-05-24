@@ -348,7 +348,7 @@ def main_process(main_directory, database_code_directory, face_recognition_code_
 
 
 def main():
-    main_directory = "/home/somak/Final-Project-Robotic-Greeter/carego_project/development/"
+    main_directory = "/home/somak/Robotic-Greeter/Development"
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
     now = datetime.now()
