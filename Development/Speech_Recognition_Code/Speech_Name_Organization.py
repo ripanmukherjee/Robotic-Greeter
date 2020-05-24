@@ -143,6 +143,7 @@ def main():
     if input_details is None:
         text = "Sorry, we didn't get any input."
         process_speak_listen(mp3_filename, text, record)
+        response = "NONE"
     else:
         tokenized_word = word_tokenize(input_details)
         filtered_sent = []
@@ -152,7 +153,12 @@ def main():
 
         for word in filtered_sent:
             if word in yes_syn_words:
-                print("Good")
+                response = "YES"
+            else:
+                response = "NO"
+
+    with open("Speech_Name_Organization_Output.txt", "w") as output_file:
+        output_file.write(response)
 
     exit_program()
 
