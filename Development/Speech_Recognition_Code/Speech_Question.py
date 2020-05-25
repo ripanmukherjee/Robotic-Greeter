@@ -102,6 +102,8 @@ def main():
         text = "Hello, this is for testing. Do you want to continue?"
 
     input_details = process_speak_listen(mp3_filename, text, record)
+    response = "NONE"
+
     if input_details is None:
         text = "Sorry, we didn't get any input."
         process_speak_listen(mp3_filename, text, record)
