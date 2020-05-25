@@ -125,7 +125,7 @@ def main():
 
     yes_syn_words = ['all right', 'alright', 'very well', 'of course', 'by all means', 'sure', 'certainly',
                      'absolutely', 'indeed', 'affirmative', 'in the affirmative', 'agreed', 'roger', 'aye',
-                     'aye aye', 'yeah', 'yah', 'yep', 'yup', 'uh-huh', 'okay', 'OK', 'okey-dokey', 'okey-doke',
+                     'aye aye', 'yeah', 'yah', 'yep', 'yup', 'uh-huh', 'okay', 'Ok', 'okey-dokey', 'okey-doke',
                      'achcha', 'right', 'righty-ho', 'surely', 'yea', 'well', 'course', 'yes', 'please']
     stop_words = set(stopwords.words("english"))
 
@@ -139,7 +139,7 @@ def main():
     else:
         text = "OK. And what company are you with?"
         process_details(mp3_filename, text, record)
-        text = "OK. " + name + ".  I hope, that I am guessing your name correctly. Actually, " \
+        text = "OK. " + name + ". I hope, that I am guessing your name correctly. Actually, " \
                                "we Don't Have Your Details. Would you like to save your details for future?"
 
     flag = 0
@@ -161,6 +161,7 @@ def main():
         for word in filtered_sent:
             if word in yes_syn_words:
                 response = "YES"
+                break
             else:
                 response = "NO"
 
