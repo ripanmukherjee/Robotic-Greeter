@@ -135,11 +135,13 @@ def main():
                "Would you like to save your details for future?"
     else:
         text = "And what company are you with?"
-        organization = process_details(mp3_filename, text, record)
+        process_details(mp3_filename, text, record)
         text = "OK. " + name + ".  I hope, that I am guessing your name correctly. Actually, " \
                                "we Don't Have Your Details. Would you like to save your details for future?"
 
     input_details = process_speak_listen(mp3_filename, text, record)
+    response = "NONE"
+
     if input_details is None:
         text = "Sorry, we didn't get any input."
         process_speak_listen(mp3_filename, text, record)
