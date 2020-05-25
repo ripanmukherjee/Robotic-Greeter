@@ -5,13 +5,13 @@
 # Author : Somak Mukherjee
 # Date : Monday 18 May, 2020
 # Version : 1
-# Description : Speech_Start_End.py is to greet Known and Unknown person. It will be call from
+# Description : Speech_Start_End.py is to greet Known and Unknown person. It will be called from
 #               ~/Main_Process/Main_Process.py with special argument as follow:
 #               1. Argument when 0 (For Unknown person) : It will greet to Unknown Person
 #               2. Argument when Specific Name (For Known person) : It will greet to known Person
 #               3. Argument when 1 (For Known & Unknown) : It will say Bye
 #
-# NOTE : This program can be run separately or as a stand alone program as follow for testing purpose :
+# NOTE 1 : This program can be run separately or as a stand alone program as follow for testing purpose :
 # >> python3 Speech_Start_End.py
 
 import sys
