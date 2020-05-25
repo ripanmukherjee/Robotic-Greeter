@@ -60,7 +60,7 @@ def main():
         else:
             mp3_filename = "Speech_Start_End"
             text = "Hello " + input_argv + ". Welcome to Care Go, do you remember me, TELIA, Care Go’s " \
-                                           "virtual greeter? Who are you here to see today? "
+                                           "virtual greeter? "
     except IndexError:
         mp3_filename = "Speech_Start_End"
         text = "Hello, Welcome to Care Go, my name is TELIA, I am Care Go’s virtual greeter."
