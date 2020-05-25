@@ -92,8 +92,8 @@ def main():
 
     yes_syn_words = ['all right', 'alright', 'very well', 'of course', 'by all means', 'sure', 'certainly',
                      'absolutely', 'indeed', 'affirmative', 'in the affirmative', 'agreed', 'roger', 'aye',
-                     'aye aye', 'yeah', 'yah', 'yep', 'yup', 'uh-huh', 'okay', 'OK', 'okey-dokey', 'okey-doke',
-                     'achcha', 'right', 'righty-ho', 'surely', 'yea', 'well', 'course', 'yes', 'please']
+                     'aye aye', 'yeah', 'yah', 'yep', 'yup', 'uh-huh', 'okay', 'Ok', 'okey-dokey', 'okey-doke',
+                     'achcha', 'right', 'righty-ho', 'surely', 'yea', 'well', 'course', 'yes', 'please', 'do']
     stop_words = set(stopwords.words("english"))
     mp3_filename = "Speech_Question"
 
@@ -126,9 +126,11 @@ def main():
             if word not in stop_words:
                 filtered_sent.append(word)
 
+        print(filtered_sent)
         for word in filtered_sent:
             if word in yes_syn_words:
                 response = "YES"
+                break
             else:
                 response = "NO"
 
