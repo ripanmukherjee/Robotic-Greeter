@@ -137,7 +137,7 @@ def main():
         text = "Sorry, we couldn't get your name. Actually, we Don't Have Your Details. " \
                "Would you like to save your details for future?"
     else:
-        text = "And what company are you with?"
+        text = "OK. And what company are you with?"
         process_details(mp3_filename, text, record)
         text = "OK. " + name + ".  I hope, that I am guessing your name correctly. Actually, " \
                                "we Don't Have Your Details. Would you like to save your details for future?"
