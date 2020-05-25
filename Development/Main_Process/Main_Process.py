@@ -19,11 +19,20 @@
 #               2. Ask the person if they want to meet or search somebody, if they want to modify their old data
 #               3. etc.
 #
-# NOTE : In the program there are one main directory :
-#           main_directory = "/home/somak/Final-Project-Robotic-Greeter/carego_project/development/"
+# NOTE 1 : Please make sure to change the region value as per region wise before putting to server :
+#          Development region : "DEV"
+#          Test region : "TEST"
+#          Production region : "PROD"
+#
+#          Check in the following function :
+#          def main():
+#              region = "DEV"
+#
+# NOTE 2 : In the program there are one main directory :
+#           main_directory = "/home/somak/Robotic-Greeter/Development/"
 #           Please make sure to change or validate before putting ii into Production.
 #
-# NOTE : This program can be run separately or as a stand alone program as follow :
+# NOTE 3 : This program can be run separately or as a stand alone program as follow :
 # >> python3 Main_Process.py
 
 import os
@@ -42,6 +51,24 @@ def exit_program():
     current_time = now.strftime("%H:%M:%S")
     print('Ending program : Main_Process.py - At: ' + current_time + ' on : ' + current_date)
     sys.exit()
+
+
+def checking_region_table(region):
+    table = None
+    if region == "DEV":
+        table = "carego_customer_dev"
+    elif region == "TEST":
+        table = "carego_customer_test"
+    elif region == "PROD":
+        table = "carego_customer_prod"
+    else:
+        print()
+        print("ERROR : REGION VALUE NOT FOUND. Please check the REGION value inside the program - "
+              "inside checking_region_table function.")
+        print()
+        exit_program()
+
+    return table
 
 
 def checking_directory():
@@ -98,16 +125,38 @@ def ask_update(database_code_directory, main_directory, detect_name):
         print("INFO - {} customer didn't want to updated detail.".format(detect_name))
 
 
-def process_speak_start_end(passing_arg):
+def process_speech_start_end(passing_arg):
     program_name = "Speech_Start_End.py"
     args_call = "python3 " + program_name + ' ' + passing_arg
     try:
         output = check_output(args_call, shell=True)
         output = output.decode().split('\n')
         print("Output of the Speech_Start_End.py Program : ", output)
-
     except subprocess.CalledProcessError:
-        print("ERROR : subprocess.CalledProcessError - inside process_speak_start_end function.")
+        print("ERROR : subprocess.CalledProcessError - inside process_speech_start_end function.")
+
+
+def process_speech_question(text):
+    passing_arg = text
+    program_name = "Speech_Question.py"
+    args_call = "python3 " + program_name + ' ' + passing_arg
+    try:
+        output = check_output(args_call, shell=True)
+        output = output.decode().split('\n')
+        print("Output of the Speech_Start_End.py Program : ", output)
+    except subprocess.CalledProcessError:
+        print("ERROR : subprocess.CalledProcessError - inside process_speech_start_end function.")
+
+
+def process_speech_name_organization():
+    program_name = "Speech_Name_Organization.py"
+    args_call = "python3 " + program_name
+    try:
+        output = check_output(args_call, shell=True)
+        output = output.decode().split('\n')
+        print("Output of the Speech_Name_Organization Program : ", output)
+    except subprocess.CalledProcessError:
+        print("ERROR : subprocess.CalledProcessError - inside process_speech_name_organization function.")
 
 
 def process_face_detection():
@@ -129,7 +178,6 @@ def process_face_detection():
             under_position = detect_name.find("_")
             detect_id = detect_name[under_position+1:]
             detect_name = detect_name[:under_position]
-
     except subprocess.CalledProcessError:
         print("ERROR : subprocess.CalledProcessError - inside process_face_detection function.")
         detect_name = "UNKNOWN"
@@ -151,18 +199,15 @@ def process_inserting_data():
                 unique_id = match[0]
                 colon_position = unique_id.find(":")
                 unique_id = unique_id[colon_position + 3:]
-
             except IndexError:
                 print("ERROR : IndexError - You didn't enter your details dor database - "
                       "inside process_inserting_data function.")
                 check_output(
                     ["zenity", "--info", "--width=400", "--height=200", "--text=We cannot save your details"])
                 unique_id = None
-
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside process_inserting_data function.")
             unique_id = None
-
     except subprocess.CalledProcessError:
         print("ERROR : subprocess.CalledProcessError - inside process_inserting_data function.")
         unique_id = None
@@ -181,7 +226,6 @@ def process_picture(unique_id):
         output = output[5]
         if output[:5] == "ERROR":
             output = None
-
     except subprocess.CalledProcessError:
         print("ERROR : subprocess.CalledProcessError - inside process_picture function.")
         output = None
@@ -195,7 +239,6 @@ def process_search_details():
         args_call = "python3 " + program_name
         output = check_output(args_call, shell=True)
         print("Output of the Customer_Search_Main.py program : ", output)
-
     except subprocess.CalledProcessError:
         print("ERROR : subprocess.CalledProcessError - inside process_search_details function.")
 
@@ -220,7 +263,6 @@ def process_search_all_details(check_region_table, detect_id):
                 total_tuple = list_details
                 for tuple_details in total_tuple:
                     table_list.append(tuple_details)
-
         conn.commit()
         conn.close()
     except psycopg2.OperationalError as error:
@@ -240,126 +282,172 @@ def process_update_detail():
         args_call = "python3 " + program_name
         output = check_output(args_call, shell=True)
         print("Output of the Customer_Update.py program : ", output)
-
     except subprocess.CalledProcessError:
         print("ERROR : subprocess.CalledProcessError - inside process_update_detail function.")
 
 
 def process_unknown(main_directory, database_code_directory, face_recognition_code_directory,
-                    speech_recognition_code_directory, detect_name, detect_id):
+                    speech_recognition_code_directory, detect_name):
     passing_arg = "0"
     os.chdir(speech_recognition_code_directory)
-    process_speak_start_end(passing_arg)
-    os.chdir(main_directory)
-    text = "Currently we don't have your details\n\nWould you like to save your details?"
-    response = ask_question(text)
-    if response is not None:
-        os.chdir(database_code_directory)
-        unique_id = process_inserting_data()
-        os.chdir(main_directory)
-        if unique_id is not None:
-            os.chdir(face_recognition_code_directory)
-            output_process_picture = process_picture(unique_id)
-            os.chdir(main_directory)
-            if output_process_picture is not None:
-                ask_search(database_code_directory, main_directory, detect_name)
-                ask_update(database_code_directory, main_directory, detect_name)
-            else:
-                ##detete code -- Here Code should delete the data from database and inform the customer.
-                print("ERROR : UNKNOWN customer don't want to save picture. But details saved in dataBase.")
-                ask_search(database_code_directory, main_directory, detect_name)
-        else:
-            print("INFO - {} customer don't want to save detail.".format(detect_name))
-            ask_search(database_code_directory, main_directory, detect_name)
-    else:
-        print("INFO - {} customer don't want to save detail.".format(detect_name))
-        ask_search(database_code_directory, main_directory, detect_name)
+    process_speech_start_end(passing_arg)
+    text = "Do you need any help?"
+    process_speech_question(text)
+    try:
+        with open("Speech_Question_Output.txt", "r") as file:
+            response = file.readline()
+    except EOFError:
+        print("ERROR : EOFError - Speech_Question_Output.txt,  has no data")
+        response = "NONE"
+    except FileNotFoundError:
+        print("ERROR : FileNotFoundError - Speech_Question_Output.txt, is not present")
+        response = "NONE"
 
+    if response == "YES":
+        process_speech_name_organization()
+        try:
+            with open("Speech_Name_Organization_Output.txt", "r") as file:
+                response = file.readline()
+        except EOFError:
+            print("ERROR : EOFError - Speech_Name_Organization_Output.txt,  has no data")
+            response = "NONE"
+        except FileNotFoundError:
+            print("ERROR : FileNotFoundError - Speech_Name_Organization_Output.txt, is not present")
+            response = "NONE"
 
-def process_known(main_directory, database_code_directory, face_recognition_code_directory,
-                  speech_recognition_code_directory, detect_name, detect_id):
-    print('Hello, {} {}'.format(detect_name, detect_id))
-    passing_arg = detect_name.lower()
-    os.chdir(speech_recognition_code_directory)
-    process_speak_start_end(passing_arg)
-    os.chdir(main_directory)
-    os.chdir(database_code_directory)
-    check_region_table = "carego_customer_dev"
-    table_details = process_search_all_details(check_region_table, detect_id)
-    os.chdir(main_directory)
-    if table_details is not None:
-        ask_search(database_code_directory, main_directory, detect_name)
-        ask_update(database_code_directory, main_directory, detect_name)
-    else:
-        text = "Currently we don't have your correct details\n\nwould you like to save your details?"
-        response = ask_question(text)
-        if response is not None:
-            os.chdir(database_code_directory)
-            unique_id = process_inserting_data()
+        if response == "YES":
             os.chdir(main_directory)
-            if unique_id is not None:
-                text = "Your old ID was : " + detect_id + "\n\nYour new ID is : " + unique_id
-                try:
-                    check_output(["zenity", "--info", "--width=400", "--height=200", "--text=" + text])
+            text = "Currently we don't have your details\n\nWould you like to save your details?"
+            response = ask_question(text)
+            if response is not None:
+                os.chdir(database_code_directory)
+                unique_id = process_inserting_data()
+                os.chdir(main_directory)
+                if unique_id is not None:
                     os.chdir(face_recognition_code_directory)
-                    image_path = 'Dataset'
-                    os.chdir(image_path)
-                    old_folder = detect_name + '_' + detect_id
-                    new_folder = detect_name + '_' + unique_id
-                    fix_pic_path = Path(old_folder)
-                    if fix_pic_path.exists() is False:
-                        print("ERROR : fix_pic_path.exists() is False : " + old_folder +
-                              " Not present - inside main_process function. Could not able to "
-                              "save the image data with new ID : ", str(unique_id))
-                    else:
-                        os.rename(old_folder, new_folder)
+                    output_process_picture = process_picture(unique_id)
+                    os.chdir(main_directory)
+                    if output_process_picture is not None:
                         ask_search(database_code_directory, main_directory, detect_name)
                         ask_update(database_code_directory, main_directory, detect_name)
-                except subprocess.CalledProcessError:
-                    print("ERROR : subprocess.CalledProcessError - inside main_process function. "
-                          "could not able to save the image data with new ID : ", str(unique_id))
+                    else:
+                        ##detete code -- Here Code should delete the data from database and inform the customer.
+                        print("ERROR : UNKNOWN customer don't want to save picture. But details saved in dataBase.")
+                        ask_search(database_code_directory, main_directory, detect_name)
+                else:
+                    print("INFO - {} customer don't want to save detail.".format(detect_name))
                     ask_search(database_code_directory, main_directory, detect_name)
-                    ask_update(database_code_directory, main_directory, detect_name)
             else:
                 print("INFO - {} customer don't want to save detail.".format(detect_name))
                 ask_search(database_code_directory, main_directory, detect_name)
         else:
-            print("INFO - {} customer don't want to save detail.".format(detect_name))
+            os.chdir(main_directory)
+    else:
+        os.chdir(main_directory)
+
+
+def process_known(main_directory, database_code_directory, face_recognition_code_directory,
+                  speech_recognition_code_directory, detect_name, detect_id, check_region_table):
+    print('Hello, {} {}'.format(detect_name, detect_id))
+    passing_arg = detect_name.lower()
+    os.chdir(speech_recognition_code_directory)
+    process_speech_start_end(passing_arg)
+    text = "Do you need any help?"
+    process_speech_question(text)
+    try:
+        with open("Speech_Question_Output.txt", "r") as file:
+            response = file.readline()
+            print(response)
+    except EOFError:
+        print("ERROR : EOFError - Speech_Question_Output.txt,  has no data")
+        response = "NONE"
+    except FileNotFoundError:
+        print("ERROR : FileNotFoundError - Speech_Question_Output.txt, is not present")
+        response = "NONE"
+
+    if response == "YES":
+        os.chdir(main_directory)
+        os.chdir(database_code_directory)
+        table_details = process_search_all_details(check_region_table, detect_id)
+        os.chdir(main_directory)
+        if table_details is not None:
             ask_search(database_code_directory, main_directory, detect_name)
+            ask_update(database_code_directory, main_directory, detect_name)
+        else:
+            text = "Currently we don't have your correct details\n\nwould you like to save your details?"
+            response = ask_question(text)
+            if response is not None:
+                os.chdir(database_code_directory)
+                unique_id = process_inserting_data()
+                os.chdir(main_directory)
+                if unique_id is not None:
+                    text = "Your old ID was : " + detect_id + "\n\nYour new ID is : " + unique_id
+                    try:
+                        check_output(["zenity", "--info", "--width=400", "--height=200", "--text=" + text])
+                        os.chdir(face_recognition_code_directory)
+                        image_path = 'Dataset'
+                        os.chdir(image_path)
+                        old_folder = detect_name + '_' + detect_id
+                        new_folder = detect_name + '_' + unique_id
+                        fix_pic_path = Path(old_folder)
+                        if fix_pic_path.exists() is False:
+                            print("ERROR : fix_pic_path.exists() is False : " + old_folder +
+                                  " Not present - inside main_process function. Could not able to "
+                                  "save the image data with new ID : ", str(unique_id))
+                        else:
+                            os.rename(old_folder, new_folder)
+                            ask_search(database_code_directory, main_directory, detect_name)
+                            ask_update(database_code_directory, main_directory, detect_name)
+                    except subprocess.CalledProcessError:
+                        print("ERROR : subprocess.CalledProcessError - inside main_process function. "
+                              "could not able to save the image data with new ID : ", str(unique_id))
+                        ask_search(database_code_directory, main_directory, detect_name)
+                        ask_update(database_code_directory, main_directory, detect_name)
+                else:
+                    print("INFO - {} customer don't want to save detail.".format(detect_name))
+                    ask_search(database_code_directory, main_directory, detect_name)
+            else:
+                print("INFO - {} customer don't want to save detail.".format(detect_name))
+                ask_search(database_code_directory, main_directory, detect_name)
+    else:
+        os.chdir(main_directory)
 
 
 def main_process(main_directory, database_code_directory, face_recognition_code_directory,
-                 speech_recognition_code_directory):
+                 speech_recognition_code_directory, check_region_table):
     os.chdir(face_recognition_code_directory)
     detect_name, detect_id = process_face_detection()
     os.chdir(main_directory)
     if detect_name == "UNKNOWN":
         process_unknown(main_directory, database_code_directory, face_recognition_code_directory,
-                        speech_recognition_code_directory, detect_name, detect_id)
+                        speech_recognition_code_directory, detect_name)
 
     else:
         process_known(main_directory, database_code_directory, face_recognition_code_directory,
-                      speech_recognition_code_directory, detect_name, detect_id)
+                      speech_recognition_code_directory, detect_name, detect_id, check_region_table)
 
     passing_arg = "1"
     os.chdir(speech_recognition_code_directory)
-    process_speak_start_end(passing_arg)
+    process_speech_start_end(passing_arg)
     os.chdir(main_directory)
 
 
 def main():
+    region = "DEV"
     main_directory = "/home/somak/Robotic-Greeter/Development"
+
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
     print('Starting program : Main_Process.py - at : ' + current_time + ' on : ' + current_date)
 
+    check_region_table = checking_region_table(region)
     os.chdir(main_directory)
     database_code_directory, face_recognition_code_directory, speech_recognition_code_directory = checking_directory()
 
     main_process(main_directory, database_code_directory, face_recognition_code_directory,
-                 speech_recognition_code_directory)
+                 speech_recognition_code_directory, check_region_table)
     os.chdir(main_directory)
 
     exit_program()
