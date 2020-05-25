@@ -7,7 +7,8 @@
 # Version : 1
 # Description : This program is to ask the Name & Organization to Unknown Person. Later it will ask to the person
 #               if they want to save their details or not. It will be call from ~/Main_Process/Main_Process.py and
-#               depending on the person's response this program will give an output (inside of a text file).
+#               depending on the person's response this program will give an output (inside of a text file as follow :
+#               Speech_Name_Organization_Output.text).
 #               And with that response Main_Process.py will perform different task.
 #
 # NOTE : This program can be run separately or as a stand alone program as follow for testing purpose:
@@ -56,7 +57,7 @@ def extract_entity_names(t):
     return entity_names
 
 
-def process_speak_listen(mp3_filename, text, record):
+def process_speak_listen(mp3_filename, text, record, flag):
     mp3_filename = mp3_filename + ".mp3"
     try:
         tts = gTTS(text=text, lang='en', slow=False)
@@ -68,23 +69,24 @@ def process_speak_listen(mp3_filename, text, record):
             pygame.time.wait(100)
             continue
 
-        with sr.Microphone(device_index=4) as source:
-            record.pause_threshold = 1
-            record.adjust_for_ambient_noise(source, duration=1)
-            print("Speak:")
-            try:
-                audio = record.listen(source, timeout=5)
-                text = record.recognize_google(audio)
-                print(text)
-            except LookupError:
-                print("ERROR : LookupError - Couldn't able to understand")
-                text = None
-            except speech_recognition.WaitTimeoutError:
-                print("ERROR : WaitTimeoutError - Couldn't able to listen anything for 5 seconds")
-                text = None
-            except speech_recognition.UnknownValueError:
-                print("ERROR : UnknownValueError - Couldn't able to listen anything for 5 seconds")
-                text = None
+        if flag != 1:
+            with sr.Microphone(device_index=4) as source:
+                record.pause_threshold = 1
+                record.adjust_for_ambient_noise(source, duration=1)
+                print("Speak:")
+                try:
+                    audio = record.listen(source, timeout=5)
+                    text = record.recognize_google(audio)
+                    print(text)
+                except LookupError:
+                    print("ERROR : LookupError - Couldn't able to understand")
+                    text = None
+                except speech_recognition.WaitTimeoutError:
+                    print("ERROR : WaitTimeoutError - Couldn't able to listen anything for 5 seconds")
+                    text = None
+                except speech_recognition.UnknownValueError:
+                    print("ERROR : UnknownValueError - Couldn't able to listen anything for 5 seconds")
+                    text = None
     except gtts.tts.gTTSError:
         print("Connection Error : No internet connection.")
         exit_program()
@@ -93,7 +95,8 @@ def process_speak_listen(mp3_filename, text, record):
 
 
 def process_details(mp3_filename, text, record):
-    text = process_speak_listen(mp3_filename, text, record)
+    flag = 0
+    text = process_speak_listen(mp3_filename, text, record, flag)
     if text is None:
         details = None
     else:
@@ -139,12 +142,14 @@ def main():
         text = "OK. " + name + ".  I hope, that I am guessing your name correctly. Actually, " \
                                "we Don't Have Your Details. Would you like to save your details for future?"
 
-    input_details = process_speak_listen(mp3_filename, text, record)
+    flag = 0
+    input_details = process_speak_listen(mp3_filename, text, record, flag)
     response = "NONE"
 
     if input_details is None:
         text = "Sorry, we didn't get any input."
-        process_speak_listen(mp3_filename, text, record)
+        flag = 1
+        process_speak_listen(mp3_filename, text, record, flag)
         response = "NONE"
     else:
         tokenized_word = word_tokenize(input_details)
