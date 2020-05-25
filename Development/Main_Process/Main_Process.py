@@ -102,7 +102,7 @@ def ask_question(text):
 
 
 def ask_search(database_code_directory, main_directory, detect_name):
-    text = "Would you like to search someone here?"
+    text = "Would you like to proceed?"
     response = ask_question(text)
     if response is not None:
         os.chdir(database_code_directory)
@@ -144,8 +144,20 @@ def process_speech_question(text):
         output = check_output(args_call, shell=True)
         output = output.decode().split('\n')
         print("Output of the Speech_Start_End.py Program : ", output)
+        try:
+            with open("Speech_Question_Output.txt", "r") as file:
+                response = file.readline()
+        except EOFError:
+            print("ERROR : EOFError - Speech_Question_Output.txt,  has no data")
+            response = None
+        except FileNotFoundError:
+            print("ERROR : FileNotFoundError - Speech_Question_Output.txt, is not present")
+            response = None
     except subprocess.CalledProcessError:
         print("ERROR : subprocess.CalledProcessError - inside process_speech_start_end function.")
+        response = None
+
+    return response
 
 
 def process_speech_name_organization():
@@ -155,8 +167,32 @@ def process_speech_name_organization():
         output = check_output(args_call, shell=True)
         output = output.decode().split('\n')
         print("Output of the Speech_Name_Organization Program : ", output)
+        try:
+            with open("Speech_Name_Organization_Output.txt", "r") as file:
+                response = file.readline()
+        except EOFError:
+            print("ERROR : EOFError - Speech_Name_Organization_Output.txt,  has no data")
+            response = None
+        except FileNotFoundError:
+            print("ERROR : FileNotFoundError - Speech_Name_Organization_Output.txt, is not present")
+            response = None
     except subprocess.CalledProcessError:
         print("ERROR : subprocess.CalledProcessError - inside process_speech_name_organization function.")
+        response = None
+
+    return response
+
+
+def process_speech_normal(text):
+    passing_arg = text
+    program_name = "Speech_Normal.py"
+    args_call = "python3 " + program_name + ' ' + passing_arg
+    try:
+        output = check_output(args_call, shell=True)
+        output = output.decode().split('\n')
+        print("Output of the Speech_Normal.py Program : ", output)
+    except subprocess.CalledProcessError:
+        print("ERROR : subprocess.CalledProcessError - inside process_speech_start_end function.")
 
 
 def process_face_detection():
@@ -292,32 +328,15 @@ def process_unknown(main_directory, database_code_directory, face_recognition_co
     os.chdir(speech_recognition_code_directory)
     process_speech_start_end(passing_arg)
     text = "Do you need any help?"
-    process_speech_question(text)
-    try:
-        with open("Speech_Question_Output.txt", "r") as file:
-            response = file.readline()
-    except EOFError:
-        print("ERROR : EOFError - Speech_Question_Output.txt,  has no data")
-        response = "NONE"
-    except FileNotFoundError:
-        print("ERROR : FileNotFoundError - Speech_Question_Output.txt, is not present")
-        response = "NONE"
+    response = process_speech_question(text)
 
     if response == "YES":
-        process_speech_name_organization()
-        try:
-            with open("Speech_Name_Organization_Output.txt", "r") as file:
-                response = file.readline()
-        except EOFError:
-            print("ERROR : EOFError - Speech_Name_Organization_Output.txt,  has no data")
-            response = "NONE"
-        except FileNotFoundError:
-            print("ERROR : FileNotFoundError - Speech_Name_Organization_Output.txt, is not present")
-            response = "NONE"
-
+        response = process_speech_name_organization()
         if response == "YES":
+            text = "There will be some pop up message will appear. Please follow it."
+            process_speech_normal(text)
             os.chdir(main_directory)
-            text = "Currently we don't have your details\n\nWould you like to save your details?"
+            text = "Would you like to proceed to save your details?"
             response = ask_question(text)
             if response is not None:
                 os.chdir(database_code_directory)
@@ -339,7 +358,14 @@ def process_unknown(main_directory, database_code_directory, face_recognition_co
                     ask_search(database_code_directory, main_directory, detect_name)
             else:
                 print("INFO - {} customer don't want to save detail.".format(detect_name))
-                ask_search(database_code_directory, main_directory, detect_name)
+                os.chdir(speech_recognition_code_directory)
+                text = "Okay. Since you do not want to save your details, do you like to search anyone?"
+                response = process_speech_question(text)
+                if response == "YES":
+                    os.chdir(main_directory)
+                    ask_search(database_code_directory, main_directory, detect_name)
+                else:
+                    os.chdir(main_directory)
         else:
             os.chdir(main_directory)
     else:
