@@ -37,6 +37,7 @@
 
 import os
 import sys
+import glob
 import psycopg2
 import subprocess
 from pathlib import Path
@@ -91,6 +92,23 @@ def checking_directory():
     return database_code_directory, face_recognition_code_directory, speech_recognition_code_directory
 
 
+def delete_mp3_output_files(speech_recognition_code_directory):
+    os.chdir(speech_recognition_code_directory)
+    mp3_files = glob.glob('*.mp3', recursive=True)
+    output_files = glob.glob('*_Output.txt', recursive=True)
+    for files in mp3_files:
+        try:
+            os.remove(files)
+        except OSError:
+            print("Cannot delete the old mp3 files.")
+
+    for files in output_files:
+        try:
+            os.remove(files)
+        except OSError:
+            print("Cannot delete the old output text files.")
+
+
 def ask_question(text):
     try:
         output = check_output(["zenity", "--question", "--width=400", "--height=200", "--text=" + text])
@@ -129,9 +147,7 @@ def process_speech_start_end(passing_arg):
     program_name = "Speech_Start_End.py"
     args_call = "python3 " + program_name + ' ' + passing_arg
     try:
-        output = check_output(args_call, shell=True)
-        output = output.decode().split('\n')
-        print("Output of the Speech_Start_End.py Program : ", output)
+        check_output(args_call, shell=True)
     except subprocess.CalledProcessError:
         print("ERROR : subprocess.CalledProcessError - inside process_speech_start_end function.")
 
@@ -141,9 +157,9 @@ def process_speech_question(text):
     program_name = "Speech_Question.py"
     args_call = "python3 " + program_name + ' ' + passing_arg
     try:
-        output = check_output(args_call, shell=True)
-        output = output.decode().split('\n')
-        print("Output of the Speech_Start_End.py Program : ", output)
+        check_output(args_call, shell=True)
+        #output = output.decode().split('\n')
+        #print("Output of the Speech_Question.py Program : ", output)
         try:
             with open("Speech_Question_Output.txt", "r") as file:
                 response = file.readline()
@@ -188,9 +204,7 @@ def process_speech_normal(text):
     program_name = "Speech_Normal.py"
     args_call = "python3 " + program_name + ' ' + passing_arg
     try:
-        output = check_output(args_call, shell=True)
-        output = output.decode().split('\n')
-        print("Output of the Speech_Normal.py Program : ", output)
+        check_output(args_call, shell=True)
     except subprocess.CalledProcessError:
         print("ERROR : subprocess.CalledProcessError - inside process_speech_start_end function.")
 
@@ -259,7 +273,7 @@ def process_picture(unique_id):
         output = check_output(args_call, shell=True)
         output = output.decode().split('\n')
         print("Output of the Capture_Picture_Main.py program : ", output)
-        output = output[5]
+        output = output[3]
         if output[:5] == "ERROR":
             output = None
     except subprocess.CalledProcessError:
@@ -343,25 +357,69 @@ def process_unknown(main_directory, database_code_directory, face_recognition_co
                 unique_id = process_inserting_data()
                 os.chdir(main_directory)
                 if unique_id is not None:
+                    os.chdir(speech_recognition_code_directory)
+                    text = "Okay. I hope you have noted your unique ID. Now we are going to take your picture, " \
+                           "so that we can recognize you from next time."
+                    process_speech_normal(text)
+                    os.chdir(main_directory)
                     os.chdir(face_recognition_code_directory)
                     output_process_picture = process_picture(unique_id)
                     os.chdir(main_directory)
                     if output_process_picture is not None:
-                        ask_search(database_code_directory, main_directory, detect_name)
-                        ask_update(database_code_directory, main_directory, detect_name)
+                        os.chdir(speech_recognition_code_directory)
+                        text = "Okay. Thank you for saving your picture. Do you like to search anyone?"
+                        response = process_speech_question(text)
+                        if response == "YES":
+                            text = "There will be some pop up message will appear. Please follow it."
+                            process_speech_normal(text)
+                            os.chdir(main_directory)
+                            ask_search(database_code_directory, main_directory, detect_name)
+                        else:
+                            os.chdir(main_directory)
+
+                        os.chdir(speech_recognition_code_directory)
+                        text = "Do you like to update your details?"
+                        response = process_speech_question(text)
+                        if response == "YES":
+                            text = "There will be some pop up message will appear. Please follow it."
+                            process_speech_normal(text)
+                            os.chdir(main_directory)
+                            ask_update(database_code_directory, main_directory, detect_name)
+                        else:
+                            os.chdir(main_directory)
                     else:
                         ##detete code -- Here Code should delete the data from database and inform the customer.
                         print("ERROR : UNKNOWN customer don't want to save picture. But details saved in dataBase.")
-                        ask_search(database_code_directory, main_directory, detect_name)
+                        os.chdir(speech_recognition_code_directory)
+                        text = "Okay. Since you do not want to save picture, do you like to search anyone?"
+                        response = process_speech_question(text)
+                        if response == "YES":
+                            text = "There will be some pop up message will appear. Please follow it."
+                            process_speech_normal(text)
+                            os.chdir(main_directory)
+                            ask_search(database_code_directory, main_directory, detect_name)
+                        else:
+                            os.chdir(main_directory)
                 else:
                     print("INFO - {} customer don't want to save detail.".format(detect_name))
-                    ask_search(database_code_directory, main_directory, detect_name)
+                    os.chdir(speech_recognition_code_directory)
+                    text = "Okay. Since you do not want to save your details, do you like to search anyone?"
+                    response = process_speech_question(text)
+                    if response == "YES":
+                        text = "There will be some pop up message will appear. Please follow it."
+                        process_speech_normal(text)
+                        os.chdir(main_directory)
+                        ask_search(database_code_directory, main_directory, detect_name)
+                    else:
+                        os.chdir(main_directory)
             else:
                 print("INFO - {} customer don't want to save detail.".format(detect_name))
                 os.chdir(speech_recognition_code_directory)
                 text = "Okay. Since you do not want to save your details, do you like to search anyone?"
                 response = process_speech_question(text)
                 if response == "YES":
+                    text = "There will be some pop up message will appear. Please follow it."
+                    process_speech_normal(text)
                     os.chdir(main_directory)
                     ask_search(database_code_directory, main_directory, detect_name)
                 else:
@@ -474,6 +532,8 @@ def main():
 
     main_process(main_directory, database_code_directory, face_recognition_code_directory,
                  speech_recognition_code_directory, check_region_table)
+    os.chdir(main_directory)
+    delete_mp3_output_files(speech_recognition_code_directory)
     os.chdir(main_directory)
 
     exit_program()
