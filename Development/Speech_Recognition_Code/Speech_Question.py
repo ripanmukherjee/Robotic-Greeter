@@ -71,10 +71,10 @@ def process_speak_listen(mp3_filename, text, record, flag):
                     print("ERROR : LookupError - Couldn't able to understand")
                     text = None
                 except speech_recognition.WaitTimeoutError:
-                    print("ERROR : WaitTimeoutError - Couldn't able to listen anything for 5 seconds")
+                    print("ERROR : WaitTimeoutError - Couldn't able to listen anything for 3 seconds")
                     text = None
                 except speech_recognition.UnknownValueError:
-                    print("ERROR : UnknownValueError - Couldn't able to listen anything for 5 seconds")
+                    print("ERROR : UnknownValueError - Couldn't able to listen anything for 3 seconds")
                     text = None
     except gtts.tts.gTTSError:
         print("Connection Error : No internet connection.")
