@@ -15,12 +15,11 @@
 # >> python3 Speech_Name_Organization.py
 
 import sys
-
 import gtts
 import nltk
 import pygame
-import speech_recognition
 from gtts import gTTS
+import speech_recognition
 import speech_recognition as sr
 from nltk.corpus import stopwords
 from datetime import date, datetime
