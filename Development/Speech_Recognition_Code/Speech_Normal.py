@@ -12,7 +12,9 @@
 # NOTE 1 : This program can be run separately or as a stand alone program as follow for testing purpose :
 # >> python3 Speech_Normal.py
 
+import os
 import sys
+import glob
 import pygame
 from gtts import gTTS
 from datetime import date, datetime
@@ -39,17 +41,34 @@ def process(mp3_filename, text):
         continue
 
 
+def delete_mp3_output_files():
+    mp3_files = glob.glob('*.mp3', recursive=True)
+    output_files = glob.glob('*_Output.txt', recursive=True)
+    for files in mp3_files:
+        try:
+            os.remove(files)
+        except OSError:
+            print("Cannot delete the old mp3 files.")
+
+    for files in output_files:
+        try:
+            os.remove(files)
+        except OSError:
+            print("Cannot delete the old output text files.")
+
+
 def main():
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
     print('Starting program : Speech_Normal.py - at : ' + current_time + ' on : ' + current_date)
-
+    stand_alone_flag = None
     mp3_filename = "Speech_Normal"
     try:
         input_argv = sys.argv
         if len(input_argv) < 2:
+            stand_alone_flag = 1
             text = "Hello, this is for testing. "
         else:
             text_list = []
@@ -58,9 +77,14 @@ def main():
 
             text = " ".join(text_list)
     except IndexError:
+        stand_alone_flag = 1
         text = "Hello, this is for testing. "
 
     process(mp3_filename, text)
+    if stand_alone_flag == 1:
+        print("Deleting mp3 and output file. Value of stand_alone_flag : ", str(stand_alone_flag))
+        delete_mp3_output_files()
+
     exit_program()
 
 
