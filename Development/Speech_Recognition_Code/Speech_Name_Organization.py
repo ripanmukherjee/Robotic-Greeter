@@ -75,7 +75,7 @@ def process_speak_listen(mp3_filename, text, record, flag):
                 record.adjust_for_ambient_noise(source, duration=1)
                 print("Speak:")
                 try:
-                    audio = record.listen(source, timeout=5)
+                    audio = record.listen(source, timeout=3)
                     text = record.recognize_google(audio)
                     print(text)
                 except LookupError:
