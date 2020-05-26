@@ -14,13 +14,14 @@
 # NOTE 1 : This program can be run separately or as a stand alone program as follow for testing purpose:
 # >> python3 Speech_Question.py
 
+import os
 import sys
-
 import gtts
 import nltk
+import glob
 import pygame
-import speech_recognition
 from gtts import gTTS
+import speech_recognition
 import speech_recognition as sr
 from nltk.corpus import stopwords
 from datetime import date, datetime
@@ -82,6 +83,22 @@ def process_speak_listen(mp3_filename, text, record, flag):
     return text
 
 
+def delete_mp3_output_files():
+    mp3_files = glob.glob('*.mp3', recursive=True)
+    output_files = glob.glob('*_Output.txt', recursive=True)
+    for files in mp3_files:
+        try:
+            os.remove(files)
+        except OSError:
+            print("Cannot delete the old mp3 files.")
+
+    for files in output_files:
+        try:
+            os.remove(files)
+        except OSError:
+            print("Cannot delete the old output text files.")
+
+
 def main():
     record = sr.Recognizer()
     today = date.today()
@@ -96,10 +113,12 @@ def main():
                      'achcha', 'right', 'righty-ho', 'surely', 'yea', 'well', 'course', 'yes', 'please', 'do']
     stop_words = set(stopwords.words("english"))
     mp3_filename = "Speech_Question"
+    stand_alone_flag = None
 
     try:
         input_argv = sys.argv
         if len(input_argv) < 2:
+            stand_alone_flag = 1
             text = "Hello, this is for testing. Do you want to continue?"
         else:
             text_list = []
@@ -108,6 +127,7 @@ def main():
 
             text = " ".join(text_list)
     except IndexError:
+        stand_alone_flag = 1
         text = "Hello, this is for testing. Do you want to continue?"
 
     flag = 0
@@ -136,6 +156,10 @@ def main():
 
     with open("Speech_Question_Output.txt", "w") as output_file:
         output_file.write(response)
+
+    if stand_alone_flag == 1:
+        print("Deleting mp3 and output file. Value of stand_alone_flag : ", str(stand_alone_flag))
+        delete_mp3_output_files()
 
     exit_program()
 
