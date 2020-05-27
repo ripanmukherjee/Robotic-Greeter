@@ -7,9 +7,9 @@ and verify it.
 
 Prerequisites
 --------------
-A system running Ubuntu 18.04
-A user account with sudo privileges
-Access to a terminal window/command-line (Ctrl+Alt+T)
+* A system running Ubuntu 18.04
+* A user account with sudo privileges
+* Access to a terminal window/command-line (Ctrl+Alt+T)
 
 This process uses the apt package manager to install Python. There are
 fewer steps, but it’s dependent on a third party hosting software updates.

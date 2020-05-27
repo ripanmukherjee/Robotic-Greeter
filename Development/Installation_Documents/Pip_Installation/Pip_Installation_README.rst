@@ -4,9 +4,9 @@ Install Pip on Ubuntu 18.04
 
 Prerequisites
 --------------
-A system running Ubuntu 18.04
-A user account with sudo privileges
-Access to a terminal window/command-line (Ctrl+Alt+T)
+* A system running Ubuntu 18.04
+* A user account with sudo privileges
+* Access to a terminal window/command-line (Ctrl+Alt+T)
 
 Before continuing with this tutorial, make sure you are logged in as root
 or a user with sudo privileges.
