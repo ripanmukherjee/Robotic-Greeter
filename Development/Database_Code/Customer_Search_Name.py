@@ -24,6 +24,11 @@
 #          def main():
 #              region = "DEV"
 #
+#          This program also use conn as follow :
+#          conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1",
+#          port="5432")
+#          Please make sure that everything is correct.
+#
 # NOTE 2 : This program can be run separately or as a stand alone program as follow:
 # >> python3 Customer_Search_Name.py
 
@@ -52,10 +57,8 @@ def checking_region_table(region):
     elif region == "PROD":
         table = "carego_customer_prod"
     else:
-        print()
         print("ERROR : REGION VALUE NOT FOUND. Please check the REGION value inside the program - "
               "inside checking_region_table function.")
-        print()
         exit_program()
 
     return table
@@ -71,7 +74,6 @@ def get_details():
         details = check_output(args_get_details, shell=True)
         details = details.decode().split('|')
         print(details)
-
     except subprocess.CalledProcessError:
         print("ERROR : subprocess.CalledProcessError - inside get_details function.")
         exit_program()
@@ -101,7 +103,6 @@ def format_details(details):
         else:
             first_name = details[0].upper()
             last_name = details[1].upper()
-
     except IndexError:
         print("ERROR : IndexError - You didn't enter any details - inside format_details function.")
         check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nYou didn't "
@@ -112,8 +113,6 @@ def format_details(details):
 
 
 def search_first_name(check_region_table, first_name):
-    cur = None
-    conn = None
     try:
         conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1", port="5432")
         cur = conn.cursor()
@@ -132,21 +131,16 @@ def search_first_name(check_region_table, first_name):
             print("Data searched sucessfully!!!!")
 
         conn.commit()
+        cur.close()
         conn.close()
     except psycopg2.OperationalError as error:
         print("ERROR : psycopg2.OperationalError - inside search_first_name function : " + str(error))
-        conn = None
         row = None
-    finally:
-        cur.close()
-        conn.close()
 
     return row
 
 
 def search_last_name(check_region_table, last_name):
-    cur = None
-    conn = None
     try:
         conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1", port="5432")
         cur = conn.cursor()
@@ -165,21 +159,16 @@ def search_last_name(check_region_table, last_name):
             print("Data searched successfully!!!!")
 
         conn.commit()
+        cur.close()
         conn.close()
     except psycopg2.OperationalError as error:
         print("ERROR : psycopg2.OperationalError - inside search_last_name function : " + str(error))
-        conn = None
         row = None
-    finally:
-        cur.close()
-        conn.close()
 
     return row
 
 
 def search_first_last_name(check_region_table, first_name, last_name):
-    cur = None
-    conn = None
     try:
         conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1", port="5432")
         cur = conn.cursor()
@@ -199,14 +188,11 @@ def search_first_last_name(check_region_table, first_name, last_name):
             print("Data searched successfully!!!!")
 
         conn.commit()
+        cur.close()
         conn.close()
     except psycopg2.OperationalError as error:
         print("ERROR : psycopg2.OperationalError - inside search_first_last_name function : " + str(error))
-        conn = None
         row = None
-    finally:
-        cur.close()
-        conn.close()
 
     return row
 
