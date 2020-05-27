@@ -42,15 +42,15 @@ Install using pip or pip3::
     $ pip3 install os-sys
     $ pip3 install subprocess.run
 
-Install via shell scripts:
+2. Install via shell scripts:
 ---------------------------
 On the other hand you can run the shell script
 (/Database_Python_Packages_Installation.sh) in the Database_Code folder.
 By running this program, it will automatically install all the above
 mentioned packages for you.
 
-Install Psycopg2 by Python pip :
---------------------------------
+Install Psycopg2:
+------------------
 Note : To install Psycopg2, please go to the Psycopg2_Installation_ folder.
 Also, you can get Psycopg2_Installation_Document.doc for more information.
 
