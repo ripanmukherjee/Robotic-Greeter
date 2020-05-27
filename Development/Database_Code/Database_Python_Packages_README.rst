@@ -66,7 +66,7 @@ information.
 
 .. _Postgresql_pgAdmin_Installation:
 
-Installation done!
+Installation done!!
 
 Please visit the PyPi_ (Python Package Index) site for more python packages
 details.
