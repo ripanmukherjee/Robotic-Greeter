@@ -10,15 +10,6 @@
 #               Test (TEST) : carego_customer_test
 #               Production (PROD) : carego_customer_prod
 #
-#               Also, this program use "carego_customer_dev_ID_seq" as follow :
-#               seq_query = '''SELECT CURRVAL('"carego_customer_dev_ID_seq"'::regclass);'''
-#               Please, make sure if you are creating new table then change the sequence value.
-#
-#               This program also use conn as follow :
-#               conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres",
-#               host="127.0.0.1", port="5432")
-#               Please make sure that everything is correct.
-#
 #               This program will be called from ~/Main_Process/Main_Process.py. If the customer wants to save their
 #               details in the database then Main_Process.py will call this program and this process will insert the
 #               data into the above mentioned table.
@@ -31,6 +22,15 @@
 #          Check in the following function :
 #          def main():
 #              region = "DEV"
+#
+#          Also, this program use "carego_customer_dev_ID_seq" as follow :
+#          seq_query = '''SELECT CURRVAL('"carego_customer_dev_ID_seq"'::regclass);'''
+#          Please, make sure if you are creating new table then change the sequence value.
+#
+#          This program also use conn as follow :
+#          conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1",
+#          port="5432")
+#          Please make sure that everything is correct.
 #
 # NOTE 2 : This program can be run separately or as a stand alone program as follow:
 # >> python3 Customer_Insert.py
@@ -61,10 +61,8 @@ def checking_region_table(region):
     elif region == "PROD":
         table = "carego_customer_prod"
     else:
-        print()
         print("ERROR : REGION VALUE NOT FOUND. Please check the REGION value inside the program - "
               "inside checking_region_table function.")
-        print()
         exit_program()
 
     return table
@@ -83,7 +81,6 @@ def get_details():
         details = check_output(args_get_details, shell=True)
         details = details.decode().split('|')
         print(details)
-
     except subprocess.CalledProcessError:
         print("ERROR : subprocess.CalledProcessError - inside get_details function.")
         exit_program()
@@ -143,7 +140,6 @@ def format_details(details):
             phone_no = details[3]
             employer = details[4]
             role = details[5].strip()
-
     except IndexError:
         print("ERROR : IndexError - You didn't enter any details - inside format_details function.")
         check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nYou didn't enter "
@@ -154,8 +150,6 @@ def format_details(details):
 
 
 def insert(check_region_table, first_name, last_name, email_id, phone_no, employer, role, creation_date):
-    conn = None
-
     try:
         conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1", port="5432")
         cur = conn.cursor()
