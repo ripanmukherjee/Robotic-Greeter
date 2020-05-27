@@ -23,6 +23,11 @@
 #          def main():
 #              region = "DEV"
 #
+#          This program also use conn as follow :
+#          conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1",
+#          port="5432")
+#          Please make sure that everything is correct.
+#
 # NOTE 2 : This program can be run separately or as a stand alone program as follow:
 # >> python3 Customer_Search_ID.py
 
@@ -50,10 +55,8 @@ def checking_region_table(region):
     elif region == "PROD":
         table = "carego_customer_prod"
     else:
-        print()
         print("ERROR : REGION VALUE NOT FOUND. Please check the REGION value inside the program - "
               "inside checking_region_table function.")
-        print()
         table = None
         exit_program()
 
@@ -70,7 +73,6 @@ def get_details():
         details = details.decode().split('|')
         details = details[0].strip()
         print(details)
-
     except subprocess.CalledProcessError:
         print("ERROR : subprocess.CalledProcessError - inside get_details function.")
         exit_program()
@@ -88,7 +90,6 @@ def format_details(details):
             exit_program()
         else:
             id_details = details
-
     except IndexError:
         print("ERROR : IndexError - You didn't enter any details - inside format_details function.")
         check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nYou didn't enter "
@@ -99,8 +100,6 @@ def format_details(details):
 
 
 def search_id(check_region_table, id_details):
-    cur = None
-    conn = None
     try:
         conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1", port="5432")
         cur = conn.cursor()
@@ -119,16 +118,11 @@ def search_id(check_region_table, id_details):
             print("Data searched successfully!!!!")
 
         conn.commit()
+        cur.close()
         conn.close()
     except psycopg2.OperationalError as error:
         print("ERROR : psycopg2.OperationalError - inside search_id function : " + str(error))
-        conn = None
-        cur = None
         row = None
-        exit_program()
-    finally:
-        cur.close()
-        conn.close()
 
     return row
 
