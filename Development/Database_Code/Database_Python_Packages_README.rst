@@ -1,5 +1,5 @@
-Python Package :
-----------------
+Install Python Package :
+-------------------------
 There are couple of python packages which needs to validate before
 run any python program in Database_Code folder. Assuming that you have
 already installed python 3.6 (or above). If not then please go to
@@ -35,7 +35,7 @@ There are 2 way you can install the packages:
 2. Install via shell scripts.
 
 1. Install using Command Prompt:
---------------------------------
+*********************************
 Install using pip or pip3::
 
     $ pip3 install regex
@@ -43,7 +43,7 @@ Install using pip or pip3::
     $ pip3 install subprocess.run
 
 2. Install via shell scripts:
----------------------------
+*********************************
 On the other hand you can run the shell script
 (/Database_Python_Packages_Installation.sh) in the Database_Code folder.
 By running this program, it will automatically install all the above
