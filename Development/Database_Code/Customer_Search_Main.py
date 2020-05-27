@@ -57,7 +57,6 @@ def get_details():
         details = check_output(args, shell=True)
         details = details.decode().split('|')
         details = details[0].strip()
-
     except subprocess.CalledProcessError:
         print("ERROR : subprocess.CalledProcessError - inside get_details function.")
         exit_program()
@@ -84,7 +83,6 @@ def call_program(details):
                                                                                   "select valid option. "
                                                                                   "Please try again!!!!"])
                 exit_program()
-
     except IndexError:
         print("ERROR : IndexError - Not valid option - inside call_program function.")
         exit_program()
