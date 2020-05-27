@@ -2,13 +2,19 @@ Install Python Package :
 -------------------------
 There are couple of python packages which needs to validate before
 run any python program in Database_Code folder. Assuming that you have
-already installed python 3.6 (or above). If not then please go to
-Python_Installation_ folder and do the needful.
+already installed python 3.6 (or above), Pip and Git. If not then please
+go to the following folder and do the needful.
 
-.. _Python_Installation: https://pypi.org/
+1. Python_Installation_
+2. Pip_Installation_
+3. Git_Installation_
 
-Now, after you validate python3 on your computer then please continue the
-following :
+.. _Python_Installation:
+.. _Pip_Installation:
+.. _Git_Installation:
+
+Now, after you validate python3, pip & Git on your computer then please
+continue the following :
 
 Go to the python console by typing following command::
 
@@ -52,17 +58,17 @@ mentioned packages for you.
 |
 |
 
-
-
 Install Psycopg2:
 ------------------
-Note : To install Psycopg2, please go to the Psycopg2_Installation_ folder.
-Also, you can get Psycopg2_Installation_Document.doc for more information.
+Note : To install Psycopg2, please go to the Postgresql_pgAdmin_Installation_
+folder. Also, you can check Postgresql_pgAdmin_Installation.doc for more
+information.
 
-.. _Psycopg2_Installation:
+.. _Postgresql_pgAdmin_Installation:
 
 Installation done!
 
-Please visit the PyPi_ (Python Package Index) site for more details.
+Please visit the PyPi_ (Python Package Index) site for more python packages
+details.
 
 .. _PyPi: https://pypi.org/
