@@ -49,6 +49,9 @@ On the other hand you can run the shell script
 By running this program, it will automatically install all the above
 mentioned packages for you.
 
+|
+|
+
 
 
 Install Psycopg2:
