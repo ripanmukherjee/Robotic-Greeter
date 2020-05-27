@@ -49,6 +49,8 @@ On the other hand you can run the shell script
 By running this program, it will automatically install all the above
 mentioned packages for you.
 
+
+
 Install Psycopg2:
 ------------------
 Note : To install Psycopg2, please go to the Psycopg2_Installation_ folder.
