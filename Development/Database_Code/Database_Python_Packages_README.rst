@@ -10,8 +10,14 @@ go to the following folder and do the needful.
 3. Git_Installation_
 
 .. _Python_Installation: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Development/Installation_Documents/Python_Installation
-.. _Pip_Installation:
-.. _Git_Installation:
+.. _Pip_Installation: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Development/Installation_Documents/Pip_Installation
+.. _Git_Installation: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Development/Installation_Documents/Git_Installation
+
+Prerequisites
+--------------
+* A system running Ubuntu 18.04
+* A user account with sudo privileges
+* Access to a terminal window/command-line (Ctrl+Alt+T)
 
 Now, after you validate python3, pip & Git on your computer then please
 continue the following :
