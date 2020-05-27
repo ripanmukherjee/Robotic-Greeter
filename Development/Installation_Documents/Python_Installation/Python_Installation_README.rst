@@ -1,5 +1,5 @@
-Install Python 3.6 (or above)
--------------------------------
+Install Python 3.6 (or above) on Ubuntu 18.04
+------------------------------------------------
 Python is a popular programming language often used to write scripts for
 operating systems. It’s versatile enough for use in web development and
 app design. In this project we have used python and hence we need to install
@@ -9,7 +9,7 @@ Prerequisites
 --------------
 A system running Ubuntu 18.04
 A user account with sudo privileges
-Access to a terminal window/command-line (Ctrl–Alt–T)
+Access to a terminal window/command-line (Ctrl+Alt+T)
 
 This process uses the apt package manager to install Python. There are
 fewer steps, but it’s dependent on a third party hosting software updates.
@@ -29,8 +29,7 @@ There are 2 way you can install the packages:
 
 1. Install using Command Prompt:
 *********************************
-First, we need to update and upgrade it. Go to the python console by
-typing following command::
+First, we need to update and upgrade it::
 
     $ sudo apt update
     $ sudo apt upgrade
