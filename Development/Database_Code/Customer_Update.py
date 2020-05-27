@@ -23,6 +23,11 @@
 #          def main():
 #              region = "DEV"
 #
+#          This program also use conn as follow :
+#          conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1",
+#          port="5432")
+#          Please make sure that everything is correct.
+#
 # NOTE 2 : This program can be run separately or as a stand alone program as follow:
 # >> python3 Customer_Update.py
 
@@ -52,10 +57,8 @@ def checking_region_table(region):
     elif region == "PROD":
         table = "carego_customer_prod"
     else:
-        print()
         print("ERROR : REGION VALUE NOT FOUND. Please check the REGION value inside the program - "
               "inside checking_region_table function.")
-        print()
         exit_program()
 
     return table
@@ -94,7 +97,6 @@ def get_details_initial_option():
         details = check_output(args, shell=True)
         details = details.decode().split('|')
         details[0] = details[0].strip()
-
     except subprocess.CalledProcessError:
         print("ERROR : subprocess.CalledProcessError - inside get_details_initial_option function.")
         exit_program()
@@ -134,7 +136,6 @@ def assign_update_option(details):
                                               "--text=ALERT!!!\n\nYou didn't select valid option. "
                                               "Please try again!!!!"])
                                 exit_program()
-
     except IndexError:
         print("ERROR : IndexError - Not valid option - inside assign_update_option function.")
         option = None
@@ -159,7 +160,6 @@ def get_details_validation(option):
                               "--text=ALERT!!!\n\nFirst Name cannot be blank or less than 2 characters. "
                               "Please try again!!!!"])
                 exit_program()
-
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside get_details_validation function.")
             exit_program()
@@ -179,7 +179,6 @@ def get_details_validation(option):
                               "--text=ALERT!!!\n\nLast Name cannot be blank or less than 2 characters. "
                               "Please try again!!!!"])
                 exit_program()
-
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside get_details_validation function.")
             exit_program()
@@ -205,7 +204,6 @@ def get_details_validation(option):
                               "--text=ALERT!!!\n\nEmail Id must contain @ & dot(.). "
                               "Also, it should be valid Email ID. Please try again!!!!"])
                 exit_program()
-
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside get_details_validation function.")
             exit_program()
@@ -229,7 +227,6 @@ def get_details_validation(option):
                 check_output(["zenity", "--error", "--width=400", "--height=200",
                               "--text=ALERT!!!\n\nPhone number must be numeric. Please try again!!!!"])
                 exit_program()
-
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside get_details_validation function.")
             exit_program()
@@ -248,7 +245,6 @@ def get_details_validation(option):
                               "--text=ALERT!!!\n\nEmployer details cannot be blank or less than 2 characters. "
                               "Please try again!!!!"])
                 exit_program()
-
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside get_details_validation function.")
             exit_program()
@@ -267,7 +263,6 @@ def get_details_validation(option):
                               "--text=ALERT!!!\n\nRole details cannot be blank or less than 2 characters. "
                               "Please try again!!!!"])
                 exit_program()
-
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside get_details_validation function.")
             exit_program()
@@ -295,7 +290,6 @@ def get_id_confirmation():
             exit_program()
         else:
             main_id = id_details
-
     except subprocess.CalledProcessError:
         print("ERROR : subprocess.CalledProcessError - inside get_id_confirmation function.")
         exit_program()
@@ -304,8 +298,6 @@ def get_id_confirmation():
 
 
 def search_id(check_region_table, confirm_id):
-    cur = None
-    conn = None
     try:
         count = 0
         conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1", port="5432")
@@ -326,21 +318,16 @@ def search_id(check_region_table, confirm_id):
                     count = tuple_details
 
         conn.commit()
+        cur.close()
         conn.close()
     except psycopg2.OperationalError as error:
         print("ERROR : psycopg2.OperationalError - inside search_id function : " + str(error))
-        conn = None
         count = 0
-    finally:
-        cur.close()
-        conn.close()
 
     return count
 
 
 def update_table(check_region_table, update_details, update_option, confirm_id):
-    cur = None
-    conn = None
     if update_option == 1:
         try:
             conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1",
@@ -356,14 +343,11 @@ def update_table(check_region_table, update_details, update_option, confirm_id):
             check_output(["zenity", "--info", "--width=400", "--height=200",
                           "--text=First Name updated successfully!!!!"])
             conn.commit()
+            cur.close()
             conn.close()
         except psycopg2.OperationalError as error:
             print("ERROR : psycopg2.OperationalError - inside update_table function : " + str(error))
             check_output(["zenity", "--error", "--width=400", "--height=200", "--text=Please contact admin!!!!"])
-            conn = None
-        finally:
-            cur.close()
-            conn.close()
 
     if update_option == 2:
         try:
@@ -380,14 +364,11 @@ def update_table(check_region_table, update_details, update_option, confirm_id):
             check_output(["zenity", "--info", "--width=400", "--height=200",
                           "--text=Last Name updated successfully!!!!"])
             conn.commit()
+            cur.close()
             conn.close()
         except psycopg2.OperationalError as error:
             print("ERROR : psycopg2.OperationalError - inside update_table function : " + str(error))
             check_output(["zenity", "--error", "--width=400", "--height=200", "--text=Please contact admin!!!!"])
-            conn = None
-        finally:
-            cur.close()
-            conn.close()
 
     if update_option == 3:
         try:
@@ -404,14 +385,11 @@ def update_table(check_region_table, update_details, update_option, confirm_id):
             check_output(["zenity", "--info", "--width=400", "--height=200",
                           "--text=Email ID updated successfully!!!!"])
             conn.commit()
+            cur.close()
             conn.close()
         except psycopg2.OperationalError as error:
             print("ERROR : psycopg2.OperationalError - inside update_table function : " + str(error))
             check_output(["zenity", "--error", "--width=400", "--height=200", "--text=Please contact admin!!!!"])
-            conn = None
-        finally:
-            cur.close()
-            conn.close()
 
     if update_option == 4:
         try:
@@ -428,14 +406,11 @@ def update_table(check_region_table, update_details, update_option, confirm_id):
             check_output(["zenity", "--info", "--width=400", "--height=200",
                           "--text=Phone no updated successfully!!!!"])
             conn.commit()
+            cur.close()
             conn.close()
         except psycopg2.OperationalError as error:
             print("ERROR : psycopg2.OperationalError - inside update_table function : " + str(error))
             check_output(["zenity", "--error", "--width=400", "--height=200", "--text=Please contact admin!!!!"])
-            conn = None
-        finally:
-            cur.close()
-            conn.close()
 
     if update_option == 5:
         try:
@@ -452,14 +427,11 @@ def update_table(check_region_table, update_details, update_option, confirm_id):
             check_output(["zenity", "--info", "--width=400", "--height=200",
                           "--text=Employer updated successfully!!!!"])
             conn.commit()
+            cur.close()
             conn.close()
         except psycopg2.OperationalError as error:
             print("ERROR : psycopg2.OperationalError - inside update_table function : " + str(error))
             check_output(["zenity", "--error", "--width=400", "--height=200", "--text=Please contact admin!!!!"])
-            conn = None
-        finally:
-            cur.close()
-            conn.close()
 
     if update_option == 6:
         try:
@@ -476,14 +448,11 @@ def update_table(check_region_table, update_details, update_option, confirm_id):
             check_output(["zenity", "--info", "--width=400", "--height=200",
                           "--text=Role updated successfully!!!!"])
             conn.commit()
+            cur.close()
             conn.close()
         except psycopg2.OperationalError as error:
             print("ERROR : psycopg2.OperationalError - inside update_table function : " + str(error))
             check_output(["zenity", "--error", "--width=400", "--height=200", "--text=Please contact admin!!!!"])
-            conn = None
-        finally:
-            cur.close()
-            conn.close()
 
 
 def main():
