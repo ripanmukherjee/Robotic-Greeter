@@ -10,6 +10,15 @@
 #               Test (TEST) : carego_customer_test
 #               Production (PROD) : carego_customer_prod
 #
+#               Also, this program use "carego_customer_dev_ID_seq" as follow :
+#               seq_query = '''SELECT CURRVAL('"carego_customer_dev_ID_seq"'::regclass);'''
+#               Please, make sure if you are creating new table then change the sequence value.
+#
+#               This program also use conn as follow :
+#               conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres",
+#               host="127.0.0.1", port="5432")
+#               Please make sure that everything is correct.
+#
 #               This program will be called from ~/Main_Process/Main_Process.py. If the customer wants to save their
 #               details in the database then Main_Process.py will call this program and this process will insert the
 #               data into the above mentioned table.
@@ -145,8 +154,8 @@ def format_details(details):
 
 
 def insert(check_region_table, first_name, last_name, email_id, phone_no, employer, role, creation_date):
-    cur = None
     conn = None
+
     try:
         conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1", port="5432")
         cur = conn.cursor()
@@ -157,7 +166,7 @@ def insert(check_region_table, first_name, last_name, email_id, phone_no, employ
         VALUES (%s, %s, %s, %s, %s, %s, %s);'''
         cur.execute(query, (first_name, last_name, email_id, phone_no, employer, role, creation_date))
 
-        seq_query = '''SELECT CURRVAL('"carego_customer_insert_dev_ID_seq"'::regclass);'''
+        seq_query = '''SELECT CURRVAL('"carego_customer_dev_ID_seq"'::regclass);'''
         cur.execute(seq_query)
         seq = cur.fetchone()
 
@@ -167,22 +176,16 @@ def insert(check_region_table, first_name, last_name, email_id, phone_no, employ
                                                                          "" + str(seq[0])])
         print("Unique_ID : ", str(seq[0]))
         conn.commit()
+        cur.close()
         conn.close()
     except psycopg2.OperationalError as error:
         print("ERROR : psycopg2.OperationalError - inside insert function : " + str(error))
-        conn = None
-        cur = None
-        exit_program()
+        check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nSomething "
+                                                                          "went wrong!!!! Please try again!!!"])
     except psycopg2.IntegrityError as error:
         print("ERROR : psycopg2.IntegrityError - inside insert function : " + str(error))
         check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nDetails "
                                                                           "already present!!!! Please try again!!!"])
-        conn = None
-        cur = None
-        exit_program()
-    finally:
-        cur.close()
-        conn.close()
 
 
 def main():
