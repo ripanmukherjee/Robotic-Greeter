@@ -26,8 +26,7 @@ follow these steps:
     $ sudo apt update
     $ sudo apt install python3-opencv
 
-* To verify the installation, import the cv2 module and print the OpenCV
-version::
+* To verify the installation, import the cv2 module and print the OpenCV version::
 
     $ python3 -c "import cv2; print(cv2.__version__)"
 
