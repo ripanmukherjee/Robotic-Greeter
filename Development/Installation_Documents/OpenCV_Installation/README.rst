@@ -8,6 +8,12 @@ faces, tracking moving objects, extracting 3D models, and much more.
 OpenCV can take advantage of multi-core processing and features GPU
 acceleration for real-time operation.
 
+Prerequisites
+******************
+* A system running Ubuntu 18.04
+* A user account with sudo privileges
+* Access to a terminal window/command-line (Ctrl+Alt+T)
+
 There are 3 way you can install the packages:
 
 1. Install OpenCV from the Ubuntu Repository.
