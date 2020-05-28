@@ -83,7 +83,6 @@ Also, you can pull and push the code to Github by following ::
     $ git pull
     $ git push
 
-Please visit the PyPi_ (Python Package Index) site for more python packages
-details.
+Please visit the Git_ website for more Git related details.
 
-.. _PyPi: https://pypi.org/
+.. _Git: https://git-scm.com/
