@@ -62,7 +62,6 @@ By running this program, it will automatically install python for you.
 
 Installation done!!
 
-Please visit the PyPi_ (Python Package Index) site for more python packages
-details.
+Please visit the Python_ website for more python related details.
 
-.. _PyPi: https://pypi.org/
+.. _Python: https://www.python.org/
