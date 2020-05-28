@@ -53,6 +53,36 @@ By running this program, it will automatically install Git for you.
 
 Installation done!!
 
+Working with Git & GitHub
+****************************
+After the installation is done, please go to your terminal and do the
+following ::
+
+    $ git config --global user.name "FIRST_NAME LAST_NAME"
+    $ git config --global user.email "MY_NAME@example.com"
+
+This is for configuration your name and your email id. Also, you can validate
+if git is working or not by following ::
+
+    $ git clone https://myexample.url
+
+By doing git clone, the git folder will automatically download in your
+computer. If you change any code or any documents or if you create a new code
+or document or if you delete any then please do the following ::
+
+    $ git status (This will show git status, if anything needs to update or not)
+    $ git add example_code (After you add or modify)
+    $ git rm example_code (after you delete)
+    $ git status
+    $ git commit -a -m "my_example_comment"
+
+The above process you needs to perform for every time you make changes.
+
+Also, you can pull and push the code to Github by following ::
+
+    $ git pull
+    $ git push
+
 Please visit the PyPi_ (Python Package Index) site for more python packages
 details.
 
