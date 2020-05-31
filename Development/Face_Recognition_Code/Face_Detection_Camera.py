@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # Project:      Robotic Greeter - McMaster University - CareGo Tek
-# Program Name: Capture_Picture_Main.py
+# Program Name: Face_Detection_Camera.py
 # Author:       Somak Mukherjee
 # Date:         Friday 24 April, 2020
 # Version:      1
