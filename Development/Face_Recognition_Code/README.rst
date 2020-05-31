@@ -1,10 +1,10 @@
 Instruction Documents - README :
 **********************************
 
-Database Code :
+Face Recognition Code :
 -----------------------------------
 
-This folder contains all the database related code written in Python as follow:
+This folder contains all the Face Recognition related code written in Python as follow:
 
 1. Capture_Picture_Main.py_:
 
@@ -102,7 +102,7 @@ you can find the same folder inside the Face_Recognition_Installation_ folder.
 Before running any of this code, please read the documents from
 Face_Recognition_Installation_ folder.
 
-.. _Face_Recognition_Installation:
+.. _Face_Recognition_Installation: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Development/Installation_Documents/Face_Recognition_Installation
 
 Executing :
 -------------
