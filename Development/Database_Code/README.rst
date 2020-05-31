@@ -1,7 +1,6 @@
 Instruction Documents - README :
 **********************************
 
-
 Database Code :
 -----------------------------------
 
@@ -21,7 +20,6 @@ This folder contain all the database related code written in Python as follow :
 .. _Customer_search_ID.py : https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development/Database_Code/Customer_Search_ID.py
 .. _Customer_search_Name.py : https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development/Database_Code/Customer_Search_Name.py
 .. _Customer_Update.py : https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development/Database_Code/Customer_Update.py
-
 
 Install Python Package :
 -----------------------------------
