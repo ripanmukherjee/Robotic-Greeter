@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
 
-# Project : Robotic Greeter - CareGo Tek
-# Program Name : Customer_Search_Main.py
-# Author : Somak Mukherjee
-# Date : Friday 24 April, 2020
-# Version : 1
-# Description: Customer_Search_Main.py is used to search the customer's data, and it will be called from
+# Project:      Robotic Greeter - McMaster University - CareGo Tek
+# Program Name: Capture_Picture_Main.py
+# Author:       Somak Mukherjee
+# Date:         Friday 24 April, 2020
+# Version:      1
+# Description:  Customer_Search_Main.py is used to search the customer's data, and it will be called from
 #               ~/Main_Process/Main_Process.py. If the customer wants to explore the data, then this process will ask
 #               to the customer wants to search by ID or Name, and as per the selection this program will call the
 #               below two program:
 #               1. Customer_Search_ID.py
 #               2. Customer_Search_Name.py
 #
-# NOTE: This program can be run separately or as a stand-alone program as follow:
-# >> python3 Customer_Search_Main.py
+# NOTE:         This program can be run separately or as a stand-alone program as follow:
+#               >> python3 Customer_Search_Main.py
 
 
 import sys

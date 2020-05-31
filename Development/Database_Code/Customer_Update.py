@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
-# Project : Robotic Greeter - CareGo Tek
-# Program Name : Customer_Update.py
-# Author : Somak Mukherjee
-# Date : Friday 24 April, 2020
-# Version : 1
-# Description : Customer_Update.py is use to update the data of the customer into the following table :
+# Project:      Robotic Greeter - McMaster University - CareGo Tek
+# Program Name: Capture_Picture_Main.py
+# Author:       Somak Mukherjee
+# Date:         Friday 24 April, 2020
+# Version:      1
+# Description:  Customer_Update.py is use to update the data of the customer into the following table :
 #               Development (DEV) : carego_customer_dev
 #               Test (TEST) : carego_customer_test
 #               Production (PROD) : carego_customer_prod
@@ -14,22 +14,22 @@
 #               details. To update the details, customer should know their unique ID, as this program will ask
 #               confirm the ID before to update.
 #
-# NOTE 1: Please make sure to change the region value as per region wise before putting to server :
-#          Development region: "DEV"
-#          Test region: "TEST"
-#          Production region: "PROD"
+# NOTE 1:       Please make sure to change the region value as per region wise before putting to server :
+#               Development region: "DEV"
+#               Test region: "TEST"
+#               Production region: "PROD"
 #
-#          Check in the following function :
-#          def main():
-#              region = "DEV"
+#               Check in the following function :
+#               def main():
+#                   region = "DEV"
 #
-#          This program also use conn as follow :
-#          conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1",
-#          port="5432")
-#          Please make sure that everything is correct.
+#               This program also use conn as follow :
+#               conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1",
+#               port="5432")
+#               Please make sure that everything is correct.
 #
-# NOTE 2: This program can be run separately or as a stand-alone program as follow:
-# >> python3 Customer_Update.py
+# NOTE 2:       This program can be run separately or as a stand-alone program as follow:
+#               >> python3 Customer_Update.py
 
 
 import re
