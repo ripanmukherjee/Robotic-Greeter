@@ -117,8 +117,18 @@ Face_Recognition_Installation_ folder.
 
 Executing :
 -------------
-If you done all the above mentioned steps then please run any of the code as
-follow ::
+If you done all the above mentioned steps then first validate two directory as follow::
+
+    $ ~/Face_Recognition_Code/Dataset
+    $ ~/Face_Recognition_Code/Sample_Images
+
+If this two directory is not present inside cd ~/Face_Recognition_Code then please
+create it as follow::
+
+    $ mkdir Dataset
+    $ mkdir Sample_Images
+
+Now please run any of the code as follow ::
 
     $ python3 Capture_Picture_Main.py
 
