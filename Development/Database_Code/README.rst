@@ -10,15 +10,15 @@ This folder contains all the database related code written in Python as follow:
 
 2. Customer_Search_Main.py_:
 
-* A. Customer_search_ID.py_:
-* B. Customer_search_Name.py_:
+* A. Customer_Search_ID.py_:
+* B. Customer_Search_Name.py_:
 
 3. Customer_Update.py_:
 
 .. _Customer_Insert.py:         https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development/Database_Code/Customer_Insert.py
 .. _Customer_Search_Main.py:    https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development/Database_Code/Customer_Search_Main.py
-.. _Customer_search_ID.py:      https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development/Database_Code/Customer_Search_ID.py
-.. _Customer_search_Name.py:    https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development/Database_Code/Customer_Search_Name.py
+.. _Customer_Search_ID.py:      https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development/Database_Code/Customer_Search_ID.py
+.. _Customer_Search_Name.py:    https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development/Database_Code/Customer_Search_Name.py
 .. _Customer_Update.py:         https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development/Database_Code/Customer_Update.py
 
 Install Python Package :
