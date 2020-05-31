@@ -85,12 +85,12 @@ Before running any of this code, please read the documents from
 Postgresql_pgAdmin_Installation_ folder. Since you need to create a Database,
 Table, etc., and also need to validate it.
 
-.. _Postgresql_pgAdmin_Installation:
+.. _Postgresql_pgAdmin_Installation: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Development/Installation_Documents/Postgresql_pgAdmin_Installation
 
 Executing :
 -------------
 If you done all the above mentioned steps then please run any of the code as
-follow ::
+follow::
 
     $ python3 Customer_Insert.py
 
