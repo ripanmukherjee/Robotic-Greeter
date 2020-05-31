@@ -40,16 +40,23 @@ Now, after you finished installation from Installation_Documents_ then do the
 following::
 
     $ python3 --version
+
     $ pip3 --version
+
     $ git --version
+
     $ python3
 
 Run the following import command inside of the python console::
 
     >> import re
+
     >> import sys
+
     >> import subprocess
+
     >> from datetime import date, datetime
+
     >> from subprocess import check_output, call
 
 Regex (re), sys, and subprocess module comes Python installation. Since it is
@@ -86,8 +93,12 @@ If you done all the above mentioned steps then please run any of the code as
 follow ::
 
     $ python3 Customer_Insert.py
+
     $ python3 Customer_Search_Main.py
+
     $ python3 Customer_Search_ID.py
+
     $ python3 Customer_Search_Name.py
+
     $ python3 Customer_Update.py
 
