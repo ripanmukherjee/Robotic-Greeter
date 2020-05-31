@@ -32,11 +32,13 @@ There are 2 way you can install the packages:
 First, we need to update and upgrade it::
 
     $ sudo apt update
+
     $ sudo apt upgrade
 
 Run the update again and install pip::
 
     $ sudo apt install python3-pip
+
     $ python3 -m pip install --upgrade pip
 
 Now, validate again::
@@ -46,8 +48,10 @@ Now, validate again::
 2. Install via shell scripts:
 *********************************
 On the other hand you can run the shell script
-(/Pip_Installation.sh) in the Pip_Installation folder.
+(Pip_Installation.sh_) in the Pip_Installation folder.
 By running this program, it will automatically install Pip for you.
+
+.. _Pip_Installation.sh: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development/Installation_Documents/Pip_Installation/Pip_Installation.sh
 
 Installation done!!
 

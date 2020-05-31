@@ -1,13 +1,12 @@
-Install Pip on Ubuntu 18.04
--------------------------------
-Pip is a package management system that simplifies installation and management of
-software packages written in Python such as those found in the Python Package Index
-(PyPI). Pip is not installed by default on Ubuntu 18.04, but the installation is
-pretty straightforward.
+Install Face Recognition on Ubuntu 18.04
+--------------------------------------------
+To build our face recognition system, we’ll first perform face detection, extract
+face embeddings from each face using deep learning, train a face recognition model
+on the embeddings, and then finally recognize faces in both images and video streams
+with OpenCV.
 
-In this tutorial, we will show you how to install Python Pip on Ubuntu 18.04 using
-the apt package manager. We will also walk you through the basics of installing and
-managing Python packages with pip.
+In this tutorial, we will show you how to install Face Recognition on Ubuntu 18.04
+using the apt package manager. You can find OpenCV installation in other folder.
 
 Prerequisites
 --------------
@@ -32,26 +31,28 @@ There are 2 way you can install the packages:
 First, we need to update and upgrade it::
 
     $ sudo apt update
+
     $ sudo apt upgrade
 
 Run the update again and install pip::
 
-    $ sudo apt install python3-pip
-    $ python3 -m pip install --upgrade pip
+    $ pip3 install dlib
 
-Now, validate again::
+    $ pip3 install face_recognition
 
-    $ pip ––version
+    $ pip3 install --upgrade imutils
 
 2. Install via shell scripts:
 *********************************
 On the other hand you can run the shell script
-(/Pip_Installation.sh) in the Pip_Installation folder.
-By running this program, it will automatically install Pip for you.
+(Face_Recognition_Installation.sh_) in the Face_Recognition_Installation folder.
+By running this program, it will automatically install Face Recognition for you.
+
+.. _Face_Recognition_Installation.sh: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development/Installation_Documents/Face_Recognition_Installation/Face_Recognition_Installation.sh
 
 Installation done!!
 
-Please visit the PyPi_ (Python Package Index) site for more python packages
+Please visit the Face_Recognition_ (Python Package Index) site for more python packages
 details.
 
-.. _PyPi: https://pypi.org/
+.. _Face_Recognition: https://pypi.org/project/face-recognition/

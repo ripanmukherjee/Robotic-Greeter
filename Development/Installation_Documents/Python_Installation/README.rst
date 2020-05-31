@@ -19,7 +19,9 @@ Most factory versions of Ubuntu 18.04 come with Python pre-installed.
 Check your version of Python by entering the following::
 
     $ python ––version
+
     $ python3 ––version
+
     $ python3.7 ––version
 
 There are 2 way you can install the packages:
@@ -32,6 +34,7 @@ There are 2 way you can install the packages:
 First, we need to update and upgrade it::
 
     $ sudo apt update
+
     $ sudo apt upgrade
 
 The software-properties-common package gives you better control over your
@@ -39,26 +42,34 @@ package manager by letting you add PPA (Personal Package Archive)
 repositories. Install the supporting software with the command::
 
     $ sudo apt install software-properties-common
+
     $ sudo add-apt-repository ppa:deadsnakes/ppa
 
 Run the update again and install python::
 
     $ sudo apt update
+
     $ sudo apt install python
+
     $ sudo apt install python3
+
     $ sudo apt install python3.7
 
 Now, validate again::
 
     $ python ––version
+
     $ python3 ––version
+
     $ python3.7 ––version
 
 2. Install via shell scripts:
 *********************************
 On the other hand you can run the shell script
-(/Python_Installation.sh) in the Python_Installation folder.
+(Python_Installation.sh_) in the Python_Installation folder.
 By running this program, it will automatically install python for you.
+
+.. _Python_Installation.sh: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development/Installation_Documents/Python_Installation/Python_Installation.sh
 
 Installation done!!
 

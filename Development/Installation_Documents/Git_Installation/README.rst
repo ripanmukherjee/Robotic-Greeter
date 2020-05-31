@@ -35,6 +35,7 @@ There are 2 way you can install the packages:
 First, we need to update and upgrade it::
 
     $ sudo apt update
+
     $ sudo apt upgrade
 
 Run the update again and install Git::
@@ -48,8 +49,10 @@ Now, validate again::
 2. Install via shell scripts:
 *********************************
 On the other hand you can run the shell script
-(/Git_Installation.sh) in the Git_Installation folder.
+(Git_Installation.sh_) in the Git_Installation folder.
 By running this program, it will automatically install Git for you.
+
+.. _Git_Installation.sh: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development/Installation_Documents/Git_Installation/Git_Installation.sh
 
 Installation done!!
 
@@ -59,6 +62,7 @@ After the installation is done, please go to your terminal and do the
 following ::
 
     $ git config --global user.name "FIRST_NAME LAST_NAME"
+
     $ git config --global user.email "MY_NAME@example.com"
 
 This is for configuration your name and your email id. Also, you can validate
@@ -70,10 +74,14 @@ By doing git clone, the git folder will automatically download in your
 computer. If you change any code or any documents or if you create a new code
 or document or if you delete any then please do the following ::
 
-    $ git status (This will show git status, if anything needs to update or not)
-    $ git add example_code (After you add or modify)
-    $ git rm example_code (after you delete)
     $ git status
+
+    $ git add example_code
+
+    $ git rm example_code
+
+    $ git status
+
     $ git commit -a -m "my_example_comment"
 
 The above process you needs to perform for every time you make changes.
@@ -81,6 +89,7 @@ The above process you needs to perform for every time you make changes.
 Also, you can pull and push the code to Github by following ::
 
     $ git pull
+
     $ git push
 
 Please visit the Git_ website for more Git related details.

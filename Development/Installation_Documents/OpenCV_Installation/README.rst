@@ -30,6 +30,7 @@ follow these steps:
 * Refresh the packages index and install the OpenCV package by typing::
 
     $ sudo apt update
+
     $ sudo apt install python3-opencv
 
 * To verify the installation, import the cv2 module and print the OpenCV version::
@@ -54,7 +55,9 @@ version from the source, perform the following steps:
 * Clone the OpenCV’s and OpenCV contrib repositories::
 
     $ mkdir ~/opencv_build && cd ~/opencv_build
+
     $ git clone https://github.com/opencv/opencv.git
+
     $ git clone https://github.com/opencv/opencv_contrib.git
 
 At the time of writing, the default version in the github repositories is
@@ -64,6 +67,7 @@ both opencv and opencv_contrib directories and run git checkout.
 * Now changed the directory after download is done::
 
     $ cd ~/opencv_build/opencv
+
     $ mkdir build && cd build
 
 * Set up the OpenCV build with CMake::
@@ -87,14 +91,16 @@ both opencv and opencv_contrib directories and run git checkout.
 * Now verify the OpenCV version::
 
     $ pkg-config --modversion opencv4
-    $ python3 -c "import cv2; print(cv2.__version__)"
 
+    $ python3 -c "import cv2; print(cv2.__version__)"
 
 3. Installing OpenCV from the Shell Scripts
 ************************************************
 On the other hand you can run the shell script
-(/OpenCV_Installation.sh) in the OpenCV_Installation folder.
+(OpenCV_Installation.sh_) in the OpenCV_Installation folder.
 By running this program, it will automatically install OpenCV for you.
+
+.. _OpenCV_Installation.sh: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development/Installation_Documents/OpenCV_Installation/OpenCV_Installation.sh
 
 Installation done!!
 
