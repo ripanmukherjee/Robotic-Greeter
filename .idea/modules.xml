@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../Python-Coding/.idea/Python-Coding.iml" filepath="$PROJECT_DIR$/../Python-Coding/.idea/Python-Coding.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Python-Project/.idea/Python-Project.iml" filepath="$PROJECT_DIR$/../Python-Project/.idea/Python-Project.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Robotic-Greeter.iml" filepath="$PROJECT_DIR$/.idea/Robotic-Greeter.iml" />
     </modules>
   </component>
