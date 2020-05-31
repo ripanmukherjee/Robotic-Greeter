@@ -93,6 +93,7 @@ command. First type as below to go to Python console::
 Then import it::
 
     >> import face_recognition
+
     >> from imutils.video import FPS
 
 Face Recognition is an extra module that you need to import here to run this code. To
@@ -110,8 +111,12 @@ If you done all the above mentioned steps then please run any of the code as
 follow ::
 
     $ python3 Capture_Picture_Main.py
+
     $ python3 Capture_Picture_Save.py
+
     $ python3 Face_Detection_Camera.py
+
     $ python3 Face_Detection_Image.py
+
     $ python3 Face_Encoding.py
 
