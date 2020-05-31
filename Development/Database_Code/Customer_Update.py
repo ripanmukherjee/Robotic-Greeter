@@ -10,14 +10,14 @@
 #               Test (TEST) : carego_customer_test
 #               Production (PROD) : carego_customer_prod
 #
-#               This Program will be called from ~/Main_Process/Main_Process.py, if the customer wants to update their
-#               details. To update the details customer should know their unique ID, as this program will ask to
+#               This program will be called from ~/Main_Process/Main_Process.py, if the customer wants to update their
+#               details. To update the details, customer should know their unique ID, as this program will ask
 #               confirm the ID before to update.
 #
-# NOTE 1 : Please make sure to change the region value as per region wise before putting to server :
-#          Development region : "DEV"
-#          Test region : "TEST"
-#          Production region : "PROD"
+# NOTE 1: Please make sure to change the region value as per region wise before putting to server :
+#          Development region: "DEV"
+#          Test region: "TEST"
+#          Production region: "PROD"
 #
 #          Check in the following function :
 #          def main():
@@ -28,8 +28,9 @@
 #          port="5432")
 #          Please make sure that everything is correct.
 #
-# NOTE 2 : This program can be run separately or as a stand alone program as follow:
+# NOTE 2: This program can be run separately or as a stand-alone program as follow:
 # >> python3 Customer_Update.py
+
 
 import re
 import sys

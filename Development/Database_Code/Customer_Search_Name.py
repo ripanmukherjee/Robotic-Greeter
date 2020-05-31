@@ -15,10 +15,10 @@
 #               the customer select Name option in Customer_Search_Main.py, then it will call Customer_Search_Name.py.
 #               And this program will ask the Name and search the data.
 #
-# NOTE 1 : Please make sure to change the region value as per region wise before putting to server :
-#          Development region : "DEV"
-#          Test region : "TEST"
-#          Production region : "PROD"
+# NOTE 1: Please make sure to change the region value as per region wise before putting to server :
+#          Development region: "DEV"
+#          Test region: "TEST"
+#          Production region: "PROD"
 #
 #          Check in the following function :
 #          def main():
@@ -29,8 +29,9 @@
 #          port="5432")
 #          Please make sure that everything is correct.
 #
-# NOTE 2 : This program can be run separately or as a stand alone program as follow:
+# NOTE 2: This program can be run separately or as a stand-alone program as follow:
 # >> python3 Customer_Search_Name.py
+
 
 import sys
 import psycopg2

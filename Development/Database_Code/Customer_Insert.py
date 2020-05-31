@@ -11,13 +11,13 @@
 #               Production (PROD) : carego_customer_prod
 #
 #               This program will be called from ~/Main_Process/Main_Process.py. If the customer wants to save their
-#               details in the database then Main_Process.py will call this program and this process will insert the
-#               data into the above mentioned table.
+#               details in the database then Main_Process.py will call this program, and this process will insert the
+#               data into the table mentioned above.
 #
-# NOTE 1 : Please make sure to change the region value as per region wise before putting to server :
-#          Development region : "DEV"
-#          Test region : "TEST"
-#          Production region : "PROD"
+# NOTE 1: Please make sure to change the region's value as per region wise before putting it to server :
+#          Development region: "DEV"
+#          Test region: "TEST"
+#          Production region: "PROD"
 #
 #          Check in the following function :
 #          def main():
@@ -32,8 +32,9 @@
 #          port="5432")
 #          Please make sure that everything is correct.
 #
-# NOTE 2 : This program can be run separately or as a stand alone program as follow:
+# NOTE 2: This program can be run separately or as a stand-alone program as follow:
 # >> python3 Customer_Insert.py
+
 
 import re
 import sys
