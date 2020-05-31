@@ -4,7 +4,7 @@ Instruction Documents - README :
 Database Code :
 -----------------------------------
 
-This folder contains all the database related code written in Python as follow :
+This folder contains all the database related code written in Python as follow:
 
 1. Customer_Insert.py_ :
 
