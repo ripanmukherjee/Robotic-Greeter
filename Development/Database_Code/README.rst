@@ -50,7 +50,6 @@ Run the following import command inside of the python console::
     >> import re
     >> import sys
     >> import subprocess
-
     >> import psycopg2
 
 regex(re), sys and subprocess module comes python installation. Since it is
