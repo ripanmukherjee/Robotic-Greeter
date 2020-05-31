@@ -59,7 +59,7 @@ Run the following import command inside of the python console::
 
     >> from subprocess import check_output, call
 
-Regex (re), sys, and subprocess module comes Python installation. Since it is
+Regex (re), sys, and subprocess module comes with Python installation. Since it is
 build-in packages.
 
 If you get any error after running the above import command, you should validate

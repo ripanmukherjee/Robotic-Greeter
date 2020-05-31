@@ -41,23 +41,33 @@ Now, after you finished installation from Installation_Documents_ then do the
 following::
 
     $ python3 --version
+
     $ pip3 --version
+
     $ git --version
+
     $ python3
 
 Run the following import command inside of the Python console::
 
     >> import os
+
     >> import sys
+
     >> import time
+
     >> import pickle
+
     >> import subprocess
+
     >> from pathlib import Path
+
     >> from subprocess import check_output
+
     >> from datetime import date, datetime
 
-os, sys, time, pickle, subprocess, pathlib & datetime module comes Python installation.
-Since it is build-in packages.
+os, sys, time, pickle, subprocess, pathlib & datetime module comes with Python
+installation. Since it is build-in packages.
 
 If you get any error after running the above import command, you should validate
 the Python version or upgrade it. You should not acquire any mistake if you installed
