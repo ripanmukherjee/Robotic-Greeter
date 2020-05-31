@@ -5,13 +5,13 @@
 # Author : Somak Mukherjee
 # Date : Friday 24 April, 2020
 # Version : 1
-# Description : This program will be called from ~/Face_Recognition_Code/Capture_Picture_Main.py.
-#               It will receive one input argument (Unique ID) from main process and based on the argument,
-#               it will first take the picture of the person and later save it into Dataset directory with
-#               the help of Unique ID. This program should save the picture into the following directory :
-#               ~/Face_Recognition_Code/Dataset/XX_UniueID/XX_UniueID_Y.jpg (XX - Person Name, Y - Instance)
+# Description: Capture_Picture_Save.py program will be called from ~/Face_Recognition_Code/Capture_Picture_Main.py.
+#              It will receive one input argument (Unique ID) from the main process, and based on the argument,
+#              it will first take a picture of the person and later save it into Dataset directory with
+#              the help of Unique ID. This program should save the picture into the following directory :
+#              ~/Face_Recognition_Code/Dataset/XX_UniqueID/XX_UniqueID_Y.jpg (XX - Person Name, Y - Instance)
 #
-# NOTE : This program can be run separately or as a stand alone program as follow:
+# NOTE: This program can be run separately or as a stand-alone program as follow:
 # >> python3 Capture_Picture_Save.py
 
 import os
@@ -85,7 +85,7 @@ def save_picture(details, img, fps, unique_id):
 
 
 def picture_taking(unique_id):
-    face_casecade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+    face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
     cap = cv2.VideoCapture(-1)
     time.sleep(2.0)
     capture_duration = 3
@@ -97,7 +97,7 @@ def picture_taking(unique_id):
         try:
             _, img = cap.read()
             rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-            faces = face_casecade.detectMultiScale(rgb, 1.1, 4)
+            faces = face_cascade.detectMultiScale(rgb, 1.1, 4)
 
             boxes = [(y, x + w, y + h, x) for (x, y, w, h) in faces]
             names = []
