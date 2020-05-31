@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 
-# Project : Robotic Greeter - CareGo Tek
-# Program Name : Capture_Picture_Save.py
-# Author : Somak Mukherjee
-# Date : Friday 24 April, 2020
-# Version : 1
-# Description: Capture_Picture_Save.py program will be called from ~/Face_Recognition_Code/Capture_Picture_Main.py.
-#              It will receive one input argument (Unique ID) from the main process, and based on the argument,
-#              it will first take a picture of the person and later save it into Dataset directory with
-#              the help of Unique ID. This program should save the picture into the following directory :
-#              ~/Face_Recognition_Code/Dataset/XX_UniqueID/XX_UniqueID_Y.jpg (XX - Person Name, Y - Instance)
+# Project:      Robotic Greeter - McMaster University - CareGo Tek
+# Program Name: Capture_Picture_Main.py
+# Author:       Somak Mukherjee
+# Date:         Friday 24 April, 2020
+# Version:      1
+# Description:  Capture_Picture_Save.py program will be called from ~/Face_Recognition_Code/Capture_Picture_Main.py.
+#               It will receive one input argument (Unique ID) from the main process, and based on the argument,
+#               it will first take a picture of the person and later save it into Dataset directory with
+#               the help of Unique ID. This program should save the picture into the following directory :
+#               ~/Face_Recognition_Code/Dataset/XXX_UniqueID/XXX_UniqueID_YYY.jpg (XXX - Person Name, YYY - Instance)
 #
-# NOTE: This program can be run separately or as a stand-alone program as follow:
-# >> python3 Capture_Picture_Save.py
+# NOTE:         This program can be run separately or as a stand-alone program as follow:
+#               >> python3 Capture_Picture_Save.py
 
 import os
 import cv2

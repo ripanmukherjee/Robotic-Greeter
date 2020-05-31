@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 
-# Project : Robotic Greeter - CareGo Tek
-# Program Name : Capture_Picture_Main.py
-# Author : Somak Mukherjee
-# Date : Friday 24 April, 2020
-# Version : 1
-# Description : This program will be called from Main_Process.py (~/Main_Process/Main_Process.py)
-#               It will receive one input argument (Unique ID) from main process and based on the argument,
+# Project:      Robotic Greeter - McMaster University - CareGo Tek
+# Program Name: Capture_Picture_Main.py
+# Author:       Somak Mukherjee
+# Date:         Friday 24 April, 2020
+# Version:      1
+# Description:  Capture_Picture_Main.py program will be called from Main_Process.py (~/Main_Process/Main_Process.py)
+#               It will receive one input argument (Unique ID) from the main process and based on the input argument,
 #               it will call to ~/Face_Recognition_Code/Capture_Picture_Save.py for taking and saving the picture.
-#               This process is a looping process which asks user if he want to take multiple picture and save it.
+#               This process is a looping process that asks the user if he want to take multiple pictures and save it.
 #
-# NOTE : This program can be run separately or as a stand alone program as follow:
-# >> python3 Capture_Picture_Main.py
+# NOTE:         This program can be run separately or as a stand-alone program as follow:
+#               >> python3 Capture_Picture_Main.py
 
 import sys
 import subprocess

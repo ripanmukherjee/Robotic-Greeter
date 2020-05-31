@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
 
-# Project : Robotic Greeter - CareGo Tek
-# Program Name : Face_Encoding.py
-# Author : Somak Mukherjee
-# Date : Friday 24 April, 2020
-# Version : 1
-# Description : This program is the main program which will create encoding.pickle file which is important
-#               for Face_Detection_Camera.py & Face_Detection_Image.py. Mainly, for all the program which needs to
-#               detect the faces. First, this program will check if encoding.pickle file is already present or not.
-#               If the file is present the it will take all the old data and store into one variable, later this
+# Project:      Robotic Greeter - McMaster University - CareGo Tek
+# Program Name: Capture_Picture_Main.py
+# Author:       Somak Mukherjee
+# Date:         Friday 24 April, 2020
+# Version:      1
+# Description:  This program is the main program which will create encoding.pickle file, which is an essential
+#               for Face_Detection_Camera.py & Face_Detection_Image.py. Mainly, for all the application which needs to
+#               detect the faces. First, this program will check if the encoding.pickle file is already present or not.
+#               If the file is present then it will take all the old data and store into one variable, later this
 #               program will check the new images present in ~/Face_Recognition_Code/Dataset directory. If any new
-#               images present then it will create new co ordinate for the new images and then will concat the new
-#               co ordinate with old co ordinate (which was earlier stored into one variable), then it will again
+#               images present then it will create new coordinate for the latest pictures and then will concatenate the
+#               new coordinate with old coordinate (which had sorted earlier into one variable), then it will again
 #               write the new encoding.pickle file.
 #
-# NOTE : This program can be run separately or as a stand alone program as follow:
-# >> python3 Face_Encoding.py
+# NOTE:         This program can be run separately or as a stand-alone program as follow:
+#               >> python3 Face_Encoding.py
 
 import os
 import cv2

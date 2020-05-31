@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
 
-# Project : Robotic Greeter - CareGo Tek
-# Program Name : Face_Detection_Camera.py
-# Author : Somak Mukherjee
-# Date : Friday 24 April, 2020
-# Version : 1
-# Description : This program will be called from Main_Process.py (~/Main_Process/Main_Process.py)
-#               It is the main process of face detection program from real time video. This process will first
-#               capture video from camera and then it will check if the real time face's co ordinate is present
-#               in encoding.pickle file (~/Face_Recognition_Code/encoding.pickle). If the same co ordinate
-#               picture details is present in the file then this program will show the known person's name on
-#               the video frame. If not then it will show as Unknown.
+# Project:      Robotic Greeter - McMaster University - CareGo Tek
+# Program Name: Capture_Picture_Main.py
+# Author:       Somak Mukherjee
+# Date:         Friday 24 April, 2020
+# Version:      1
+# Description:  Capture_Picture_Main.py program will be called from Main_Process.py (~/Main_Process/Main_Process.py)
+#               It is the main process of face detection program from real-time video. This process will first
+#               capture video from camera and check if the real-time face's coordinate is present
+#               in encoding.pickle file (~/Face_Recognition_Code/encoding.pickle). If the same coordinate
+#               picture details are present in the file, then this program will show the known person's name on
+#               the video frame. If not, then it will show as Unknown.
 #
-# NOTE : This program can be run separately or as a stand alone program as follow:
-# >> python3 Face_Detection_Camera.py
+# NOTE:         This program can be run separately or as a stand-alone program as follow:
+#               >> python3 Face_Detection_Camera.py
 
 import cv2
 import sys
