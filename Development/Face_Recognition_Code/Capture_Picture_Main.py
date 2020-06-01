@@ -13,6 +13,7 @@
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow:
 #               >> python3 Capture_Picture_Main.py
 
+
 import sys
 import subprocess
 from datetime import date, datetime

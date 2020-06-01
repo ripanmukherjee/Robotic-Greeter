@@ -17,6 +17,7 @@
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow:
 #               >> python3 Face_Encoding.py
 
+
 import os
 import cv2
 import sys

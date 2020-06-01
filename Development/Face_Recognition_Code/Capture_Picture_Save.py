@@ -17,6 +17,7 @@
 # NOTE 2:       This program can be run separately or as a stand-alone program as follow:
 #               >> python3 Capture_Picture_Save.py
 
+
 import os
 import cv2
 import sys

@@ -18,6 +18,7 @@
 # NOTE 2:       This program can be run separately or as a stand-alone program as follow:
 #               >> python3 Face_Detection_Camera.py
 
+
 import cv2
 import sys
 import time
