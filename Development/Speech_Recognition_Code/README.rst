@@ -49,84 +49,113 @@ following::
 Run the following import command inside of the Python console::
 
     >> import os
+
     >> import sys
+
     >> import glob
+
     >> from datetime import date, datetime
 
-os, sys, glob & datetime module comes with Python installation. Since it is
+Os, sys, glob & datetime module comes with Python installation. Since it is
 build-in packages.
 
-If you get any error after running the above import command, you should validate
+If you get an error after running the above import command, you should validate
 the Python version or upgrade it. You should not acquire any mistake if you installed
 Python correctly or followed all steps from the Installation_Documents_ folder.
 
-There are some couple of important packages you need to install as well. Please
+There are a couple of essential packages you need to install as well. Please
 follow the below steps for that.
 
-Install OpenCV :
+Install SpeechRecognition :
 -----------------------------------
-To check if you have OpenCV in your computer or not then run the following command.
-First type as below to go to Python console::
-
-    $ python3
-
-Then import it::
-
-    >> import cv2
-
-OpenCV is an extra module that you need to import here to run this code. To
-install OpenCV, please go to the OpenCV_Installation_ folder. Also,
-you can find the same folder inside the Installation_Documents_ folder.
-
-Before running any of this code, please read the documents from
-OpenCV_Installation_ folder.
-
-.. _OpenCV_Installation: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Development/Installation_Documents/OpenCV_Installation
-
-Install Face Recognition :
------------------------------------
-To check if you have Face Recognition in your computer or not then run the following
+To check if you have SpeechRecognition in your computer or not then run the following
 command. First type as below to go to Python console::
 
     $ python3
 
 Then import it::
 
-    >> import face_recognition
+    >> import gtts
 
-    >> from imutils.video import FPS
+    >> from gtts import gTTS
 
-Face Recognition is an extra module that you need to import here to run this code. To
-install Face Recognition, please go to the Face_Recognition_Installation_ folder. Also,
-you can find the same folder inside the Face_Recognition_Installation_ folder.
+    >> import speech_recognition
 
-Before running any of this code, please read the documents from
-Face_Recognition_Installation_ folder.
+If gtts and speech_recognition import successfully, then you no need to install it
+again. But if you get an error "ImportError: No module named gtts" or
+"ImportError: No module named speech_recognition," then you need to install it.
 
-.. _Face_Recognition_Installation: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Development/Installation_Documents/Face_Recognition_Installation
+Speech_recognition and gtts is an extra module that you need to import first to
+run this code. To install it, please go to the Speech_recognition_Installation_
+folder. Also, you can find the same folder inside the Installation_Documents_ folder.
+
+Before running any of this code, please read the documents (README) from
+Speech_recognition_Installation_ folder.
+
+.. _Speech_recognition_Installation:
+
+Install NLTK :
+-----------------------------------
+To check if you have NLTK in your computer or not then run the following
+command. First type as below to go to Python console::
+
+    $ python3
+
+Then import it::
+
+    >> import nltk
+
+    >> from nltk.corpus import stopwords
+
+    >> from nltk.tokenize import word_tokenize
+
+If nltk import successfully, then you no need to install it again. But if you get an
+error "ImportError: No module named nltk"  or any others, then you need to install it.
+
+NLTK is an extra module that you need to import first to run this code. To
+install it, please go to the NLTK_Installation_ folder. Also,
+you can find the same folder inside the Installation_Documents_ folder.
+
+Before running any of this code, please read the documents (README) from
+NLTK_Installation_ folder.
+
+.. _NLTK_Installation:
+
+Install pygame & pyaudio :
+-----------------------------------
+To check if you have pygame & pyaudio in your computer or not then run the following
+command. First type as below to go to Python console::
+
+    $ python3
+
+Then import it::
+
+    >> import pygame
+
+    >> import pyaudio
+
+If pygame & pyaudio import successfully, then you no need to install it again. But
+if you get an error "ImportError: No module named pygame" or
+"ImportError: No module named pyaudio" or any others, then you need to install it.
+
+pygame & pyaudio is an extra module that you need to import here to run this code. To
+install it, please go to the Py_Audio_Installation_ folder. Also,
+you can find the same folder inside the Installation_Documents_ folder.
+
+Before running any of this code, please read the documents (README) from
+Py_Audio_Installation_ folder.
+
+.. _Py_Audio_Installation:
 
 Executing :
 -------------
-If you done all the above mentioned steps then first validate two directory as follow::
+If you have done all the steps mentioned above, please run any of the code::
 
-    $ ~/Face_Recognition_Code/Dataset
-    $ ~/Face_Recognition_Code/Sample_Images
+    $ python3 Speech_Name_Organization.py
 
-If this two directory is not present inside cd ~/Face_Recognition_Code then please
-create it as follow::
+    $ python3 Speech_Normal.py
 
-    $ mkdir Dataset
-    $ mkdir Sample_Images
+    $ python3 Speech_Question.py
 
-Now please run any of the code as follow ::
-
-    $ python3 Capture_Picture_Main.py
-
-    $ python3 Capture_Picture_Save.py
-
-    $ python3 Face_Detection_Camera.py
-
-    $ python3 Face_Detection_Image.py
-
-    $ python3 Face_Encoding.py
+    $ python3 Speech_Start_End.py
 
