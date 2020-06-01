@@ -12,7 +12,10 @@
 #               picture details are present in the file, then this program will show the known person's name on
 #               the video frame. If not, then it will show as Unknown.
 #
-# NOTE:         This program can be run separately or as a stand-alone program as follow:
+# NOTE 1:       Please check following line of code:
+#               cap = cv2.VideoCapture(-1) - If with -1 video stream is not working then you can replace with 0 or 1.
+#
+# NOTE 2:       This program can be run separately or as a stand-alone program as follow:
 #               >> python3 Face_Detection_Camera.py
 
 import cv2
@@ -39,7 +42,7 @@ def face_detection():
             unpickler = pickle.Unpickler(file)
             data = unpickler.load()
 
-        face_casecade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+        face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
         cap = cv2.VideoCapture(-1)
         time.sleep(2.0)
@@ -54,7 +57,7 @@ def face_detection():
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
             rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-            faces = face_casecade.detectMultiScale(rgb, 1.1, 4)
+            faces = face_cascade.detectMultiScale(rgb, 1.1, 4)
 
             boxes = [(y, x + w, y + h, x) for (x, y, w, h) in faces]
             encodings = face_recognition.face_encodings(rgb, boxes)

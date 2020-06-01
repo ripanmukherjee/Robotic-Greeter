@@ -14,7 +14,7 @@
 #               new coordinate with old coordinate (which had sorted earlier into one variable), then it will again
 #               write the new encoding.pickle file.
 #
-# NOTE:         This program can be run separately or as a stand-alone program as follow:
+# NOTE 1:       This program can be run separately or as a stand-alone program as follow:
 #               >> python3 Face_Encoding.py
 
 import os

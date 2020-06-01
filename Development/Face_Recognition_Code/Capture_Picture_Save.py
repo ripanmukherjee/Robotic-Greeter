@@ -11,7 +11,10 @@
 #               the help of Unique ID. This program should save the picture into the following directory :
 #               ~/Face_Recognition_Code/Dataset/XXX_UniqueID/XXX_UniqueID_YYY.jpg (XXX - Person Name, YYY - Instance)
 #
-# NOTE:         This program can be run separately or as a stand-alone program as follow:
+# NOTE 1:       Please check following line of code:
+#               cap = cv2.VideoCapture(-1) - If with -1 video stream is not working then you can replace with 0 or 1.
+#
+# NOTE 2:       This program can be run separately or as a stand-alone program as follow:
 #               >> python3 Capture_Picture_Save.py
 
 import os

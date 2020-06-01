@@ -15,7 +15,7 @@
 #           	details are current in the archive, then this program will show the known person's name on the video
 #           	frame. If not, then it will show as Unknown.
 #
-# NOTE:       	This program can be run separately or as a stand-alone program as follow:
+# NOTE 1:       This program can be run separately or as a stand-alone program as follow:
 #           	>> python3 Face_Detection_Image.py
 
 import cv2
