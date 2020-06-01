@@ -14,8 +14,11 @@
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow for testing purpose:
 #               >> python3 Speech_Name_Organization.py
 
+
+import os
 import sys
 import gtts
+import glob
 import nltk
 import pygame
 from gtts import gTTS
@@ -114,6 +117,22 @@ def process_details(mp3_filename, text, record):
     return details
 
 
+def delete_mp3_output_files():
+    mp3_files = glob.glob('*.mp3', recursive=True)
+    output_files = glob.glob('*_Output.txt', recursive=True)
+    for files in mp3_files:
+        try:
+            os.remove(files)
+        except OSError:
+            print("Cannot delete the old mp3 files.")
+
+    for files in output_files:
+        try:
+            os.remove(files)
+        except OSError:
+            print("Cannot delete the old output text files.")
+
+
 def main():
     record = sr.Recognizer()
     today = date.today()
@@ -127,18 +146,27 @@ def main():
                      'aye aye', 'yeah', 'yah', 'yep', 'yup', 'uh-huh', 'okay', 'Ok', 'okey-dokey', 'okey-doke',
                      'achcha', 'right', 'righty-ho', 'surely', 'yea', 'well', 'course', 'yes', 'please']
     stop_words = set(stopwords.words("english"))
+    stand_alone_flag = None
+
+    try:
+        input_argv = sys.argv[1]
+        if input_argv == "0":
+            stand_alone_flag = 0
+    except IndexError:
+        stand_alone_flag = 1
 
     mp3_filename = "Speech_Name_Organization"
     text = "May I please ask your name?"
     name = process_details(mp3_filename, text, record)
 
+    text = "Okay. And what company are you with?"
+    process_details(mp3_filename, text, record)
+
     if name is None:
         text = "Sorry, we couldn't get your name. Actually, we Don't Have Your Details. " \
                "Would you like to save your details for future?"
     else:
-        text = "OK. And what company are you with?"
-        process_details(mp3_filename, text, record)
-        text = "OK. " + name + ". I hope, that I am guessing your name correctly. Actually, " \
+        text = "Okay. " + name + ". I hope, that I am guessing your name correctly. Actually, " \
                                "we Don't Have Your Details. Would you like to save your details for future?"
 
     flag = 0
@@ -166,6 +194,10 @@ def main():
 
     with open("Speech_Name_Organization_Output.txt", "w") as output_file:
         output_file.write(response)
+
+    if stand_alone_flag == 1:
+        print("Deleting mp3 and output file. Value of stand_alone_flag : ", str(stand_alone_flag))
+        delete_mp3_output_files()
 
     exit_program()
 
