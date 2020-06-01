@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 
-# Project : Robotic Greeter - CareGo Tek
-# Program Name : Speech_Normal.py
-# Author : Somak Mukherjee
-# Date : Monday 18 May, 2020
-# Version : 1
-# Description : Speech_Normal.py is a normal speech related program. It will be called from the following program
-#               ~/Main_Process/Main_Process.py with text message that robot need to speak. This process will not gonna
-#               ask anything. It will just speak whatever text message this program will receive.
+# Project:      Robotic Greeter - McMaster University - CareGo Tek
+# Program Name: Speech_Normal.py
+# Author:       Somak Mukherjee
+# Date:         Friday 24 April, 2020
+# Version:      1
+# Description:  Speech_Normal.py is a standard speech-related program. It will be called from the following schedule.
+#               ~/Main_Process/Main_Process.py with a text message that robots need to speak. This process will not
+#               be going to ask anything. It will talk just whatever text message this program will receive.
 #
-# NOTE 1 : This program can be run separately or as a stand alone program as follow for testing purpose :
-# >> python3 Speech_Normal.py
+# NOTE 1:       This program can be run separately or as a stand-alone program as follow for testing purpose :
+#               >> python3 Speech_Normal.py
 
 import os
 import sys

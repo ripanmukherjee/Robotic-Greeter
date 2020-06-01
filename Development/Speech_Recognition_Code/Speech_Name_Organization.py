@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 
-# Project : Robotic Greeter - CareGo Tek
-# Program Name : Speech_Name_Organization.py
-# Author : Somak Mukherjee
-# Date : Monday 18 May, 2020
-# Version : 1
-# Description : Speech_Name_Organization.py is to ask the Name & Organization to Unknown Person. Later it will ask to
+# Project:      Robotic Greeter - McMaster University - CareGo Tek
+# Program Name: Speech_Name_Organization.py
+# Author:       Somak Mukherjee
+# Date:         Friday 24 April, 2020
+# Version:      1
+# Description:  Speech_Name_Organization.py is to ask the Name & Organization to Unknown Person. Later it will ask to
 #               the person if they want to save their details or not. It will be called from
 #               ~/Main_Process/Main_Process.py and depending on the person's response this program will give an output
-#               (inside of a text file as follow : Speech_Name_Organization_Output.text) as YES or NO or NONE.
+#               (inside of a text file as follow: Speech_Name_Organization_Output.text) as YES or NO or NONE.
 #               And with that response Main_Process.py will perform different task.
 #
-# NOTE 1 : This program can be run separately or as a stand alone program as follow for testing purpose:
-# >> python3 Speech_Name_Organization.py
+# NOTE 1:       This program can be run separately or as a stand-alone program as follow for testing purpose:
+#               >> python3 Speech_Name_Organization.py
 
 import sys
 import gtts

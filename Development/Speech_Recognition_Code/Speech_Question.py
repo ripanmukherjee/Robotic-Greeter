@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 
-# Project : Robotic Greeter - CareGo Tek
-# Program Name : Speech_Question.py
-# Author : Somak Mukherjee
-# Date : Monday 18 May, 2020
-# Version : 1
-# Description : Speech_Question.py is to ask YES or NO related question to the customer. It will be called from
+# Project:      Robotic Greeter - McMaster University - CareGo Tek
+# Program Name: Speech_Question.py
+# Author:       Somak Mukherjee
+# Date:         Friday 24 April, 2020
+# Version:      1
+# Description:  Speech_Question.py is to ask YES or NO related questions to the customer. It will be called from
 #               ~/Main_Process/Main_Process.py and Main_Process.py will pass the question as an argument in this
-#               program. Depending on the person's response this program will give an output (inside of a text file :
-#               Speech_Question_Output.txt) as YES or NO or NONE. And with that response Main_Process.py will perform
-#               different task.
+#               program. Depending on the person's response, this program will give an output (inside of a text file :
+#               Speech_Question_Output.txt) as YES or NO or NONE. And with that response, Main_Process.py will perform
+#               different tasks.
 #
-# NOTE 1 : This program can be run separately or as a stand alone program as follow for testing purpose:
-# >> python3 Speech_Question.py
+# NOTE 1:       This program can be run separately or as a stand-alone program as follow for testing purpose:
+#               >> python3 Speech_Question.py
 
 import os
 import sys
