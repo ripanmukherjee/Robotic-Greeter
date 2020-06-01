@@ -6,12 +6,16 @@
       <w>currval</w>
       <w>dataset</w>
       <w>frontalface</w>
+      <w>gtts</w>
       <w>haarcascade</w>
       <w>imutils</w>
       <w>mukherjee</w>
+      <w>nltk</w>
       <w>opencv</w>
       <w>pathlib</w>
       <w>postgresql</w>
+      <w>pyaudio</w>
+      <w>pygame</w>
       <w>pywin</w>
       <w>regclass</w>
       <w>somak</w>
