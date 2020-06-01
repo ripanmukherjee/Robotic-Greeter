@@ -66,6 +66,9 @@ If you get any error after running the above import command, you should validate
 the Python version or upgrade it. You should not acquire any mistake if you installed
 Python correctly or followed all steps from the Installation_Documents_ folder.
 
+There are some couple of important packages you need to install as well. Please
+follow the below steps for that.
+
 Install Psycopg2 :
 -----------------------------------
 To check if you have Psycopg2 in your computer or not then run the following command::
