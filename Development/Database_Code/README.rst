@@ -83,7 +83,7 @@ Then import it::
 If psycopg2 import successfully, then you no need to install it again. But if you get
 an error "ImportError: No module named psycopg2" then you need to install it.
 
-Psycopg2 is an extra module that you need to import here to run this code. To
+Psycopg2 is an extra module that you need to import first to run this code. To
 install Psycopg2, please go to the Postgresql_pgAdmin_Installation_ folder. Also,
 you can find the same folder inside the Installation_Documents_ folder.
 
