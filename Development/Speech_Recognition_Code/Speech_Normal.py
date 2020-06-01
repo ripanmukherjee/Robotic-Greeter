@@ -12,6 +12,7 @@
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow for testing purpose :
 #               >> python3 Speech_Normal.py
 
+
 import os
 import sys
 import glob
@@ -34,7 +35,7 @@ def process(mp3_filename, text):
     tts = gTTS(text=text, lang='en', slow=False)
     tts.save(mp3_filename)
     pygame.mixer.init()
-    audio = pygame.mixer.music.load(mp3_filename)
+    pygame.mixer.music.load(mp3_filename)
     pygame.mixer.music.play()
     while pygame.mixer.music.get_busy():
         pygame.time.wait(100)
