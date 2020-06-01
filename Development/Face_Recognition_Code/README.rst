@@ -87,6 +87,9 @@ Then import it::
 
     >> import cv2
 
+If cv2 import successfully, then you no need to install it again. But if you get
+an error "ImportError: No module named cv2" then you need to install it.
+
 OpenCV is an extra module that you need to import here to run this code. To
 install OpenCV, please go to the OpenCV_Installation_ folder. Also,
 you can find the same folder inside the Installation_Documents_ folder.
@@ -109,6 +112,10 @@ Then import it::
 
     >> from imutils.video import FPS
 
+If face_recognition and FPS import successfully, then you no need to install it
+again. But if you get an error "ImportError: No module named face_recognition" or
+"ImportError: No module named FPS" then you need to install it.
+
 Face Recognition is an extra module that you need to import here to run this code. To
 install Face Recognition, please go to the Face_Recognition_Installation_ folder. Also,
 you can find the same folder inside the Face_Recognition_Installation_ folder.
@@ -123,12 +130,14 @@ Executing :
 If you done all the above mentioned steps then first validate two directory as follow::
 
     $ ~/Face_Recognition_Code/Dataset
+
     $ ~/Face_Recognition_Code/Sample_Images
 
 If this two directory is not present inside cd ~/Face_Recognition_Code then please
 create it as follow::
 
     $ mkdir Dataset
+
     $ mkdir Sample_Images
 
 Now please run any of the code as follow ::
