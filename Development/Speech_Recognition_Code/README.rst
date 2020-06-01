@@ -86,13 +86,13 @@ again. But if you get an error "ImportError: No module named gtts" or
 "ImportError: No module named speech_recognition," then you need to install it.
 
 Speech_recognition and gtts is an extra module that you need to import first to
-run this code. To install it, please go to the Speech_recognition_Installation_
+run this code. To install it, please go to the Speech_Recognition_Installation_
 folder. Also, you can find the same folder inside the Installation_Documents_ folder.
 
 Before running any of this code, please read the documents (README) from
-Speech_recognition_Installation_ folder.
+Speech_Recognition_Installation_ folder.
 
-.. _Speech_recognition_Installation:
+.. _Speech_Recognition_Installation:
 
 Install NLTK :
 -----------------------------------
