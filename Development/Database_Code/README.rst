@@ -66,7 +66,7 @@ If you get any error after running the above import command, you should validate
 the Python version or upgrade it. You should not acquire any mistake if you installed
 Python correctly or followed all steps from the Installation_Documents_ folder.
 
-There are some couple of important packages you need to install as well. Please
+There are a couple of essential packages you need to install as well. Please
 follow the below steps for that.
 
 Install Psycopg2 :
@@ -80,6 +80,9 @@ Then import it::
 
     >> import psycopg2
 
+If psycopg2 import successfully, then you no need to install it again. But if you get
+an error "ImportError: No module named psycopg2" then you need to install it.
+
 Psycopg2 is an extra module that you need to import here to run this code. To
 install Psycopg2, please go to the Postgresql_pgAdmin_Installation_ folder. Also,
 you can find the same folder inside the Installation_Documents_ folder.
@@ -92,7 +95,7 @@ Table, etc., and also need to validate it.
 
 Executing :
 -------------
-If you done all the above mentioned steps then please run any of the code as
+If you have done all the steps mentioned above, then please run any of the code as
 follow::
 
     $ python3 Customer_Insert.py
