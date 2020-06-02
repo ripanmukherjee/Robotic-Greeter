@@ -125,10 +125,23 @@ pgAdmin4 in your computer (Windows : Start Menu, ubuntu : Activities) and open i
 
 * Once you open pgAdmin4, it will ask for the password. Please type your system password.
 * It will open one web browser for you. There you need to click on server.
-* Again it will ask for password, now type password for postgres (default password - postgres)
-* Here you can see your earlier created caregodb database.
+* It will ask to create a new server. Once the pop up will appear please fill as below
+    - In General panel:
+        - Name : postgres
+    - In Connection panel:
+        - Host : localhost
+        - port : 5432
+        - Maintenance database : postgres
+        - username : postgres
+        - password : postgres
+* Click save and later click on server again.
+* Once Connected you can see your earlier created caregodb database or if you want you can create your
+database here also.
 
 5. Working with caregodb Database:
 **************************************
 In this part we will create the table, create unique key and insert the data. Please go to pgAdmin_Document
 for more details regarding the same.
+
+Note : Please do not change the server, database name, table name or any cols name. If you do so then please
+make sure to change the new details in all the program in Database_Code folder.
