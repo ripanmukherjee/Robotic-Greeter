@@ -98,6 +98,8 @@ Executing :
 If you have done all the steps mentioned above, then please run any of the code as
 follow::
 
+    $ chmod +x *.py
+
     $ python3 Customer_Insert.py
 
     $ python3 Customer_Search_Main.py

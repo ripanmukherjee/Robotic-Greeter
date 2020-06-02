@@ -65,15 +65,21 @@ To install pyaudio please follow the steps:
 
 2. Install via shell scripts:
 *********************************
-On the other hand you can run the shell script
-(Py_Audio_Installation.sh_) in the Py_Audio_Installation folder.
-By running this program, it will automatically install pygame and pyaudio for you.
+On the other hand you can run the shell script Py_Audio_Installation.sh_ in the
+Py_Audio_Installation folder. By running this program, it will automatically install pygame
+and pyaudio for you.
 
 .. _Py_Audio_Installation.sh: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Installation_Documents/Py_Audio_Installation/Py_Audio_Installation.sh
 
+You can run the shell script as follow::
+
+    $ chmod +x *.sh
+
+    $ sh Py_Audio_Installation.sh
+
 Installation done!!
 
-Please visit the pygame_ & pyaudio_ website for more python related details.
+Please visit the pygame_ & pyaudio_ website for more pygame & pyaudio related details.
 
 .. _pygame: https://www.pygame.org/wiki/GettingStarted
 .. _pyaudio: https://people.csail.mit.edu/hubert/pyaudio/

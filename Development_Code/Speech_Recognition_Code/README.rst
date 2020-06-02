@@ -151,6 +151,8 @@ Executing :
 -------------
 If you have done all the steps mentioned above, please run any of the code::
 
+    $ chmod +x *.py
+
     $ python3 Speech_Name_Organization.py
 
     $ python3 Speech_Normal.py

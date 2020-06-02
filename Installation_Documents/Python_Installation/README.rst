@@ -65,11 +65,16 @@ Now, validate again::
 
 2. Install via shell scripts:
 *********************************
-On the other hand you can run the shell script
-(Python_Installation.sh_) in the Python_Installation folder.
-By running this program, it will automatically install python for you.
+On the other hand you can run the shell script Python_Installation.sh_ in the Python_Installation
+folder. By running this program, it will automatically install python for you.
 
 .. _Python_Installation.sh: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Installation_Documents/Python_Installation/Python_Installation.sh
+
+You can run the shell script as follow::
+
+    $ chmod +x *.sh
+
+    $ sh Python_Installation.sh
 
 Installation done!!
 

@@ -1,12 +1,10 @@
 OpenCV on Ubuntu 18.04 & Raspberry Pi
 ************************************************
-OpenCV (Open Source Computer Vision Library) is an open-source computer
-vision library and has bindings for C++, Python, and Java. It is used for
-a very wide range of applications, including medical image analysis,
-stitching street view images, surveillance video, detecting and recognizing
-faces, tracking moving objects, extracting 3D models, and much more.
-OpenCV can take advantage of multi-core processing and features GPU
-acceleration for real-time operation.
+OpenCV (Open Source Computer Vision Library) is an open-source computer vision library and
+has bindings for C++, Python, and Java. It is used for a very wide range of applications,
+including medical image analysis, stitching street view images, surveillance video, detecting
+and recognizing faces, tracking moving objects, extracting 3D models, and much more. OpenCV
+can take advantage of multi-core processing and features GPU acceleration for real-time operation.
 
 Prerequisites
 ******************
@@ -22,10 +20,9 @@ There are 3 way you can install the packages:
 
 1. Install OpenCV from the Ubuntu Repository
 ************************************************
-The OpenCV package is available from the Ubuntu 18.04 distribution repository.
-At the time of writing, the version in the repositories is 3.2, which is not
-the latest version. To install OpenCV from the Ubuntu 18.04 repositories,
-follow these steps:
+The OpenCV package is available from the Ubuntu 18.04 distribution repository. At the time of
+writing, the version in the repositories is 3.2, which is not the latest version. To install
+OpenCV from the Ubuntu 18.04 repositories, follow these steps:
 
 * Refresh the packages index and install the OpenCV package by typing::
 
@@ -39,10 +36,9 @@ follow these steps:
 
 2. Installing OpenCV from the Source
 ************************************************
-Building the OpenCV library from source is the recommended way of installing
-OpenCV. It will be optimized for your particular system and you will have
-complete control over the build options. To install the latest OpenCV
-version from the source, perform the following steps:
+Building the OpenCV library from source is the recommended way of installing OpenCV. It will
+be optimized for your particular system and you will have complete control over the build
+options. To install the latest OpenCV version from the source, perform the following steps:
 
 * Install the required dependencies::
 
@@ -60,9 +56,9 @@ version from the source, perform the following steps:
 
     $ git clone https://github.com/opencv/opencv_contrib.git
 
-At the time of writing, the default version in the github repositories is
-version 4.2.0. If you want to install an older version of OpenCV, cd to
-both opencv and opencv_contrib directories and run git checkout.
+At the time of writing, the default version in the github repositories is version 4.2.0. If
+you want to install an older version of OpenCV, cd to both opencv and opencv_contrib directories
+and run git checkout.
 
 * Now changed the directory after download is done::
 
@@ -96,11 +92,16 @@ both opencv and opencv_contrib directories and run git checkout.
 
 3. Installing OpenCV from the Shell Scripts
 ************************************************
-On the other hand you can run the shell script
-(OpenCV_Installation.sh_) in the OpenCV_Installation folder.
-By running this program, it will automatically install OpenCV for you.
+On the other hand you can run the shell script OpenCV_Installation.sh_ in the OpenCV_Installation
+folder. By running this program, it will automatically install OpenCV for you.
 
 .. _OpenCV_Installation.sh: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Installation_Documents/OpenCV_Installation/OpenCV_Installation.sh
+
+You can run the shell script as follow::
+
+    $ chmod +x *.sh
+
+    $ sh OpenCV_Installation.sh
 
 Installation done!!
 

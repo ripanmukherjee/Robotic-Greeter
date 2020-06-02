@@ -142,6 +142,8 @@ create it as follow::
 
 Now please run any of the code as follow::
 
+    $ chmod +x *.py
+
     $ python3 Capture_Picture_Main.py
 
     $ python3 Capture_Picture_Save.py

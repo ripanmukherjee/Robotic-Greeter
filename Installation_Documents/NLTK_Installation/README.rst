@@ -33,6 +33,7 @@ First, we need to update and upgrade it::
 Then we need to install gTTS(Google Text to Speech) and SpeechRecognition module as follow::
 
     $ pip3 install --user -U nltk
+
     $ pip3 install --user -U numpy
 
 Then we need to download nltk data as follow::
@@ -41,14 +42,19 @@ Then we need to download nltk data as follow::
 
 2. Install via shell scripts:
 *********************************
-On the other hand you can run the shell script
-(NLTK_Installation.sh_) in the NLTK_Installation folder.
-By running this program, it will automatically install NLTK for you.
+On the other hand you can run the shell script NLTK_Installation.sh_ in the NLTK_Installation
+folder. By running this program, it will automatically install NLTK for you.
 
 .. _NLTK_Installation.sh: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Installation_Documents/NLTK_Installation/NLTK_Installation.sh
 
+You can run the shell script as follow::
+
+    $ chmod +x *.sh
+
+    $ sh NLTK_Installation.sh
+
 Installation done!!
 
-Please visit the NLTK_ website for more python related details.
+Please visit the NLTK_ website for more Natural Language Toolkit related details.
 
-.. _NLTK:: https://www.nltk.org/data.html
+.. _NLTK: https://www.nltk.org/data.html

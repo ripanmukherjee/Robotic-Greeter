@@ -47,15 +47,19 @@ Now, validate again::
 
 2. Install via shell scripts:
 *********************************
-On the other hand you can run the shell script
-(Pip_Installation.sh_) in the Pip_Installation folder.
+On the other hand you can run the shell script Pip_Installation.sh_ in the Pip_Installation folder.
 By running this program, it will automatically install Pip for you.
 
 .. _Pip_Installation.sh: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Installation_Documents/Pip_Installation/Pip_Installation.sh
 
+You can run the shell script as follow::
+
+    $ chmod +x *.sh
+
+    $ sh Pip_Installation.sh
+
 Installation done!!
 
-Please visit the PyPi_ (Python Package Index) site for more python packages
-details.
+Please visit the PyPi_ (Python Package Index) site for more Pip packages details.
 
 .. _PyPi: https://pypi.org/

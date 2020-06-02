@@ -45,14 +45,19 @@ Run the update again and install pip::
 2. Install via shell scripts:
 *********************************
 On the other hand you can run the shell script
-(Face_Recognition_Installation.sh_) in the Face_Recognition_Installation folder.
+Face_Recognition_Installation.sh_ in the Face_Recognition_Installation folder.
 By running this program, it will automatically install Face Recognition for you.
 
 .. _Face_Recognition_Installation.sh: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Installation_Documents/Face_Recognition_Installation/Face_Recognition_Installation.sh
 
+You can run the shell script as follow::
+
+    $ chmod +x *.sh
+
+    $ sh Face_Recognition_Installation.sh
+
 Installation done!!
 
-Please visit the Face_Recognition_ (Python Package Index) site for more python packages
-details.
+Please visit the Face_Recognition_ site for more Face Recognition package related details.
 
 .. _Face_Recognition: https://pypi.org/project/face-recognition/
