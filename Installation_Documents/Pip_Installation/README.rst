@@ -51,7 +51,7 @@ On the other hand you can run the shell script
 (Pip_Installation.sh_) in the Pip_Installation folder.
 By running this program, it will automatically install Pip for you.
 
-.. _Pip_Installation.sh: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development/Installation_Documents/Pip_Installation/Pip_Installation.sh
+.. _Pip_Installation.sh: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Installation_Documents/Pip_Installation/Pip_Installation.sh
 
 Installation done!!
 
