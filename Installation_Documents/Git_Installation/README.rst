@@ -52,7 +52,7 @@ On the other hand you can run the shell script
 (Git_Installation.sh_) in the Git_Installation folder.
 By running this program, it will automatically install Git for you.
 
-.. _Git_Installation.sh: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development/Installation_Documents/Git_Installation/Git_Installation.sh
+.. _Git_Installation.sh: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Installation_Documents/Git_Installation/Git_Installation.sh
 
 Installation done!!
 
