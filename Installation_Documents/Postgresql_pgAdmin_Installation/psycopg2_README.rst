@@ -1,1 +1,0 @@
-# pycopg2 Documents :
