@@ -1,7 +1,7 @@
 Install Postgres SQL on Ubuntu 18.04
 ------------------------------------------------
 PostgreSQL is available in all Ubuntu versions by default. However, Ubuntu "snapshots" a specific
-version of PostgreSQL that is then supported throughout the lifetime of that Ubuntu version.
+version of PostgreSQL that is supported throughout the lifetime of that Ubuntu version.
 Other versions of PostgreSQL are available through the PostgreSQL apt repository.
 
 Prerequisites
@@ -10,14 +10,14 @@ Prerequisites
 * A user account with sudo privileges
 * Access to a terminal window/command-line (Ctrl+Alt+T)
 
-Before continuing with this tutorial, make sure you are logged in as root or a user with sudo
+Before continuing with this tutorial, make sure to login in as root or a user with sudo
 privileges.
 
 Check your version of pip by entering the following::
 
     $ pip ––version
 
-There are 2 way you can install the packages:
+There are two way you can install the packages:
 
 1. Install using Command Prompt.
 2. Install via shell scripts.
@@ -43,9 +43,9 @@ Then we need to install postgres module as follow::
 
 2. Install via shell scripts:
 *********************************
-On the other hand you can run the shell script PostgreSQL_pgAdmin_Installation.sh_ in the
+On the other hand, you can run the shell script PostgreSQL_pgAdmin_Installation.sh_ in the
 PostgreSQL_pgAdmin_Installation folder. By running this program, it will automatically install
-postgres and pgAdmin4 for you.
+Postgres and pgAdmin4 for you.
 
 .. _PostgreSQL_pgAdmin_Installation.sh: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Installation_Documents/PostgreSQL_pgAdmin_Installation/PostgreSQL_pgAdmin_Installation.sh
 
@@ -57,17 +57,17 @@ You can run the shell script as follow::
 
 Installation done!!
 
-Please visit the PostgreSQL_ website for how to install postgres related details.
+Please visit the PostgreSQL_ website on how to install Postgres related details.
 
 .. _PostgreSQL: https://www.postgresql.org/download/linux/ubuntu/
 
-3. Working with postgreSQL:
+3. Working with PostgreSQL:
 ***********************************
-After you are done installing postgreSQL, go to your command prompt and check postgresSQL as follow::
+After you are done installing PostgreSQL, go to your command prompt and check PostgreSQL as follow::
 
     $ sudo -u postgres psql postgres
 
-The default username and password for postgreSQL is postgres. Also, you can change the password as follow ::
+The default username and password for postgreSQL is postgres. Also, you can change the password as follow::
 
     postgres=# alter user postgres with password 'example_password';
 
@@ -120,12 +120,16 @@ if you need to check how many table present in current database then do as follo
 
 4. Working with pgAdmin4:
 ***********************************
-If you performed the above mentioned steps then you should have pgAdmin4 installed in your computer. Now search
-pgAdmin4 in your computer (Windows : Start Menu, ubuntu : Activities) and open it.
+If you performed the steps mentioned above, then you should have pgAdmin4 installed on your computer. Now search
+pgAdmin4 on your computer (Windows: Start Menu, ubuntu: Activities) and open it.
 
 * Once you open pgAdmin4, it will ask for the password. Please type your system password.
-* It will open one web browser for you. There you need to click on server.
-* It will ask to create a new server. Once the pop up will appear please fill as below
+
+* It will open one web browser for you. There you need to click on the server.
+
+* It will ask to create a new server. Once the pop up will appear, please fill as below
+
+
     - In General panel:
         - Name : postgres
     - In Connection panel:
@@ -134,14 +138,15 @@ pgAdmin4 in your computer (Windows : Start Menu, ubuntu : Activities) and open i
         - Maintenance database : postgres
         - username : postgres
         - password : postgres
+
 * Click save and later click on server again.
-* Once Connected you can see your earlier created caregodb database or if you want you can create your
-database here also.
+
+* Once Connected, you can see your earlier created caregodb database, or if you want, you can create your database here also.
 
 5. Working with caregodb Database:
 **************************************
-In this part we will create the table, create unique key and insert the data. Please go to pgAdmin_Document
+In this part, we will create the table, create unique key, and insert the data. Please go to pgAdmin_Document
 for more details regarding the same.
 
-Note : Please do not change the server, database name, table name or any cols name. If you do so then please
-make sure to change the new details in all the program in Database_Code folder.
+Note: Please do not change the server, database name, table name, or any cols name. If you do so then, please
+make sure to turn the new details in all the programs in Database_Code folder.
