@@ -30,7 +30,7 @@ First, we need to update and upgrade it::
 
     $ sudo apt upgrade
 
-Then we need to install gTTS(Google Text to Speech) and SpeechRecognition module as follow::
+Then we need to install NLTK module as follow::
 
     $ pip3 install --user -U nltk
 
