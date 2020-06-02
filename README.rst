@@ -11,6 +11,10 @@ Working on software/algorithm design, the vision and vocal functionality with Ma
     pwd
     touch a.txt
 
+    $ chmod +x *.sh
+
+    $ sh NLTK_Installation.sh
+
 .. code-block:: python
 
     for i in range(10):
