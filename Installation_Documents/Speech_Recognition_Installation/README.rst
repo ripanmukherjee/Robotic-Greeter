@@ -50,6 +50,6 @@ By running this program, it will automatically install python for you.
 
 Installation done!!
 
-Please visit the Python_ website for more python related details.
+Please visit the SpeechRecognition_ website for more python related details.
 
-.. _Python: https://pypi.org/project/SpeechRecognition/
+.. _SpeechRecognition: https://pypi.org/project/SpeechRecognition/
