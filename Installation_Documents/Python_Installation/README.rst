@@ -69,7 +69,7 @@ On the other hand you can run the shell script
 (Python_Installation.sh_) in the Python_Installation folder.
 By running this program, it will automatically install python for you.
 
-.. _Python_Installation.sh: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development/Installation_Documents/Python_Installation/Python_Installation.sh
+.. _Python_Installation.sh: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Installation_Documents/Python_Installation/Python_Installation.sh
 
 Installation done!!
 
