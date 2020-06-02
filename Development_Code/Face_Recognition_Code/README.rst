@@ -16,11 +16,11 @@ This folder contains all the Face Recognition related code written in Python as 
 
 5. Face_Encoding.py_:
 
-.. _Capture_Picture_Main.py:    https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development/Face_Recognition_Code/Capture_Picture_Main.py
-.. _Capture_Picture_Save.py:    https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development/Face_Recognition_Code/Capture_Picture_Save.py
-.. _Face_Detection_Camera.py:   https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development/Face_Recognition_Code/Face_Detection_Camera.py
-.. _Face_Detection_Image.py:    https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development/Face_Recognition_Code/Face_Detection_Image.py
-.. _Face_Encoding.py:           https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development/Face_Recognition_Code/Face_Encoding.py
+.. _Capture_Picture_Main.py:    https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Face_Recognition_Code/Capture_Picture_Main.py
+.. _Capture_Picture_Save.py:    https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Face_Recognition_Code/Capture_Picture_Save.py
+.. _Face_Detection_Camera.py:   https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Face_Recognition_Code/Face_Detection_Camera.py
+.. _Face_Detection_Image.py:    https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Face_Recognition_Code/Face_Detection_Image.py
+.. _Face_Encoding.py:           https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Face_Recognition_Code/Face_Encoding.py
 
 Install Python Package :
 -----------------------------------
@@ -29,7 +29,7 @@ program in this folder. Assuming that you have already installed Python 3.6
 (or above), Pip, and Git. If not, then please go to the Installation_Documents_ and
 do the needful first.
 
-.. _Installation_Documents: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Development/Installation_Documents
+.. _Installation_Documents: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Installation_Documents
 
 Prerequisites :
 -----------------------------------
@@ -97,7 +97,7 @@ you can find the same folder inside the Installation_Documents_ folder.
 Before running any of this code, please read the documents (README) from
 OpenCV_Installation_ folder.
 
-.. _OpenCV_Installation: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Development/Installation_Documents/OpenCV_Installation
+.. _OpenCV_Installation: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Installation_Documents/OpenCV_Installation
 
 Install Face Recognition :
 -----------------------------------
@@ -123,7 +123,7 @@ you can find the same folder inside the Installation_Documents_ folder.
 Before running any of this code, please read the documents (README) from
 Face_Recognition_Installation_ folder.
 
-.. _Face_Recognition_Installation: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Development/Installation_Documents/Face_Recognition_Installation
+.. _Face_Recognition_Installation: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Installation_Documents/Face_Recognition_Installation
 
 Executing :
 -------------
