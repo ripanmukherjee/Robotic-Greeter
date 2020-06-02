@@ -100,7 +100,7 @@ On the other hand you can run the shell script
 (OpenCV_Installation.sh_) in the OpenCV_Installation folder.
 By running this program, it will automatically install OpenCV for you.
 
-.. _OpenCV_Installation.sh: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development/Installation_Documents/OpenCV_Installation/OpenCV_Installation.sh
+.. _OpenCV_Installation.sh: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Installation_Documents/OpenCV_Installation/OpenCV_Installation.sh
 
 Installation done!!
 
