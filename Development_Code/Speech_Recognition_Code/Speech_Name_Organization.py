@@ -159,15 +159,14 @@ def main():
     text = "May I please ask your name?"
     name = process_details(mp3_filename, text, record)
 
-    text = "Okay. And what company are you with?"
-    process_details(mp3_filename, text, record)
-
     if name is None:
         text = "Sorry, we couldn't get your name. Actually, we Don't Have Your Details. " \
                "Would you like to save your details for future?"
     else:
+        text = "Okay. And what company are you with?"
+        process_details(mp3_filename, text, record)
         text = "Okay. " + name + ". I hope, that I am guessing your name correctly. Actually, " \
-                               "we Don't Have Your Details. Would you like to save your details for future?"
+                                 "we Don't Have Your Details. Would you like to save your details for future?"
 
     flag = 0
     input_details = process_speak_listen(mp3_filename, text, record, flag)
