@@ -48,7 +48,7 @@ On the other hand you can run the shell script
 (Face_Recognition_Installation.sh_) in the Face_Recognition_Installation folder.
 By running this program, it will automatically install Face Recognition for you.
 
-.. _Face_Recognition_Installation.sh: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development/Installation_Documents/Face_Recognition_Installation/Face_Recognition_Installation.sh
+.. _Face_Recognition_Installation.sh: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Installation_Documents/Face_Recognition_Installation/Face_Recognition_Installation.sh
 
 Installation done!!
 
