@@ -15,11 +15,11 @@ This folder contains all the database related code written in Python as follow:
 
 3. Customer_Update.py_:
 
-.. _Customer_Insert.py:         https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development/Database_Code/Customer_Insert.py
-.. _Customer_Search_Main.py:    https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development/Database_Code/Customer_Search_Main.py
-.. _Customer_Search_ID.py:      https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development/Database_Code/Customer_Search_ID.py
-.. _Customer_Search_Name.py:    https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development/Database_Code/Customer_Search_Name.py
-.. _Customer_Update.py:         https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development/Database_Code/Customer_Update.py
+.. _Customer_Insert.py:         https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Database_Code/Customer_Insert.py
+.. _Customer_Search_Main.py:    https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Database_Code/Customer_Search_Main.py
+.. _Customer_Search_ID.py:      https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Database_Code/Customer_Search_ID.py
+.. _Customer_Search_Name.py:    https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Database_Code/Customer_Search_Name.py
+.. _Customer_Update.py:         https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Database_Code/Customer_Update.py
 
 Install Python Package :
 -----------------------------------
@@ -28,7 +28,7 @@ program in this folder. Assuming that you have already installed Python 3.6
 (or above), Pip, and Git. If not, then please go to the Installation_Documents_ and
 do the needful first.
 
-.. _Installation_Documents: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Development/Installation_Documents
+.. _Installation_Documents: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Installation_Documents
 
 Prerequisites :
 -----------------------------------
@@ -91,7 +91,7 @@ Before running any of this code, please read the documents from
 Postgresql_pgAdmin_Installation_ folder. Since you need to create a Database,
 Table, etc., and also need to validate it.
 
-.. _Postgresql_pgAdmin_Installation: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Development/Installation_Documents/Postgresql_pgAdmin_Installation
+.. _Postgresql_pgAdmin_Installation: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Installation_Documents/Postgresql_pgAdmin_Installation
 
 Executing :
 -------------
