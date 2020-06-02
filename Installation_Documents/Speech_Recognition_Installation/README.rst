@@ -43,8 +43,8 @@ Then we need to install gTTS(Google Text to Speech) and SpeechRecognition module
 2. Install via shell scripts:
 *********************************
 On the other hand you can run the shell script
-(Speech_Recognition_Installation.sh_) in the Python_Installation folder.
-By running this program, it will automatically install python for you.
+(Speech_Recognition_Installation.sh_) in the Speech_Recognition_Installation folder.
+By running this program, it will automatically install SpeechRecognition for you.
 
 .. _Speech_Recognition_Installation.sh: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Installation_Documents/Speech_Recognition_Installation/Speech_Recognition_Installation.sh
 
