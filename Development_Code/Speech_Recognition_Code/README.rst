@@ -15,10 +15,10 @@ follow:
 
 4. Speech_Name_Organization.py_:
 
-.. _Speech_Question.py:
-.. _Speech_Normal.py:
-.. _Speech_Start_End.py:
-.. _Speech_Name_Organization.py:
+.. _Speech_Question.py:             https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Speech_Recognition_Code/Speech_Question.py
+.. _Speech_Normal.py:               https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Speech_Recognition_Code/Speech_Normal.py
+.. _Speech_Start_End.py:            https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Speech_Recognition_Code/Speech_Start_End.py
+.. _Speech_Name_Organization.py:    https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Speech_Recognition_Code/Speech_Name_Organization.py
 
 Install Python Package :
 -----------------------------------
@@ -27,7 +27,7 @@ program in this folder. Assuming that you have already installed Python 3.6
 (or above), Pip, and Git. If not, then please go to the Installation_Documents_ and
 do the needful first.
 
-.. _Installation_Documents: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Development/Installation_Documents
+.. _Installation_Documents: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Installation_Documents
 
 Prerequisites :
 -----------------------------------
@@ -92,7 +92,7 @@ folder. Also, you can find the same folder inside the Installation_Documents_ fo
 Before running any of this code, please read the documents (README) from
 Speech_Recognition_Installation_ folder.
 
-.. _Speech_Recognition_Installation:
+.. _Speech_Recognition_Installation: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Installation_Documents/Speech_Recognition_Installation
 
 Install NLTK :
 -----------------------------------
@@ -119,7 +119,7 @@ you can find the same folder inside the Installation_Documents_ folder.
 Before running any of this code, please read the documents (README) from
 NLTK_Installation_ folder.
 
-.. _NLTK_Installation:
+.. _NLTK_Installation: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Installation_Documents/NLTK_Installation
 
 Install pygame & pyaudio :
 -----------------------------------
@@ -145,7 +145,7 @@ you can find the same folder inside the Installation_Documents_ folder.
 Before running any of this code, please read the documents (README) from
 Py_Audio_Installation_ folder.
 
-.. _Py_Audio_Installation:
+.. _Py_Audio_Installation: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Installation_Documents/Py_Audio_Installation
 
 Executing :
 -------------
