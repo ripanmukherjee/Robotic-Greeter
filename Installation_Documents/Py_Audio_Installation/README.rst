@@ -1,6 +1,14 @@
 Install pyGame and pyAudio on Ubuntu 18.04
 ------------------------------------------------
+pygame is a Python wrapper for the SDL library, which stands for Simple DirectMedia Layer.
+SDL provides cross-platform access to your system’s underlying multimedia hardware components,
+such as sound, video, mouse, keyboard, and joystick. pygame started life as a replacement for
+the stalled PySDL project. The cross-platform nature of both SDL and pygame means you can write
+games and rich multimedia Python programs for every platform that supports them!
 
+pyaudio provides bindings for PortAudio, the cross-platform audio I/O library. This means that
+you can use pyaudio to play and record audio on a variety of platforms, including Windows,
+Linux, and Mac. With pyaudio, playing audio is done by writing to a .Stream:
 
 Prerequisites
 --------------
