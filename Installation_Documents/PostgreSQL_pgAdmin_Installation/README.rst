@@ -47,7 +47,7 @@ On the other hand you can run the shell script PostgreSQL_pgAdmin_Installation.s
 PostgreSQL_pgAdmin_Installation folder. By running this program, it will automatically install
 postgres and pgAdmin4 for you.
 
-.. _PostgreSQL_pgAdmin_Installation.sh:
+.. _PostgreSQL_pgAdmin_Installation.sh: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Installation_Documents/PostgreSQL_pgAdmin_Installation/PostgreSQL_pgAdmin_Installation.sh
 
 You can run the shell script as follow::
 
