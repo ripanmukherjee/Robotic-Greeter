@@ -10,8 +10,8 @@ This folder contains all the database related code written in Python as follow:
 
 2. Customer_Search_Main.py_:
 
-* A. Customer_Search_ID.py_:
-* B. Customer_Search_Name.py_:
+* Customer_Search_ID.py_:
+* Customer_Search_Name.py_:
 
 3. Customer_Update.py_:
 
