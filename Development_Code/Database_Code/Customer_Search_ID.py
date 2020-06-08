@@ -68,7 +68,7 @@ def get_details():
     details = None
     args_get_details = "zenity --forms --width=500 --height=200 --title='Search user' \
                 --text='Search with ID' \
-                --add-entry='ID' 2>/dev/null"
+                --add-entry='ID'"
     try:
         details = check_output(args_get_details, shell=True)
         details = details.decode().split('|')

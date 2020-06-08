@@ -70,7 +70,7 @@ def get_details():
     args_get_details = "zenity --forms --width=500 --height=200 --title='Search user' \
                 --text='Search with either First or Last Name or both of the following' \
                 --add-entry='First Name' \
-                --add-entry='Last Name' 2>/dev/null"
+                --add-entry='Last Name'"
     try:
         details = check_output(args_get_details, shell=True)
         details = details.decode().split('|')

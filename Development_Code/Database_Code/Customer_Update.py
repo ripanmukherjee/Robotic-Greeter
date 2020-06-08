@@ -69,9 +69,9 @@ def ask_question(flag):
     response = None
     if flag == 1:
         args = "zenity --info --width=500 --height=250 --text='Make sure you have your Unique ID. \n\n" \
-               "Do you want to proceed?' 2>/dev/null"
+               "Do you want to proceed?'"
     else:
-        args = "zenity --question --width=500 --height=250 --text='Do you want to update another details?' 2>/dev/null"
+        args = "zenity --question --width=500 --height=250 --text='Do you want to update another details?'"
 
     try:
         response = check_output(args, shell=True)
@@ -92,7 +92,7 @@ def get_details_initial_option():
     3 'Modify Email ID' \
     4 'Modify Phone Number' \
     5 'Modify Employer' \
-    6 'Modify Role' 2>/dev/null"
+    6 'Modify Role'"
 
     try:
         details = check_output(args, shell=True)

@@ -77,7 +77,7 @@ def get_details():
                     --add-entry='Email ID' \
                     --add-entry='Phone No' \
                     --add-entry='Employer' \
-                    --add-entry='Role' 2>/dev/null"
+                    --add-entry='Role'"
     try:
         details = check_output(args_get_details, shell=True)
         details = details.decode().split('|')

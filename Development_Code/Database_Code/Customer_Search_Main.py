@@ -34,10 +34,10 @@ def exit_program():
 def ask_question(flag):
     response = None
     if flag == 1:
-        args = "zenity --question --width=500 --height=250 --text='You can search by ID or Name. \n\n" \
-               "Do you want to proceed?' 2>/dev/null"
+        args = "zenity --info --width=500 --height=250 --text='You can search by ID or Name. \n\n" \
+               "Do you want to proceed?'"
     else:
-        args = "zenity --question --width=500 --height=250 --text='Do you want to search another people?' 2>/dev/null"
+        args = "zenity --question --width=500 --height=250 --text='Do you want to search another people?'"
 
     try:
         response = check_output(args, shell=True)
@@ -52,7 +52,7 @@ def get_details():
     args = "zenity --list --width=500 --height=250 --title='List of search' \
     --column='Option' --column='Description' \
     1 'Search by ID' \
-    2 'Search by First Name or Last Name' 2>/dev/null"
+    2 'Search by First Name or Last Name'"
 
     try:
         details = check_output(args, shell=True)
