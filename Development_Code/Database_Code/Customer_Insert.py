@@ -54,19 +54,23 @@ def exit_program():
 
 
 def checking_region_table(region):
-    table = None
+    main_table = None
+    sequence_table = None
     if region == "DEV":
-        table = "carego_customer_dev"
+        main_table = "carego_customer_dev"
+        sequence_table = "carego_customer_dev_ID_seq"
     elif region == "TEST":
-        table = "carego_customer_test"
+        main_table = "carego_customer_test"
+        sequence_table = "carego_customer_dev_ID_seq"
     elif region == "PROD":
-        table = "carego_customer_prod"
+        main_table = "carego_customer_prod"
+        sequence_table = "carego_customer_dev_ID_seq"
     else:
         print("ERROR : REGION VALUE NOT FOUND. Please check the REGION value inside the program - "
               "inside checking_region_table function.")
         exit_program()
 
-    return table
+    return main_table, sequence_table
 
 
 def get_details():
@@ -152,18 +156,19 @@ def format_details(details):
     return first_name, last_name, email_id, phone_no, employer, role
 
 
-def insert(check_region_table, first_name, last_name, email_id, phone_no, employer, role, creation_date):
+def insert(check_main_table, check_sequence_table, first_name, last_name, email_id, phone_no, employer, role,
+           creation_date):
     try:
         conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1", port="5432")
         cur = conn.cursor()
         print("Connection success")
 
-        query = '''INSERT INTO ''' + check_region_table + ''' ("First_Name", "Last_Name", "Email_ID", "Phone_No",
+        query = '''INSERT INTO ''' + check_main_table + ''' ("First_Name", "Last_Name", "Email_ID", "Phone_No",
         "Employer", "Role", "Creation_Date")
         VALUES (%s, %s, %s, %s, %s, %s, %s);'''
         cur.execute(query, (first_name, last_name, email_id, phone_no, employer, role, creation_date))
 
-        seq_query = '''SELECT CURRVAL('"carego_customer_dev_ID_seq"'::regclass);'''
+        seq_query = '''SELECT CURRVAL('"''' + check_sequence_table + '''"'::regclass);'''
         cur.execute(seq_query)
         seq = cur.fetchone()
 
@@ -193,12 +198,13 @@ def main():
     current_time = now.strftime("%H:%M:%S")
     print('Starting program : Customer_Insert.py - at : ' + current_time + ' on : ' + current_date)
 
-    check_region_table = checking_region_table(region)
+    check_main_table, check_sequence_table = checking_region_table(region)
     details = get_details()
     first_name, last_name, email_id, phone_no, employer, role = format_details(details)
     today = date.today()
     creation_date = today.strftime("%d/%m/%Y")
-    insert(check_region_table, first_name, last_name, email_id, phone_no, employer, role, creation_date)
+    insert(check_main_table, check_sequence_table, first_name, last_name, email_id, phone_no, employer, role,
+           creation_date)
 
     exit_program()
 
