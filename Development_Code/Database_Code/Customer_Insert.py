@@ -195,7 +195,6 @@ def main():
 
     check_region_table = checking_region_table(region)
     details = get_details()
-    print('i m here')
     first_name, last_name, email_id, phone_no, employer, role = format_details(details)
     today = date.today()
     creation_date = today.strftime("%d/%m/%Y")
