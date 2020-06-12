@@ -23,4 +23,4 @@ If you are working on the Windows system, please follow step 1 and step 2, but i
 
 To check the steps, please visit Python_Document_.
 
-.. _Python_Document:
+.. _Python_Document: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Installation_Documents/Python_Installation/Python_Version_1.pdf
