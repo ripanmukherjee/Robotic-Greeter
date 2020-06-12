@@ -50,19 +50,23 @@ def exit_program():
 
 
 def checking_region_table(region):
-    table = None
+    main_table = None
+    sequence_table = None
     if region == "DEV":
-        table = "carego_customer_dev"
+        main_table = "carego_customer_dev"
+        sequence_table = "carego_customer_dev_ID_seq"
     elif region == "TEST":
-        table = "carego_customer_test"
+        main_table = "carego_customer_test"
+        sequence_table = "carego_customer_dev_ID_seq"
     elif region == "PROD":
-        table = "carego_customer_prod"
+        main_table = "carego_customer_prod"
+        sequence_table = "carego_customer_dev_ID_seq"
     else:
         print("ERROR : REGION VALUE NOT FOUND. Please check the REGION value inside the program - "
               "inside checking_region_table function.")
         exit_program()
 
-    return table
+    return main_table, sequence_table
 
 
 def ask_question(flag):
@@ -298,13 +302,13 @@ def get_id_confirmation():
     return main_id
 
 
-def search_id(check_region_table, confirm_id):
+def search_id(check_main_table, confirm_id):
     try:
         count = 0
         conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1", port="5432")
         cur = conn.cursor()
         print("Connection success")
-        query = """SELECT count(1) from """+check_region_table+""" where "ID" = '{}'; """.format(confirm_id)
+        query = """SELECT count(1) from """ + check_main_table + """ where "ID" = '{}'; """.format(confirm_id)
         cur.execute(query)
         row = cur.fetchall()
 
@@ -328,7 +332,7 @@ def search_id(check_region_table, confirm_id):
     return count
 
 
-def update_table(check_region_table, update_details, update_option, confirm_id):
+def update_table(check_main_table, update_details, update_option, confirm_id):
     if update_option == 1:
         try:
             conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1",
@@ -336,7 +340,7 @@ def update_table(check_region_table, update_details, update_option, confirm_id):
             cur = conn.cursor()
             print("Connection Success")
 
-            query = '''UPDATE ''' + check_region_table + ''' SET "First_Name" = '{}'
+            query = '''UPDATE ''' + check_main_table + ''' SET "First_Name" = '{}'
             WHERE "ID" = '{}';'''.format(update_details, confirm_id)
             cur.execute(query)
 
@@ -357,7 +361,7 @@ def update_table(check_region_table, update_details, update_option, confirm_id):
             cur = conn.cursor()
             print("Connection success")
 
-            query = '''UPDATE ''' + check_region_table + ''' SET "Last_Name" = '{}'
+            query = '''UPDATE ''' + check_main_table + ''' SET "Last_Name" = '{}'
             WHERE "ID" = '{}';'''.format(update_details, confirm_id)
             cur.execute(query)
 
@@ -378,7 +382,7 @@ def update_table(check_region_table, update_details, update_option, confirm_id):
             cur = conn.cursor()
             print("Connection success")
 
-            query = '''UPDATE ''' + check_region_table + ''' SET "Email_ID" = '{}'
+            query = '''UPDATE ''' + check_main_table + ''' SET "Email_ID" = '{}'
             WHERE "ID" = '{}';'''.format(update_details, confirm_id)
             cur.execute(query)
 
@@ -399,7 +403,7 @@ def update_table(check_region_table, update_details, update_option, confirm_id):
             cur = conn.cursor()
             print("Connection success")
 
-            query = '''UPDATE ''' + check_region_table + ''' SET "Phone_No" = '{}'
+            query = '''UPDATE ''' + check_main_table + ''' SET "Phone_No" = '{}'
             WHERE "ID" = '{}';'''.format(update_details, confirm_id)
             cur.execute(query)
 
@@ -420,7 +424,7 @@ def update_table(check_region_table, update_details, update_option, confirm_id):
             cur = conn.cursor()
             print("Connection success")
 
-            query = '''UPDATE ''' + check_region_table + ''' SET "Employer" = '{}'
+            query = '''UPDATE ''' + check_main_table + ''' SET "Employer" = '{}'
             WHERE "ID" = '{}';'''.format(update_details, confirm_id)
             cur.execute(query)
 
@@ -441,7 +445,7 @@ def update_table(check_region_table, update_details, update_option, confirm_id):
             cur = conn.cursor()
             print("Connection success")
 
-            query = '''UPDATE ''' + check_region_table + ''' SET "Role" = '{}'
+            query = '''UPDATE ''' + check_main_table + ''' SET "Role" = '{}'
             WHERE "ID" = '{}';'''.format(update_details, confirm_id)
             cur.execute(query)
 
@@ -464,7 +468,7 @@ def main():
     current_time = now.strftime("%H:%M:%S")
     print('Starting program : Customer_Update.py - at : ' + current_time + ' on : ' + current_date)
 
-    check_region_table = checking_region_table(region)
+    check_main_table, check_sequence_table = checking_region_table(region)
     flag = 1
     response = ask_question(flag)
     status = 0
@@ -473,11 +477,11 @@ def main():
         option = assign_update_option(details)
         update_details, update_option = get_details_validation(option)
         confirm_id = get_id_confirmation()
-        confirm_table_id = search_id(check_region_table, confirm_id)
+        confirm_table_id = search_id(check_main_table, confirm_id)
         print("ID present in table : ", confirm_table_id)
         flag = 2
         if confirm_table_id == 1:
-            update_table(check_region_table, update_details, update_option, confirm_id)
+            update_table(check_main_table, update_details, update_option, confirm_id)
         else:
             if confirm_table_id == 0:
                 print("ERROR : There are no data as per your search - inside main function.")
@@ -497,11 +501,11 @@ def main():
             option = assign_update_option(details)
             update_details, update_option = get_details_validation(option)
             confirm_id = get_id_confirmation()
-            confirm_table_id = search_id(check_region_table, confirm_id)
+            confirm_table_id = search_id(check_main_table, confirm_id)
             print("ID present in table : ", confirm_table_id)
             flag = 2
             if confirm_table_id == 1:
-                update_table(check_region_table, update_details, update_option, confirm_id)
+                update_table(check_main_table, update_details, update_option, confirm_id)
             else:
                 if confirm_table_id == 0:
                     print("ERROR : There are no data as per your search - inside main function.")
