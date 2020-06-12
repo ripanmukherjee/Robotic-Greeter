@@ -50,19 +50,23 @@ def exit_program():
 
 
 def checking_region_table(region):
+    main_table = None
+    sequence_table = None
     if region == "DEV":
-        table = "carego_customer_dev"
+        main_table = "carego_customer_dev"
+        sequence_table = "carego_customer_dev_ID_seq"
     elif region == "TEST":
-        table = "carego_customer_test"
+        main_table = "carego_customer_test"
+        sequence_table = "carego_customer_dev_ID_seq"
     elif region == "PROD":
-        table = "carego_customer_prod"
+        main_table = "carego_customer_prod"
+        sequence_table = "carego_customer_dev_ID_seq"
     else:
         print("ERROR : REGION VALUE NOT FOUND. Please check the REGION value inside the program - "
               "inside checking_region_table function.")
-        table = None
         exit_program()
 
-    return table
+    return main_table, sequence_table
 
 
 def get_details():
@@ -106,13 +110,13 @@ def format_details(details):
     return id_details
 
 
-def search_id(check_region_table, id_details):
+def search_id(check_main_table, id_details):
     try:
         conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1", port="5432")
         cur = conn.cursor()
         print("Connection success")
         query = """SELECT "ID", "First_Name", "Last_Name", "Email_ID", "Phone_No"
-        from """+check_region_table+""" where "ID" = '{}'; """.format(id_details)
+        from """ + check_main_table + """ where "ID" = '{}'; """.format(id_details)
         cur.execute(query)
         row = cur.fetchall()
 
@@ -161,11 +165,11 @@ def main():
     current_time = now.strftime("%H:%M:%S")
     print('Starting program : Customer_Search_ID.py - at : ' + current_time + ' on : ' + current_date)
 
-    check_region_table = checking_region_table(region)
+    check_main_table,  check_sequence_table = checking_region_table(region)
     details = get_details()
     id_value = format_details(details)
     if id_value != "":
-        search_details = search_id(check_region_table, id_value)
+        search_details = search_id(check_main_table, id_value)
     else:
         search_details = None
 
