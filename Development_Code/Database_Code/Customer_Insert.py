@@ -41,7 +41,7 @@ import sys
 import psycopg2
 import subprocess
 from datetime import date, datetime
-from subprocess import check_output, call
+from subprocess import check_output
 
 
 def exit_program():
