@@ -50,19 +50,23 @@ def exit_program():
 
 
 def checking_region_table(region):
-    table = None
+    main_table = None
+    sequence_table = None
     if region == "DEV":
-        table = "carego_customer_dev"
+        main_table = "carego_customer_dev"
+        sequence_table = "carego_customer_dev_ID_seq"
     elif region == "TEST":
-        table = "carego_customer_test"
+        main_table = "carego_customer_test"
+        sequence_table = "carego_customer_dev_ID_seq"
     elif region == "PROD":
-        table = "carego_customer_prod"
+        main_table = "carego_customer_prod"
+        sequence_table = "carego_customer_dev_ID_seq"
     else:
         print("ERROR : REGION VALUE NOT FOUND. Please check the REGION value inside the program - "
               "inside checking_region_table function.")
         exit_program()
 
-    return table
+    return main_table, sequence_table
 
 
 def get_details():
@@ -113,13 +117,13 @@ def format_details(details):
     return first_name, last_name
 
 
-def search_first_name(check_region_table, first_name):
+def search_first_name(check_main_table, first_name):
     try:
         conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1", port="5432")
         cur = conn.cursor()
         print("Connection success")
         query = """SELECT "First_Name", "Last_Name", "Email_ID", "Phone_No"
-        from """+check_region_table+""" where "First_Name" LIKE '%{}%'; """.format(first_name)
+        from """ + check_main_table + """ where "First_Name" LIKE '%{}%'; """.format(first_name)
         cur.execute(query)
         row = cur.fetchall()
 
@@ -141,13 +145,13 @@ def search_first_name(check_region_table, first_name):
     return row
 
 
-def search_last_name(check_region_table, last_name):
+def search_last_name(check_main_table, last_name):
     try:
         conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1", port="5432")
         cur = conn.cursor()
         print("Connection success")
         query = """SELECT "First_Name", "Last_Name", "Email_ID", "Phone_No"
-        from """+check_region_table+""" where "Last_Name" LIKE '%{}%'; """.format(last_name)
+        from """ + check_main_table + """ where "Last_Name" LIKE '%{}%'; """.format(last_name)
         cur.execute(query)
         row = cur.fetchall()
 
@@ -169,13 +173,13 @@ def search_last_name(check_region_table, last_name):
     return row
 
 
-def search_first_last_name(check_region_table, first_name, last_name):
+def search_first_last_name(check_main_table, first_name, last_name):
     try:
         conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1", port="5432")
         cur = conn.cursor()
         print("Connection success")
         query = """SELECT "First_Name", "Last_Name", "Email_ID", "Phone_No"
-        from """+check_region_table+""" where "First_Name" LIKE '%{}%' and
+        from """ + check_main_table + """ where "First_Name" LIKE '%{}%' and
         "Last_Name" LIKE '%{}%'; """.format(first_name, last_name)
         cur.execute(query)
         row = cur.fetchall()
@@ -226,15 +230,15 @@ def main():
     current_time = now.strftime("%H:%M:%S")
     print('Starting Program : Customer_Search_Name.py - at : ' + current_time + ' on : ' + current_date)
 
-    check_region_table = checking_region_table(region)
+    check_main_table, check_sequence_table = checking_region_table(region)
     details = get_details()
     first_name, last_name = format_details(details)
     if first_name != "" and last_name == "":
-        search_details = search_first_name(check_region_table, first_name)
+        search_details = search_first_name(check_main_table, first_name)
     elif first_name == "" and last_name != "":
-        search_details = search_last_name(check_region_table, last_name)
+        search_details = search_last_name(check_main_table, last_name)
     elif first_name != "" and last_name != "":
-        search_details = search_first_last_name(check_region_table, first_name, last_name)
+        search_details = search_first_last_name(check_main_table, first_name, last_name)
     else:
         search_details = None
 
