@@ -22,4 +22,4 @@ If you are working on the Windows system, please follow step 1, step 2, and step
 
 To check the steps, please visit PyGame_PyAudio_Document_.
 
-.. _PyGame_PyAudio_Document:
+.. _PyGame_PyAudio_Document: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Installation_Documents/PyGame_PyAudio_Installation/PyGame_PyAudio_Version_1.pdf
