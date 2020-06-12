@@ -1,65 +1,22 @@
-Install Pip on Ubuntu 18.04
--------------------------------
-Pip is a package management system that simplifies installation and management of
-software packages written in Python such as those found in the Python Package Index
-(PyPI). Pip is not installed by default on Ubuntu 18.04, but the installation is
-pretty straightforward.
+Pip Installation
+*******************
+Pip is a package management system that simplifies the installation and management of software packages written in Python, such as those found in the Python Package Index (PyPi). Pip is not installed by default on Ubuntu, but the installation is straight forward.
 
-In this tutorial, we will show you how to install Python Pip on Ubuntu 18.04 using
-the apt package manager. We will also walk you through the basics of installing and
-managing Python packages with pip.
+In this tutorial, we will show you how to install Pip on Ubuntu using the apt package manager. We will also walk you through the basics of installing and managing Python packages with Pip. This process you can run for Ubuntu APP or Ubuntu OS. Both methods are the same.
 
-Prerequisites
---------------
-* A system running Ubuntu 18.04
-* A user account with sudo privileges
-* Access to a terminal window/command-line (Ctrl+Alt+T)
+Pre-Requisites
+----------------
+•	A system running on Windows/Ubuntu APP/Ubuntu OS
+•	A user account with sudo/administration privileges
+•	Access to a terminal window/command-line
 
-Before continuing with this tutorial, make sure you are logged in as root
-or a user with sudo privileges.
+Before continuing with this tutorial, make sure you are logged in as root or a user with sudo/administration privileges.
 
-Check your version of pip by entering the following::
+There are two way you can install Pip in Ubuntu system:
 
-    $ pip ––version
+1.	Install Pip using Command Terminal
+2.	Install Pip using Shell Scripts
 
-There are 2 way you can install the packages:
+To check the steps, please visit Pip_Document_.
 
-1. Install using Command Prompt.
-2. Install via shell scripts.
-
-1. Install using Command Prompt:
-*********************************
-First, we need to update and upgrade it::
-
-    $ sudo apt update
-
-    $ sudo apt upgrade
-
-Run the update again and install pip::
-
-    $ sudo apt install python3-pip
-
-    $ python3 -m pip install --upgrade pip
-
-Now, validate again::
-
-    $ pip ––version
-
-2. Install via shell scripts:
-*********************************
-On the other hand you can run the shell script Pip_Installation.sh_ in the Pip_Installation folder.
-By running this program, it will automatically install Pip for you.
-
-.. _Pip_Installation.sh: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Installation_Documents/Pip_Installation/Pip_Installation.sh
-
-You can run the shell script as follow::
-
-    $ chmod +x *.sh
-
-    $ sh Pip_Installation.sh
-
-Installation done!!
-
-Please visit the PyPi_ (Python Package Index) site for more Pip packages details.
-
-.. _PyPi: https://pypi.org/
+.. _Pip_Document:

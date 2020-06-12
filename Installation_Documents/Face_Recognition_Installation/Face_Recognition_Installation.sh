@@ -1,10 +1,11 @@
 #!/bin/ksh
 
-echo "Starting Installing Face Recognition!!"
+echo "                                      "
+echo "Starting Installation Face Recognition!!"
 pip3 install dlib
 pip3 install face_recognition
 pip3 install --upgrade imutils
-echo "Ending Installing Face Recognition!!"
+echo "Ending Installation Face Recognition!!"
 
-echo "                                                                                                             "
+echo "                   "
 echo "Installation Done!!"

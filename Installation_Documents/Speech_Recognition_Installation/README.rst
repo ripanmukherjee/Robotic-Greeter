@@ -1,61 +1,29 @@
-Install Speech Recognition on Ubuntu 18.04
-------------------------------------------------
-Speech recognition, as the name suggests, refers to automatic recognition of human speech.
-Speech recognition is one of the most important tasks in the domain of human computer interaction.
-If you have ever interacted with Alexa or have ever ordered Siri to complete a task, you have
-already experienced the power of speech recognition.
+Speech Recognition Installation
+**********************************
+Speech Recognition, as the name suggests, refers to automatic recognition of human speech. Speech Recognition is one of the most essential tasks in the domain of human-computer interaction. If you have ever interacted with Alexa or have ever ordered Siri to complete a task, you have already experienced Speech Recognition.
 
-Speech recognition has various applications ranging from automatic transcription of speech data
-(like voice mails) to interacting with robots via speech.
+Speech Recognition has various applications ranging from automatic transcription of speech data (like voice mails) to interacting with robots via speech.
 
-Prerequisites
---------------
-* A system running Ubuntu 18.04
-* A user account with sudo privileges
-* Access to a terminal window/command-line (Ctrl+Alt+T)
+gTTS (Google Text-to-Speech) is a Python library with Google Translate text-to-speech API. This package writes spoken mp3 data to a file, a file-like object for further audio manipulation, or stdout. It features flexible pre-processing and tokenizing, as well as automatic retrieval of supported languages.
 
-Before continuing with this tutorial, make sure you are logged in as root or a user with sudo
-privileges.
+Play sound on Python is easy. There are several modules that can play a sound file. These solutions are cross platform (Windows, Mac, Linux). The main difference is in the ease of use and supported file formats. All of them should work with Python 3. The audio file should be in the same directory as your python program unless you specify a path.
 
-Check your version of pip by entering the following::
+Pre-Requisites
+-----------------
+•	A system running on Windows/Ubuntu APP/Ubuntu OS
+•	A user account with sudo/administration privileges
+•	Access to a terminal window/command-line
 
-    $ pip ––version
+Before continuing with this tutorial, make sure you are logged in as root or a user with sudo/administration privileges.
 
-There are 2 way you can install the packages:
+In this tutorial, we will show you how to install Speech Recognition related packages on Windows and Ubuntu.
 
-1. Install using Command Prompt.
-2. Install via shell scripts.
+1.	Install Speech Recognition, gTTS & playsound on Windows
+2.	Install Speech Recognition, gTTS & playsound on Ubuntu APP (Windows 10) or Ubuntu OS
+3.	Install Speech Recognition, gTTS & playsound on PyCharm
 
-1. Install using Command Prompt:
-*********************************
-First, we need to update and upgrade it::
+If you are working on the Windows system, please follow step 1, step 2, and step 3, but if you are working on Ubuntu OS, you follow only step 2 and step 3.
 
-    $ sudo apt update
+To check the steps, please visit Speech_Recognition_Document_.
 
-    $ sudo apt upgrade
-
-Then we need to install gTTS(Google Text to Speech) and SpeechRecognition module as follow::
-
-    $ pip3 install gTTS
-
-    $ pip3 install SpeechRecognition
-
-2. Install via shell scripts:
-*********************************
-On the other hand you can run the shell script Speech_Recognition_Installation.sh_ in the
-Speech_Recognition_Installation folder. By running this program, it will automatically install
-SpeechRecognition for you.
-
-.. _Speech_Recognition_Installation.sh: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Installation_Documents/Speech_Recognition_Installation/Speech_Recognition_Installation.sh
-
-You can run the shell script as follow::
-
-    $ chmod +x *.sh
-
-    $ sh Speech_Recognition_Installation.sh
-
-Installation done!!
-
-Please visit the SpeechRecognition_ website for more SpeechRecognition related details.
-
-.. _SpeechRecognition: https://pypi.org/project/SpeechRecognition/
+.. _Speech_Recognition_Document:

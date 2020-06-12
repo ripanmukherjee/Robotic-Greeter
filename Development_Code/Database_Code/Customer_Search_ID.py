@@ -32,6 +32,7 @@
 #               >> python3 Customer_Search_ID.py
 
 
+import re
 import sys
 import psycopg2
 import subprocess
@@ -88,6 +89,11 @@ def format_details(details):
             print("ERROR : ID cannot be blank or less than 1 number. Details entered : ", details)
             check_output(["zenity", "--error", "--width=400", "--height=200",
                           "--text=ALERT!!!\n\nID cannot be blank or less than 1 number. Please try again!!!!"])
+            exit_program()
+        elif re.match("[0-9]", details) is None:
+            print("ERROR : Phone number must be numeric. Details entered : ", details)
+            check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nID must be numeric. "
+                                                                              "Please try again!!!!"])
             exit_program()
         else:
             id_details = details

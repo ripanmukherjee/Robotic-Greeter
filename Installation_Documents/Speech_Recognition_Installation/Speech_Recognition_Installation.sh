@@ -1,9 +1,11 @@
 #!/bin/ksh
 
-echo "Starting Installing Speech Recognition!!"
+echo "                                       "
+echo "Starting Installation Speech Recognition!!"
 pip3 install gTTS
 pip3 install SpeechRecognition
-cho "Ending Installing Speech Recognition!!"
+pip3 install playsound
+cho "Ending Installation Speech Recognition!!"
 
-echo "                                                                                                             "
+echo "                   "
 echo "Installation Done!!"

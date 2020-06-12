@@ -1,63 +1,25 @@
-Install Face Recognition on Ubuntu 18.04
---------------------------------------------
-To build our face recognition system, we’ll first perform face detection, extract
-face embeddings from each face using deep learning, train a face recognition model
-on the embeddings, and then finally recognize faces in both images and video streams
-with OpenCV.
+Face Recognition Installation
+********************************
+The Face Recognition library is widely known around the web for being the world's simplest facial recognition API for Python and the command line, and the best of all is that you won't need to pay a dime for it, the project is open-source, so if you have some development knowledge and you can build a library from scratch, you will surely know how to work with this library.
 
-In this tutorial, we will show you how to install Face Recognition on Ubuntu 18.04
-using the apt package manager. You can find OpenCV installation in other folder.
+To build our face recognition system, we will perform face detection, extract face embeddings from each face using deep learning, train a face recognition model on the embeddings, and finally recognize faces in both images and video streams with OpenCV.
 
-Prerequisites
---------------
-* A system running Ubuntu 18.04
-* A user account with sudo privileges
-* Access to a terminal window/command-line (Ctrl+Alt+T)
+Pre-Requisites
+----------------
+•	A system running on Windows/Ubuntu APP/Ubuntu OS
+•	A user account with sudo/administration privileges
+•	Access to a terminal window/command-line
 
-Before continuing with this tutorial, make sure you are logged in as root
-or a user with sudo privileges.
+Before continuing with this tutorial, make sure you are logged in as root or a user with sudo/administration privileges.
 
-Check your version of pip by entering the following::
+In this tutorial, we will show you how to install Face Recognition on Windows and Ubuntu.
 
-    $ pip ––version
+1.	Install Face Recognition on Windows
+2.	Install Face Recognition on Ubuntu APP (Windows 10) or Ubuntu OS
+3.	Install Face Recognition on PyCharm
 
-There are 2 way you can install the packages:
+If you are working on the Windows system, please follow step 1, step 2, and step 3, but if you are working on Ubuntu OS, you follow only step 2 and step 3.
 
-1. Install using Command Prompt.
-2. Install via shell scripts.
+To check the steps, please visit Face_Recognition_Document_.
 
-1. Install using Command Prompt:
-*********************************
-First, we need to update and upgrade it::
-
-    $ sudo apt update
-
-    $ sudo apt upgrade
-
-Run the update again and install pip::
-
-    $ pip3 install dlib
-
-    $ pip3 install face_recognition
-
-    $ pip3 install --upgrade imutils
-
-2. Install via shell scripts:
-*********************************
-On the other hand you can run the shell script
-Face_Recognition_Installation.sh_ in the Face_Recognition_Installation folder.
-By running this program, it will automatically install Face Recognition for you.
-
-.. _Face_Recognition_Installation.sh: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Installation_Documents/Face_Recognition_Installation/Face_Recognition_Installation.sh
-
-You can run the shell script as follow::
-
-    $ chmod +x *.sh
-
-    $ sh Face_Recognition_Installation.sh
-
-Installation done!!
-
-Please visit the Face_Recognition_ site for more Face Recognition package related details.
-
-.. _Face_Recognition: https://pypi.org/project/face-recognition/
+.. _Face_Recognition_Document:

@@ -41,7 +41,7 @@ import sys
 import psycopg2
 import subprocess
 from datetime import date, datetime
-from subprocess import check_output
+from subprocess import check_output, call
 
 
 def exit_program():
@@ -71,13 +71,15 @@ def checking_region_table(region):
 
 def get_details():
     details = None
-    args_get_details = "zenity --forms --width=500 --height=200 --title='Create user' --text='Add new user' \
+    args_get_details = "zenity --forms --width=500 --height=200 --title='Create user' \
+                    --text='Add new user' \
                     --add-entry='First Name' \
                     --add-entry='Last Name' \
                     --add-entry='Email ID' \
                     --add-entry='Phone No' \
                     --add-entry='Employer' \
                     --add-entry='Role'"
+
     try:
         details = check_output(args_get_details, shell=True)
         details = details.decode().split('|')
@@ -193,6 +195,7 @@ def main():
 
     check_region_table = checking_region_table(region)
     details = get_details()
+    print('i m here')
     first_name, last_name, email_id, phone_no, employer, role = format_details(details)
     today = date.today()
     creation_date = today.strftime("%d/%m/%Y")

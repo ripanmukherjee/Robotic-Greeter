@@ -20,10 +20,10 @@ import sys
 import gtts
 import glob
 import nltk
-import pygame
 from gtts import gTTS
 import speech_recognition
 import speech_recognition as sr
+from playsound import playsound
 from nltk.corpus import stopwords
 from datetime import date, datetime
 from nltk.tokenize import word_tokenize
@@ -64,15 +64,11 @@ def process_speak_listen(mp3_filename, text, record, flag):
     try:
         tts = gTTS(text=text, lang='en', slow=False)
         tts.save(mp3_filename)
-        pygame.mixer.init()
-        pygame.mixer.music.load(mp3_filename)
-        pygame.mixer.music.play()
-        while pygame.mixer.music.get_busy():
-            pygame.time.wait(100)
-            continue
+        playsound(mp3_filename)
+        os.remove(mp3_filename)
 
         if flag != 1:
-            with sr.Microphone(device_index=4) as source:
+            with sr.Microphone(device_index=1) as source:
                 record.pause_threshold = 1
                 record.adjust_for_ambient_noise(source, duration=1)
                 print("Speak:")
@@ -92,6 +88,8 @@ def process_speak_listen(mp3_filename, text, record, flag):
     except gtts.tts.gTTSError:
         print("Connection Error : No internet connection.")
         exit_program()
+    except PermissionError:
+        print("No Permission")
 
     return text
 
@@ -118,8 +116,8 @@ def process_details(mp3_filename, text, record):
 
 
 def delete_mp3_output_files():
-    mp3_files = glob.glob('*.mp3', recursive=True)
-    output_files = glob.glob('*_Output.txt', recursive=True)
+    mp3_files = glob.glob('*.mp3')
+    output_files = glob.glob('*_Output.txt')
     for files in mp3_files:
         try:
             os.remove(files)

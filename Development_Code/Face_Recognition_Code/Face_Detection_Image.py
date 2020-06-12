@@ -46,7 +46,7 @@ def exit_program():
 def face_detection_image():
     try:
         encoding_file = 'encodings.pickle'
-        image_path = 'Sample_Images/image1.jpg'
+        image_path = 'Sample_Images/image2.jpg'
         detect_model = 'cnn'
 
         args = {'encodings': encoding_file, 'image': image_path, 'detection_method': detect_model}

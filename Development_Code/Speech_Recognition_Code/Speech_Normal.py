@@ -16,8 +16,8 @@
 import os
 import sys
 import glob
-import pygame
 from gtts import gTTS
+from playsound import playsound
 from datetime import date, datetime
 
 
@@ -34,12 +34,8 @@ def process(mp3_filename, text):
     mp3_filename = mp3_filename + ".mp3"
     tts = gTTS(text=text, lang='en', slow=False)
     tts.save(mp3_filename)
-    pygame.mixer.init()
-    pygame.mixer.music.load(mp3_filename)
-    pygame.mixer.music.play()
-    while pygame.mixer.music.get_busy():
-        pygame.time.wait(100)
-        continue
+    playsound(mp3_filename)
+    os.remove(mp3_filename)
 
 
 def delete_mp3_output_files():

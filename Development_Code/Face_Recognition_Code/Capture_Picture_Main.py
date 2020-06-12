@@ -32,9 +32,9 @@ def exit_program():
 def ask_question(flag):
     response = None
     if flag == 1:
-        args = "zenity --question --width=500 --height=250 --text='Do you want us to take your picture?' 2>/dev/null"
+        args = "zenity --question --width=500 --height=250 --text='Do you want us to take your picture?'"
     else:
-        args = "zenity --question --width=500 --height=250 --text='Do you want to take another picture?' 2>/dev/null"
+        args = "zenity --question --width=500 --height=250 --text='Do you want to take another picture?'"
 
     try:
         response = check_output(args, shell=True)

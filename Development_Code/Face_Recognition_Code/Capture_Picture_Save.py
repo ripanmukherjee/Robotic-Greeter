@@ -42,7 +42,7 @@ def get_details():
     details = None
     args_get_details = "zenity --forms --width=500 --height=200 --title='Save picture with a valid name' \
                         --text='Type only the First Name' \
-                        --add-entry='First Name' 2>/dev/null"
+                        --add-entry='First Name'"
     try:
         details = check_output(args_get_details, shell=True)
         details = details.decode().split('|')
@@ -90,7 +90,7 @@ def save_picture(details, img, fps, unique_id):
 
 def picture_taking(unique_id):
     face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-    cap = cv2.VideoCapture(-1)
+    cap = cv2.VideoCapture(0)
     time.sleep(2.0)
     capture_duration = 3
     start_time = time.time()
