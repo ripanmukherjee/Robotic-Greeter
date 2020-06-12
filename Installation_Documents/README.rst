@@ -4,6 +4,8 @@ Robotic-Greeter is a humanoid Robot, which has AI capabilities such as Face Reco
 
 This folder contains all the documents for installation. Robotic-Greeter project is developed on Ubuntu Linux platform with Python3.7 version. But in below you can find documents which has information for Ubuntu & Windows 10. But it is recommended to work on Linux platform. To work with Robotic-Greeter project, it is important to install all the necessary process as below:
 
+Please follow all step by step and you can also download the PDF or WORD file.
+
 1. UbuntuAPP_UbuntuOS_Installation_ : A tutorial on how to install the Ubuntu OS along with Windows 10 and how to install Ubuntu APP on Windows 10.
 
 |
