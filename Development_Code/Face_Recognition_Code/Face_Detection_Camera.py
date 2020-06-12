@@ -45,7 +45,8 @@ def face_detection():
 
         face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
-        cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+        #cap = cv2.VideoCapture(-1, cv2.CAP_DSHOW)
+        cap = cv2.VideoCapture(-1)
         time.sleep(2.0)
         capture_duration = 3
         start_time = time.time()

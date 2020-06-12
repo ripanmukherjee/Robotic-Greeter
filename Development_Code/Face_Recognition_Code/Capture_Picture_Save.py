@@ -71,6 +71,7 @@ def save_picture(details, img, fps, unique_id):
             file_path = os.path.join(path, filename)
             cv2.imwrite(file_path, img)
             print("Saving the image with name : ", filename)
+            check_output(["zenity", "--info", "--width=400", "--height=200", "--text=Your Picture is saved !!!!"])
             fps.update()
             fps.stop()
             exit_program()
@@ -83,6 +84,7 @@ def save_picture(details, img, fps, unique_id):
             file_path = os.path.join(path, filename)
             cv2.imwrite(file_path, img)
             print("Saving the image with name : ", filename)
+            check_output(["zenity", "--info", "--width=400", "--height=200", "--text=Your Picture is saved !!!!"])
             fps.update()
             fps.stop()
             exit_program()
@@ -141,8 +143,8 @@ def main():
     print('Starting program : Capture_Picture_Save.py - at : ' + current_time + ' on : ' + current_date)
 
     try:
-        print('Processing Capture_Picture_Save.py from main process.')
         print('Inside Capture_Picture_Save.py - Unique ID is : ', sys.argv[1])
+        print('Processing Capture_Picture_Save.py from Capture_Picture_Main.py.')
         unique_id = sys.argv[1]
         picture_taking(unique_id)
         exit_program()

@@ -76,8 +76,8 @@ def face_encode():
         else:
             print("Serializing encodings....")
             try:
-                print("Reading from old encoding file....")
                 with open("encodings.pickle", "rb") as file:
+                    print("Reading from old encoding file....")
                     unpickler = pickle.Unpickler(file)
                     old_data = unpickler.load()
                     for old_k, old_v in old_data.items():
@@ -103,9 +103,7 @@ def face_encode():
                     pickle_file.write(pickle.dumps(new_data))
 
             except FileNotFoundError:
-                print("ERROR : FileNotFoundError - Pickle File : encodings.pickle, is not present - "
-                      "inside face_encode function.")
-                print("Creating encoding file : encodings.pickle....")
+                print("encodings.pickle, is not present, Creating encoding file : encodings.pickle....")
                 print("Writing new data in encoding file : encodings.pickle....")
                 new_data = {"encodings": known_encodings, "names": known_names}
                 with open("encodings.pickle", "wb+") as pickle_file:

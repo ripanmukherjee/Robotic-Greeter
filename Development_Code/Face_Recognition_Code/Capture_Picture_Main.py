@@ -64,7 +64,6 @@ def process_calling(passing_arg):
                     check_output(
                         ["zenity", "--info", "--width=400", "--height=200", "--text=We cannot take your "
                                                                             "picture currently !!!!"])
-                    exit_program()
             except IndexError:
                 print("ERROR : IndexError - We cannot take your picture currently - inside process_calling function.")
                 check_output(["zenity", "--error", "--width=400", "--height=200", "--text=We cannot take your picture "
