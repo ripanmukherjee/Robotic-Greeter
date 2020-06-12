@@ -20,4 +20,4 @@ Note: Remember that Ubuntu APP does not have all the features as Ubuntu OS, such
 
 To check the steps, please visit Ubuntu_Document_.
 
-.. _Ubuntu_Document:
+.. _Ubuntu_Document: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Installation_Documents/UbuntuAPP_UbuntuOS_Installation/UbuntuAPP_UbuntuOS_Version_1.pdf
