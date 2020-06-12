@@ -20,4 +20,4 @@ If you are working on the Windows system, please follow step 1 and step 3, but i
 
 To check the steps, please visit PostgreSQL_pgAdmin4_Document_.
 
-.. _PostgreSQL_pgAdmin4_Document:
+.. _PostgreSQL_pgAdmin4_Document: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Installation_Documents/PostgreSQL_pgAdmin4_Installation/PostgreSQL_pgAdmin4_Version_1.pdf
