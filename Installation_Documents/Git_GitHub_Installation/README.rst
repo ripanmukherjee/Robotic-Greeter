@@ -21,4 +21,4 @@ In this tutorial, we are going to show you how to install Git on Windows and Ubu
 
 To check the steps, please visit Git_GitHub_Document_.
 
-.. _Git_GitHub_Document:
+.. _Git_GitHub_Document: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Installation_Documents/Git_GitHub_Installation/Git_GitHub_Version_1.pdf
