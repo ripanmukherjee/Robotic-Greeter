@@ -22,4 +22,4 @@ If you are working on the Windows system, please follow step 1, step 2, and step
 
 To check the steps, please visit OpenCV_Document_.
 
-.. _OpenCV_Document:
+.. _OpenCV_Document: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Installation_Documents/OpenCV_Installation/OpenCV_Version_1.pdf
