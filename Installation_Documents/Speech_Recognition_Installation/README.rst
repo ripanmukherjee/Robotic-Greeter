@@ -26,4 +26,4 @@ If you are working on the Windows system, please follow step 1, step 2, and step
 
 To check the steps, please visit Speech_Recognition_Document_.
 
-.. _Speech_Recognition_Document:
+.. _Speech_Recognition_Document: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Installation_Documents/Speech_Recognition_Installation/Speech_Recognition_Version_1.pdf
