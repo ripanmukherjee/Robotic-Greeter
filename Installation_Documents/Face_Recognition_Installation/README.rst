@@ -22,4 +22,4 @@ If you are working on the Windows system, please follow step 1, step 2, and step
 
 To check the steps, please visit Face_Recognition_Document_.
 
-.. _Face_Recognition_Document:
+.. _Face_Recognition_Document: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Installation_Documents/Face_Recognition_Installation/Face_Recognition_Version_1.pdf
