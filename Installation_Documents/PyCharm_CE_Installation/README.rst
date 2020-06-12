@@ -18,4 +18,4 @@ If you are working on the Windows system, please follow step 1, but if you are w
 
 To check the steps, please visit PyCharm_CE_Document_.
 
-.. _PyCharm_CE_Document:
+.. _PyCharm_CE_Document: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Installation_Documents/PyCharm_CE_Installation/PyCharm_CE_Version_1.pdf
