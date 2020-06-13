@@ -68,7 +68,7 @@ def process_speak_listen(mp3_filename, text, record, flag):
         os.remove(mp3_filename)
 
         if flag != 1:
-            with sr.Microphone(device_index=1) as source:
+            with sr.Microphone(device_index=4) as source:
                 record.pause_threshold = 1
                 record.adjust_for_ambient_noise(source, duration=1)
                 print("Speak:")
