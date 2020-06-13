@@ -158,8 +158,6 @@ def process_speech_question(text):
     args_call = "python3 " + program_name + ' ' + passing_arg
     try:
         check_output(args_call, shell=True)
-        #output = output.decode().split('\n')
-        #print("Output of the Speech_Question.py Program : ", output)
         try:
             with open("Speech_Question_Output.txt", "r") as file:
                 response = file.readline()
@@ -388,7 +386,7 @@ def process_unknown(main_directory, database_code_directory, face_recognition_co
                         else:
                             os.chdir(main_directory)
                     else:
-                        ##detete code -- Here Code should delete the data from database and inform the customer.
+                        # detete code -- Here Code should delete the data from database and inform the customer.
                         print("ERROR : UNKNOWN customer don't want to save picture. But details saved in dataBase.")
                         os.chdir(speech_recognition_code_directory)
                         text = "Okay. Since you do not want to save picture, do you like to search anyone?"
@@ -518,7 +516,7 @@ def main_process(main_directory, database_code_directory, face_recognition_code_
 
 def main():
     region = "DEV"
-    main_directory = "/home/somak/Robotic-Greeter/Development"
+    main_directory = "/home/somak/Robotic-Greeter/Development_Code"
 
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
