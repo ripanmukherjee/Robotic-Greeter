@@ -56,12 +56,12 @@ def process_speak_listen(mp3_filename, text, record, flag):
         os.remove(mp3_filename)
 
         if flag != 1:
-            with sr.Microphone(device_index=4) as source:
+            with sr.Microphone(device_index=0) as source:
                 record.pause_threshold = 1
-                record.adjust_for_ambient_noise(source, duration=1)
+                record.adjust_for_ambient_noise(source)
                 print("Speak:")
                 try:
-                    audio = record.listen(source, timeout=3)
+                    audio = record.listen(source, timeout=5)
                     text = record.recognize_google(audio)
                     print(text)
                 except LookupError:
@@ -147,9 +147,11 @@ def main():
         for word in filtered_sent:
             if word in yes_syn_words:
                 response = "YES"
+                print("Yes!! Person wants to continue")
                 break
             else:
                 response = "NO"
+                print("No!! Don't want to continue")
 
     with open("Speech_Question_Output.txt", "w") as output_file:
         output_file.write(response)
