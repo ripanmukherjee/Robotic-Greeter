@@ -68,12 +68,12 @@ def process_speak_listen(mp3_filename, text, record, flag):
         os.remove(mp3_filename)
 
         if flag != 1:
-            with sr.Microphone(device_index=4) as source:
+            with sr.Microphone(device_index=0) as source:
                 record.pause_threshold = 1
                 record.adjust_for_ambient_noise(source, duration=1)
                 print("Speak:")
                 try:
-                    audio = record.listen(source, timeout=3)
+                    audio = record.listen(source, timeout=5)
                     text = record.recognize_google(audio)
                     print(text)
                 except LookupError:
@@ -163,7 +163,7 @@ def main():
     else:
         text = "Okay. And what company are you with?"
         process_details(mp3_filename, text, record)
-        text = "Okay. " + name + ". I hope, that I am guessing your name correctly. Actually, " \
+        text = "Okay. " + name + ". Hope I am guessing your name correctly. Actually, " \
                                  "we Don't Have Your Details. Would you like to save your details for future?"
 
     flag = 0
