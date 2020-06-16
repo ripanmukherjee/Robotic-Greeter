@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-
+# ----------------------------------------------------------------------------------------------------------------------
 # Project:      Robotic Greeter - McMaster University - CareGo Tek
 # Program Name: Customer_Search_ID.py
 # Author:       Somak Mukherjee
 # Date:         Friday 24 April, 2020
 # Version:      1
+# ----------------------------------------------------------------------------------------------------------------------
 # Description:  Customer_Search_ID.py is use to search the data of the customer from the following table by using ID :
 #               Development (DEV) : carego_customer_dev
 #               Test (TEST) : carego_customer_test
@@ -13,7 +14,7 @@
 #               This program will be called from ~/Database_Code/Customer_Search_Main.py based on search criteria. If
 #               the customer select ID option in Customer_Search_Main.py, then it will call Customer_Search_ID.py. And
 #               this program will ask the ID and search the data.
-#
+# ----------------------------------------------------------------------------------------------------------------------
 # NOTE 1:       Please make sure to change the region value as per region wise before putting to server :
 #               Development region: "DEV"
 #               Test region: "TEST"
@@ -27,17 +28,17 @@
 #               conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1",
 #               port="5432")
 #               Please make sure that everything is correct.
-#
+# ----------------------------------------------------------------------------------------------------------------------
 # NOTE 2:       This program can be run separately or as a stand-alone program as follow:
 #               >> python3 Customer_Search_ID.py
-
+# ----------------------------------------------------------------------------------------------------------------------
 
 import re
 import sys
 import psycopg2
 import subprocess
 from datetime import date, datetime
-from subprocess import check_output, call
+from subprocess import check_output
 
 
 def exit_program():
@@ -102,8 +103,8 @@ def format_details(details):
         else:
             id_details = details
     except IndexError:
-        print("ERROR : IndexError - You didn't enter any details - inside format_details function.")
-        check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nYou didn't enter "
+        print("ERROR : IndexError - You did not enter any details - inside format_details function.")
+        check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nYou did not enter "
                                                                           "any details!!!!"])
         exit_program()
 
@@ -115,7 +116,7 @@ def search_id(check_main_table, id_details):
         conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1", port="5432")
         cur = conn.cursor()
         print("Connection success")
-        query = """SELECT "ID", "First_Name", "Last_Name", "Email_ID", "Phone_No"
+        query = """SELECT "First_Name", "Last_Name", "Email_ID", "Phone_No"
         from """ + check_main_table + """ where "ID" = '{}'; """.format(id_details)
         cur.execute(query)
         row = cur.fetchall()
@@ -151,10 +152,12 @@ def display_details(search_details):
                 display_row = display_row + " " + str(tuple_details)
                 counter += 1
 
+    print(display_row)
     args_display = "zenity --list --width=800 --height=400 --title='List of people as per your search' \
     --column='ID' --column='First Name' --column='Last Name' --column='Email ID' --column='Phone Number' " \
     + display_row
-    call(args_display, shell=True)
+    search_output = check_output(args_display, shell=True)
+    print(search_output)
 
 
 def main():
