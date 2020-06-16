@@ -203,10 +203,10 @@ def get_details_validation(option):
                               "Please try again!!!!"])
                 exit_program()
             elif re.match("^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*$", details) == None:
-                print("ERROR : Email Id must contain @ & dot(.). "
+                print("ERROR : Email Id should contain @ & dot(.). "
                       "Also, it should be a valid Email ID. Details entered : ", details)
                 check_output(["zenity", "--error", "--width=400", "--height=200",
-                              "--text=ALERT!!!\n\nEmail Id must contain @ & dot(.). "
+                              "--text=ALERT!!!\n\nEmail Id should contain @ & dot(.). "
                               "Also, it should be a valid Email ID. Please try again!!!!"])
                 exit_program()
         except subprocess.CalledProcessError:
