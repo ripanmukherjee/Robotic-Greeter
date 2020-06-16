@@ -116,7 +116,7 @@ def search_id(check_main_table, id_details):
         conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1", port="5432")
         cur = conn.cursor()
         print("Connection success")
-        query = """SELECT "First_Name", "Last_Name", "Email_ID", "Phone_No"
+        query = """SELECT "ID", "First_Name", "Last_Name", "Email_ID", "Phone_No"
         from """ + check_main_table + """ where "ID" = '{}'; """.format(id_details)
         cur.execute(query)
         row = cur.fetchall()
@@ -152,10 +152,11 @@ def display_details(search_details):
                 display_row = display_row + " " + str(tuple_details)
                 counter += 1
 
+    # --column='ID' --column='First Name' --column='Last Name' --column='Email ID' --column='Phone Number' " \
     print(display_row)
     args_display = "zenity --list --width=800 --height=400 --title='List of people as per your search' \
-    --column='ID' --column='First Name' --column='Last Name' --column='Email ID' --column='Phone Number' " \
-    + display_row
+    --column='First Name' --column='Last Name' --column='Email ID' --column='Phone Number' --hide-column=1" \
+                   + display_row
     search_output = check_output(args_display, shell=True)
     print(search_output)
 
