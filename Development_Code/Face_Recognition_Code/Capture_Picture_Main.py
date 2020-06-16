@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
-
+# ----------------------------------------------------------------------------------------------------------------------
 # Project:      Robotic Greeter - McMaster University - CareGo Tek
 # Program Name: Capture_Picture_Main.py
 # Author:       Somak Mukherjee
 # Date:         Friday 24 April, 2020
 # Version:      1
+# ----------------------------------------------------------------------------------------------------------------------
 # Description:  Capture_Picture_Main.py program will be called from Main_Process.py (~/Main_Process/Main_Process.py)
 #               It will receive one input argument (Unique ID) from the main process and based on the input argument,
 #               it will call to ~/Face_Recognition_Code/Capture_Picture_Save.py for taking and saving the picture.
 #               This process is a looping process that asks the user if he want to take multiple pictures and save it.
-#
+# ----------------------------------------------------------------------------------------------------------------------
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow:
 #               >> python3 Capture_Picture_Main.py
-
+# ----------------------------------------------------------------------------------------------------------------------
 
 import sys
 import subprocess
@@ -32,9 +33,9 @@ def exit_program():
 def ask_question(flag):
     response = None
     if flag == 1:
-        args = "zenity --question --width=500 --height=250 --text='Do you want us to take your picture?'"
+        args = "zenity --question --width=500 --height=250 --text='Do you want me to take your picture?'"
     else:
-        args = "zenity --question --width=500 --height=250 --text='Do you want to take another picture?'"
+        args = "zenity --question --width=500 --height=250 --text='Do you want me to take your another picture?'"
 
     try:
         response = check_output(args, shell=True)
@@ -60,19 +61,19 @@ def process_calling(passing_arg):
                 if len(match) > 0:
                     flag = 2
                 else:
-                    print("ERROR : We cannot take your picture currently - inside process_calling function.")
+                    print("ERROR : I cannot take your picture currently - inside process_calling function.")
                     check_output(
-                        ["zenity", "--info", "--width=400", "--height=200", "--text=We cannot take your "
+                        ["zenity", "--info", "--width=400", "--height=200", "--text=I cannot take your "
                                                                             "picture currently !!!!"])
             except IndexError:
-                print("ERROR : IndexError - We cannot take your picture currently - inside process_calling function.")
-                check_output(["zenity", "--error", "--width=400", "--height=200", "--text=We cannot take your picture "
+                print("ERROR : IndexError - I cannot take your picture currently - inside process_calling function.")
+                check_output(["zenity", "--error", "--width=400", "--height=200", "--text=I cannot take your picture "
                                                                                   "currently !!!!"])
                 exit_program()
 
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside  process_calling function.")
-            check_output(["zenity", "--error", "--width=400", "--height=200", "--text=We cannot take your picture "
+            check_output(["zenity", "--error", "--width=400", "--height=200", "--text=I cannot take your picture "
                                                                               "currently. \n\nPlease contact "
                                                                               "Admin !!!!"])
             exit_program()
@@ -90,23 +91,23 @@ def process_calling(passing_arg):
                     if len(match) > 1:
                         flag = 2
                     else:
-                        print("ERROR : We cannot take your picture currently - inside process_calling function.")
+                        print("ERROR : I cannot take your picture currently - inside process_calling function.")
                         check_output(
-                            ["zenity", "--info", "--width=400", "--height=200", "--text=We cannot take your "
+                            ["zenity", "--info", "--width=400", "--height=200", "--text=I cannot take your "
                                                                                 "picture currently !!!!"])
                         exit_program()
 
                 except IndexError:
-                    print("ERROR : IndexError - We cannot take your picture currently - "
+                    print("ERROR : IndexError - I cannot take your picture currently - "
                           "inside process_calling function.")
                     check_output(
-                        ["zenity", "--error", "--width=400", "--height=200", "--text=We cannot take your picture "
+                        ["zenity", "--error", "--width=400", "--height=200", "--text=I cannot take your picture "
                                                                              "currently !!!!"])
                     exit_program()
 
             except subprocess.CalledProcessError:
                 print("ERROR : subprocess.CalledProcessError - inside process_calling function.")
-                check_output(["zenity", "--error", "--width=400", "--height=200", "--text=We cannot take your picture "
+                check_output(["zenity", "--error", "--width=400", "--height=200", "--text=I cannot take your picture "
                                                                                   "currently. \n\nPlease contact "
                                                                                   "Admin !!!!"])
                 exit_program()
