@@ -1,19 +1,20 @@
 #!/usr/bin/env python3
-
+# ----------------------------------------------------------------------------------------------------------------------
 # Project:      Robotic Greeter - McMaster University - CareGo Tek
 # Program Name: Speech_Question.py
 # Author:       Somak Mukherjee
 # Date:         Friday 24 April, 2020
 # Version:      1
+# ----------------------------------------------------------------------------------------------------------------------
 # Description:  Speech_Question.py is to ask YES or NO related questions to the customer. It will be called from
 #               ~/Main_Process/Main_Process.py and Main_Process.py will pass the question as an argument in this
 #               program. Depending on the person's response, this program will give an output (inside of a text file :
 #               Speech_Question_Output.txt) as YES or NO or NONE. And with that response, Main_Process.py will perform
 #               different tasks.
-#
+# ----------------------------------------------------------------------------------------------------------------------
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow for testing purpose:
 #               >> python3 Speech_Question.py
-
+# ----------------------------------------------------------------------------------------------------------------------
 
 import os
 import sys
@@ -67,10 +68,10 @@ def process_speak_listen(mp3_filename, text, record, flag):
                     record_text = record.recognize_google(audio)
                     print(record_text)
                 except LookupError:
-                    print("ERROR : LookupError - Couldn't able to understand")
+                    print("ERROR : LookupError - Could not able to understand")
                     try:
                         record_text = check_output(["zenity", "--question", "--width=400", "--height=200",
-                                                    "--text=We couldn't able to understand.\n\n"
+                                                    "--text=I could not able to understand.\n\n"
                                                     "Do you want to continue?"])
                         record_text = "Yes"
                     except subprocess.CalledProcessError:
@@ -79,10 +80,10 @@ def process_speak_listen(mp3_filename, text, record, flag):
 
                     print(record_text)
                 except speech_recognition.WaitTimeoutError:
-                    print("ERROR : WaitTimeoutError - Couldn't able to listen anything for 5 seconds")
+                    print("ERROR : WaitTimeoutError - Could not able to listen anything for 5 seconds")
                     try:
                         record_text = check_output(["zenity", "--question", "--width=400", "--height=200",
-                                                    "--text=We couldn't able to listen anything for 5 seconds.\n\n"
+                                                    "--text=I could not able to listen anything for 5 seconds.\n\n"
                                                     "Do you want to continue?"])
                         record_text = "Yes"
                     except subprocess.CalledProcessError:
@@ -91,10 +92,10 @@ def process_speak_listen(mp3_filename, text, record, flag):
 
                     print(record_text)
                 except speech_recognition.UnknownValueError:
-                    print("ERROR : UnknownValueError - Couldn't able to listen anything for 5 seconds")
+                    print("ERROR : UnknownValueError - Could not able to listen anything for 5 seconds")
                     try:
                         record_text = check_output(["zenity", "--question", "--width=400", "--height=200",
-                                                    "--text=We couldn't able to listen anything for 5 seconds.\n\n"
+                                                    "--text=I could not able to listen anything for 5 seconds.\n\n"
                                                     "Do you want to continue?"])
                         record_text = "Yes"
                     except subprocess.CalledProcessError:
@@ -142,8 +143,8 @@ def main():
     stand_alone_flag = None
 
     flag = 1
-    text = "We are going to ask few question to you. You can answer with Yes or No. If we do not get any input for " \
-           "5 second, then, we will prompt a pop up message to you. You can choose option from there."
+    text = "I am going to ask few question to you. You can answer with Yes or No. If I do not get an input for " \
+           "5 second, then, I will prompt a pop up message to you."
     process_speak_listen(mp3_filename, text, record, flag)
 
     try:
@@ -166,7 +167,7 @@ def main():
     response = "NO"
 
     if input_details is None:
-        text = "Sorry, we didn't get any input."
+        text = "Sorry, I did not get an input from you."
         flag = 1
         process_speak_listen(mp3_filename, text, record, flag)
         response = "NO"
@@ -185,7 +186,7 @@ def main():
                 break
             else:
                 response = "NO"
-                print("No!! Don't want to continue")
+                print("No!! Do not want to continue")
 
     with open("Speech_Question_Output.txt", "w") as output_file:
         output_file.write(response)
