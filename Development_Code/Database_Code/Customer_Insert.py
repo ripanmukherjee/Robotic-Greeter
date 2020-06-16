@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-
+# ----------------------------------------------------------------------------------------------------------------------
 # Project:      Robotic Greeter - McMaster University - CareGo Tek
 # Program Name: Customer_Insert.py
 # Author:       Somak Mukherjee
 # Date:         Friday 24 April, 2020
 # Version:      1
+# ----------------------------------------------------------------------------------------------------------------------
 # Description:  Customer_Insert.py is use for inserting the data of the customer into the following table :
 #               Development (DEV) : carego_customer_dev
 #               Test (TEST) : carego_customer_test
@@ -13,7 +14,7 @@
 #               This program will be called from ~/Main_Process/Main_Process.py. If the customer wants to save their
 #               details in the database then Main_Process.py will call this program, and this process will insert the
 #               data into the table mentioned above.
-#
+# ----------------------------------------------------------------------------------------------------------------------
 # NOTE 1:       Please make sure to change the region's value as per region wise before putting it to server :
 #               Development region: "DEV"
 #               Test region: "TEST"
@@ -31,10 +32,10 @@
 #               conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1",
 #               port="5432")
 #               Please make sure that everything is correct.
-#
+# ----------------------------------------------------------------------------------------------------------------------
 # NOTE 2:       This program can be run separately or as a stand-alone program as follow:
 #               >> python3 Customer_Insert.py
-
+# ----------------------------------------------------------------------------------------------------------------------
 
 import re
 import sys
@@ -116,28 +117,28 @@ def format_details(details):
                                                                               "Please try again!!!!"])
             exit_program()
         elif len(details[2]) < 7:
-            print("ERROR : Eamil Id must be more than 7 characters long. Details entered : ", details[2])
-            check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nEamil Id must be "
+            print("ERROR : Email Id should be more than 7 characters long. Details entered : ", details[2])
+            check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nEmail Id should be "
                                                                               "more than 7 characters long."
                                                                               "Please try again!!!!"])
             exit_program()
         elif re.match("^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*$", details[2]) is None:
-            print("ERROR : Email Id must contain @ & dot(.). Also, it should be valid Email ID. "
+            print("ERROR : Email Id should contain @ & dot(.). Also, it should be valid Email ID. "
                   "Details entered : ", details[2])
-            check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nEmail Id must "
+            check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nEmail Id should "
                                                                               "contain @ & dot(.). ""Also, it should "
                                                                               "be valid Email ID. "
                                                                               "Please try again!!!!"])
             exit_program()
         elif len(details[3]) < 7:
-            print("ERROR : Phone number must be more than 7 digits long. Details entered : ", details[3])
-            check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nPhone number must "
+            print("ERROR : Phone number should be more than 7 digits long. Details entered : ", details[3])
+            check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nPhone number should "
                                                                               "be more than 7 digits long. "
                                                                               "Please try again!!!!"])
             exit_program()
         elif re.match("[0-9]", details[3]) is None:
-            print("ERROR : Phone number must be numeric. Details entered : ", details[3])
-            check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nPhone number must "
+            print("ERROR : Phone number should be numeric. Details entered : ", details[3])
+            check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nPhone number should "
                                                                               "be numeric. Please try again!!!!"])
             exit_program()
         else:
@@ -148,8 +149,8 @@ def format_details(details):
             employer = details[4]
             role = details[5].strip()
     except IndexError:
-        print("ERROR : IndexError - You didn't enter any details - inside format_details function.")
-        check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nYou didn't enter "
+        print("ERROR : IndexError - You did not enter any details - inside format_details function.")
+        check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nYou did not enter "
                                                                           "any details!!!!"])
         exit_program()
 
