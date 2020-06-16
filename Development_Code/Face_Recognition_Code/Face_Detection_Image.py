@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-
+# ----------------------------------------------------------------------------------------------------------------------
 # Project:      Robotic Greeter - McMaster University - CareGo Tek
 # Program Name: Face_Detection_Image.py
 # Author:       Somak Mukherjee
 # Date:         Friday 24 April, 2020
 # Version:      1
+# ----------------------------------------------------------------------------------------------------------------------
 # Description:  Capture_Picture_Main.py program is a testing program of Face_Detection_Camera.py; this process is use
 #           	to detect the faces from an image. First, you need to load the image into the following line present
 #          	 	in code: image_path = 'Sample_Images/image1.jpg'.
@@ -22,10 +23,10 @@
 #           	2. Run the Face_Encoding.py (This will create encoding.pickle file with the image coordinate).
 #           	3. Then you can put another sample image of you inside of Sample_Images directory.
 #           	4. At last, run this program.
-#
+# ----------------------------------------------------------------------------------------------------------------------
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow:
 #           	>> python3 Face_Detection_Image.py
-
+# ----------------------------------------------------------------------------------------------------------------------
 
 import sys
 import cv2
@@ -84,7 +85,8 @@ def face_detection_image():
         print("ERROR : EOFError - Pickle File : encodings.pickle,  has no data - inside face_detection function.")
         exit_program()
     except FileNotFoundError:
-        print("ERROR : FileNotFoundError - Pickle File : encodings.pickle, not present inside face_detection function.")
+        print("ERROR : FileNotFoundError - Pickle File : encodings.pickle, not present in the directory "
+              "- inside face_detection function.")
         exit_program()
 
 
