@@ -136,8 +136,8 @@ def main():
     record = sr.Recognizer()
     yes_syn_words = ['all right', 'alright', 'very well', 'of course', 'by all means', 'sure', 'certainly',
                      'absolutely', 'indeed', 'affirmative', 'in the affirmative', 'agreed', 'roger', 'aye',
-                     'aye aye', 'yeah', 'yah', 'yep', 'yup', 'uh-huh', 'okay', 'Ok', 'okey-dokey', 'okey-doke',
-                     'achcha', 'right', 'righty-ho', 'surely', 'yea', 'well', 'course', 'yes', 'please', 'do']
+                     'aye aye', 'yeah', 'yah', 'yep', 'yup', 'uh-huh', 'okay', 'ok', 'right', 'surely',
+                     'yea', 'well', 'course', 'yes', 'please']
     stop_words = set(stopwords.words("english"))
     mp3_filename = "Speech_Question"
     stand_alone_flag = None
