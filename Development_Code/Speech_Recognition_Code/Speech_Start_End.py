@@ -1,19 +1,20 @@
 #!/usr/bin/env python3
-
+# ----------------------------------------------------------------------------------------------------------------------
 # Project:      Robotic Greeter - McMaster University - CareGo Tek
 # Program Name: Speech_Start_End.py
 # Author:       Somak Mukherjee
 # Date:         Friday 24 April, 2020
 # Version:      1
+# ----------------------------------------------------------------------------------------------------------------------
 # Description:  Speech_Start_End.py is to greet the Known and Unknown person. It will be called from
 #               ~/Main_Process/Main_Process.py with first argument as follow:
 #               1. Case when 0 (For Unknown person): It will greet to Unknown Person
 #               2. Case when Specific Name (For Known person): It will welcome to known Person
 #               3. Case when 1 (For Known & Unknown): It will say Bye
-#
+# ----------------------------------------------------------------------------------------------------------------------
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow for testing purpose :
 #               >> python3 Speech_Start_End.py
-
+# ----------------------------------------------------------------------------------------------------------------------
 
 import os
 import sys
@@ -67,7 +68,7 @@ def main():
         input_argv = sys.argv[1]
         if input_argv == "0":
             mp3_filename = "Speech_Start_End"
-            text = "Hello, Welcome to Care Go, my name is TELIA, I am Care Go’s virtual greeter."
+            text = "Hello, Welcome to Care Go, my name is TELIA. I am Care Go’s virtual greeter."
         elif input_argv == "1":
             mp3_filename = "Speech_Start_End"
             text = "Thank you for visiting Care Go. Bye. See you later."
@@ -78,7 +79,7 @@ def main():
     except IndexError:
         stand_alone_flag = 1
         mp3_filename = "Speech_Start_End"
-        text = "Hello, Welcome to Care Go, my name is TELIA, I am Care Go’s virtual greeter."
+        text = "Hello, Welcome to Care Go, my name is TELIA. I am Care Go’s virtual greeter."
 
     process(mp3_filename, text)
     if stand_alone_flag == 1:
