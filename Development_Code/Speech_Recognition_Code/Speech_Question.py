@@ -20,12 +20,14 @@ import sys
 import gtts
 import nltk
 import glob
+import subprocess
 from gtts import gTTS
 import speech_recognition
 import speech_recognition as sr
 from playsound import playsound
 from nltk.corpus import stopwords
 from datetime import date, datetime
+from subprocess import check_output
 from nltk.tokenize import word_tokenize
 
 
@@ -48,6 +50,7 @@ def token_sentence(text):
 
 
 def process_speak_listen(mp3_filename, text, record, flag):
+    record_text = None
     mp3_filename = mp3_filename + ".mp3"
     try:
         tts = gTTS(text=text, lang='en', slow=False)
@@ -57,27 +60,53 @@ def process_speak_listen(mp3_filename, text, record, flag):
 
         if flag != 1:
             with sr.Microphone(device_index=0) as source:
-                record.pause_threshold = 1
                 record.adjust_for_ambient_noise(source)
                 print("Speak:")
                 try:
                     audio = record.listen(source, timeout=5)
-                    text = record.recognize_google(audio)
-                    print(text)
+                    record_text = record.recognize_google(audio)
+                    print(record_text)
                 except LookupError:
                     print("ERROR : LookupError - Couldn't able to understand")
-                    text = None
+                    try:
+                        record_text = check_output(["zenity", "--question", "--width=400", "--height=200",
+                                                    "--text=We couldn't able to understand.\n\n"
+                                                    "Do you want to continue?"])
+                        record_text = "Yes"
+                    except subprocess.CalledProcessError:
+                        print("ERROR : subprocess.CalledProcessError - inside process_speak_listen function.")
+                        record_text = None
+
+                    print(record_text)
                 except speech_recognition.WaitTimeoutError:
-                    print("ERROR : WaitTimeoutError - Couldn't able to listen anything for 3 seconds")
-                    text = None
+                    print("ERROR : WaitTimeoutError - Couldn't able to listen anything for 5 seconds")
+                    try:
+                        record_text = check_output(["zenity", "--question", "--width=400", "--height=200",
+                                                    "--text=We couldn't able to listen anything for 5 seconds.\n\n"
+                                                    "Do you want to continue?"])
+                        record_text = "Yes"
+                    except subprocess.CalledProcessError:
+                        print("ERROR : subprocess.CalledProcessError - inside process_speak_listen function.")
+                        record_text = None
+
+                    print(record_text)
                 except speech_recognition.UnknownValueError:
-                    print("ERROR : UnknownValueError - Couldn't able to listen anything for 3 seconds")
-                    text = None
+                    print("ERROR : UnknownValueError - Couldn't able to listen anything for 5 seconds")
+                    try:
+                        record_text = check_output(["zenity", "--question", "--width=400", "--height=200",
+                                                    "--text=We couldn't able to listen anything for 5 seconds.\n\n"
+                                                    "Do you want to continue?"])
+                        record_text = "Yes"
+                    except subprocess.CalledProcessError:
+                        print("ERROR : subprocess.CalledProcessError - inside process_speak_listen function.")
+                        record_text = None
+
+                    print(record_text)
     except gtts.tts.gTTSError:
         print("Connection Error : No internet connection.")
         exit_program()
 
-    return text
+    return record_text
 
 
 def delete_mp3_output_files():
@@ -97,13 +126,13 @@ def delete_mp3_output_files():
 
 
 def main():
-    record = sr.Recognizer()
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
     print('Starting program : Speech_Question.py - At : ' + current_time + ' On : ' + current_date)
 
+    record = sr.Recognizer()
     yes_syn_words = ['all right', 'alright', 'very well', 'of course', 'by all means', 'sure', 'certainly',
                      'absolutely', 'indeed', 'affirmative', 'in the affirmative', 'agreed', 'roger', 'aye',
                      'aye aye', 'yeah', 'yah', 'yep', 'yup', 'uh-huh', 'okay', 'Ok', 'okey-dokey', 'okey-doke',
@@ -111,6 +140,11 @@ def main():
     stop_words = set(stopwords.words("english"))
     mp3_filename = "Speech_Question"
     stand_alone_flag = None
+
+    flag = 1
+    text = "We are going to ask few question to you. You can answer with Yes or No. If we do not get any input for " \
+           "5 second, then, we will prompt a pop up message to you. You can choose option from there."
+    process_speak_listen(mp3_filename, text, record, flag)
 
     try:
         input_argv = sys.argv
@@ -129,19 +163,19 @@ def main():
 
     flag = 0
     input_details = process_speak_listen(mp3_filename, text, record, flag)
-    response = "NONE"
+    response = "NO"
 
     if input_details is None:
         text = "Sorry, we didn't get any input."
         flag = 1
         process_speak_listen(mp3_filename, text, record, flag)
-        response = "NONE"
+        response = "NO"
     else:
         tokenized_word = word_tokenize(input_details)
         filtered_sent = []
         for word in tokenized_word:
             if word not in stop_words:
-                filtered_sent.append(word)
+                filtered_sent.append(word.lower())
 
         print(filtered_sent)
         for word in filtered_sent:
