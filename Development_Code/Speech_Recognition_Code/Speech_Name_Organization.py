@@ -11,7 +11,7 @@
 #               ~/Main_Process/Main_Process.py and depending on the person's response this program will give an output
 #               (inside of a text file as follow: Speech_Name_Organization_Output.text) as YES or NO or NONE.
 #               And with that response Main_Process.py will perform different task.
-#
+# ----------------------------------------------------------------------------------------------------------------------
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow for testing purpose:
 #               >> python3 Speech_Name_Organization.py
 # ----------------------------------------------------------------------------------------------------------------------
@@ -79,13 +79,13 @@ def process_speak_listen(mp3_filename, text, record, flag):
                     text = record.recognize_google(audio)
                     print(text)
                 except LookupError:
-                    print("ERROR : LookupError - Couldn't able to understand")
+                    print("ERROR : LookupError - Could not able to understand")
                     text = None
                 except speech_recognition.WaitTimeoutError:
-                    print("ERROR : WaitTimeoutError - Couldn't able to listen anything for 5 seconds")
+                    print("ERROR : WaitTimeoutError - Could not able to listen anything for 5 seconds")
                     text = None
                 except speech_recognition.UnknownValueError:
-                    print("ERROR : UnknownValueError - Couldn't able to listen anything for 5 seconds")
+                    print("ERROR : UnknownValueError - Could not able to listen anything for 5 seconds")
                     text = None
     except gtts.tts.gTTSError:
         print("Connection Error : No internet connection.")
@@ -135,11 +135,11 @@ def delete_mp3_output_files():
 
 def process_organization(mp3_filename, record, text, name):
     organization = process_details(mp3_filename, text, record)
-    speak_text = ". Actually, we do not have your details. Would you like to save your details for future?"
+    speak_text = ". Actually, I do not have your details. Would you like to save your details for future?"
     if organization is None:
         try:
             check_output(["zenity", "--question", "--width=400", "--height=200",
-                          "--text=Sorry, we could not get your organization.\n\n"
+                          "--text=Sorry, I could not get your organization.\n\n"
                           "Do you want to enter the name of your organization?"])
             args_get_details = "zenity --forms --width=500 --height=200 --title='Organization' \
                                             --text='Enter your organization Name' \
@@ -161,10 +161,10 @@ def process_organization(mp3_filename, record, text, name):
 
 
 def process_name_organization(mp3_filename, record):
-    speak_text = "Actually, we do not have your details. Would you like to save your details for future?"
+    speak_text = "Actually, I do not have your details. Would you like to save your details for future?"
     try:
         check_output(["zenity", "--question", "--width=400", "--height=200",
-                      "--text=Sorry, we couldn't get your name.\n\n" "Do you want to enter your name?"])
+                      "--text=Sorry, I could not get your name.\n\n" "Do you want to enter your name?"])
         args_get_details = "zenity --forms --width=500 --height=200 --title='Name' \
                     --text='Enter your First Name --add-entry='First Name'"
         try:
@@ -198,8 +198,8 @@ def main():
 
     flag = 1
     mp3_filename = "Speech_Name_Organization"
-    text = "We are going to ask few question to you. If we do not get any input from you within 5 second, then, " \
-           "we will prompt a pop up message to you."
+    text = "I am going to ask few question to you. If I do not get an input from you within 5 second, then, " \
+           "I will prompt a pop up message to you."
     process_speak_listen(mp3_filename, text, record, flag)
 
     try:
@@ -220,15 +220,15 @@ def main():
         if input_details is None:
             text = process_organization(mp3_filename, record, text, name)
         else:
-            text = "Actually, we do not have your details. Would you like to save your details for future?"
+            text = "Actually, I do not have your details. Would you like to save your details for future?"
 
     flag = 0
     input_details = process_speak_listen(mp3_filename, text, record, flag)
     if input_details is None:
         try:
             check_output(["zenity", "--question", "--width=400", "--height=200",
-                          "--text=We couldn't able to understand.\n\n"
-                          "Actually, we do not have your details. Would you like to save your details for future?"])
+                          "--text=I could not able to understand.\n\n"
+                          "Actually, I do not have your details. Would you like to save your details for future?"])
             input_details = "Yes"
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside main function.")
@@ -239,7 +239,7 @@ def main():
     response = "NONE"
 
     if input_details is None:
-        text = "Sorry, we did not get an input from you."
+        text = "Sorry, I did not get an input from you."
         flag = 1
         process_speak_listen(mp3_filename, text, record, flag)
         response = "NONE"
@@ -257,7 +257,7 @@ def main():
                 break
             else:
                 response = "NO"
-                print("No!! Don't want to continue")
+                print("No!! Do not want to continue")
 
     with open("Speech_Name_Organization_Output.txt", "w") as output_file:
         output_file.write(response)
