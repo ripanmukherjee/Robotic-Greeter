@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-
+# ----------------------------------------------------------------------------------------------------------------------
 # Project:      Robotic Greeter - McMaster University - CareGo Tek
 # Program Name: Customer_Update.py
 # Author:       Somak Mukherjee
 # Date:         Friday 24 April, 2020
 # Version:      1
+# ----------------------------------------------------------------------------------------------------------------------
 # Description:  Customer_Update.py is use to update the data of the customer into the following table :
 #               Development (DEV) : carego_customer_dev
 #               Test (TEST) : carego_customer_test
@@ -13,7 +14,7 @@
 #               This program will be called from ~/Main_Process/Main_Process.py, if the customer wants to update their
 #               details. To update the details, customer should know their unique ID, as this program will ask
 #               confirm the ID before to update.
-#
+# ----------------------------------------------------------------------------------------------------------------------
 # NOTE 1:       Please make sure to change the region value as per region wise before putting to server :
 #               Development region: "DEV"
 #               Test region: "TEST"
@@ -27,10 +28,10 @@
 #               conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1",
 #               port="5432")
 #               Please make sure that everything is correct.
-#
+# ----------------------------------------------------------------------------------------------------------------------
 # NOTE 2:       This program can be run separately or as a stand-alone program as follow:
 #               >> python3 Customer_Update.py
-
+# ----------------------------------------------------------------------------------------------------------------------
 
 import re
 import sys
@@ -79,7 +80,6 @@ def ask_question(flag):
 
     try:
         response = check_output(args, shell=True)
-        print(len(response))
     except subprocess.CalledProcessError:
         print("ERROR : subprocess.CalledProcessError - inside ask_question function.")
         exit_program()
@@ -138,7 +138,7 @@ def assign_update_option(details):
                             else:
                                 print("ERROR : Not valid option - inside assign_update_option function.")
                                 check_output(["zenity", "--error", "--width=400", "--height=200",
-                                              "--text=ALERT!!!\n\nYou didn't select valid option. "
+                                              "--text=ALERT!!!\n\nYou did not select valid option. "
                                               "Please try again!!!!"])
                                 exit_program()
     except IndexError:
@@ -197,17 +197,17 @@ def get_details_validation(option):
             details = details.decode().split('|')
             details = details[0].strip()
             if len(details) < 7:
-                print("ERROR : Email Id must be more than 7 characters long. Details entered : ", details)
+                print("ERROR : Email Id should be more than 7 characters long. Details entered : ", details)
                 check_output(["zenity", "--error", "--width=400", "--height=200",
-                              "--text=ALERT!!!\n\nEmail Id must be more than 7 characters long. "
+                              "--text=ALERT!!!\n\nEmail Id should be more than 7 characters long. "
                               "Please try again!!!!"])
                 exit_program()
             elif re.match("^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*$", details) == None:
                 print("ERROR : Email Id must contain @ & dot(.). "
-                      "Also, it should be valid Email ID. Details entered : ", details)
+                      "Also, it should be a valid Email ID. Details entered : ", details)
                 check_output(["zenity", "--error", "--width=400", "--height=200",
                               "--text=ALERT!!!\n\nEmail Id must contain @ & dot(.). "
-                              "Also, it should be valid Email ID. Please try again!!!!"])
+                              "Also, it should be a valid Email ID. Please try again!!!!"])
                 exit_program()
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside get_details_validation function.")
@@ -222,15 +222,15 @@ def get_details_validation(option):
             details = details.decode().split('|')
             details = details[0].strip()
             if len(details) < 7:
-                print("ERROR : Phone number must be more than 7 digits long. Details entered : ", details)
+                print("ERROR : Phone number should be more than 7 digits long. Details entered : ", details)
                 check_output(["zenity", "--error", "--width=400", "--height=200",
-                              "--text=ALERT!!!\n\nPhone number must be more than 7 digits long. "
+                              "--text=ALERT!!!\n\nPhone number should be more than 7 digits long. "
                               "Please try again!!!!"])
                 exit_program()
             elif re.match("[0-9]", details) is None:
-                print("ERROR : Phone number must be numeric. Details entered : ", details)
+                print("ERROR : Phone number should be numeric. Details entered : ", details)
                 check_output(["zenity", "--error", "--width=400", "--height=200",
-                              "--text=ALERT!!!\n\nPhone number must be numeric. Please try again!!!!"])
+                              "--text=ALERT!!!\n\nPhone number should be numeric. Please try again!!!!"])
                 exit_program()
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside get_details_validation function.")
