@@ -20,12 +20,14 @@ import sys
 import gtts
 import glob
 import nltk
+import subprocess
 from gtts import gTTS
 import speech_recognition
 import speech_recognition as sr
 from playsound import playsound
 from nltk.corpus import stopwords
 from datetime import date, datetime
+from subprocess import check_output
 from nltk.tokenize import word_tokenize
 
 
@@ -69,7 +71,6 @@ def process_speak_listen(mp3_filename, text, record, flag):
 
         if flag != 1:
             with sr.Microphone(device_index=0) as source:
-                record.pause_threshold = 1
                 record.adjust_for_ambient_noise(source, duration=1)
                 print("Speak:")
                 try:
@@ -131,20 +132,77 @@ def delete_mp3_output_files():
             print("Cannot delete the old output text files.")
 
 
+def process_organization(mp3_filename, record, text, name):
+    organization = process_details(mp3_filename, text, record)
+    if organization is None:
+        try:
+            check_output(["zenity", "--question", "--width=400", "--height=200",
+                          "--text=Sorry, we couldn't get your organization.\n\n"
+                          "Do you want to enter the name of your organization?"])
+            args_get_details = "zenity --forms --width=500 --height=200 --title='Organization' \
+                                            --text='Enter your organization Name' \
+                                            --add-entry='Organization'"
+            try:
+                details = check_output(args_get_details, shell=True)
+                details = details.decode().split('|')
+                organization = details[0]
+                text = "Okay. " + name + ". Say Hi to everyone at " + organization + \
+                       ". Actually, we do not have your details. Would you like to save your details " \
+                       "for future?"
+            except subprocess.CalledProcessError:
+                text = "Okay. " + name + ". Actually, we do not have your details. " \
+                                         "Would you like to save your details for future?"
+        except subprocess.CalledProcessError:
+            text = "Okay. " + name + ". Actually, we do not have your details. " \
+                                     "Would you like to save your details for future?"
+    else:
+        text = "Okay. " + name + ". Actually, we do not have your details. " \
+                                 "Would you like to save your details for future?"
+
+    return text
+
+
+def process_name_organization(mp3_filename, record):
+    try:
+        check_output(["zenity", "--question", "--width=400", "--height=200",
+                      "--text=Sorry, we couldn't get your name.\n\n" "Do you want to enter your name?"])
+        args_get_details = "zenity --forms --width=500 --height=200 --title='Name' \
+                    --text='Enter your First Name' \
+                    --add-entry='First Name'"
+        try:
+            details = check_output(args_get_details, shell=True)
+            details = details.decode().split('|')
+            name = details[0]
+            text = "Okay " + name + ", And what company are you with?"
+            text = process_organization(mp3_filename, record, text, name)
+        except subprocess.CalledProcessError:
+            text = "Actually, we do not have your details. Would you like to save your details for future?"
+    except subprocess.CalledProcessError:
+        text = "Actually, we do not have your details. Would you like to save your details for future?"
+
+    return text
+
+
 def main():
-    record = sr.Recognizer()
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
     print('Starting program : Speech_Name_Organization.py - At : ' + current_time + ' On : ' + current_date)
 
+    record = sr.Recognizer()
     yes_syn_words = ['all right', 'alright', 'very well', 'of course', 'by all means', 'sure', 'certainly',
                      'absolutely', 'indeed', 'affirmative', 'in the affirmative', 'agreed', 'roger', 'aye',
                      'aye aye', 'yeah', 'yah', 'yep', 'yup', 'uh-huh', 'okay', 'Ok', 'okey-dokey', 'okey-doke',
                      'achcha', 'right', 'righty-ho', 'surely', 'yea', 'well', 'course', 'yes', 'please']
     stop_words = set(stopwords.words("english"))
     stand_alone_flag = None
+
+    flag = 1
+    mp3_filename = "Speech_Name_Organization"
+    text = "We are going to ask few question to you. If we do not get any input for " \
+           "5 second, then, we will prompt a pop up message to you. You can choose option from there."
+    process_speak_listen(mp3_filename, text, record, flag)
 
     try:
         input_argv = sys.argv[1]
@@ -153,21 +211,40 @@ def main():
     except IndexError:
         stand_alone_flag = 1
 
-    mp3_filename = "Speech_Name_Organization"
     text = "May I please ask your name?"
     name = process_details(mp3_filename, text, record)
 
     if name is None:
-        text = "Sorry, we couldn't get your name. Actually, we Don't Have Your Details. " \
-               "Would you like to save your details for future?"
+        text = process_name_organization(mp3_filename, record)
     else:
-        text = "Okay. And what company are you with?"
-        process_details(mp3_filename, text, record)
-        text = "Okay. " + name + ". Hope I am guessing your name correctly. Actually, " \
-                                 "we Don't Have Your Details. Would you like to save your details for future?"
+        text = "Is your name is " + name
+        flag = 0
+        input_details = process_speak_listen(mp3_filename, text, record, flag)
+        if input_details is None:
+            text = process_name_organization(mp3_filename, record)
+        else:
+            text = "Okay. And what company are you with?"
+            input_details = process_speak_listen(mp3_filename, text, record, flag)
+            name = ""
+            if input_details is None:
+                text = process_organization(mp3_filename, record, text, name)
+            else:
+                text = "Actually, we do not have your details. Would you like to save your details for future?"
 
     flag = 0
     input_details = process_speak_listen(mp3_filename, text, record, flag)
+    if input_details is None:
+        try:
+            check_output(["zenity", "--question", "--width=400", "--height=200",
+                          "--text=We couldn't able to understand.\n\n" 
+                          "Actually, we do not have your details. Would you like to save your details for future?"])
+            input_details = "Yes"
+        except subprocess.CalledProcessError:
+            print("ERROR : subprocess.CalledProcessError - inside main function.")
+            input_details = None
+    else:
+        pass
+
     response = "NONE"
 
     if input_details is None:
