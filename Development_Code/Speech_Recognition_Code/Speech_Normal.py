@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
-
+# ----------------------------------------------------------------------------------------------------------------------
 # Project:      Robotic Greeter - McMaster University - CareGo Tek
 # Program Name: Speech_Normal.py
 # Author:       Somak Mukherjee
 # Date:         Friday 24 April, 2020
 # Version:      1
+# ----------------------------------------------------------------------------------------------------------------------
 # Description:  Speech_Normal.py is a standard speech-related program. It will be called from the following schedule.
 #               ~/Main_Process/Main_Process.py with a text message that robots need to speak. This process will not
 #               be going to ask anything. It will talk just whatever text message this program will receive.
-#
+# ----------------------------------------------------------------------------------------------------------------------
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow for testing purpose :
 #               >> python3 Speech_Normal.py
-
+# ----------------------------------------------------------------------------------------------------------------------
 
 import os
 import sys
@@ -66,7 +67,7 @@ def main():
         input_argv = sys.argv
         if len(input_argv) < 2:
             stand_alone_flag = 1
-            text = "Hello, this is for testing. "
+            text = "Hello, this is for testing. Sound is working."
         else:
             text_list = []
             for i in input_argv[1:]:
@@ -75,7 +76,7 @@ def main():
             text = " ".join(text_list)
     except IndexError:
         stand_alone_flag = 1
-        text = "Hello, this is for testing. "
+        text = "Hello, this is for testing. Sound is working."
 
     process(mp3_filename, text)
     if stand_alone_flag == 1:
