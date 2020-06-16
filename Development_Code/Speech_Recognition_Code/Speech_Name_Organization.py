@@ -257,14 +257,16 @@ def main():
         filtered_sent = []
         for word in tokenized_word:
             if word not in stop_words:
-                filtered_sent.append(word)
+                filtered_sent.append(word.lower())
 
         for word in filtered_sent:
             if word in yes_syn_words:
                 response = "YES"
+                print("Yes!! Person wants to continue")
                 break
             else:
                 response = "NO"
+                print("No!! Don't want to continue")
 
     with open("Speech_Name_Organization_Output.txt", "w") as output_file:
         output_file.write(response)
