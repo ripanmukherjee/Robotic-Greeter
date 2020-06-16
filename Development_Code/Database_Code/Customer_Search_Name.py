@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-
+# ----------------------------------------------------------------------------------------------------------------------
 # Project:      Robotic Greeter - McMaster University - CareGo Tek
 # Program Name: Customer_Search_Name.py
 # Author:       Somak Mukherjee
 # Date:         Friday 24 April, 2020
 # Version:      1
+# ----------------------------------------------------------------------------------------------------------------------
 # Description:  Customer_Search_Name.py is use to search the data of the customer from the following table
 #               by using Name :
 #               Development (DEV) : carego_customer_dev
@@ -14,7 +15,7 @@
 #               This program will be called from ~/Database_Code/Customer_Search_Main.py based on search criteria. If
 #               the customer select Name option in Customer_Search_Main.py, then it will call Customer_Search_Name.py.
 #               And this program will ask the Name and search the data.
-#
+# ----------------------------------------------------------------------------------------------------------------------
 # NOTE 1:       Please make sure to change the region value as per region wise before putting to server :
 #               Development region: "DEV"
 #               Test region: "TEST"
@@ -28,16 +29,16 @@
 #               conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1",
 #               port="5432")
 #               Please make sure that everything is correct.
-#
+# ----------------------------------------------------------------------------------------------------------------------
 # NOTE 2:       This program can be run separately or as a stand-alone program as follow:
 #               >> python3 Customer_Search_Name.py
-
+# ----------------------------------------------------------------------------------------------------------------------
 
 import sys
 import psycopg2
 import subprocess
 from datetime import date, datetime
-from subprocess import check_output, call
+from subprocess import check_output
 
 
 def exit_program():
@@ -109,8 +110,8 @@ def format_details(details):
             first_name = details[0].upper()
             last_name = details[1].upper()
     except IndexError:
-        print("ERROR : IndexError - You didn't enter any details - inside format_details function.")
-        check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nYou didn't "
+        print("ERROR : IndexError - You did not enter any details - inside format_details function.")
+        check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nYou did not "
                                                                           "enter any details!!!!"])
         exit_program()
 
@@ -133,7 +134,7 @@ def search_first_name(check_main_table, first_name):
                                                                               "as per your search!!!!"])
             exit_program()
         else:
-            print("Data searched sucessfully!!!!")
+            print("Data searched successfully!!!!")
 
         conn.commit()
         cur.close()
@@ -219,7 +220,8 @@ def display_details(search_details):
     args_display = "zenity --list --width=800 --height=600 --title='List of people as per your search' \
     --column='First Name' --column='Last Name' --column='Email ID' --column='Phone Number' " \
     + display_row
-    call(args_display, shell=True)
+    search_output = check_output(args_display, shell=True)
+    print(search_output)
 
 
 def main():
