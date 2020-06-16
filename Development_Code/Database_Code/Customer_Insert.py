@@ -123,11 +123,11 @@ def format_details(details):
                                                                               "Please try again!!!!"])
             exit_program()
         elif re.match("^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*$", details[2]) is None:
-            print("ERROR : Email Id should contain @ & dot(.). Also, it should be valid Email ID. "
+            print("ERROR : Email Id should contain @ & dot(.). Also, it should be a valid Email ID. "
                   "Details entered : ", details[2])
             check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nEmail Id should "
                                                                               "contain @ & dot(.). ""Also, it should "
-                                                                              "be valid Email ID. "
+                                                                              "be a valid Email ID. "
                                                                               "Please try again!!!!"])
             exit_program()
         elif len(details[3]) < 7:

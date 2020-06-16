@@ -136,13 +136,13 @@ def assign_update_option(details):
                                 print("Selected option : Modify Role")
                                 option = 6
                             else:
-                                print("ERROR : Not valid option - inside assign_update_option function.")
+                                print("ERROR : Not a valid option - inside assign_update_option function.")
                                 check_output(["zenity", "--error", "--width=400", "--height=200",
-                                              "--text=ALERT!!!\n\nYou did not select valid option. "
+                                              "--text=ALERT!!!\n\nYou did not select a valid option. "
                                               "Please try again!!!!"])
                                 exit_program()
     except IndexError:
-        print("ERROR : IndexError - Not valid option - inside assign_update_option function.")
+        print("ERROR : IndexError - Not a valid option - inside assign_update_option function.")
         option = None
 
     return option
@@ -273,7 +273,7 @@ def get_details_validation(option):
             exit_program()
 
     if option == 0:
-        print("ERROR : Not valid entry - inside get_details_validation function.")
+        print("ERROR : Not a valid entry - inside get_details_validation function.")
         details = None
 
     return details, option

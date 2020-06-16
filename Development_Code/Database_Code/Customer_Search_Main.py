@@ -1,20 +1,21 @@
 #!/usr/bin/env python3
-
+# ----------------------------------------------------------------------------------------------------------------------
 # Project:      Robotic Greeter - McMaster University - CareGo Tek
 # Program Name: Customer_Search_Main.py
 # Author:       Somak Mukherjee
 # Date:         Friday 24 April, 2020
 # Version:      1
+# ----------------------------------------------------------------------------------------------------------------------
 # Description:  Customer_Search_Main.py is used to search the customer's data, and it will be called from
 #               ~/Main_Process/Main_Process.py. If the customer wants to explore the data, then this process will ask
 #               to the customer wants to search by ID or Name, and as per the selection this program will call the
 #               below two program:
 #               1. Customer_Search_ID.py
 #               2. Customer_Search_Name.py
-#
-# NOTE:         This program can be run separately or as a stand-alone program as follow:
+# ---------------------------------------------------------------------------------------------------------------------
+# NOTE 1:         This program can be run separately or as a stand-alone program as follow:
 #               >> python3 Customer_Search_Main.py
-
+# ----------------------------------------------------------------------------------------------------------------------
 
 import sys
 import subprocess
@@ -79,13 +80,13 @@ def call_program(details):
                 args_call = "python3 Customer_Search_Name.py"
                 call(args_call, shell=True)
             else:
-                print("ERROR : Not valid option - inside call_program function.")
-                check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nYou didn't "
-                                                                                  "select valid option. "
+                print("ERROR : Not a valid option - inside call_program function.")
+                check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nYou did not "
+                                                                                  "select a valid option. "
                                                                                   "Please try again!!!!"])
                 exit_program()
     except IndexError:
-        print("ERROR : IndexError - Not valid option - inside call_program function.")
+        print("ERROR : IndexError - Not a valid option - inside call_program function.")
         exit_program()
 
 
