@@ -217,19 +217,12 @@ def main():
     if name is None:
         text = process_name_organization(mp3_filename, record)
     else:
-        text = "Is your name is " + name
-        flag = 0
+        text = "Okay. And what company are you with?"
         input_details = process_speak_listen(mp3_filename, text, record, flag)
         if input_details is None:
-            text = process_name_organization(mp3_filename, record)
+            text = process_organization(mp3_filename, record, text, name)
         else:
-            text = "Okay. And what company are you with?"
-            input_details = process_speak_listen(mp3_filename, text, record, flag)
-            name = ""
-            if input_details is None:
-                text = process_organization(mp3_filename, record, text, name)
-            else:
-                text = "Actually, we do not have your details. Would you like to save your details for future?"
+            text = "Actually, we do not have your details. Would you like to save your details for future?"
 
     flag = 0
     input_details = process_speak_listen(mp3_filename, text, record, flag)
