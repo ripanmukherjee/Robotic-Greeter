@@ -125,13 +125,13 @@ def process_format_details(details):
     return id_details
 
 
-def process_search_id(check_main_table, id_details):
+def process_search_id(check_main_table, id_value):
     try:
         conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1", port="5432")
         cur = conn.cursor()
         print("Connection success")
         query = """SELECT "ID", "First_Name", "Last_Name", "Email_ID", "Phone_No"
-        from """ + check_main_table + """ where "ID" = '{}'; """.format(id_details)
+        from """ + check_main_table + """ where "ID" = '{}'; """.format(id_value)
         cur.execute(query)
         row = cur.fetchall()
 
