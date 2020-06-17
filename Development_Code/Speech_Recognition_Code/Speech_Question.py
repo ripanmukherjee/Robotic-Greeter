@@ -55,12 +55,12 @@ def process_parameter_set():
                      'aye aye', 'yeah', 'yah', 'yep', 'yup', 'uh-huh', 'okay', 'ok', 'right', 'surely',
                      'yea', 'well', 'course', 'yes', 'please']
     stop_words = set(stopwords.words("english"))
-    mp3_filename = "Speech_Question"
     record = sr.Recognizer()
+    mp3_filename = "Speech_Question"
     text = "I am going to ask few question to you. You can answer with Yes or No. If I do not get an input from you " \
            "within 5 second, then, I will prompt a pop up message to you."
 
-    return yes_syn_words, stop_words, mp3_filename, record, text
+    return yes_syn_words, stop_words, record, mp3_filename, text
 
 
 def process_token_sentence(text):
