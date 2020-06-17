@@ -506,10 +506,10 @@ def process_response(check_main_table, response, flag):
     return flag
 
 
-def process_ask_multiple(check_main_table, flag, status=0):
+def process_ask_multiple(check_main_table, flag, status):
     while status == 0:
         response = process_ask_question(flag)
-        process_response(check_main_table, response, flag=2)
+        process_response(check_main_table, response, flag)
 
 
 def main():
