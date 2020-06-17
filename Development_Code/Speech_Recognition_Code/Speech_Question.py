@@ -49,6 +49,20 @@ def exit_program():
     sys.exit()
 
 
+def process_parameter_set():
+    yes_syn_words = ['all right', 'alright', 'very well', 'of course', 'by all means', 'sure', 'certainly',
+                     'absolutely', 'indeed', 'affirmative', 'in the affirmative', 'agreed', 'roger', 'aye',
+                     'aye aye', 'yeah', 'yah', 'yep', 'yup', 'uh-huh', 'okay', 'ok', 'right', 'surely',
+                     'yea', 'well', 'course', 'yes', 'please']
+    stop_words = set(stopwords.words("english"))
+    mp3_filename = "Speech_Question"
+    record = sr.Recognizer()
+    text = "I am going to ask few question to you. You can answer with Yes or No. If I do not get an input from you " \
+           "within 5 second, then, I will prompt a pop up message to you."
+
+    return yes_syn_words, stop_words, mp3_filename, record, text
+
+
 def token_sentence(text):
     sentences = nltk.sent_tokenize(text)
     tokenized_sentences = [nltk.word_tokenize(sentence) for sentence in sentences]
@@ -188,18 +202,10 @@ def delete_mp3_output_files(stand_alone_flag):
 
 
 def main():
-    yes_syn_words = ['all right', 'alright', 'very well', 'of course', 'by all means', 'sure', 'certainly',
-                     'absolutely', 'indeed', 'affirmative', 'in the affirmative', 'agreed', 'roger', 'aye',
-                     'aye aye', 'yeah', 'yah', 'yep', 'yup', 'uh-huh', 'okay', 'ok', 'right', 'surely',
-                     'yea', 'well', 'course', 'yes', 'please']
-    stop_words = set(stopwords.words("english"))
-    mp3_filename = "Speech_Question"
-    record = sr.Recognizer()
-
     start_program()
+    yes_syn_words, stop_words, record, mp3_filename, text = process_parameter_set()
+
     # flag = 1
-    text = "I am going to ask few question to you. You can answer with Yes or No. If I do not get an input from you " \
-           "within 5 second, then, I will prompt a pop up message to you."
     process_speak_listen(mp3_filename, text, record, flag=1)
     text, stand_alone_flag = check_input_argument()
 

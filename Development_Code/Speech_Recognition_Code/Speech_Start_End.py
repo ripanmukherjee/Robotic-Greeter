@@ -41,6 +41,13 @@ def exit_program():
     sys.exit()
 
 
+def process_parameter_set():
+    stand_alone_flag = None
+    mp3_filename = "Speech_Start_End"
+
+    return stand_alone_flag, mp3_filename
+
+
 def check_input_argument(stand_alone_flag):
     try:
         input_argv = sys.argv[1]
@@ -85,10 +92,8 @@ def delete_mp3_output_files(stand_alone_flag):
 
 
 def main():
-    stand_alone_flag = None
-    mp3_filename = "Speech_Start_End"
-
     start_program()
+    stand_alone_flag, mp3_filename = process_parameter_set()
     text, stand_alone_flag = check_input_argument(stand_alone_flag)
     process(mp3_filename, text)
     delete_mp3_output_files(stand_alone_flag)

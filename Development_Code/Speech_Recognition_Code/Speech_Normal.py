@@ -39,7 +39,14 @@ def exit_program():
     sys.exit()
 
 
-def check_input_argument():
+def process_parameter_set():
+    stand_alone_flag = None
+    mp3_filename = "Speech_Normal"
+
+    return stand_alone_flag, mp3_filename
+
+
+def check_input_argument(stand_alone_flag):
     try:
         input_argv = sys.argv
         if len(input_argv) < 2:
@@ -56,6 +63,7 @@ def check_input_argument():
         text = "Hello, this is for testing. Sound is working."
 
     return text, stand_alone_flag
+
 
 def process(mp3_filename, text):
     mp3_filename = mp3_filename + ".mp3"
@@ -84,10 +92,8 @@ def delete_mp3_output_files(stand_alone_flag):
 
 
 def main():
-    stand_alone_flag = None
-    mp3_filename = "Speech_Normal"
-
     start_program()
+    stand_alone_flag, mp3_filename = process_parameter_set()
     text, stand_alone_flag = check_input_argument(stand_alone_flag)
     process(mp3_filename, text)
     delete_mp3_output_files(stand_alone_flag)
