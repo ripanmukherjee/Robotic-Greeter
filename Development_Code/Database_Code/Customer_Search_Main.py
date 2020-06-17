@@ -82,7 +82,7 @@ def process_call_program(details):
             try:
                 call(args_call, shell=True)
             except subprocess.CalledProcessError:
-                print("ERROR : subprocess.CalledProcessError - inside process_get_details function.")
+                print("ERROR : subprocess.CalledProcessError - inside process_call_program function.")
         else:
             if details == "2":
                 print("Selected option : Name")
@@ -91,12 +91,12 @@ def process_call_program(details):
                 try:
                     call(args_call, shell=True)
                 except subprocess.CalledProcessError:
-                    print("ERROR : subprocess.CalledProcessError - inside process_get_details function.")
+                    print("ERROR : subprocess.CalledProcessError - inside process_call_program function.")
             else:
                 print("ERROR : Not a valid option - inside process_call_program function.")
                 check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nYou did not "
                                                                                   "select a valid option. "
-                                                                                  "Please try again!!!!"])
+                                                                                  "\nPlease try again!!!!"])
     except IndexError:
         print("ERROR : IndexError - Not a valid option - inside process_call_program function.")
         exit_program()
