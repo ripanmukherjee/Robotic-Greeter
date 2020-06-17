@@ -29,6 +29,14 @@ from imutils.video import FPS
 from datetime import date, datetime
 
 
+def start_program():
+    today = date.today()
+    current_date = today.strftime("%d/%m/%Y")
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    print('Starting program : Face_Detection_Camera.py - at : ' + current_time + ' on : ' + current_date)
+
+
 def exit_program():
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
@@ -38,7 +46,7 @@ def exit_program():
     sys.exit()
 
 
-def face_detection():
+def process_face_detection():
     try:
         with open("encodings.pickle", "rb") as file:
             unpickler = pickle.Unpickler(file)
@@ -57,7 +65,7 @@ def face_detection():
 
         while cap.isOpened():
             _, img = cap.read()
-            gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            # gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
             rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
             faces = face_cascade.detectMultiScale(rgb, 1.1, 4)
@@ -104,22 +112,18 @@ def face_detection():
         cv2.destroyAllWindows()
 
     except EOFError:
-        print("ERROR : EOFError - Pickle File : encodings.pickle,  has no data - inside face_detection function.")
+        print("ERROR : EOFError - Pickle File : encodings.pickle,  has no data - "
+              "inside process_face_detection function.")
         exit_program()
     except FileNotFoundError:
         print("ERROR : FileNotFoundError - Pickle File : encodings.pickle,  not present - "
-              "inside face_detection function.")
+              "inside process_face_detection function.")
         exit_program()
 
 
 def main():
-    today = date.today()
-    current_date = today.strftime("%d/%m/%Y")
-    now = datetime.now()
-    current_time = now.strftime("%H:%M:%S")
-    print('Starting program : Face_Detection_Camera.py - at : ' + current_time + ' on : ' + current_date)
-
-    face_detection()
+    start_program()
+    process_face_detection()
     exit_program()
 
 
