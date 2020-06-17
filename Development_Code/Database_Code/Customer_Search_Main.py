@@ -43,7 +43,7 @@ def exit_program():
 def process_ask_question(flag):
     response = None
     if flag == 1:
-        args = "zenity --info --width=500 --height=250 --text='You can search by ID or Name. \n\n" \
+        args = "zenity --question --width=500 --height=250 --text='You can search by ID or Name. \n\n" \
                "Do you want to proceed?'"
     else:
         args = "zenity --question --width=500 --height=250 --text='Do you want to search another people?'"
@@ -123,6 +123,7 @@ def process_ask_multiple(flag, status):
 
 
 def main():
+    start_program()
     response = process_ask_question(flag=1)
     flag = process_response(response)
     process_ask_multiple(flag, status=0)

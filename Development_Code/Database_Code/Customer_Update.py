@@ -87,7 +87,7 @@ def process_checking_region_table(region):
 def process_ask_question(flag):
     response = None
     if flag == 1:
-        args = "zenity --info --width=500 --height=250 --text='Make sure you have your Unique ID. \n\n" \
+        args = "zenity --question --width=500 --height=250 --text='Make sure you have your Unique ID. \n\n" \
                "Do you want to proceed?'"
     else:
         args = "zenity --question --width=500 --height=250 --text='Do you want to update another details?'"
@@ -180,6 +180,7 @@ def process_get_details_validation(option):
                 details = None
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside process_get_details_validation function.")
+            details = None
 
     if option == 2:
         args_get_details = "zenity --forms --width=500 --height=200 --title='Modify user' \
@@ -198,6 +199,7 @@ def process_get_details_validation(option):
                 details = None
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside process_get_details_validation function.")
+            details = None
 
     if option == 3:
         args_get_details = "zenity --forms --width=500 --height=200 --title='Modify user' \
@@ -222,6 +224,7 @@ def process_get_details_validation(option):
                 details = None
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside process_get_details_validation function.")
+            details = None
 
     if option == 4:
         args_get_details = "zenity --forms --width=500 --height=200 --title='Modify user' \
@@ -244,6 +247,7 @@ def process_get_details_validation(option):
                 details = None
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside process_get_details_validation function.")
+            details = None
 
     if option == 5:
         args_get_details = "zenity --forms --width=500 --height=200 --title='Modify user' \
@@ -261,6 +265,7 @@ def process_get_details_validation(option):
                 details = None
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside process_get_details_validation function.")
+            details = None
 
     if option == 6:
         args_get_details = "zenity --forms --width=500 --height=200 --title='Modify user' \
@@ -278,6 +283,7 @@ def process_get_details_validation(option):
                 details = None
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside process_get_details_validation function.")
+            details = None
 
     if option == 0:
         print("ERROR : Not a valid entry - inside process_get_details_validation function.")
@@ -287,7 +293,6 @@ def process_get_details_validation(option):
 
 
 def process_get_id_confirmation():
-    main_id = None
     args_get_details = "zenity --forms --width=500 --height=200 --title='Confirmation' \
                 --text='Confirm Your ID' \
                 --add-entry='ID'"
@@ -299,14 +304,17 @@ def process_get_id_confirmation():
             print("ERROR : ID cannot be blank or less than 1 number. Details entered : ", id_details)
             check_output(["zenity", "--error", "--width=400", "--height=200",
                           "--text=ALERT!!!\n\nID cannot be blank or less than 1 number. Please try again!!!!"])
+            main_id = None
         elif re.match("[0-9]", id_details) is None:
             print("ERROR : ID should be numeric. Details entered : ", id_details)
             check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nID should be numeric."
                                                                               "\nPlease try again!!!!"])
+            main_id = None
         else:
             main_id = id_details
     except subprocess.CalledProcessError:
         print("ERROR : subprocess.CalledProcessError - inside process_get_id_confirmation function.")
+        main_id = None
 
     return main_id
 

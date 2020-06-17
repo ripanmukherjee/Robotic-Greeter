@@ -90,8 +90,24 @@ def process_checking_region_table(region):
     return main_table, sequence_table
 
 
-def process_process_get_details():
-    details = None
+def process_ask_question(flag):
+    response = None
+    if flag == 1:
+        args = "zenity --question --width=500 --height=250 --text='You need to create your details. \n\n" \
+               "Do you want to proceed?'"
+    else:
+        args = "zenity --question --width=500 --height=250 --text='You need to create your details. \n\n" \
+               "Do you want to proceed?'"
+
+    try:
+        response = check_output(args, shell=True)
+    except subprocess.CalledProcessError:
+        print("ERROR : subprocess.CalledProcessError - inside process_ask_question function.")
+
+    return response
+
+
+def process_get_details():
     args_get_details = "zenity --forms --width=500 --height=200 --title='Create user' \
                     --text='Add new user' \
                     --add-entry='First Name' \
@@ -107,7 +123,7 @@ def process_process_get_details():
         print(details)
     except subprocess.CalledProcessError:
         print("ERROR : subprocess.CalledProcessError - inside process_get_details function.")
-        exit_program()
+        details = None
 
     return details
 
@@ -123,40 +139,40 @@ def process_format_details(details):
         if len(details[0]) < 2:
             print("ERROR : First Name cannot be blank or less than 2 characters. Details entered : ", details[0])
             check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nFirst Name cannot "
-                                                                              "be blank or less than 2 characters. "
+                                                                              "be blank or less than 2 characters. \n"
                                                                               "Please try again!!!!"])
-            exit_program()
+            error_flag = 1
         elif len(details[1]) < 2:
             print("ERROR : Last Name cannot be blank or less than 2 characters. Details entered : ", details[1])
             check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nLast Name cannot "
-                                                                              "be blank or less than 2 characters. "
+                                                                              "be blank or less than 2 characters. \n"
                                                                               "Please try again!!!!"])
-            exit_program()
+            error_flag = 1
         elif len(details[2]) < 7:
             print("ERROR : Email Id should be more than 7 characters long. Details entered : ", details[2])
             check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nEmail Id should be "
-                                                                              "more than 7 characters long."
+                                                                              "more than 7 characters long. \n"
                                                                               "Please try again!!!!"])
-            exit_program()
+            error_flag = 1
         elif re.match("^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*$", details[2]) is None:
-            print("ERROR : Email Id should contain @ & dot(.). Also, it should be a valid Email ID. "
+            print("ERROR : Email Id should contain - @ & dot(.). Also, it should be a valid Email ID. "
                   "Details entered : ", details[2])
             check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nEmail Id should "
-                                                                              "contain @ & dot(.). ""Also, it should "
-                                                                              "be a valid Email ID. "
+                                                                              "contain - @ and  dot(.). "
+                                                                              "Also, it should be a valid Email ID. \n"
                                                                               "Please try again!!!!"])
-            exit_program()
+            error_flag = 1
         elif len(details[3]) < 7:
             print("ERROR : Phone number should be more than 7 digits long. Details entered : ", details[3])
             check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nPhone number should "
-                                                                              "be more than 7 digits long. "
+                                                                              "be more than 7 digits long. \n"
                                                                               "Please try again!!!!"])
-            exit_program()
+            error_flag = 1
         elif re.match("[0-9]", details[3]) is None:
             print("ERROR : Phone number should be numeric. Details entered : ", details[3])
             check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nPhone number should "
-                                                                              "be numeric. Please try again!!!!"])
-            exit_program()
+                                                                              "be numeric. \nPlease try again!!!!"])
+            error_flag = 1
         else:
             first_name = details[0].upper()
             last_name = details[1].upper()
@@ -164,17 +180,18 @@ def process_format_details(details):
             phone_no = details[3]
             employer = details[4]
             role = details[5].strip()
+            error_flag = 0
     except IndexError:
         print("ERROR : IndexError - You did not enter any details - inside process_format_details function.")
         check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nYou did not enter "
                                                                           "any details!!!!"])
-        exit_program()
+        error_flag = 1
 
-    return first_name, last_name, email_id, phone_no, employer, role
+    return first_name, last_name, email_id, phone_no, employer, role, error_flag
 
 
-def process_insert(check_main_table, check_sequence_table, first_name, last_name, email_id, phone_no, employer, role,
-           creation_date):
+def process_insert(check_main_table, check_sequence_table, first_name, last_name, email_id, phone_no, employer,
+                   role, creation_date):
     try:
         conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1", port="5432")
         cur = conn.cursor()
@@ -194,27 +211,57 @@ def process_insert(check_main_table, check_sequence_table, first_name, last_name
                                                                          "Please note your UNIQUE ID : "
                                                                          "" + str(seq[0])])
         print("Unique_ID : ", str(seq[0]))
+        error_flag = 0
         conn.commit()
         cur.close()
         conn.close()
     except psycopg2.OperationalError as error:
         print("ERROR : psycopg2.OperationalError - inside process_insert function : " + str(error))
         check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nSomething "
-                                                                          "went wrong!!!! Please try again!!!"])
+                                                                          "went wrong!!!! \nPlease try again!!!"])
+        error_flag = 1
     except psycopg2.IntegrityError as error:
         print("ERROR : psycopg2.IntegrityError - inside process_insert function : " + str(error))
         check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nDetails "
-                                                                          "already present!!!! Please try again!!!"])
+                                                                          "already present!!!! \nPlease try again!!!"])
+        error_flag = 1
+
+    return error_flag
+
+
+def process_response(response, check_main_table, check_sequence_table, creation_date):
+    if response is not None:
+        details = process_get_details()
+        if details is not None:
+            first_name, last_name, email_id, phone_no, employer, role, error_flag = process_format_details(details)
+            if error_flag == 0:
+                error_flag = process_insert(check_main_table, check_sequence_table, first_name, last_name, email_id,
+                                            phone_no, employer, role, creation_date)
+                if error_flag == 0:
+                    exit_program()
+
+        flag = 2
+
+    else:
+        flag = None
+        exit_program()
+
+    return flag
+
+
+def process_ask_multiple(flag, check_main_table, check_sequence_table, creation_date, status):
+    while status == 0:
+        response = process_ask_question(flag)
+        process_response(response, check_main_table, check_sequence_table, creation_date)
 
 
 def main():
     start_program()
     region, creation_date = process_parameter_set()
     check_main_table, check_sequence_table = process_checking_region_table(region)
-    details = process_get_details()
-    first_name, last_name, email_id, phone_no, employer, role = process_format_details(details)
-    process_insert(check_main_table, check_sequence_table, first_name, last_name, email_id, phone_no, employer, role,
-           creation_date)
+    response = process_ask_question(flag=1)
+    flag = process_response(response, check_main_table, check_sequence_table, creation_date)
+    process_ask_multiple(flag, check_main_table, check_sequence_table, creation_date, status=0)
     exit_program()
 
 
