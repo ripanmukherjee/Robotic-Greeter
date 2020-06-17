@@ -40,7 +40,7 @@ def exit_program():
     sys.exit()
 
 
-def ask_question(flag):
+def process_ask_question(flag):
     response = None
     if flag == 1:
         args = "zenity --info --width=500 --height=250 --text='You can search by ID or Name. \n\n" \
@@ -51,12 +51,12 @@ def ask_question(flag):
     try:
         response = check_output(args, shell=True)
     except subprocess.CalledProcessError:
-        print("ERROR : subprocess.CalledProcessError - inside ask_question function.")
+        print("ERROR : subprocess.CalledProcessError - inside process_ask_question function.")
 
     return response
 
 
-def get_details():
+def process_get_details():
     details = None
     args = "zenity --list --width=500 --height=250 --title='List of search' \
     --column='Option' --column='Description' \
@@ -68,12 +68,12 @@ def get_details():
         details = details.decode().split('|')
         details = details[0].strip()
     except subprocess.CalledProcessError:
-        print("ERROR : subprocess.CalledProcessError - inside get_details function.")
+        print("ERROR : subprocess.CalledProcessError - inside process_get_details function.")
 
     return details
 
 
-def call_program(details):
+def process_call_program(details):
     try:
         if details == "1":
             print("Selected option : ID")
@@ -82,7 +82,7 @@ def call_program(details):
             try:
                 call(args_call, shell=True)
             except subprocess.CalledProcessError:
-                print("ERROR : subprocess.CalledProcessError - inside get_details function.")
+                print("ERROR : subprocess.CalledProcessError - inside process_get_details function.")
         else:
             if details == "2":
                 print("Selected option : Name")
@@ -91,22 +91,22 @@ def call_program(details):
                 try:
                     call(args_call, shell=True)
                 except subprocess.CalledProcessError:
-                    print("ERROR : subprocess.CalledProcessError - inside get_details function.")
+                    print("ERROR : subprocess.CalledProcessError - inside process_get_details function.")
             else:
-                print("ERROR : Not a valid option - inside call_program function.")
+                print("ERROR : Not a valid option - inside process_call_program function.")
                 check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nYou did not "
                                                                                   "select a valid option. "
                                                                                   "Please try again!!!!"])
     except IndexError:
-        print("ERROR : IndexError - Not a valid option - inside call_program function.")
+        print("ERROR : IndexError - Not a valid option - inside process_call_program function.")
         exit_program()
 
 
 def process_response(response):
     if response is not None:
-        details = get_details()
+        details = process_get_details()
         if details is not None:
-            call_program(details)
+            process_call_program(details)
 
         flag = 2
     else:
@@ -118,12 +118,12 @@ def process_response(response):
 
 def process_ask_multiple(flag, status):
     while status == 0:
-        response = ask_question(flag)
+        response = process_ask_question(flag)
         process_response(response)
 
 
 def main():
-    response = ask_question(flag=1)
+    response = process_ask_question(flag=1)
     flag = process_response(response)
     process_ask_multiple(flag, status=0)
     exit_program()
