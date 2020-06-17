@@ -90,7 +90,7 @@ def process_checking_region_table(region):
     return main_table, sequence_table
 
 
-def get_details():
+def process_process_get_details():
     details = None
     args_get_details = "zenity --forms --width=500 --height=200 --title='Create user' \
                     --text='Add new user' \
@@ -106,13 +106,13 @@ def get_details():
         details = details.decode().split('|')
         print(details)
     except subprocess.CalledProcessError:
-        print("ERROR : subprocess.CalledProcessError - inside get_details function.")
+        print("ERROR : subprocess.CalledProcessError - inside process_get_details function.")
         exit_program()
 
     return details
 
 
-def format_details(details):
+def process_format_details(details):
     first_name = None
     last_name = None
     email_id = None
@@ -165,7 +165,7 @@ def format_details(details):
             employer = details[4]
             role = details[5].strip()
     except IndexError:
-        print("ERROR : IndexError - You did not enter any details - inside format_details function.")
+        print("ERROR : IndexError - You did not enter any details - inside process_format_details function.")
         check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nYou did not enter "
                                                                           "any details!!!!"])
         exit_program()
@@ -173,7 +173,7 @@ def format_details(details):
     return first_name, last_name, email_id, phone_no, employer, role
 
 
-def insert(check_main_table, check_sequence_table, first_name, last_name, email_id, phone_no, employer, role,
+def process_insert(check_main_table, check_sequence_table, first_name, last_name, email_id, phone_no, employer, role,
            creation_date):
     try:
         conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1", port="5432")
@@ -198,11 +198,11 @@ def insert(check_main_table, check_sequence_table, first_name, last_name, email_
         cur.close()
         conn.close()
     except psycopg2.OperationalError as error:
-        print("ERROR : psycopg2.OperationalError - inside insert function : " + str(error))
+        print("ERROR : psycopg2.OperationalError - inside process_insert function : " + str(error))
         check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nSomething "
                                                                           "went wrong!!!! Please try again!!!"])
     except psycopg2.IntegrityError as error:
-        print("ERROR : psycopg2.IntegrityError - inside insert function : " + str(error))
+        print("ERROR : psycopg2.IntegrityError - inside process_insert function : " + str(error))
         check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nDetails "
                                                                           "already present!!!! Please try again!!!"])
 
@@ -211,9 +211,9 @@ def main():
     start_program()
     region, creation_date = process_parameter_set()
     check_main_table, check_sequence_table = process_checking_region_table(region)
-    details = get_details()
-    first_name, last_name, email_id, phone_no, employer, role = format_details(details)
-    insert(check_main_table, check_sequence_table, first_name, last_name, email_id, phone_no, employer, role,
+    details = process_get_details()
+    first_name, last_name, email_id, phone_no, employer, role = process_format_details(details)
+    process_insert(check_main_table, check_sequence_table, first_name, last_name, email_id, phone_no, employer, role,
            creation_date)
     exit_program()
 
