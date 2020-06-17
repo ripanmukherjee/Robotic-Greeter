@@ -41,6 +41,14 @@ from datetime import date, datetime
 from subprocess import check_output
 
 
+def start_program():
+    today = date.today()
+    current_date = today.strftime("%d/%m/%Y")
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    print('Starting program : Customer_Update.py - at : ' + current_time + ' on : ' + current_date)
+
+
 def exit_program():
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
@@ -48,6 +56,12 @@ def exit_program():
     current_time = now.strftime("%H:%M:%S")
     print('Ending program : Customer_Update.py - at : ' + current_time + ' on : ' + current_date)
     sys.exit()
+
+
+def process_parameter_set():
+    region = "DEV"
+
+    return region
 
 
 def checking_region_table(region):
@@ -88,7 +102,6 @@ def ask_question(flag):
 
 
 def get_details_initial_option():
-    details = None
     args = "zenity --list --width=500 --height=300 --title='Modify the data - Only one of the following' \
     --column='Option' --column='Description' \
     1 'Modify First Name' \
@@ -102,15 +115,15 @@ def get_details_initial_option():
         details = check_output(args, shell=True)
         details = details.decode().split('|')
         details[0] = details[0].strip()
+        details = details[0]
     except subprocess.CalledProcessError:
         print("ERROR : subprocess.CalledProcessError - inside get_details_initial_option function.")
-        exit_program()
+        details = None
 
-    return details[0]
+    return details
 
 
 def assign_update_option(details):
-    option = None
     try:
         if details == "1":
             print("Selected option : Modify First Name")
@@ -140,7 +153,7 @@ def assign_update_option(details):
                                 check_output(["zenity", "--error", "--width=400", "--height=200",
                                               "--text=ALERT!!!\n\nYou did not select a valid option. "
                                               "Please try again!!!!"])
-                                exit_program()
+                                option = None
     except IndexError:
         print("ERROR : IndexError - Not a valid option - inside assign_update_option function.")
         option = None
@@ -164,10 +177,8 @@ def get_details_validation(option):
                 check_output(["zenity", "--error", "--width=400", "--height=200",
                               "--text=ALERT!!!\n\nFirst Name cannot be blank or less than 2 characters. "
                               "Please try again!!!!"])
-                exit_program()
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside get_details_validation function.")
-            exit_program()
 
     if option == 2:
         args_get_details = "zenity --forms --width=500 --height=200 --title='Modify user' \
@@ -183,10 +194,8 @@ def get_details_validation(option):
                 check_output(["zenity", "--error", "--width=400", "--height=200",
                               "--text=ALERT!!!\n\nLast Name cannot be blank or less than 2 characters. "
                               "Please try again!!!!"])
-                exit_program()
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside get_details_validation function.")
-            exit_program()
 
     if option == 3:
         args_get_details = "zenity --forms --width=500 --height=200 --title='Modify user' \
@@ -201,17 +210,14 @@ def get_details_validation(option):
                 check_output(["zenity", "--error", "--width=400", "--height=200",
                               "--text=ALERT!!!\n\nEmail Id should be more than 7 characters long. "
                               "Please try again!!!!"])
-                exit_program()
             elif re.match("^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*$", details) == None:
                 print("ERROR : Email Id should contain @ & dot(.). "
                       "Also, it should be a valid Email ID. Details entered : ", details)
                 check_output(["zenity", "--error", "--width=400", "--height=200",
                               "--text=ALERT!!!\n\nEmail Id should contain @ & dot(.). "
                               "Also, it should be a valid Email ID. Please try again!!!!"])
-                exit_program()
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside get_details_validation function.")
-            exit_program()
 
     if option == 4:
         args_get_details = "zenity --forms --width=500 --height=200 --title='Modify user' \
@@ -226,15 +232,12 @@ def get_details_validation(option):
                 check_output(["zenity", "--error", "--width=400", "--height=200",
                               "--text=ALERT!!!\n\nPhone number should be more than 7 digits long. "
                               "Please try again!!!!"])
-                exit_program()
             elif re.match("[0-9]", details) is None:
                 print("ERROR : Phone number should be numeric. Details entered : ", details)
                 check_output(["zenity", "--error", "--width=400", "--height=200",
                               "--text=ALERT!!!\n\nPhone number should be numeric. Please try again!!!!"])
-                exit_program()
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside get_details_validation function.")
-            exit_program()
 
     if option == 5:
         args_get_details = "zenity --forms --width=500 --height=200 --title='Modify user' \
@@ -249,10 +252,8 @@ def get_details_validation(option):
                 check_output(["zenity", "--error", "--width=400", "--height=200",
                               "--text=ALERT!!!\n\nEmployer details cannot be blank or less than 2 characters. "
                               "Please try again!!!!"])
-                exit_program()
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside get_details_validation function.")
-            exit_program()
 
     if option == 6:
         args_get_details = "zenity --forms --width=500 --height=200 --title='Modify user' \
@@ -267,10 +268,8 @@ def get_details_validation(option):
                 check_output(["zenity", "--error", "--width=400", "--height=200",
                               "--text=ALERT!!!\n\nRole details cannot be blank or less than 2 characters. "
                               "Please try again!!!!"])
-                exit_program()
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside get_details_validation function.")
-            exit_program()
 
     if option == 0:
         print("ERROR : Not a valid entry - inside get_details_validation function.")
@@ -292,12 +291,10 @@ def get_id_confirmation():
             print("ERROR : ID cannot be blank or less than 1 number. Details entered : ", id_details)
             check_output(["zenity", "--error", "--width=400", "--height=200",
                           "--text=ALERT!!!\n\nID cannot be blank or less than 1 number. Please try again!!!!"])
-            exit_program()
         else:
             main_id = id_details
     except subprocess.CalledProcessError:
         print("ERROR : subprocess.CalledProcessError - inside get_id_confirmation function.")
-        exit_program()
 
     return main_id
 
@@ -314,9 +311,7 @@ def search_id(check_main_table, confirm_id):
 
         if len(row) == 0:
             print("ERROR : There are no data as per your search - inside search_id function.")
-            check_output(["zenity", "--error", "--width=400", "--height=200", "--text=There are no data "
-                                                                              "as per your search!!!!"])
-            exit_program()
+            count = 0
         else:
             for total_tuple in row:
                 for tuple_details in total_tuple:
@@ -460,67 +455,50 @@ def update_table(check_main_table, update_details, update_option, confirm_id):
             check_output(["zenity", "--error", "--width=400", "--height=200", "--text=Please contact admin!!!!"])
 
 
-def main():
-    region = "DEV"
-    today = date.today()
-    current_date = today.strftime("%d/%m/%Y")
-    now = datetime.now()
-    current_time = now.strftime("%H:%M:%S")
-    print('Starting program : Customer_Update.py - at : ' + current_time + ' on : ' + current_date)
-
-    check_main_table, check_sequence_table = checking_region_table(region)
-    flag = 1
-    response = ask_question(flag)
-    status = 0
+def process_response(check_main_table, response, flag):
     if response is not None:
         details = get_details_initial_option()
-        option = assign_update_option(details)
-        update_details, update_option = get_details_validation(option)
-        confirm_id = get_id_confirmation()
-        confirm_table_id = search_id(check_main_table, confirm_id)
-        print("ID present in table : ", confirm_table_id)
-        flag = 2
-        if confirm_table_id == 1:
-            update_table(check_main_table, update_details, update_option, confirm_id)
-        else:
-            if confirm_table_id == 0:
-                print("ERROR : There are no data as per your search - inside main function.")
-                check_output(["zenity", "--error", "--width=400", "--height=200", "--text=There are no data "
-                                                                                  "as per your search!!!!"])
-                exit_program()
-            else:
-                print("ERROR : ID searched in table has more than one data - inside main function : ", str(confirm_id))
-                check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\n"
-                                                                                  "Please contact admin!!!!"])
-                exit_program()
+        if details is not None:
+            option = assign_update_option(details)
+            if option is not None:
+                update_details, update_option = get_details_validation(option)
+                if update_details is not None:
+                    confirm_id = get_id_confirmation()
+                    if confirm_id is not None:
+                        confirm_table_id = search_id(check_main_table, confirm_id)
+                        print("ID present in table : ", confirm_table_id)
+                        if confirm_table_id == 1:
+                            update_table(check_main_table, update_details, update_option, confirm_id)
+                        else:
+                            if confirm_table_id == 0:
+                                print("ERROR : There are no data as per your search - "
+                                      "inside process_response function.")
+                                check_output(["zenity", "--error", "--width=400", "--height=200",
+                                              "--text=There are no data as per your search!!!!"])
+                            else:
+                                print("ERROR : ID searched in table has more than one data - "
+                                      "inside process_response function : ", str(confirm_id))
+                                check_output(["zenity", "--error", "--width=400", "--height=200",
+                                              "--text=ALERT!!!\n\nPlease contact admin!!!!"])
 
+        flag = 2
+
+    return flag
+
+
+def process_ask_multiple(check_main_table, flag, status=0):
     while status == 0:
         response = ask_question(flag)
-        if response is not None:
-            details = get_details_initial_option()
-            option = assign_update_option(details)
-            update_details, update_option = get_details_validation(option)
-            confirm_id = get_id_confirmation()
-            confirm_table_id = search_id(check_main_table, confirm_id)
-            print("ID present in table : ", confirm_table_id)
-            flag = 2
-            if confirm_table_id == 1:
-                update_table(check_main_table, update_details, update_option, confirm_id)
-            else:
-                if confirm_table_id == 0:
-                    print("ERROR : There are no data as per your search - inside main function.")
-                    check_output(["zenity", "--error", "--width=400", "--height=200", "--text=There are no data "
-                                                                                      "as per your search!!!!"])
-                    exit_program()
-                else:
-                    print("ERROR : ID searched in table has more than one data - "
-                          "inside main function : ", str(confirm_id))
-                    check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\n"
-                                                                                      "Please contact admin!!!!"])
-                    exit_program()
-        else:
-            status = 1
+        process_response(check_main_table, response, flag=2)
 
+
+def main():
+    start_program()
+    region = process_parameter_set()
+    check_main_table, check_sequence_table = checking_region_table(region)
+    response = ask_question(flag=1)
+    flag = process_response(check_main_table, response, flag=0)
+    process_ask_multiple(check_main_table, flag, status=0)
     exit_program()
 
 

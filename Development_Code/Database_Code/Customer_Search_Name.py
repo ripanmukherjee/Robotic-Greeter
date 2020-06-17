@@ -22,7 +22,7 @@
 #               Production region: "PROD"
 #
 #               Check in the following function :
-#               def main():
+#               def process_parameter_set():
 #                   region = "DEV"
 #
 #               This program also use conn as follow :
@@ -41,6 +41,14 @@ from datetime import date, datetime
 from subprocess import check_output
 
 
+def start_program():
+    today = date.today()
+    current_date = today.strftime("%d/%m/%Y")
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    print('Starting Program : Customer_Search_Name.py - at : ' + current_time + ' on : ' + current_date)
+
+
 def exit_program():
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
@@ -48,6 +56,12 @@ def exit_program():
     current_time = now.strftime("%H:%M:%S")
     print('Ending program : Customer_Search_Name.py - at : ' + current_time + ' on : ' + current_date)
     sys.exit()
+
+
+def process_parameter_set():
+    region = "DEV"
+
+    return region
 
 
 def checking_region_table(region):
@@ -224,17 +238,7 @@ def display_details(search_details):
     print(search_output)
 
 
-def main():
-    region = "DEV"
-    today = date.today()
-    current_date = today.strftime("%d/%m/%Y")
-    now = datetime.now()
-    current_time = now.strftime("%H:%M:%S")
-    print('Starting Program : Customer_Search_Name.py - at : ' + current_time + ' on : ' + current_date)
-
-    check_main_table, check_sequence_table = checking_region_table(region)
-    details = get_details()
-    first_name, last_name = format_details(details)
+def process_search_display(check_main_table, first_name, last_name):
     if first_name != "" and last_name == "":
         search_details = search_first_name(check_main_table, first_name)
     elif first_name == "" and last_name != "":
@@ -247,6 +251,14 @@ def main():
     if search_details is not None:
         display_details(search_details)
 
+
+def main():
+    start_program()
+    region = process_parameter_set()
+    check_main_table, check_sequence_table = checking_region_table(region)
+    details = get_details()
+    first_name, last_name = format_details(details)
+    process_search_display(check_main_table, first_name, last_name)
     exit_program()
 
 

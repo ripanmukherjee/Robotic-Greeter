@@ -21,7 +21,7 @@
 #               Production region: "PROD"
 #
 #               Check in the following function :
-#               def main():
+#               def process_parameter_set():
 #               region = "DEV"
 #
 #               Also, this program use "carego_customer_dev_ID_seq" as follow :
@@ -45,6 +45,14 @@ from datetime import date, datetime
 from subprocess import check_output
 
 
+def start_program():
+    today = date.today()
+    current_date = today.strftime("%d/%m/%Y")
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    print('Starting program : Customer_Insert.py - at : ' + current_time + ' on : ' + current_date)
+
+
 def exit_program():
     today = date.today()
     now = datetime.now()
@@ -54,7 +62,15 @@ def exit_program():
     sys.exit()
 
 
-def checking_region_table(region):
+def process_parameter_set():
+    region = "DEV"
+    today = date.today()
+    creation_date = today.strftime("%d/%m/%Y")
+
+    return region, creation_date
+
+
+def process_checking_region_table(region):
     main_table = None
     sequence_table = None
     if region == "DEV":
@@ -68,7 +84,7 @@ def checking_region_table(region):
         sequence_table = "carego_customer_dev_ID_seq"
     else:
         print("ERROR : REGION VALUE NOT FOUND. Please check the REGION value inside the program - "
-              "inside checking_region_table function.")
+              "inside process_checking_region_table function.")
         exit_program()
 
     return main_table, sequence_table
@@ -192,21 +208,13 @@ def insert(check_main_table, check_sequence_table, first_name, last_name, email_
 
 
 def main():
-    region = "DEV"
-    today = date.today()
-    current_date = today.strftime("%d/%m/%Y")
-    now = datetime.now()
-    current_time = now.strftime("%H:%M:%S")
-    print('Starting program : Customer_Insert.py - at : ' + current_time + ' on : ' + current_date)
-
-    check_main_table, check_sequence_table = checking_region_table(region)
+    start_program()
+    region, creation_date = process_parameter_set()
+    check_main_table, check_sequence_table = process_checking_region_table(region)
     details = get_details()
     first_name, last_name, email_id, phone_no, employer, role = format_details(details)
-    today = date.today()
-    creation_date = today.strftime("%d/%m/%Y")
     insert(check_main_table, check_sequence_table, first_name, last_name, email_id, phone_no, employer, role,
            creation_date)
-
     exit_program()
 
 

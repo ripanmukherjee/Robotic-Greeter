@@ -41,6 +41,14 @@ from datetime import date, datetime
 from subprocess import check_output
 
 
+def start_program():
+    today = date.today()
+    current_date = today.strftime("%d/%m/%Y")
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    print('Starting program : Customer_Search_ID.py - at : ' + current_time + ' on : ' + current_date)
+
+
 def exit_program():
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
@@ -48,6 +56,12 @@ def exit_program():
     current_time = now.strftime("%H:%M:%S")
     print('Ending program : Customer_Search_ID.py - at : ' + current_time + ' on : ' + current_date)
     sys.exit()
+
+
+def process_parameter_set():
+    region = "DEV"
+
+    return region
 
 
 def checking_region_table(region):
@@ -161,17 +175,7 @@ def display_details(search_details):
     print(search_output)
 
 
-def main():
-    region = "DEV"
-    today = date.today()
-    current_date = today.strftime("%d/%m/%Y")
-    now = datetime.now()
-    current_time = now.strftime("%H:%M:%S")
-    print('Starting program : Customer_Search_ID.py - at : ' + current_time + ' on : ' + current_date)
-
-    check_main_table,  check_sequence_table = checking_region_table(region)
-    details = get_details()
-    id_value = format_details(details)
+def process_id_search_display(check_main_table, id_value):
     if id_value != "":
         search_details = search_id(check_main_table, id_value)
     else:
@@ -180,6 +184,14 @@ def main():
     if len(search_details) > 0:
         display_details(search_details)
 
+
+def main():
+    start_program()
+    region = process_parameter_set()
+    check_main_table,  check_sequence_table = checking_region_table(region)
+    details = get_details()
+    id_value = format_details(details)
+    process_id_search_display(check_main_table, id_value)
     exit_program()
 
 

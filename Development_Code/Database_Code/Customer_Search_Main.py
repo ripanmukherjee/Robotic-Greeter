@@ -23,6 +23,14 @@ from datetime import date, datetime
 from subprocess import check_output, call
 
 
+def start_program():
+    today = date.today()
+    current_date = today.strftime("%d/%m/%Y")
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    print('Starting program : Customer_Search_Main.py - at : ' + current_time + ' on : ' + current_date)
+
+
 def exit_program():
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
@@ -61,7 +69,6 @@ def get_details():
         details = details[0].strip()
     except subprocess.CalledProcessError:
         print("ERROR : subprocess.CalledProcessError - inside get_details function.")
-        exit_program()
 
     return details
 
@@ -72,49 +79,53 @@ def call_program(details):
             print("Selected option : ID")
             print("Calling program : Customer_Search_ID.py......")
             args_call = "python3 Customer_Search_ID.py"
-            call(args_call, shell=True)
+            try:
+                call(args_call, shell=True)
+            except subprocess.CalledProcessError:
+                print("ERROR : subprocess.CalledProcessError - inside get_details function.")
         else:
             if details == "2":
                 print("Selected option : Name")
                 print("Calling program : Customer_Search_Name.py......")
                 args_call = "python3 Customer_Search_Name.py"
-                call(args_call, shell=True)
+                try:
+                    call(args_call, shell=True)
+                except subprocess.CalledProcessError:
+                    print("ERROR : subprocess.CalledProcessError - inside get_details function.")
             else:
                 print("ERROR : Not a valid option - inside call_program function.")
                 check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nYou did not "
                                                                                   "select a valid option. "
                                                                                   "Please try again!!!!"])
-                exit_program()
     except IndexError:
         print("ERROR : IndexError - Not a valid option - inside call_program function.")
         exit_program()
 
 
-def main():
-    today = date.today()
-    current_date = today.strftime("%d/%m/%Y")
-    now = datetime.now()
-    current_time = now.strftime("%H:%M:%S")
-    print('Starting program : Customer_Search_Main.py - at : ' + current_time + ' on : ' + current_date)
-
-    flag = 1
-    response = ask_question(flag)
-    status = 0
+def process_response(response):
     if response is not None:
         details = get_details()
-        call_program(details)
+        if details is not None:
+            call_program(details)
+
         flag = 2
     else:
+        flag = None
         exit_program()
 
+    return flag
+
+
+def process_ask_multiple(flag, status):
     while status == 0:
         response = ask_question(flag)
-        if response is not None:
-            details = get_details()
-            call_program(details)
-        else:
-            status = 1
+        process_response(response)
 
+
+def main():
+    response = ask_question(flag=1)
+    flag = process_response(response)
+    process_ask_multiple(flag, status=0)
     exit_program()
 
 
