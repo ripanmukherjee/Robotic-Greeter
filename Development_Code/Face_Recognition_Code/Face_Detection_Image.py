@@ -35,16 +35,24 @@ import face_recognition
 from datetime import date, datetime
 
 
+def start_program():
+    today = date.today()
+    current_date = today.strftime("%d/%m/%Y")
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    print('Starting program : Face_Detection_Image.py - at : ' + current_time + ' on : ' + current_date)
+
+
 def exit_program():
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
-    print('Ending program : Face_Detection_Camera.py - at : ' + current_time + ' on : ' + current_date)
+    print('Ending program : Face_Detection_Image.py - at : ' + current_time + ' on : ' + current_date)
     sys.exit()
 
 
-def face_detection_image():
+def process_face_detection_image():
     try:
         encoding_file = 'encodings.pickle'
         image_path = 'Sample_Images/image2.jpg'
@@ -82,26 +90,19 @@ def face_detection_image():
         cv2.imshow("Image", image)
         cv2.waitKey(0)
     except EOFError:
-        print("ERROR : EOFError - Pickle File : encodings.pickle,  has no data - inside face_detection function.")
+        print("ERROR : EOFError - Pickle File : encodings.pickle,  has no data - "
+              "inside process_face_detection_image function.")
         exit_program()
     except FileNotFoundError:
         print("ERROR : FileNotFoundError - Pickle File : encodings.pickle, not present in the directory "
-              "- inside face_detection function.")
+              "- inside process_face_detection_image function.")
         exit_program()
 
 
 def main():
-    today = date.today()
-    current_date = today.strftime("%d/%m/%Y")
-    now = datetime.now()
-    current_time = now.strftime("%H:%M:%S")
-    print('Starting program : Face_Detection_Image.py - at : ' + current_time + ' on : ' + current_date)
-
-    face_detection_image()
-
-    now = datetime.now()
-    current_time = now.strftime("%H:%M:%S")
-    print('Ending program : Face_Detection_Image.py - at : ' + current_time + ' on : ' + current_date)
+    start_program()
+    process_face_detection_image()
+    exit_program()
 
 
 if __name__ == "__main__":
