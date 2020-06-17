@@ -48,7 +48,7 @@ def process_parameter_set():
     return stand_alone_flag, mp3_filename
 
 
-def check_input_argument(stand_alone_flag):
+def process_check_input_argument(stand_alone_flag):
     try:
         input_argv = sys.argv[1]
         if input_argv == "0":
@@ -65,7 +65,7 @@ def check_input_argument(stand_alone_flag):
     return text, stand_alone_flag
 
 
-def process(mp3_filename, text):
+def process_gtts_playsound(mp3_filename, text):
     mp3_filename = mp3_filename + ".mp3"
     tts = gTTS(text=text, lang='en', slow=False)
     tts.save(mp3_filename)
@@ -73,7 +73,7 @@ def process(mp3_filename, text):
     os.remove(mp3_filename)
 
 
-def delete_mp3_output_files(stand_alone_flag):
+def process_delete_mp3_output_files(stand_alone_flag):
     if stand_alone_flag == 1:
         print("Deleting mp3 and output file. Value of stand_alone_flag : ", str(stand_alone_flag))
         mp3_files = glob.glob('*.mp3', recursive=True)
@@ -94,9 +94,9 @@ def delete_mp3_output_files(stand_alone_flag):
 def main():
     start_program()
     stand_alone_flag, mp3_filename = process_parameter_set()
-    text, stand_alone_flag = check_input_argument(stand_alone_flag)
-    process(mp3_filename, text)
-    delete_mp3_output_files(stand_alone_flag)
+    text, stand_alone_flag = process_check_input_argument(stand_alone_flag)
+    process_gtts_playsound(mp3_filename, text)
+    process_delete_mp3_output_files(stand_alone_flag)
     exit_program()
 
 
