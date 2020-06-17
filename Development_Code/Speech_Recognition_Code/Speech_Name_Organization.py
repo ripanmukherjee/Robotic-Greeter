@@ -226,7 +226,7 @@ def process_input_details(input_details, mp3_filename, record, yes_syn_words, st
                           "Actually, I do not have your details. Would you like to save your details for future?"])
             input_details = "Yes"
         except subprocess.CalledProcessError:
-            print("ERROR : subprocess.CalledProcessError - inside main function.")
+            print("ERROR : subprocess.CalledProcessError - inside process_input_details function.")
             input_details = None
     else:
         pass
