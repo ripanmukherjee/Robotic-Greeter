@@ -176,7 +176,8 @@ def process_speech_question(text):
 
 def process_speech_name_organization():
     program_name = "Speech_Name_Organization.py"
-    args_call = "python3 " + program_name
+    passing_arg = 0
+    args_call = "python3 " + program_name + ' ' + str(passing_arg)
     try:
         output = check_output(args_call, shell=True)
         output = output.decode().split('\n')
