@@ -21,6 +21,14 @@ from datetime import date, datetime
 from subprocess import check_output
 
 
+def start_program():
+    today = date.today()
+    current_date = today.strftime("%d/%m/%Y")
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    print('Starting program : Capture_Picture_Main.py - at : ' + current_time + ' on : ' + current_date)
+
+
 def exit_program():
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
@@ -30,7 +38,7 @@ def exit_program():
     sys.exit()
 
 
-def ask_question(flag):
+def process_ask_question(flag):
     response = None
     if flag == 1:
         args = "zenity --question --width=500 --height=250 --text='Do you want me to take your picture?'"
@@ -40,7 +48,7 @@ def ask_question(flag):
     try:
         response = check_output(args, shell=True)
     except subprocess.CalledProcessError:
-        print("ERROR : subprocess.CalledProcessError - inside ask_question function.")
+        print("ERROR : subprocess.CalledProcessError - inside process_ask_question function.")
         exit_program()
 
     return response
@@ -48,7 +56,7 @@ def ask_question(flag):
 
 def process_calling(passing_arg):
     flag = 1
-    response = ask_question(flag)
+    response = process_ask_question(flag)
     status = 0
     if len(response) == 0:
         print("Calling program : Capture_Picture_Save.py......")
@@ -79,7 +87,7 @@ def process_calling(passing_arg):
             exit_program()
 
     while status == 0:
-        response = ask_question(flag)
+        response = process_ask_question(flag)
         if len(response) == 0:
             print("Calling program : Capture_Picture_Save.py......")
             args_call = "python3 Capture_Picture_Save.py" + ' ' + passing_arg
@@ -118,12 +126,7 @@ def process_calling(passing_arg):
     exit_program()
 
 
-def main():
-    today = date.today()
-    current_date = today.strftime("%d/%m/%Y")
-    now = datetime.now()
-    current_time = now.strftime("%H:%M:%S")
-    print('Starting program : Capture_Picture_Main.py - at : ' + current_time + ' on : ' + current_date)
+def process_check_input_argument():
     try:
         print('Processing Capture_Picture_Main.py from main process.')
         print('Inside Capture_Picture_Main.py - Unique ID is : ', sys.argv[1])
@@ -134,6 +137,10 @@ def main():
         passing_arg = "0"
         process_calling(passing_arg)
 
+
+def main():
+    start_program()
+    process_check_input_argument()
     exit_program()
 
 
