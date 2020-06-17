@@ -112,7 +112,7 @@ def process_format_details(details):
             check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nFirst Name or "
                                                                               "Last Name cannot be blank or "
                                                                               "less than 2 characters. "
-                                                                              "Please try again!!!!"])
+                                                                              "\nPlease try again!!!!"])
             exit_program()
         elif len(details[0]) >= 2 and len(details[1]) < 2:
             first_name = details[0].upper()

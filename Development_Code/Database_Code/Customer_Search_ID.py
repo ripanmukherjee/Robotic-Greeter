@@ -107,12 +107,12 @@ def process_format_details(details):
         if len(details) < 1:
             print("ERROR : ID cannot be blank or less than 1 number. Details entered : ", details)
             check_output(["zenity", "--error", "--width=400", "--height=200",
-                          "--text=ALERT!!!\n\nID cannot be blank or less than 1 number. Please try again!!!!"])
+                          "--text=ALERT!!!\n\nID cannot be blank or less than 1 number. \nPlease try again!!!!"])
             exit_program()
         elif re.match("[0-9]", details) is None:
-            print("ERROR : Phone number must be numeric. Details entered : ", details)
-            check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nID must be numeric. "
-                                                                              "Please try again!!!!"])
+            print("ERROR : ID should be numeric. Details entered : ", details)
+            check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nID should be numeric."
+                                                                              "\nPlease try again!!!!"])
             exit_program()
         else:
             id_details = details
