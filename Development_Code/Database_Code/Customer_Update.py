@@ -152,7 +152,7 @@ def process_assign_update_option(details):
                                 print("ERROR : Not a valid option - inside process_assign_update_option function.")
                                 check_output(["zenity", "--error", "--width=400", "--height=200",
                                               "--text=ALERT!!!\n\nYou did not select a valid option. "
-                                              "Please try again!!!!"])
+                                              "\nPlease try again!!!!"])
                                 option = None
     except IndexError:
         print("ERROR : IndexError - Not a valid option - inside process_assign_update_option function.")
@@ -176,7 +176,8 @@ def process_get_details_validation(option):
                 print("ERROR : First Name cannot be blank or less than 2 characters. Details entered : ", details)
                 check_output(["zenity", "--error", "--width=400", "--height=200",
                               "--text=ALERT!!!\n\nFirst Name cannot be blank or less than 2 characters. "
-                              "Please try again!!!!"])
+                              "\nPlease try again!!!!"])
+                details = None
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside process_get_details_validation function.")
 
@@ -193,7 +194,8 @@ def process_get_details_validation(option):
                 print("ERROR : Last Name cannot be blank or less than 2 characters. Details entered : ", details)
                 check_output(["zenity", "--error", "--width=400", "--height=200",
                               "--text=ALERT!!!\n\nLast Name cannot be blank or less than 2 characters. "
-                              "Please try again!!!!"])
+                              "\nPlease try again!!!!"])
+                details = None
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside process_get_details_validation function.")
 
@@ -209,13 +211,15 @@ def process_get_details_validation(option):
                 print("ERROR : Email Id should be more than 7 characters long. Details entered : ", details)
                 check_output(["zenity", "--error", "--width=400", "--height=200",
                               "--text=ALERT!!!\n\nEmail Id should be more than 7 characters long. "
-                              "Please try again!!!!"])
+                              "\nPlease try again!!!!"])
+                details = None
             elif re.match("^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*$", details) == None:
-                print("ERROR : Email Id should contain @ & dot(.). "
+                print("ERROR : Email Id should contain - @ and dot(.). "
                       "Also, it should be a valid Email ID. Details entered : ", details)
                 check_output(["zenity", "--error", "--width=400", "--height=200",
-                              "--text=ALERT!!!\n\nEmail Id should contain @ & dot(.). "
-                              "Also, it should be a valid Email ID. Please try again!!!!"])
+                              "--text=ALERT!!!\n\nEmail Id should contain - @ and dot(.). "
+                              "Also, it should be a valid Email ID. \nPlease try again!!!!"])
+                details = None
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside process_get_details_validation function.")
 
@@ -231,11 +235,13 @@ def process_get_details_validation(option):
                 print("ERROR : Phone number should be more than 7 digits long. Details entered : ", details)
                 check_output(["zenity", "--error", "--width=400", "--height=200",
                               "--text=ALERT!!!\n\nPhone number should be more than 7 digits long. "
-                              "Please try again!!!!"])
+                              "\nPlease try again!!!!"])
+                details = None
             elif re.match("[0-9]", details) is None:
                 print("ERROR : Phone number should be numeric. Details entered : ", details)
                 check_output(["zenity", "--error", "--width=400", "--height=200",
-                              "--text=ALERT!!!\n\nPhone number should be numeric. Please try again!!!!"])
+                              "--text=ALERT!!!\n\nPhone number should be numeric. \nPlease try again!!!!"])
+                details = None
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside process_get_details_validation function.")
 
@@ -251,7 +257,8 @@ def process_get_details_validation(option):
                 print("ERROR : Employer details cannot be blank or less than 2 characters. Details entered : ", details)
                 check_output(["zenity", "--error", "--width=400", "--height=200",
                               "--text=ALERT!!!\n\nEmployer details cannot be blank or less than 2 characters. "
-                              "Please try again!!!!"])
+                              "\nPlease try again!!!!"])
+                details = None
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside process_get_details_validation function.")
 
@@ -267,7 +274,8 @@ def process_get_details_validation(option):
                 print("ERROR : Role details cannot be blank or less than 2 characters. Details entered : ", details)
                 check_output(["zenity", "--error", "--width=400", "--height=200",
                               "--text=ALERT!!!\n\nRole details cannot be blank or less than 2 characters. "
-                              "Please try again!!!!"])
+                              "\nPlease try again!!!!"])
+                details = None
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside process_get_details_validation function.")
 
@@ -291,6 +299,10 @@ def process_get_id_confirmation():
             print("ERROR : ID cannot be blank or less than 1 number. Details entered : ", id_details)
             check_output(["zenity", "--error", "--width=400", "--height=200",
                           "--text=ALERT!!!\n\nID cannot be blank or less than 1 number. Please try again!!!!"])
+        elif re.match("[0-9]", id_details) is None:
+            print("ERROR : ID should be numeric. Details entered : ", id_details)
+            check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nID should be numeric."
+                                                                              "\nPlease try again!!!!"])
         else:
             main_id = id_details
     except subprocess.CalledProcessError:
@@ -423,9 +435,9 @@ def process_update_table(check_main_table, update_details, update_option, confir
             WHERE "ID" = '{}';'''.format(update_details, confirm_id)
             cur.execute(query)
 
-            print("Employer updated successfully")
+            print("Employer details updated successfully")
             check_output(["zenity", "--info", "--width=400", "--height=200",
-                          "--text=Employer updated successfully!!!!"])
+                          "--text=Employer details updated successfully!!!!"])
             conn.commit()
             cur.close()
             conn.close()
@@ -444,9 +456,9 @@ def process_update_table(check_main_table, update_details, update_option, confir
             WHERE "ID" = '{}';'''.format(update_details, confirm_id)
             cur.execute(query)
 
-            print("Role updated successfully")
+            print("Role details updated successfully")
             check_output(["zenity", "--info", "--width=400", "--height=200",
-                          "--text=Role updated successfully!!!!"])
+                          "--text=Role details updated successfully!!!!"])
             conn.commit()
             cur.close()
             conn.close()
