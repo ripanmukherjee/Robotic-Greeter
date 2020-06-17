@@ -63,7 +63,7 @@ def process_parameter_set():
     return yes_syn_words, stop_words, mp3_filename, record, text
 
 
-def token_sentence(text):
+def process_token_sentence(text):
     sentences = nltk.sent_tokenize(text)
     tokenized_sentences = [nltk.word_tokenize(sentence) for sentence in sentences]
     tagged_sentences = [nltk.pos_tag(sentence) for sentence in tokenized_sentences]
@@ -72,7 +72,7 @@ def token_sentence(text):
     return sentences
 
 
-def check_input_argument():
+def process_check_input_argument():
     stand_alone_flag = None
     try:
         input_argv = sys.argv
@@ -204,12 +204,8 @@ def delete_mp3_output_files(stand_alone_flag):
 def main():
     start_program()
     yes_syn_words, stop_words, record, mp3_filename, text = process_parameter_set()
-
-    # flag = 1
     process_speak_listen(mp3_filename, text, record, flag=1)
-    text, stand_alone_flag = check_input_argument()
-
-    # flag = 0
+    text, stand_alone_flag = process_check_input_argument()
     input_details = process_speak_listen(mp3_filename, text, record, flag=0)
     response = process_input_details(input_details, mp3_filename, record, yes_syn_words, stop_words)
     process_output_file_write(response)
