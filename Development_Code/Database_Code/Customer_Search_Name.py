@@ -64,7 +64,7 @@ def process_parameter_set():
     return region
 
 
-def checking_region_table(region):
+def process_checking_region_table(region):
     main_table = None
     sequence_table = None
     if region == "DEV":
@@ -78,13 +78,13 @@ def checking_region_table(region):
         sequence_table = "carego_customer_dev_ID_seq"
     else:
         print("ERROR : REGION VALUE NOT FOUND. Please check the REGION value inside the program - "
-              "inside checking_region_table function.")
+              "inside process_checking_region_table function.")
         exit_program()
 
     return main_table, sequence_table
 
 
-def get_details():
+def process_get_details():
     details = None
     args_get_details = "zenity --forms --width=500 --height=200 --title='Search user' \
                 --text='Search with either First or Last Name or both of the following' \
@@ -95,13 +95,13 @@ def get_details():
         details = details.decode().split('|')
         print(details)
     except subprocess.CalledProcessError:
-        print("ERROR : subprocess.CalledProcessError - inside get_details function.")
+        print("ERROR : subprocess.CalledProcessError - inside process_get_details function.")
         exit_program()
 
     return details
 
 
-def format_details(details):
+def process_format_details(details):
     first_name = None
     last_name = None
     details[1] = details[1].strip()
@@ -124,7 +124,7 @@ def format_details(details):
             first_name = details[0].upper()
             last_name = details[1].upper()
     except IndexError:
-        print("ERROR : IndexError - You did not enter any details - inside format_details function.")
+        print("ERROR : IndexError - You did not enter any details - inside process_format_details function.")
         check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nYou did not "
                                                                           "enter any details!!!!"])
         exit_program()
@@ -132,7 +132,7 @@ def format_details(details):
     return first_name, last_name
 
 
-def search_first_name(check_main_table, first_name):
+def process_search_first_name(check_main_table, first_name):
     try:
         conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1", port="5432")
         cur = conn.cursor()
@@ -143,7 +143,7 @@ def search_first_name(check_main_table, first_name):
         row = cur.fetchall()
 
         if len(row) == 0:
-            print("ERROR : There are no data as per your search - inside search_first_name function.")
+            print("ERROR : There are no data as per your search - inside process_search_first_name function.")
             check_output(["zenity", "--error", "--width=400", "--height=200", "--text=There are no data "
                                                                               "as per your search!!!!"])
             exit_program()
@@ -154,13 +154,13 @@ def search_first_name(check_main_table, first_name):
         cur.close()
         conn.close()
     except psycopg2.OperationalError as error:
-        print("ERROR : psycopg2.OperationalError - inside search_first_name function : " + str(error))
+        print("ERROR : psycopg2.OperationalError - inside process_search_first_name function : " + str(error))
         row = None
 
     return row
 
 
-def search_last_name(check_main_table, last_name):
+def process_search_last_name(check_main_table, last_name):
     try:
         conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1", port="5432")
         cur = conn.cursor()
@@ -171,7 +171,7 @@ def search_last_name(check_main_table, last_name):
         row = cur.fetchall()
 
         if len(row) == 0:
-            print("ERROR : There are no data as per your search - inside search_last_name function.")
+            print("ERROR : There are no data as per your search - inside process_search_last_name function.")
             check_output(["zenity", "--error", "--width=400", "--height=200", "--text=There are no data "
                                                                               "as per your search!!!!"])
             exit_program()
@@ -182,13 +182,13 @@ def search_last_name(check_main_table, last_name):
         cur.close()
         conn.close()
     except psycopg2.OperationalError as error:
-        print("ERROR : psycopg2.OperationalError - inside search_last_name function : " + str(error))
+        print("ERROR : psycopg2.OperationalError - inside process_search_last_name function : " + str(error))
         row = None
 
     return row
 
 
-def search_first_last_name(check_main_table, first_name, last_name):
+def process_search_first_last_name(check_main_table, first_name, last_name):
     try:
         conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1", port="5432")
         cur = conn.cursor()
@@ -200,7 +200,7 @@ def search_first_last_name(check_main_table, first_name, last_name):
         row = cur.fetchall()
 
         if len(row) == 0:
-            print("ERROR : There are no data as per your search - inside search_first_last_name function.")
+            print("ERROR : There are no data as per your search - inside process_search_first_last_name function.")
             check_output(["zenity", "--error", "--width=400", "--height=200", "--text=There are no data "
                                                                               "as per your search!!!!"])
             exit_program()
@@ -211,13 +211,13 @@ def search_first_last_name(check_main_table, first_name, last_name):
         cur.close()
         conn.close()
     except psycopg2.OperationalError as error:
-        print("ERROR : psycopg2.OperationalError - inside search_first_last_name function : " + str(error))
+        print("ERROR : psycopg2.OperationalError - inside process_search_first_last_name function : " + str(error))
         row = None
 
     return row
 
 
-def display_details(search_details):
+def process_display_details(search_details):
     display_row = ""
     counter = 0
     for list_details in search_details:
@@ -240,24 +240,24 @@ def display_details(search_details):
 
 def process_search_display(check_main_table, first_name, last_name):
     if first_name != "" and last_name == "":
-        search_details = search_first_name(check_main_table, first_name)
+        search_details = process_search_first_name(check_main_table, first_name)
     elif first_name == "" and last_name != "":
-        search_details = search_last_name(check_main_table, last_name)
+        search_details = process_search_last_name(check_main_table, last_name)
     elif first_name != "" and last_name != "":
-        search_details = search_first_last_name(check_main_table, first_name, last_name)
+        search_details = process_search_first_last_name(check_main_table, first_name, last_name)
     else:
         search_details = None
 
     if search_details is not None:
-        display_details(search_details)
+        process_display_details(search_details)
 
 
 def main():
     start_program()
     region = process_parameter_set()
-    check_main_table, check_sequence_table = checking_region_table(region)
-    details = get_details()
-    first_name, last_name = format_details(details)
+    check_main_table, check_sequence_table = process_checking_region_table(region)
+    details = process_get_details()
+    first_name, last_name = process_format_details(details)
     process_search_display(check_main_table, first_name, last_name)
     exit_program()
 
