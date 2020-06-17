@@ -64,7 +64,7 @@ def process_parameter_set():
     return region
 
 
-def checking_region_table(region):
+def process_checking_region_table(region):
     main_table = None
     sequence_table = None
     if region == "DEV":
@@ -78,13 +78,13 @@ def checking_region_table(region):
         sequence_table = "carego_customer_dev_ID_seq"
     else:
         print("ERROR : REGION VALUE NOT FOUND. Please check the REGION value inside the program - "
-              "inside checking_region_table function.")
+              "inside process_checking_region_table function.")
         exit_program()
 
     return main_table, sequence_table
 
 
-def ask_question(flag):
+def process_ask_question(flag):
     response = None
     if flag == 1:
         args = "zenity --info --width=500 --height=250 --text='Make sure you have your Unique ID. \n\n" \
@@ -95,13 +95,13 @@ def ask_question(flag):
     try:
         response = check_output(args, shell=True)
     except subprocess.CalledProcessError:
-        print("ERROR : subprocess.CalledProcessError - inside ask_question function.")
+        print("ERROR : subprocess.CalledProcessError - inside process_ask_question function.")
         exit_program()
 
     return response
 
 
-def get_details_initial_option():
+def process_get_details_initial_option():
     args = "zenity --list --width=500 --height=300 --title='Modify the data - Only one of the following' \
     --column='Option' --column='Description' \
     1 'Modify First Name' \
@@ -117,13 +117,13 @@ def get_details_initial_option():
         details[0] = details[0].strip()
         details = details[0]
     except subprocess.CalledProcessError:
-        print("ERROR : subprocess.CalledProcessError - inside get_details_initial_option function.")
+        print("ERROR : subprocess.CalledProcessError - inside process_get_details_initial_option function.")
         details = None
 
     return details
 
 
-def assign_update_option(details):
+def process_assign_update_option(details):
     try:
         if details == "1":
             print("Selected option : Modify First Name")
@@ -149,19 +149,19 @@ def assign_update_option(details):
                                 print("Selected option : Modify Role")
                                 option = 6
                             else:
-                                print("ERROR : Not a valid option - inside assign_update_option function.")
+                                print("ERROR : Not a valid option - inside process_assign_update_option function.")
                                 check_output(["zenity", "--error", "--width=400", "--height=200",
                                               "--text=ALERT!!!\n\nYou did not select a valid option. "
                                               "Please try again!!!!"])
                                 option = None
     except IndexError:
-        print("ERROR : IndexError - Not a valid option - inside assign_update_option function.")
+        print("ERROR : IndexError - Not a valid option - inside process_assign_update_option function.")
         option = None
 
     return option
 
 
-def get_details_validation(option):
+def process_get_details_validation(option):
     details = None
     if option == 1:
         args_get_details = "zenity --forms --width=500 --height=200 --title='Modify user' \
@@ -178,7 +178,7 @@ def get_details_validation(option):
                               "--text=ALERT!!!\n\nFirst Name cannot be blank or less than 2 characters. "
                               "Please try again!!!!"])
         except subprocess.CalledProcessError:
-            print("ERROR : subprocess.CalledProcessError - inside get_details_validation function.")
+            print("ERROR : subprocess.CalledProcessError - inside process_get_details_validation function.")
 
     if option == 2:
         args_get_details = "zenity --forms --width=500 --height=200 --title='Modify user' \
@@ -195,7 +195,7 @@ def get_details_validation(option):
                               "--text=ALERT!!!\n\nLast Name cannot be blank or less than 2 characters. "
                               "Please try again!!!!"])
         except subprocess.CalledProcessError:
-            print("ERROR : subprocess.CalledProcessError - inside get_details_validation function.")
+            print("ERROR : subprocess.CalledProcessError - inside process_get_details_validation function.")
 
     if option == 3:
         args_get_details = "zenity --forms --width=500 --height=200 --title='Modify user' \
@@ -217,7 +217,7 @@ def get_details_validation(option):
                               "--text=ALERT!!!\n\nEmail Id should contain @ & dot(.). "
                               "Also, it should be a valid Email ID. Please try again!!!!"])
         except subprocess.CalledProcessError:
-            print("ERROR : subprocess.CalledProcessError - inside get_details_validation function.")
+            print("ERROR : subprocess.CalledProcessError - inside process_get_details_validation function.")
 
     if option == 4:
         args_get_details = "zenity --forms --width=500 --height=200 --title='Modify user' \
@@ -237,7 +237,7 @@ def get_details_validation(option):
                 check_output(["zenity", "--error", "--width=400", "--height=200",
                               "--text=ALERT!!!\n\nPhone number should be numeric. Please try again!!!!"])
         except subprocess.CalledProcessError:
-            print("ERROR : subprocess.CalledProcessError - inside get_details_validation function.")
+            print("ERROR : subprocess.CalledProcessError - inside process_get_details_validation function.")
 
     if option == 5:
         args_get_details = "zenity --forms --width=500 --height=200 --title='Modify user' \
@@ -253,7 +253,7 @@ def get_details_validation(option):
                               "--text=ALERT!!!\n\nEmployer details cannot be blank or less than 2 characters. "
                               "Please try again!!!!"])
         except subprocess.CalledProcessError:
-            print("ERROR : subprocess.CalledProcessError - inside get_details_validation function.")
+            print("ERROR : subprocess.CalledProcessError - inside process_get_details_validation function.")
 
     if option == 6:
         args_get_details = "zenity --forms --width=500 --height=200 --title='Modify user' \
@@ -269,16 +269,16 @@ def get_details_validation(option):
                               "--text=ALERT!!!\n\nRole details cannot be blank or less than 2 characters. "
                               "Please try again!!!!"])
         except subprocess.CalledProcessError:
-            print("ERROR : subprocess.CalledProcessError - inside get_details_validation function.")
+            print("ERROR : subprocess.CalledProcessError - inside process_get_details_validation function.")
 
     if option == 0:
-        print("ERROR : Not a valid entry - inside get_details_validation function.")
+        print("ERROR : Not a valid entry - inside process_get_details_validation function.")
         details = None
 
     return details, option
 
 
-def get_id_confirmation():
+def process_get_id_confirmation():
     main_id = None
     args_get_details = "zenity --forms --width=500 --height=200 --title='Confirmation' \
                 --text='Confirm Your ID' \
@@ -294,12 +294,12 @@ def get_id_confirmation():
         else:
             main_id = id_details
     except subprocess.CalledProcessError:
-        print("ERROR : subprocess.CalledProcessError - inside get_id_confirmation function.")
+        print("ERROR : subprocess.CalledProcessError - inside process_get_id_confirmation function.")
 
     return main_id
 
 
-def search_id(check_main_table, confirm_id):
+def process_search_id(check_main_table, confirm_id):
     try:
         count = 0
         conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1", port="5432")
@@ -310,7 +310,7 @@ def search_id(check_main_table, confirm_id):
         row = cur.fetchall()
 
         if len(row) == 0:
-            print("ERROR : There are no data as per your search - inside search_id function.")
+            print("ERROR : There are no data as per your search - inside process_search_id function.")
             count = 0
         else:
             for total_tuple in row:
@@ -321,13 +321,13 @@ def search_id(check_main_table, confirm_id):
         cur.close()
         conn.close()
     except psycopg2.OperationalError as error:
-        print("ERROR : psycopg2.OperationalError - inside search_id function : " + str(error))
+        print("ERROR : psycopg2.OperationalError - inside process_search_id function : " + str(error))
         count = 0
 
     return count
 
 
-def update_table(check_main_table, update_details, update_option, confirm_id):
+def process_update_table(check_main_table, update_details, update_option, confirm_id):
     if update_option == 1:
         try:
             conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1",
@@ -346,7 +346,7 @@ def update_table(check_main_table, update_details, update_option, confirm_id):
             cur.close()
             conn.close()
         except psycopg2.OperationalError as error:
-            print("ERROR : psycopg2.OperationalError - inside update_table function : " + str(error))
+            print("ERROR : psycopg2.OperationalError - inside process_update_table function : " + str(error))
             check_output(["zenity", "--error", "--width=400", "--height=200", "--text=Please contact admin!!!!"])
 
     if update_option == 2:
@@ -367,7 +367,7 @@ def update_table(check_main_table, update_details, update_option, confirm_id):
             cur.close()
             conn.close()
         except psycopg2.OperationalError as error:
-            print("ERROR : psycopg2.OperationalError - inside update_table function : " + str(error))
+            print("ERROR : psycopg2.OperationalError - inside process_update_table function : " + str(error))
             check_output(["zenity", "--error", "--width=400", "--height=200", "--text=Please contact admin!!!!"])
 
     if update_option == 3:
@@ -388,7 +388,7 @@ def update_table(check_main_table, update_details, update_option, confirm_id):
             cur.close()
             conn.close()
         except psycopg2.OperationalError as error:
-            print("ERROR : psycopg2.OperationalError - inside update_table function : " + str(error))
+            print("ERROR : psycopg2.OperationalError - inside process_update_table function : " + str(error))
             check_output(["zenity", "--error", "--width=400", "--height=200", "--text=Please contact admin!!!!"])
 
     if update_option == 4:
@@ -409,7 +409,7 @@ def update_table(check_main_table, update_details, update_option, confirm_id):
             cur.close()
             conn.close()
         except psycopg2.OperationalError as error:
-            print("ERROR : psycopg2.OperationalError - inside update_table function : " + str(error))
+            print("ERROR : psycopg2.OperationalError - inside process_update_table function : " + str(error))
             check_output(["zenity", "--error", "--width=400", "--height=200", "--text=Please contact admin!!!!"])
 
     if update_option == 5:
@@ -430,7 +430,7 @@ def update_table(check_main_table, update_details, update_option, confirm_id):
             cur.close()
             conn.close()
         except psycopg2.OperationalError as error:
-            print("ERROR : psycopg2.OperationalError - inside update_table function : " + str(error))
+            print("ERROR : psycopg2.OperationalError - inside process_update_table function : " + str(error))
             check_output(["zenity", "--error", "--width=400", "--height=200", "--text=Please contact admin!!!!"])
 
     if update_option == 6:
@@ -451,24 +451,24 @@ def update_table(check_main_table, update_details, update_option, confirm_id):
             cur.close()
             conn.close()
         except psycopg2.OperationalError as error:
-            print("ERROR : psycopg2.OperationalError - inside update_table function : " + str(error))
+            print("ERROR : psycopg2.OperationalError - inside process_update_table function : " + str(error))
             check_output(["zenity", "--error", "--width=400", "--height=200", "--text=Please contact admin!!!!"])
 
 
 def process_response(check_main_table, response, flag):
     if response is not None:
-        details = get_details_initial_option()
+        details = process_get_details_initial_option()
         if details is not None:
-            option = assign_update_option(details)
+            option = process_assign_update_option(details)
             if option is not None:
-                update_details, update_option = get_details_validation(option)
+                update_details, update_option = process_get_details_validation(option)
                 if update_details is not None:
-                    confirm_id = get_id_confirmation()
+                    confirm_id = process_get_id_confirmation()
                     if confirm_id is not None:
-                        confirm_table_id = search_id(check_main_table, confirm_id)
+                        confirm_table_id = process_search_id(check_main_table, confirm_id)
                         print("ID present in table : ", confirm_table_id)
                         if confirm_table_id == 1:
-                            update_table(check_main_table, update_details, update_option, confirm_id)
+                            process_update_table(check_main_table, update_details, update_option, confirm_id)
                         else:
                             if confirm_table_id == 0:
                                 print("ERROR : There are no data as per your search - "
@@ -488,15 +488,15 @@ def process_response(check_main_table, response, flag):
 
 def process_ask_multiple(check_main_table, flag, status=0):
     while status == 0:
-        response = ask_question(flag)
+        response = process_ask_question(flag)
         process_response(check_main_table, response, flag=2)
 
 
 def main():
     start_program()
     region = process_parameter_set()
-    check_main_table, check_sequence_table = checking_region_table(region)
-    response = ask_question(flag=1)
+    check_main_table, check_sequence_table = process_checking_region_table(region)
+    response = process_ask_question(flag=1)
     flag = process_response(check_main_table, response, flag=0)
     process_ask_multiple(check_main_table, flag, status=0)
     exit_program()
