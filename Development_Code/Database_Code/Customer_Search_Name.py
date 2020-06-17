@@ -35,6 +35,7 @@
 # ----------------------------------------------------------------------------------------------------------------------
 
 import sys
+import pickle
 import psycopg2
 import subprocess
 from datetime import date, datetime
@@ -137,7 +138,7 @@ def process_search_first_name(check_main_table, first_name):
         conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1", port="5432")
         cur = conn.cursor()
         print("Connection success")
-        query = """SELECT "First_Name", "Last_Name", "Email_ID", "Phone_No"
+        query = """SELECT "ID", "First_Name", "Last_Name", "Email_ID", "Phone_No"
         from """ + check_main_table + """ where "First_Name" LIKE '%{}%'; """.format(first_name)
         cur.execute(query)
         row = cur.fetchall()
@@ -165,7 +166,7 @@ def process_search_last_name(check_main_table, last_name):
         conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1", port="5432")
         cur = conn.cursor()
         print("Connection success")
-        query = """SELECT "First_Name", "Last_Name", "Email_ID", "Phone_No"
+        query = """SELECT "ID", "First_Name", "Last_Name", "Email_ID", "Phone_No"
         from """ + check_main_table + """ where "Last_Name" LIKE '%{}%'; """.format(last_name)
         cur.execute(query)
         row = cur.fetchall()
@@ -193,7 +194,7 @@ def process_search_first_last_name(check_main_table, first_name, last_name):
         conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1", port="5432")
         cur = conn.cursor()
         print("Connection success")
-        query = """SELECT "First_Name", "Last_Name", "Email_ID", "Phone_No"
+        query = """SELECT "ID", "First_Name", "Last_Name", "Email_ID", "Phone_No"
         from """ + check_main_table + """ where "First_Name" LIKE '%{}%' and
         "Last_Name" LIKE '%{}%'; """.format(first_name, last_name)
         cur.execute(query)
@@ -231,11 +232,18 @@ def process_display_details(search_details):
                 counter += 1
 
     print(display_row)
-    args_display = "zenity --list --width=800 --height=600 --title='List of people as per your search' \
-    --column='First Name' --column='Last Name' --column='Email ID' --column='Phone Number' " \
-    + display_row
-    search_output = check_output(args_display, shell=True)
-    print(search_output)
+    args_display = "zenity --list --width=800 --height=600 --title='List of people as per your search' --checklist \
+    --column='Select' --column='First Name' --column='Last Name' --column='Email ID' --column='Phone Number' " \
+                   "--print-column=ALL " + display_row
+    try:
+        search_output = check_output(args_display, shell=True)
+        search_output = search_output.strip()
+        search_output = search_output.decode().split('|')
+    except subprocess.CalledProcessError:
+        print("ERROR : subprocess.CalledProcessError - inside process_display_details function")
+        search_output = None
+
+    return search_output
 
 
 def process_search_display(check_main_table, first_name, last_name):
@@ -248,8 +256,27 @@ def process_search_display(check_main_table, first_name, last_name):
     else:
         search_details = None
 
+    first_name = None
+    last_name = None
+    email_id = None
+    phone_no = None
     if search_details is not None:
-        process_display_details(search_details)
+        search_output = process_display_details(search_details)
+        print('Searched Details : ' + str(search_output))
+        first_name = search_output[0]
+        last_name = search_output[1]
+        email_id = search_output[2]
+        phone_no = search_output[3]
+    else:
+        exit_program()
+
+    return first_name, last_name, email_id, phone_no
+
+
+def process_write_pickle_file(first_name, last_name, email_id, phone_no):
+    new_data = {"First_Name": first_name, "Last_Name": last_name, "Email_ID": email_id, "Phone_No": phone_no}
+    with open("Search_Output.pickle", "wb") as pickle_file:
+        pickle_file.write(pickle.dumps(new_data))
 
 
 def main():
@@ -258,7 +285,8 @@ def main():
     check_main_table, check_sequence_table = process_checking_region_table(region)
     details = process_get_details()
     first_name, last_name = process_format_details(details)
-    process_search_display(check_main_table, first_name, last_name)
+    first_name, last_name, email_id, phone_no = process_search_display(check_main_table, first_name, last_name)
+    process_write_pickle_file(first_name, last_name, email_id, phone_no)
     exit_program()
 
 
