@@ -29,6 +29,14 @@ from imutils import paths
 from datetime import date, datetime
 
 
+def start_program():
+    today = date.today()
+    current_date = today.strftime("%d/%m/%Y")
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    print('Starting program : Face_Encoding.py - at : ' + current_time + ' on : ' + current_date)
+
+
 def exit_program():
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
@@ -38,14 +46,15 @@ def exit_program():
     sys.exit()
 
 
-def face_encode():
+def process_face_encode():
     image_path = 'Dataset'
     detect_model = 'cnn'
     args = {'dataset': image_path, 'detection_method': detect_model}
 
     path = Path(image_path)
     if path.exists() is False:
-        print("ERROR : path.exists() is false - Directory : Dataset is not present - inside face_encode function.")
+        print("ERROR : path.exists() is false - Directory : Dataset is not present - "
+              "inside process_face_encode function.")
         exit_program()
     else:
         print("Quantifying faces....")
@@ -67,11 +76,11 @@ def face_encode():
 
         if len(known_encodings) == 0:
             if len(known_names) == 0:
-                print("ERROR : There are no new images in the data set - inside face_encode function.")
+                print("ERROR : There are no new images in the data set - inside process_face_encode function.")
                 exit_program()
             else:
                 print("ERROR : There are no encoding created for the images but has name - "
-                      "inside face_encode function.")
+                      "inside process_face_encode function.")
                 exit_program()
 
         else:
@@ -97,7 +106,8 @@ def face_encode():
                         pickle_file.write(pickle.dumps(new_data))
 
             except EOFError:
-                print("ERROR : EOFError - Pickle File : encodings.pickle,  has no data - inside face_encode function.")
+                print("ERROR : EOFError - Pickle File : encodings.pickle,  has no data - "
+                      "inside process_face_encode function.")
                 print("Writing new data in encoding file : encodings.pickle....")
                 new_data = {"encodings": known_encodings, "names": known_names}
                 with open("encodings.pickle", "wb") as pickle_file:
@@ -112,13 +122,8 @@ def face_encode():
 
 
 def main():
-    today = date.today()
-    current_date = today.strftime("%d/%m/%Y")
-    now = datetime.now()
-    current_time = now.strftime("%H:%M:%S")
-    print('Starting program : Face_Encoding.py - at : ' + current_time + ' on : ' + current_date)
-
-    face_encode()
+    start_program()
+    process_face_encode()
     exit_program()
 
 
