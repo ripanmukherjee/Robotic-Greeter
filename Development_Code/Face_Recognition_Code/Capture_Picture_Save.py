@@ -30,6 +30,14 @@ from datetime import date, datetime
 from subprocess import check_output
 
 
+def start_program():
+    today = date.today()
+    current_date = today.strftime("%d/%m/%Y")
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    print('Starting program : Capture_Picture_Save.py - at : ' + current_time + ' on : ' + current_date)
+
+
 def exit_program():
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
@@ -39,7 +47,7 @@ def exit_program():
     sys.exit()
 
 
-def get_details():
+def process_get_details():
     details = None
     args_get_details = "zenity --forms --width=500 --height=200 --title='Save picture with a valid name' \
                         --text='Type only the First Name' \
@@ -50,18 +58,19 @@ def get_details():
         details = details[0].strip()
         details = details.upper()
     except subprocess.CalledProcessError:
-        print("ERROR : subprocess.CalledProcessError - inside get_details function.")
+        print("ERROR : subprocess.CalledProcessError - inside process_get_details function.")
         exit_program()
 
     return details
 
 
-def save_picture(details, img, fps, unique_id):
+def process_save_picture(details, img, fps, unique_id):
     details = details + '_' + unique_id
     dataset_path = 'Dataset'
     path = Path(dataset_path)
     if path.exists() is False:
-        print("ERROR : path.exits() is false - Directory : Dataset is not present - inside save_picture function.")
+        print("ERROR : path.exits() is false - Directory : Dataset is not present - "
+              "inside process_save_picture function.")
         exit_program()
     else:
         path = Path(dataset_path+'/'+details)
@@ -91,7 +100,7 @@ def save_picture(details, img, fps, unique_id):
             exit_program()
 
 
-def picture_taking(unique_id):
+def process_picture_taking(unique_id):
     face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
     cap = cv2.VideoCapture(0)
     time.sleep(2.0)
@@ -110,8 +119,8 @@ def picture_taking(unique_id):
             names = []
 
             if int(end_time) - int(start_time) > capture_duration:
-                details = get_details()
-                save_picture(details, img, fps, unique_id)
+                details = process_get_details()
+                process_save_picture(details, img, fps, unique_id)
 
             for ((top, right, bottom, left), name) in zip(boxes, names):
                 cv2.rectangle(img, (left, top), (right, bottom), (0, 255, 0), 2)
@@ -126,7 +135,7 @@ def picture_taking(unique_id):
 
             fps.update()
         except cv2.error:
-            print("ERROR : cv2.error - for taking photo - inside picture_taking function.")
+            print("ERROR : cv2.error - for taking photo - inside process_picture_taking function.")
             check_output(["zenity", "--error", "--width=400", "--height=200", "--text=I cannot take your picture "
                                                                               "currently. \n\nPlease contact "
                                                                               "Admin"])
@@ -136,25 +145,23 @@ def picture_taking(unique_id):
     cap.release()
 
 
-def main():
-    today = date.today()
-    current_date = today.strftime("%d/%m/%Y")
-    now = datetime.now()
-    current_time = now.strftime("%H:%M:%S")
-    print('Starting program : Capture_Picture_Save.py - at : ' + current_time + ' on : ' + current_date)
-
+def process_check_input_argument():
     try:
         print('Inside Capture_Picture_Save.py - Unique ID is : ', sys.argv[1])
         print('Processing Capture_Picture_Save.py from Capture_Picture_Main.py.')
         unique_id = sys.argv[1]
-        picture_taking(unique_id)
+        process_picture_taking(unique_id)
         exit_program()
     except IndexError:
         print("Processing Capture_Picture_Save.py stand alone")
         unique_id = "0"
-        picture_taking(unique_id)
+        process_picture_taking(unique_id)
         exit_program()
 
+
+def main():
+    start_program()
+    process_check_input_argument()
     exit_program()
 
 
