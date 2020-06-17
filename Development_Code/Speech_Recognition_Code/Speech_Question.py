@@ -13,7 +13,7 @@
 #               different tasks.
 # ----------------------------------------------------------------------------------------------------------------------
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow for testing purpose:
-#               >> python3 Speech_Question.py
+#               $ python3 Speech_Question.py
 # ----------------------------------------------------------------------------------------------------------------------
 
 import os

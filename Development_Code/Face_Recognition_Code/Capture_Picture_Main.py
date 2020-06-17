@@ -12,7 +12,7 @@
 #               This process is a looping process that asks the user if he want to take multiple pictures and save it.
 # ----------------------------------------------------------------------------------------------------------------------
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow:
-#               >> python3 Capture_Picture_Main.py
+#               $ python3 Capture_Picture_Main.py
 # ----------------------------------------------------------------------------------------------------------------------
 
 import sys

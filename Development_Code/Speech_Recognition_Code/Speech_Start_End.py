@@ -13,7 +13,7 @@
 #               3. Case when 1 (For Known & Unknown): It will say Bye
 # ----------------------------------------------------------------------------------------------------------------------
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow for testing purpose :
-#               >> python3 Speech_Start_End.py
+#               $ python3 Speech_Start_End.py
 # ----------------------------------------------------------------------------------------------------------------------
 
 import os

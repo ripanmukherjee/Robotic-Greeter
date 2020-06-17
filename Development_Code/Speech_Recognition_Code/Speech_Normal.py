@@ -11,7 +11,7 @@
 #               be going to ask anything. It will talk just whatever text message this program will receive.
 # ----------------------------------------------------------------------------------------------------------------------
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow for testing purpose :
-#               >> python3 Speech_Normal.py
+#               $ python3 Speech_Normal.py
 # ----------------------------------------------------------------------------------------------------------------------
 
 import os

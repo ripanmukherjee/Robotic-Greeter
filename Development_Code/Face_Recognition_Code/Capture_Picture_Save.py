@@ -16,7 +16,7 @@
 #               cap = cv2.VideoCapture(-1) - If with -1 video stream is not working then you can replace with 0 or 1.
 # ----------------------------------------------------------------------------------------------------------------------
 # NOTE 2:       This program can be run separately or as a stand-alone program as follow:
-#               >> python3 Capture_Picture_Save.py
+#               $ python3 Capture_Picture_Save.py
 # ----------------------------------------------------------------------------------------------------------------------
 
 import os

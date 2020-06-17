@@ -13,7 +13,7 @@
 #               And with that response Main_Process.py will perform different task.
 # ----------------------------------------------------------------------------------------------------------------------
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow for testing purpose:
-#               >> python3 Speech_Name_Organization.py
+#               $ python3 Speech_Name_Organization.py
 # ----------------------------------------------------------------------------------------------------------------------
 
 import os

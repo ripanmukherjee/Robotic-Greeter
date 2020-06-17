@@ -13,8 +13,8 @@
 #               1. Customer_Search_ID.py
 #               2. Customer_Search_Name.py
 # ---------------------------------------------------------------------------------------------------------------------
-# NOTE 1:         This program can be run separately or as a stand-alone program as follow:
-#               >> python3 Customer_Search_Main.py
+# NOTE 1:       This program can be run separately or as a stand-alone program as follow:
+#               $ python3 Customer_Search_Main.py
 # ----------------------------------------------------------------------------------------------------------------------
 
 import sys

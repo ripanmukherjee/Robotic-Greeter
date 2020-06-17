@@ -30,7 +30,7 @@
 #               Please make sure that everything is correct.
 # ----------------------------------------------------------------------------------------------------------------------
 # NOTE 2:       This program can be run separately or as a stand-alone program as follow:
-#               >> python3 Customer_Update.py
+#               $ python3 Customer_Update.py
 # ----------------------------------------------------------------------------------------------------------------------
 
 import re

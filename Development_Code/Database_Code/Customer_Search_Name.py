@@ -31,7 +31,7 @@
 #               Please make sure that everything is correct.
 # ----------------------------------------------------------------------------------------------------------------------
 # NOTE 2:       This program can be run separately or as a stand-alone program as follow:
-#               >> python3 Customer_Search_Name.py
+#               $ python3 Customer_Search_Name.py
 # ----------------------------------------------------------------------------------------------------------------------
 
 import sys

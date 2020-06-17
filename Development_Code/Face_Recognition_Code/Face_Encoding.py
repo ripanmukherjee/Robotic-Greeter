@@ -16,7 +16,7 @@
 #               write the new encoding.pickle file.
 # ----------------------------------------------------------------------------------------------------------------------
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow:
-#               >> python3 Face_Encoding.py
+#               $ python3 Face_Encoding.py
 # ----------------------------------------------------------------------------------------------------------------------
 
 import os
