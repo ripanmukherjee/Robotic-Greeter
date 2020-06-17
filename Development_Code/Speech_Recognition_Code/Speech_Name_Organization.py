@@ -32,6 +32,14 @@ from subprocess import check_output
 from nltk.tokenize import word_tokenize
 
 
+def start_program():
+    today = date.today()
+    current_date = today.strftime("%d/%m/%Y")
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    print('Starting program : Speech_Name_Organization.py - At : ' + current_time + ' On : ' + current_date)
+
+
 def exit_program():
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
@@ -48,6 +56,19 @@ def token_sentence(text):
     sentences = nltk.ne_chunk_sents(tagged_sentences, binary=True)
 
     return sentences
+
+
+def check_input_argument():
+    try:
+        input_argv = sys.argv[1]
+        if input_argv == "0":
+            stand_alone_flag = 0
+        else:
+            stand_alone_flag = 0
+    except IndexError:
+        stand_alone_flag = 1
+
+    return stand_alone_flag
 
 
 def extract_entity_names(t):
@@ -96,7 +117,7 @@ def process_speak_listen(mp3_filename, text, record, flag):
     return text
 
 
-def process_details(mp3_filename, text, record):
+def process_extract_name_organization_details(mp3_filename, text, record):
     flag = 0
     text = process_speak_listen(mp3_filename, text, record, flag)
     if text is None:
@@ -117,24 +138,25 @@ def process_details(mp3_filename, text, record):
     return details
 
 
-def delete_mp3_output_files():
-    mp3_files = glob.glob('*.mp3')
-    output_files = glob.glob('*_Output.txt')
-    for files in mp3_files:
-        try:
-            os.remove(files)
-        except OSError:
-            print("Cannot able delete the old mp3 files.")
+def process_name(mp3_filename, record):
+    text = "May I please ask your name?"
+    name = process_extract_name_organization_details(mp3_filename, text, record)
 
-    for files in output_files:
-        try:
-            os.remove(files)
-        except OSError:
-            print("Cannot able delete the old output text files.")
+    if name is None:
+        text = process_name_organization(mp3_filename, record)
+    else:
+        text = "All right, and what company are you with?"
+        input_details = process_extract_name_organization_details(mp3_filename, text, record)
+        if input_details is None:
+            text = process_organization(mp3_filename, record, text, name)
+        else:
+            text = "Actually, I do not have your details. Would you like to save your details for future?"
+
+    return text
 
 
 def process_organization(mp3_filename, record, text, name):
-    organization = process_details(mp3_filename, text, record)
+    organization = process_extract_name_organization_details(mp3_filename, text, record)
     speak_text = ". Actually, I do not have your details. Would you like to save your details for future?"
     if organization is None:
         try:
@@ -166,7 +188,8 @@ def process_name_organization(mp3_filename, record):
         check_output(["zenity", "--question", "--width=400", "--height=200",
                       "--text=Sorry, I could not get your name.\n\n" "Do you want to enter your name?"])
         args_get_details = "zenity --forms --width=500 --height=200 --title='Name' \
-                    --text='Enter your First Name --add-entry='First Name'"
+                    --text='Enter your First Name' \
+                    --add-entry='First Name'"
         try:
             details = check_output(args_get_details, shell=True)
             details = details.decode().split('|')
@@ -181,49 +204,7 @@ def process_name_organization(mp3_filename, record):
     return text
 
 
-def main():
-    today = date.today()
-    current_date = today.strftime("%d/%m/%Y")
-    now = datetime.now()
-    current_time = now.strftime("%H:%M:%S")
-    print('Starting program : Speech_Name_Organization.py - At : ' + current_time + ' On : ' + current_date)
-
-    record = sr.Recognizer()
-    yes_syn_words = ['all right', 'alright', 'very well', 'of course', 'by all means', 'sure', 'certainly',
-                     'absolutely', 'indeed', 'affirmative', 'in the affirmative', 'agreed', 'roger', 'aye',
-                     'aye aye', 'yeah', 'yah', 'yep', 'yup', 'uh-huh', 'okay', 'ok', 'right', 'surely',
-                     'yea', 'well', 'course', 'yes', 'please']
-    stop_words = set(stopwords.words("english"))
-    stand_alone_flag = None
-
-    flag = 1
-    mp3_filename = "Speech_Name_Organization"
-    text = "I am going to ask few question to you. If I do not get an input from you within 5 second, then, " \
-           "I will prompt a pop up message to you."
-    process_speak_listen(mp3_filename, text, record, flag)
-
-    try:
-        input_argv = sys.argv[1]
-        if input_argv == "0":
-            stand_alone_flag = 0
-    except IndexError:
-        stand_alone_flag = 1
-
-    text = "May I please ask your name?"
-    name = process_details(mp3_filename, text, record)
-
-    if name is None:
-        text = process_name_organization(mp3_filename, record)
-    else:
-        text = "All right, and what company are you with?"
-        input_details = process_speak_listen(mp3_filename, text, record, flag)
-        if input_details is None:
-            text = process_organization(mp3_filename, record, text, name)
-        else:
-            text = "Actually, I do not have your details. Would you like to save your details for future?"
-
-    flag = 0
-    input_details = process_speak_listen(mp3_filename, text, record, flag)
+def process_input_details(input_details, mp3_filename, record, yes_syn_words, stop_words):
     if input_details is None:
         try:
             check_output(["zenity", "--question", "--width=400", "--height=200",
@@ -259,13 +240,54 @@ def main():
                 response = "NO"
                 print("No!! Do not want to continue")
 
+    return response
+
+
+def process_output_file_write(response):
     with open("Speech_Name_Organization_Output.txt", "w") as output_file:
         output_file.write(response)
 
+
+def delete_mp3_output_files(stand_alone_flag):
     if stand_alone_flag == 1:
         print("Deleting mp3 and output file. Value of stand_alone_flag : ", str(stand_alone_flag))
-        delete_mp3_output_files()
+        mp3_files = glob.glob('*.mp3')
+        output_files = glob.glob('*_Output.txt')
+        for files in mp3_files:
+            try:
+                os.remove(files)
+            except OSError:
+                print("Cannot able delete the old mp3 files.")
 
+        for files in output_files:
+            try:
+                os.remove(files)
+            except OSError:
+                print("Cannot able delete the old output text files.")
+
+
+def main():
+    yes_syn_words = ['all right', 'alright', 'very well', 'of course', 'by all means', 'sure', 'certainly',
+                     'absolutely', 'indeed', 'affirmative', 'in the affirmative', 'agreed', 'roger', 'aye',
+                     'aye aye', 'yeah', 'yah', 'yep', 'yup', 'uh-huh', 'okay', 'ok', 'right', 'surely',
+                     'yea', 'well', 'course', 'yes', 'please']
+    stop_words = set(stopwords.words("english"))
+    record = sr.Recognizer()
+    mp3_filename = "Speech_Name_Organization"
+
+    start_program()
+    # flag = 1
+    text = "I am going to ask your name and organization. If I do not get an input from you within 5 second, then, " \
+           "I will prompt a pop up message to you."
+    process_speak_listen(mp3_filename, text, record, flag=1)
+    stand_alone_flag = check_input_argument()
+    text = process_name(mp3_filename, record)
+
+    # flag = 0
+    input_details = process_speak_listen(mp3_filename, text, record, flag=0)
+    response = process_input_details(input_details, mp3_filename, record, yes_syn_words, stop_words)
+    process_output_file_write(response)
+    delete_mp3_output_files(stand_alone_flag)
     exit_program()
 
 

@@ -22,6 +22,14 @@ from playsound import playsound
 from datetime import date, datetime
 
 
+def start_program():
+    today = date.today()
+    current_date = today.strftime("%d/%m/%Y")
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    print('Starting program : Speech_Normal.py - at : ' + current_time + ' on : ' + current_date)
+
+
 def exit_program():
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
@@ -31,38 +39,7 @@ def exit_program():
     sys.exit()
 
 
-def process(mp3_filename, text):
-    mp3_filename = mp3_filename + ".mp3"
-    tts = gTTS(text=text, lang='en', slow=False)
-    tts.save(mp3_filename)
-    playsound(mp3_filename)
-    os.remove(mp3_filename)
-
-
-def delete_mp3_output_files():
-    mp3_files = glob.glob('*.mp3', recursive=True)
-    output_files = glob.glob('*_Output.txt', recursive=True)
-    for files in mp3_files:
-        try:
-            os.remove(files)
-        except OSError:
-            print("Cannot delete the old mp3 files.")
-
-    for files in output_files:
-        try:
-            os.remove(files)
-        except OSError:
-            print("Cannot delete the old output text files.")
-
-
-def main():
-    today = date.today()
-    current_date = today.strftime("%d/%m/%Y")
-    now = datetime.now()
-    current_time = now.strftime("%H:%M:%S")
-    print('Starting program : Speech_Normal.py - at : ' + current_time + ' on : ' + current_date)
-    stand_alone_flag = None
-    mp3_filename = "Speech_Normal"
+def check_input_argument():
     try:
         input_argv = sys.argv
         if len(input_argv) < 2:
@@ -78,11 +55,42 @@ def main():
         stand_alone_flag = 1
         text = "Hello, this is for testing. Sound is working."
 
-    process(mp3_filename, text)
+    return text, stand_alone_flag
+
+def process(mp3_filename, text):
+    mp3_filename = mp3_filename + ".mp3"
+    tts = gTTS(text=text, lang='en', slow=False)
+    tts.save(mp3_filename)
+    playsound(mp3_filename)
+    os.remove(mp3_filename)
+
+
+def delete_mp3_output_files(stand_alone_flag):
     if stand_alone_flag == 1:
         print("Deleting mp3 and output file. Value of stand_alone_flag : ", str(stand_alone_flag))
-        delete_mp3_output_files()
+        mp3_files = glob.glob('*.mp3', recursive=True)
+        output_files = glob.glob('*_Output.txt', recursive=True)
+        for files in mp3_files:
+            try:
+                os.remove(files)
+            except OSError:
+                print("Cannot delete the old mp3 files.")
 
+        for files in output_files:
+            try:
+                os.remove(files)
+            except OSError:
+                print("Cannot delete the old output text files.")
+
+
+def main():
+    stand_alone_flag = None
+    mp3_filename = "Speech_Normal"
+
+    start_program()
+    text, stand_alone_flag = check_input_argument(stand_alone_flag)
+    process(mp3_filename, text)
+    delete_mp3_output_files(stand_alone_flag)
     exit_program()
 
 

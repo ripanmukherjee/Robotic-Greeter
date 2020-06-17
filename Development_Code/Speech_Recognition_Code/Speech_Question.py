@@ -32,6 +32,14 @@ from subprocess import check_output
 from nltk.tokenize import word_tokenize
 
 
+def start_program():
+    today = date.today()
+    current_date = today.strftime("%d/%m/%Y")
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    print('Starting program : Speech_Question.py - At : ' + current_time + ' On : ' + current_date)
+
+
 def exit_program():
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
@@ -48,6 +56,26 @@ def token_sentence(text):
     sentences = nltk.ne_chunk_sents(tagged_sentences, binary=True)
 
     return sentences
+
+
+def check_input_argument():
+    stand_alone_flag = None
+    try:
+        input_argv = sys.argv
+        if len(input_argv) < 2:
+            stand_alone_flag = 1
+            text = "Hello, this is for testing. Do you want to continue?"
+        else:
+            text_list = []
+            for i in input_argv[1:]:
+                text_list.append(i)
+
+            text = " ".join(text_list)
+    except IndexError:
+        stand_alone_flag = 1
+        text = "Hello, this is for testing. Do you want to continue?"
+
+    return text, stand_alone_flag
 
 
 def process_speak_listen(mp3_filename, text, record, flag):
@@ -71,8 +99,7 @@ def process_speak_listen(mp3_filename, text, record, flag):
                     print("ERROR : LookupError - Could not able to understand")
                     try:
                         record_text = check_output(["zenity", "--question", "--width=400", "--height=200",
-                                                    "--text=I could not able to understand.\n\n"
-                                                    "Do you want to continue?"])
+                                                    "--text=I could not able to understand.\n\n" + text])
                         record_text = "Yes"
                     except subprocess.CalledProcessError:
                         print("ERROR : subprocess.CalledProcessError - inside process_speak_listen function.")
@@ -84,7 +111,7 @@ def process_speak_listen(mp3_filename, text, record, flag):
                     try:
                         record_text = check_output(["zenity", "--question", "--width=400", "--height=200",
                                                     "--text=I could not able to listen anything for 5 seconds.\n\n"
-                                                    "Do you want to continue?"])
+                                                    + text])
                         record_text = "Yes"
                     except subprocess.CalledProcessError:
                         print("ERROR : subprocess.CalledProcessError - inside process_speak_listen function.")
@@ -96,7 +123,7 @@ def process_speak_listen(mp3_filename, text, record, flag):
                     try:
                         record_text = check_output(["zenity", "--question", "--width=400", "--height=200",
                                                     "--text=I could not able to listen anything for 5 seconds.\n\n"
-                                                    "Do you want to continue?"])
+                                                    + text])
                         record_text = "Yes"
                     except subprocess.CalledProcessError:
                         print("ERROR : subprocess.CalledProcessError - inside process_speak_listen function.")
@@ -110,62 +137,8 @@ def process_speak_listen(mp3_filename, text, record, flag):
     return record_text
 
 
-def delete_mp3_output_files():
-    mp3_files = glob.glob('*.mp3', recursive=True)
-    output_files = glob.glob('*_Output.txt', recursive=True)
-    for files in mp3_files:
-        try:
-            os.remove(files)
-        except OSError:
-            print("Cannot delete the old mp3 files.")
-
-    for files in output_files:
-        try:
-            os.remove(files)
-        except OSError:
-            print("Cannot delete the old output text files.")
-
-
-def main():
-    today = date.today()
-    current_date = today.strftime("%d/%m/%Y")
-    now = datetime.now()
-    current_time = now.strftime("%H:%M:%S")
-    print('Starting program : Speech_Question.py - At : ' + current_time + ' On : ' + current_date)
-
-    record = sr.Recognizer()
-    yes_syn_words = ['all right', 'alright', 'very well', 'of course', 'by all means', 'sure', 'certainly',
-                     'absolutely', 'indeed', 'affirmative', 'in the affirmative', 'agreed', 'roger', 'aye',
-                     'aye aye', 'yeah', 'yah', 'yep', 'yup', 'uh-huh', 'okay', 'ok', 'right', 'surely',
-                     'yea', 'well', 'course', 'yes', 'please']
-    stop_words = set(stopwords.words("english"))
-    mp3_filename = "Speech_Question"
-    stand_alone_flag = None
-
-    flag = 1
-    text = "I am going to ask few question to you. You can answer with Yes or No. If I do not get an input for " \
-           "5 second, then, I will prompt a pop up message to you."
-    process_speak_listen(mp3_filename, text, record, flag)
-
-    try:
-        input_argv = sys.argv
-        if len(input_argv) < 2:
-            stand_alone_flag = 1
-            text = "Hello, this is for testing. Do you want to continue?"
-        else:
-            text_list = []
-            for i in input_argv[1:]:
-                text_list.append(i)
-
-            text = " ".join(text_list)
-    except IndexError:
-        stand_alone_flag = 1
-        text = "Hello, this is for testing. Do you want to continue?"
-
-    flag = 0
-    input_details = process_speak_listen(mp3_filename, text, record, flag)
+def process_input_details(input_details, mp3_filename, record, yes_syn_words, stop_words):
     response = "NO"
-
     if input_details is None:
         text = "Sorry, I did not get an input from you."
         flag = 1
@@ -188,13 +161,53 @@ def main():
                 response = "NO"
                 print("No!! Do not want to continue")
 
+    return response
+
+
+def process_output_file_write(response):
     with open("Speech_Question_Output.txt", "w") as output_file:
         output_file.write(response)
 
+
+def delete_mp3_output_files(stand_alone_flag):
     if stand_alone_flag == 1:
         print("Deleting mp3 and output file. Value of stand_alone_flag : ", str(stand_alone_flag))
-        delete_mp3_output_files()
+        mp3_files = glob.glob('*.mp3', recursive=True)
+        output_files = glob.glob('*_Output.txt', recursive=True)
+        for files in mp3_files:
+            try:
+                os.remove(files)
+            except OSError:
+                print("Cannot delete the old mp3 files.")
 
+        for files in output_files:
+            try:
+                os.remove(files)
+            except OSError:
+                print("Cannot delete the old output text files.")
+
+
+def main():
+    yes_syn_words = ['all right', 'alright', 'very well', 'of course', 'by all means', 'sure', 'certainly',
+                     'absolutely', 'indeed', 'affirmative', 'in the affirmative', 'agreed', 'roger', 'aye',
+                     'aye aye', 'yeah', 'yah', 'yep', 'yup', 'uh-huh', 'okay', 'ok', 'right', 'surely',
+                     'yea', 'well', 'course', 'yes', 'please']
+    stop_words = set(stopwords.words("english"))
+    mp3_filename = "Speech_Question"
+    record = sr.Recognizer()
+
+    start_program()
+    # flag = 1
+    text = "I am going to ask few question to you. You can answer with Yes or No. If I do not get an input from you " \
+           "within 5 second, then, I will prompt a pop up message to you."
+    process_speak_listen(mp3_filename, text, record, flag=1)
+    text, stand_alone_flag = check_input_argument()
+
+    # flag = 0
+    input_details = process_speak_listen(mp3_filename, text, record, flag=0)
+    response = process_input_details(input_details, mp3_filename, record, yes_syn_words, stop_words)
+    process_output_file_write(response)
+    delete_mp3_output_files(stand_alone_flag)
     exit_program()
 
 

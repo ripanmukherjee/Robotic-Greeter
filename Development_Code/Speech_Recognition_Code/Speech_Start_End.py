@@ -24,6 +24,14 @@ from playsound import playsound
 from datetime import date, datetime
 
 
+def start_program():
+    today = date.today()
+    current_date = today.strftime("%d/%m/%Y")
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    print('Starting program : Speech_Start_End.py - at : ' + current_time + ' on : ' + current_date)
+
+
 def exit_program():
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
@@ -31,6 +39,23 @@ def exit_program():
     current_time = now.strftime("%H:%M:%S")
     print('Ending program : Speech_Start_End.py - at : ' + current_time + ' on : ' + current_date)
     sys.exit()
+
+
+def check_input_argument(stand_alone_flag):
+    try:
+        input_argv = sys.argv[1]
+        if input_argv == "0":
+            text = "Hello, Welcome to Care Go, my name is TELIA. I am Care Go’s virtual greeter."
+        elif input_argv == "1":
+            text = "Thank you for visiting Care Go. Bye. See you later."
+        else:
+            text = "Hello " + input_argv + ". Welcome to Care Go, do you remember me, TELIA, Care Go’s " \
+                                           "virtual greeter? "
+    except IndexError:
+        stand_alone_flag = 1
+        text = "Hello, Welcome to Care Go, my name is TELIA. I am Care Go’s virtual greeter."
+
+    return text, stand_alone_flag
 
 
 def process(mp3_filename, text):
@@ -41,51 +66,32 @@ def process(mp3_filename, text):
     os.remove(mp3_filename)
 
 
-def delete_mp3_output_files():
-    mp3_files = glob.glob('*.mp3', recursive=True)
-    output_files = glob.glob('*_Output.txt', recursive=True)
-    for files in mp3_files:
-        try:
-            os.remove(files)
-        except OSError:
-            print("Cannot delete the old mp3 files.")
+def delete_mp3_output_files(stand_alone_flag):
+    if stand_alone_flag == 1:
+        print("Deleting mp3 and output file. Value of stand_alone_flag : ", str(stand_alone_flag))
+        mp3_files = glob.glob('*.mp3', recursive=True)
+        output_files = glob.glob('*_Output.txt', recursive=True)
+        for files in mp3_files:
+            try:
+                os.remove(files)
+            except OSError:
+                print("Cannot delete the old mp3 files.")
 
-    for files in output_files:
-        try:
-            os.remove(files)
-        except OSError:
-            print("Cannot delete the old output text files.")
+        for files in output_files:
+            try:
+                os.remove(files)
+            except OSError:
+                print("Cannot delete the old output text files.")
 
 
 def main():
-    today = date.today()
-    current_date = today.strftime("%d/%m/%Y")
-    now = datetime.now()
-    current_time = now.strftime("%H:%M:%S")
-    print('Starting program : Speech_Start_End.py - at : ' + current_time + ' on : ' + current_date)
     stand_alone_flag = None
-    try:
-        input_argv = sys.argv[1]
-        if input_argv == "0":
-            mp3_filename = "Speech_Start_End"
-            text = "Hello, Welcome to Care Go, my name is TELIA. I am Care Go’s virtual greeter."
-        elif input_argv == "1":
-            mp3_filename = "Speech_Start_End"
-            text = "Thank you for visiting Care Go. Bye. See you later."
-        else:
-            mp3_filename = "Speech_Start_End"
-            text = "Hello " + input_argv + ". Welcome to Care Go, do you remember me, TELIA, Care Go’s " \
-                                           "virtual greeter? "
-    except IndexError:
-        stand_alone_flag = 1
-        mp3_filename = "Speech_Start_End"
-        text = "Hello, Welcome to Care Go, my name is TELIA. I am Care Go’s virtual greeter."
+    mp3_filename = "Speech_Start_End"
 
+    start_program()
+    text, stand_alone_flag = check_input_argument(stand_alone_flag)
     process(mp3_filename, text)
-    if stand_alone_flag == 1:
-        print("Deleting mp3 and output file. Value of stand_alone_flag : ", str(stand_alone_flag))
-        delete_mp3_output_files()
-
+    delete_mp3_output_files(stand_alone_flag)
     exit_program()
 
 
