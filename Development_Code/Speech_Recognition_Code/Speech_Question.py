@@ -19,7 +19,6 @@
 import os
 import sys
 import gtts
-import nltk
 import glob
 import subprocess
 from gtts import gTTS
@@ -61,15 +60,6 @@ def process_parameter_set():
            "within 5 second, then, I will prompt a pop up message to you."
 
     return yes_syn_words, stop_words, record, mp3_filename, text
-
-
-def process_token_sentence(text):
-    sentences = nltk.sent_tokenize(text)
-    tokenized_sentences = [nltk.word_tokenize(sentence) for sentence in sentences]
-    tagged_sentences = [nltk.pos_tag(sentence) for sentence in tokenized_sentences]
-    sentences = nltk.ne_chunk_sents(tagged_sentences, binary=True)
-
-    return sentences
 
 
 def process_check_input_argument():
@@ -183,7 +173,7 @@ def process_output_file_write(response):
         output_file.write(response)
 
 
-def delete_mp3_output_files(stand_alone_flag):
+def process_delete_mp3_output_files(stand_alone_flag):
     if stand_alone_flag == 1:
         print("Deleting mp3 and output file. Value of stand_alone_flag : ", str(stand_alone_flag))
         mp3_files = glob.glob('*.mp3', recursive=True)
@@ -209,7 +199,7 @@ def main():
     input_details = process_speak_listen(mp3_filename, text, record, flag=0)
     response = process_input_details(input_details, mp3_filename, record, yes_syn_words, stop_words)
     process_output_file_write(response)
-    delete_mp3_output_files(stand_alone_flag)
+    process_delete_mp3_output_files(stand_alone_flag)
     exit_program()
 
 
