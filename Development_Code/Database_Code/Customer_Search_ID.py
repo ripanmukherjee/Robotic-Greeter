@@ -64,7 +64,7 @@ def process_parameter_set():
     return region
 
 
-def checking_region_table(region):
+def process_checking_region_table(region):
     main_table = None
     sequence_table = None
     if region == "DEV":
@@ -78,13 +78,13 @@ def checking_region_table(region):
         sequence_table = "carego_customer_dev_ID_seq"
     else:
         print("ERROR : REGION VALUE NOT FOUND. Please check the REGION value inside the program - "
-              "inside checking_region_table function.")
+              "inside process_checking_region_table function.")
         exit_program()
 
     return main_table, sequence_table
 
 
-def get_details():
+def process_get_details():
     details = None
     args_get_details = "zenity --forms --width=500 --height=200 --title='Search user' \
                 --text='Search with ID' \
@@ -95,13 +95,13 @@ def get_details():
         details = details[0].strip()
         print(details)
     except subprocess.CalledProcessError:
-        print("ERROR : subprocess.CalledProcessError - inside get_details function.")
+        print("ERROR : subprocess.CalledProcessError - inside process_get_details function.")
         exit_program()
 
     return details
 
 
-def format_details(details):
+def process_format_details(details):
     id_details = None
     try:
         if len(details) < 1:
@@ -117,7 +117,7 @@ def format_details(details):
         else:
             id_details = details
     except IndexError:
-        print("ERROR : IndexError - You did not enter any details - inside format_details function.")
+        print("ERROR : IndexError - You did not enter any details - inside process_format_details function.")
         check_output(["zenity", "--error", "--width=400", "--height=200", "--text=ALERT!!!\n\nYou did not enter "
                                                                           "any details!!!!"])
         exit_program()
@@ -125,7 +125,7 @@ def format_details(details):
     return id_details
 
 
-def search_id(check_main_table, id_details):
+def process_search_id(check_main_table, id_details):
     try:
         conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1", port="5432")
         cur = conn.cursor()
@@ -136,7 +136,7 @@ def search_id(check_main_table, id_details):
         row = cur.fetchall()
 
         if len(row) == 0:
-            print("ERROR : There are no data as per your search - inside search_id function.")
+            print("ERROR : There are no data as per your search - inside process_search_id function.")
             check_output(["zenity", "--error", "--width=400", "--height=200", "--text=There are no data as per "
                                                                               "your search!!!!"])
             exit_program()
@@ -147,13 +147,13 @@ def search_id(check_main_table, id_details):
         cur.close()
         conn.close()
     except psycopg2.OperationalError as error:
-        print("ERROR : psycopg2.OperationalError - inside search_id function : " + str(error))
+        print("ERROR : psycopg2.OperationalError - inside process_search_id function : " + str(error))
         row = None
 
     return row
 
 
-def display_details(search_details):
+def process_display_details(search_details):
     display_row = ""
     counter = 0
     for list_details in search_details:
@@ -177,20 +177,20 @@ def display_details(search_details):
 
 def process_id_search_display(check_main_table, id_value):
     if id_value != "":
-        search_details = search_id(check_main_table, id_value)
+        search_details = process_search_id(check_main_table, id_value)
     else:
         search_details = None
 
     if len(search_details) > 0:
-        display_details(search_details)
+        process_display_details(search_details)
 
 
 def main():
     start_program()
     region = process_parameter_set()
-    check_main_table,  check_sequence_table = checking_region_table(region)
-    details = get_details()
-    id_value = format_details(details)
+    check_main_table,  check_sequence_table = process_checking_region_table(region)
+    details = process_get_details()
+    id_value = process_format_details(details)
     process_id_search_display(check_main_table, id_value)
     exit_program()
 
