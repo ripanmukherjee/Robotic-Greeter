@@ -102,14 +102,14 @@ def process_ask_question(flag):
 
 
 def process_get_details_initial_option():
-    args = "zenity --list --width=500 --height=300 --title='Modify the data - Only one of the following' \
-    --column='Option' --column='Description' \
-    1 'Modify First Name' \
-    2 'Modify Last Name' \
-    3 'Modify Email ID' \
-    4 'Modify Phone Number' \
-    5 'Modify Employer' \
-    6 'Modify Role'"
+    args = "zenity --list --width=500 --height=300 --title='Modify the data - Select only one of the following' " \
+           "--checklist --column='Option' --column='Number' --column='Description' \
+            1 1 'Modify First Name' \
+            2 2 'Modify Last Name' \
+            3 3 'Modify Email ID' \
+            4 4 'Modify Phone Number' \
+            5 5 'Modify Employer' \
+            6 6 'Modify Role'"
 
     try:
         details = check_output(args, shell=True)
