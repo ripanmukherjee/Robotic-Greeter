@@ -6,6 +6,8 @@ This folder contains all the documents for installation. Robotic-Greeter project
 
 Please follow all step by step and you can also download the PDF or WORD file.
 
+Note: This project is developed on a Linux System (Ubuntu), so, it is advisable to use Linux for this project.
+
 1. UbuntuAPP_UbuntuOS_Installation_ : A tutorial on how to install the Ubuntu OS along with Windows 10 and how to install Ubuntu APP on Windows 10.
 
 |
