@@ -95,11 +95,15 @@ def process_speak_listen(mp3_filename, text, record, flag):
             with sr.Microphone(device_index=0) as source:
                 record.adjust_for_ambient_noise(source)
                 print("Speak:")
+                os.system("zenity --progress --width=400 --height=200 --title='Speak Now' "
+                          "--text='Speak Now......No need to click Ok button' --no-cancel &")
                 try:
                     audio = record.listen(source, timeout=5)
                     record_text = record.recognize_google(audio)
+                    os.system("ps -ef|grep zenity|awk '{print $2}'|head -1|xargs kill -9")
                     print(record_text)
                 except LookupError:
+                    os.system("ps -ef|grep zenity|awk '{print $2}'|head -1|xargs kill -9")
                     print("ERROR : LookupError - Could not able to understand")
                     try:
                         record_text = check_output(["zenity", "--question", "--width=400", "--height=200",
@@ -111,6 +115,7 @@ def process_speak_listen(mp3_filename, text, record, flag):
 
                     print(record_text)
                 except speech_recognition.WaitTimeoutError:
+                    os.system("ps -ef|grep zenity|awk '{print $2}'|head -1|xargs kill -9")
                     print("ERROR : WaitTimeoutError - Could not able to listen anything for 5 seconds")
                     try:
                         record_text = check_output(["zenity", "--question", "--width=400", "--height=200",
@@ -123,6 +128,7 @@ def process_speak_listen(mp3_filename, text, record, flag):
 
                     print(record_text)
                 except speech_recognition.UnknownValueError:
+                    os.system("ps -ef|grep zenity|awk '{print $2}'|head -1|xargs kill -9")
                     print("ERROR : UnknownValueError - Could not able to listen anything for 5 seconds")
                     try:
                         record_text = check_output(["zenity", "--question", "--width=400", "--height=200",
@@ -194,7 +200,7 @@ def process_delete_mp3_output_files(stand_alone_flag):
 def main():
     start_program()
     yes_syn_words, stop_words, record, mp3_filename, text = process_parameter_set()
-    process_speak_listen(mp3_filename, text, record, flag=1)
+    # process_speak_listen(mp3_filename, text, record, flag=1)
     text, stand_alone_flag = process_check_input_argument()
     input_details = process_speak_listen(mp3_filename, text, record, flag=0)
     response = process_input_details(input_details, mp3_filename, record, yes_syn_words, stop_words)
