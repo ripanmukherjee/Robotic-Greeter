@@ -58,10 +58,10 @@ def process_ask_question(flag):
 
 def process_get_details():
     details = None
-    args = "zenity --list --width=500 --height=250 --title='List of search' \
-    --column='Option' --column='Description' \
-    1 'Search by ID' \
-    2 'Search by First Name or Last Name'"
+    args = "zenity --list --width=500 --height=250 --title='List of search -Select only one option' --checklist \
+    --column='Option' --column='Search' --column='Description' \
+    1 'ID' 'Search by ID' \
+    2 'Name' 'Search by First Name or Last Name'"
 
     try:
         details = check_output(args, shell=True)
@@ -75,7 +75,7 @@ def process_get_details():
 
 def process_call_program(details):
     try:
-        if details == "1":
+        if details == "ID":
             print("Selected option : ID")
             print("Calling program : Customer_Search_ID.py......")
             args_call = "python3 Customer_Search_ID.py"
@@ -84,7 +84,7 @@ def process_call_program(details):
             except subprocess.CalledProcessError:
                 print("ERROR : subprocess.CalledProcessError - inside process_call_program function.")
         else:
-            if details == "2":
+            if details == "Name":
                 print("Selected option : Name")
                 print("Calling program : Customer_Search_Name.py......")
                 args_call = "python3 Customer_Search_Name.py"
