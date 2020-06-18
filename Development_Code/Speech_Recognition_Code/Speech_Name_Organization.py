@@ -109,17 +109,23 @@ def process_speak_listen(mp3_filename, text, record, flag):
             with sr.Microphone(device_index=0) as source:
                 record.adjust_for_ambient_noise(source, duration=1)
                 print("Speak:")
+                os.system("zenity --progress --width=400 --height=200 --title='Speak Now' "
+                          "--text='Speak Now......No need to click Ok button' --no-cancel &")
                 try:
                     audio = record.listen(source, timeout=5)
                     text = record.recognize_google(audio)
+                    os.system("ps -ef|grep zenity|awk '{print $2}'|head -1|xargs kill -9")
                     print(text)
                 except LookupError:
+                    os.system("ps -ef|grep zenity|awk '{print $2}'|head -1|xargs kill -9")
                     print("ERROR : LookupError - Could not able to understand")
                     text = None
                 except speech_recognition.WaitTimeoutError:
+                    os.system("ps -ef|grep zenity|awk '{print $2}'|head -1|xargs kill -9")
                     print("ERROR : WaitTimeoutError - Could not able to listen anything for 5 seconds")
                     text = None
                 except speech_recognition.UnknownValueError:
+                    os.system("ps -ef|grep zenity|awk '{print $2}'|head -1|xargs kill -9")
                     print("ERROR : UnknownValueError - Could not able to listen anything for 5 seconds")
                     text = None
     except gtts.tts.gTTSError:
