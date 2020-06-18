@@ -357,9 +357,12 @@ def process_update_detail():
 
 def process_unknown(main_directory, database_code_directory, face_recognition_code_directory,
                     speech_recognition_code_directory, detect_name):
-    passing_arg = "0"
     os.chdir(speech_recognition_code_directory)
+    passing_arg = "0"
     process_speech_start_end(passing_arg)
+    text = "I am going to ask few question to you. You can answer with Yes or No. If I do not get an input from you " \
+           "within 5 second then I will prompt a pop up message to you."
+    process_speech_normal(text)
     text = "Do you need any help?"
     response = process_speech_question(text)
 
@@ -386,7 +389,7 @@ def process_unknown(main_directory, database_code_directory, face_recognition_co
                     os.chdir(main_directory)
                     if output_process_picture is not None:
                         os.chdir(speech_recognition_code_directory)
-                        text = "Okay. Thank you for saving your picture. Do you like to search anyone?"
+                        text = "Okay. Thank you for saving your picture. Are you looking for someone here?"
                         response = process_speech_question(text)
                         if response == "YES":
                             text = "There will be some pop up message will appear. Please follow it."
@@ -397,7 +400,7 @@ def process_unknown(main_directory, database_code_directory, face_recognition_co
                             os.chdir(main_directory)
 
                         os.chdir(speech_recognition_code_directory)
-                        text = "Do you like to update your details?"
+                        text = "Do you like to update or modify your details?"
                         response = process_speech_question(text)
                         if response == "YES":
                             text = "There will be some pop up message will appear. Please follow it."
@@ -410,7 +413,7 @@ def process_unknown(main_directory, database_code_directory, face_recognition_co
                         # remove code -- Here Code should delete the data from database and inform the customer.
                         print("ERROR : UNKNOWN customer do not want to save picture. But details saved in dataBase.")
                         os.chdir(speech_recognition_code_directory)
-                        text = "Okay. Since you do not want to save picture, do you like to search anyone?"
+                        text = "Okay. Since you do not want to save picture, are you looking for someone here?"
                         response = process_speech_question(text)
                         if response == "YES":
                             text = "There will be some pop up message will appear. Please follow it."
@@ -422,7 +425,7 @@ def process_unknown(main_directory, database_code_directory, face_recognition_co
                 else:
                     print("INFO - {} customer do not want to save detail.".format(detect_name))
                     os.chdir(speech_recognition_code_directory)
-                    text = "Okay. Since you do not want to save your details, do you like to search anyone?"
+                    text = "Okay. Since you do not want to save your details, are you looking for someone here?"
                     response = process_speech_question(text)
                     if response == "YES":
                         text = "There will be some pop up message will appear. Please follow it."
@@ -455,7 +458,7 @@ def process_known(main_directory, database_code_directory, face_recognition_code
     passing_arg = detect_name.lower()
     os.chdir(speech_recognition_code_directory)
     process_speech_start_end(passing_arg)
-    text = "Do you need any help?"
+    text = detect_name.lower() + " Do you need any help?"
     process_speech_question(text)
     try:
         with open("Speech_Question_Output.txt", "r") as file:
@@ -474,8 +477,27 @@ def process_known(main_directory, database_code_directory, face_recognition_code
         table_details = process_search_all_details(check_main_table, detect_id)
         os.chdir(main_directory)
         if table_details is not None:
-            process_ask_search(database_code_directory, main_directory, detect_name)
-            process_ask_update(database_code_directory, main_directory, detect_name)
+            os.chdir(speech_recognition_code_directory)
+            text = "Okay " + detect_name.lower() + ". Are you looking for someone here?"
+            response = process_speech_question(text)
+            if response == "YES":
+                text = "There will be some pop up message will appear. Please follow it."
+                process_speech_normal(text)
+                os.chdir(main_directory)
+                process_ask_search(database_code_directory, main_directory, detect_name)
+            else:
+                os.chdir(main_directory)
+
+            os.chdir(speech_recognition_code_directory)
+            text = "Okay " + detect_name.lower() + ". Do you like to update or modify your details?"
+            response = process_speech_question(text)
+            if response == "YES":
+                text = "There will be some pop up message will appear. Please follow it."
+                process_speech_normal(text)
+                os.chdir(main_directory)
+                process_ask_update(database_code_directory, main_directory, detect_name)
+            else:
+                os.chdir(main_directory)
         else:
             text = "Currently we do not have your correct details\n\nwould you like to save your details?"
             response = process_ask_question(text)
@@ -499,19 +521,77 @@ def process_known(main_directory, database_code_directory, face_recognition_code
                                   "save the image data with new ID : ", str(unique_id))
                         else:
                             os.rename(old_folder, new_folder)
-                            process_ask_search(database_code_directory, main_directory, detect_name)
-                            process_ask_update(database_code_directory, main_directory, detect_name)
+                            os.chdir(main_directory)
+                            os.chdir(speech_recognition_code_directory)
+                            text = "Okay " + detect_name.lower() + ". Are you looking for someone here?"
+                            response = process_speech_question(text)
+                            if response == "YES":
+                                text = "There will be some pop up message will appear. Please follow it."
+                                process_speech_normal(text)
+                                os.chdir(main_directory)
+                                process_ask_search(database_code_directory, main_directory, detect_name)
+                            else:
+                                os.chdir(main_directory)
+
+                            os.chdir(speech_recognition_code_directory)
+                            text = "Okay " + detect_name.lower() + ". Do you like to update or modify your details?"
+                            response = process_speech_question(text)
+                            if response == "YES":
+                                text = "There will be some pop up message will appear. Please follow it."
+                                process_speech_normal(text)
+                                os.chdir(main_directory)
+                                process_ask_update(database_code_directory, main_directory, detect_name)
+                            else:
+                                os.chdir(main_directory)
                     except subprocess.CalledProcessError:
                         print("ERROR : subprocess.CalledProcessError - inside process_known function. "
                               "could not able to save the image data with new ID : ", str(unique_id))
-                        process_ask_search(database_code_directory, main_directory, detect_name)
-                        process_ask_update(database_code_directory, main_directory, detect_name)
+                        os.chdir(main_directory)
+                        os.chdir(speech_recognition_code_directory)
+                        text = "Okay " + detect_name.lower() + ". Are you looking for someone here?"
+                        response = process_speech_question(text)
+                        if response == "YES":
+                            text = "There will be some pop up message will appear. Please follow it."
+                            process_speech_normal(text)
+                            os.chdir(main_directory)
+                            process_ask_search(database_code_directory, main_directory, detect_name)
+                        else:
+                            os.chdir(main_directory)
+
+                        os.chdir(speech_recognition_code_directory)
+                        text = "Okay " + detect_name.lower() + ". Do you like to update or modify your details?"
+                        response = process_speech_question(text)
+                        if response == "YES":
+                            text = "There will be some pop up message will appear. Please follow it."
+                            process_speech_normal(text)
+                            os.chdir(main_directory)
+                            process_ask_update(database_code_directory, main_directory, detect_name)
+                        else:
+                            os.chdir(main_directory)
                 else:
                     print("INFO - {} customer do not want to save detail.".format(detect_name))
-                    process_ask_search(database_code_directory, main_directory, detect_name)
+                    os.chdir(speech_recognition_code_directory)
+                    text = "Okay " + detect_name.lower() + ". Are you looking for someone here?"
+                    response = process_speech_question(text)
+                    if response == "YES":
+                        text = "There will be some pop up message will appear. Please follow it."
+                        process_speech_normal(text)
+                        os.chdir(main_directory)
+                        process_ask_search(database_code_directory, main_directory, detect_name)
+                    else:
+                        os.chdir(main_directory)
             else:
                 print("INFO - {} customer do not want to save detail.".format(detect_name))
-                process_ask_search(database_code_directory, main_directory, detect_name)
+                os.chdir(speech_recognition_code_directory)
+                text = "Okay " + detect_name.lower() + ". Are you looking for someone here?"
+                response = process_speech_question(text)
+                if response == "YES":
+                    text = "There will be some pop up message will appear. Please follow it."
+                    process_speech_normal(text)
+                    os.chdir(main_directory)
+                    process_ask_search(database_code_directory, main_directory, detect_name)
+                else:
+                    os.chdir(main_directory)
     else:
         os.chdir(main_directory)
 
