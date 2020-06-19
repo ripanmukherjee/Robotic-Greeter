@@ -6,13 +6,15 @@
 # Date:         Friday 24 April, 2020
 # Version:      1
 # ----------------------------------------------------------------------------------------------------------------------
-# Description:  Customer_Update.py is use to update the data of the customer into the following table :
-#               Development (DEV) : carego_customer_dev
-#               Test (TEST) : carego_customer_test
-#               Production (PROD) : carego_customer_prod
+# Description:  All the python code in Database Code folder deals with the following table:
 #
-#               This program will be called from ~/Main_Process/Main_Process.py, if the customer wants to update their
-#               details. To update the details, customer should know their unique ID, as this program will ask
+#               * Development (DEV) : carego_customer_dev
+#               * Test (TEST) : carego_customer_test
+#               * Production (PROD) : carego_customer_prod
+#
+#               Customer_Update.py is used to update the data of the customer into the table mentioned above. This
+#               program will be called from ~/Main_Process/Main_Process.py if the customer wants to update their
+#               details. To update the details, customer should know their unique ID, as this program will ask to
 #               confirm the ID before to update.
 # ----------------------------------------------------------------------------------------------------------------------
 # NOTE 1:       Please make sure to change the region value as per region wise before putting to server :
