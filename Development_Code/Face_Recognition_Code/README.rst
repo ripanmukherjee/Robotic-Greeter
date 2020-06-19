@@ -52,13 +52,13 @@ But to run this program you need to validate the follows:
 
 Codes Architecture:
 -----------------------------------
-If you want to read more about the above programs then please go to Database_Code_Document_
+If you want to read more about the above programs then please go to Face_Recognition_Code_Document_
 
-.. _Database_Code_Document:
+.. _Face_Recognition_Code_Document:
 
 System Set Up:
 -----------------------------------
-There are a couple of Python packages and database that need to validate before running any above program in this folder. Please go to the Installation_Documents_ folder and follow all the steps.
+There are a couple of Python packages that need to validate before running any above program in this folder. Please go to the Installation_Documents_ folder and follow all the steps.
 
 .. _Installation_Documents: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Installation_Documents
 
