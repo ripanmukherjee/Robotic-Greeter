@@ -5,6 +5,7 @@
       <w>caregodb</w>
       <w>currval</w>
       <w>dataset</w>
+      <w>dshow</w>
       <w>frontalface</w>
       <w>gtts</w>
       <w>haarcascade</w>
@@ -13,6 +14,7 @@
       <w>nltk</w>
       <w>opencv</w>
       <w>pathlib</w>
+      <w>playsound</w>
       <w>postgre</w>
       <w>postgresql</w>
       <w>pyaudio</w>
@@ -21,6 +23,8 @@
       <w>regclass</w>
       <w>somak</w>
       <w>studentdb</w>
+      <w>telia</w>
+      <w>xargs</w>
       <w>zenity</w>
     </words>
   </dictionary>
