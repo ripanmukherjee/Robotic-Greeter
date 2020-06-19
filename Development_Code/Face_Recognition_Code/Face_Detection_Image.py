@@ -6,23 +6,23 @@
 # Date:         Friday 24 April, 2020
 # Version:      1
 # ----------------------------------------------------------------------------------------------------------------------
-# Description:  Capture_Picture_Main.py program is a testing program of Face_Detection_Camera.py; this process is use
-#           	to detect the faces from an image. First, you need to load the image into the following line present
-#          	 	in code: image_path = 'Sample_Images/image1.jpg'.
+# Description:  Capture_Picture_Main.py program is a testing program of Face_Detection_Camera.py; this process is used
+#               to detect the faces from an image. First, you need to load the image into the following line present
+#               in code: image_path = 'Sample_Images/image1.jpg'.
 #
-#           	Sample_Images is the directory you need to put your sample image and then need to run the
-#           	program. This process will also detect the image coordinate and check if it is present in
-#           	encoding.pickle file (~/Face_Recognition_Code/encoding.pickle). If the same coordinate picture
-#           	details are current in the archive, then this program will show the known person's name on the video
-#           	frame. If not, then it will show as Unknown.
+#               Sample_Images is the directory you need to put your sample image and then need to run the program.
+#               This process will also detect the image coordinate and check if it is present in the
+#               encoding.pickle file. If the same coordinate picture details are current in the archive, this program
+#               will show the known person's name on the video frame. If not, then it will show as Unknown.
 #
-#           	But to run this program you need to validate the follows:
-#           	1. First put your sample image into Dataset directory/Image_Name_Directory. (Suppose if your name is
-#           	ABC then first create a directory inside Dataset directory with name ABC and put your image inside of
-#           	it).
-#           	2. Run the Face_Encoding.py (This will create encoding.pickle file with the image coordinate).
-#           	3. Then you can put another sample image of you inside of Sample_Images directory.
-#           	4. At last, run this program.
+#               But to run this program, you need to validate the follows:
+#
+#               * First, put your sample image into Dataset directory/Image_Name_Directory.
+#               (Suppose if your name is ABC then first create a directory inside Dataset directory
+#               with name ABC and put your image inside of it).
+#               * Run the Face_Encoding.py (This will create encoding.pickle file with the image coordinate).
+#               * Then you can put another sample image of you inside of the Sample_Images directory.
+#               * At last, run this program as stand-alone.
 # ----------------------------------------------------------------------------------------------------------------------
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow:
 #           	$ python3 Face_Detection_Image.py
