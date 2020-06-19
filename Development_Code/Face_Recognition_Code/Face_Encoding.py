@@ -6,14 +6,15 @@
 # Date:         Friday 24 April, 2020
 # Version:      1
 # ----------------------------------------------------------------------------------------------------------------------
-# Description:  This program is the main program which will create encoding.pickle file, which is an essential
-#               for Face_Detection_Camera.py & Face_Detection_Image.py. Mainly, for all the application which needs to
-#               detect the faces. First, this program will check if the encoding.pickle file is already present or not.
-#               If the file is present then it will take all the old data and store into one variable, later this
-#               program will check the new images present in ~/Face_Recognition_Code/Dataset directory. If any new
-#               images present then it will create new coordinate for the latest pictures and then will concatenate the
-#               new coordinate with old coordinate (which had sorted earlier into one variable), then it will again
-#               write the new encoding.pickle file.
+# Description:  This program is the main program which will create encoding.pickle file, which is essential for
+#               Face_Detection_Camera.py & Face_Detection_Image.py. Mainly, for all the application which needs to
+#               detect the faces. First, this program will check if the encoding.pickle file is already present or
+#               not in the same folder. If the file exists, then it will read all the old data (old coordinate data)
+#               from the encoding file and store it into one variable, later this program will check if any new images
+#               present in the Dataset directory or not. If the Dataset directory has any new pictures or old photos,
+#               then this program will read those photos and will create a new encoding coordinate. After reading all
+#               the latest images, this program will merge all the old coordinates with new coordinates and will write
+#               again into encoding.pickle file.
 # ----------------------------------------------------------------------------------------------------------------------
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow:
 #               $ python3 Face_Encoding.py
