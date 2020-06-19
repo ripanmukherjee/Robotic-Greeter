@@ -1,19 +1,38 @@
-Instruction Documents - README :
+Instruction Documents:
 **********************************
+This instruction document is for all the database related code, where we have codes for inserting data into database, search the data from database based on ID or Name and also, codes for update the details on the database.
 
-Database Code :
+Note: This project is developed on a Linux System (Ubuntu), so, it is advisable to use Linux for this project.
+
+Database Code:
 -----------------------------------
+All the python code in Database Code folder deals with the following table:
 
-This folder contains all the database related code written in Python as follow:
+* Development (DEV) : carego_customer_dev
+* Test (TEST) : carego_customer_test
+* Production (PROD) : carego_customer_prod
+
+Database related code written in Python as follow:
 
 1. Customer_Insert.py_:
+Customer_Insert.py is use for inserting the data of the customer into the above mentioned table.
+
+This program will be called from Main_Process.py. If the customer wants to save their details in the database then Main_Process.py will call this program, and this process will insert the data into the table mentioned above.
+
+Also, you can run this program as stand alone program.
 
 2. Customer_Search_Main.py_:
+Customer_Search_Main.py is used to search the customer's data, and it will be called from Main_Process.py. If the customer wants to explore the data, then this process will ask to the customer wants to search by ID or Name, and as per the selection this program will call the below two program:
 
-* Customer_Search_ID.py_:
-* Customer_Search_Name.py_:
+Also, you can run this program as stand alone program.
+
+* Customer_Search_ID.py_: Customer_Search_ID.py is use to search the data of the customer from the above mentioned table by using ID.  This program will be called from Customer_Search_Main.py based on search criteria. If the customer select ID option in Customer_Search_Main.py, then it will call Customer_Search_ID.py. And this program will ask the ID and search the data. Also, you can run this program as stand alone program.
+* Customer_Search_Name.py_: Customer_Search_Name.py is use to search the data of the customer from the above mentioned table. This program will be called from Customer_Search_Main.py based on search criteria. If the customer select Name option in Customer_Search_Main.py, then it will call Customer_Search_Name.py. And this program will ask the Name and search the data. Also, you can run this program as stand alone program.
 
 3. Customer_Update.py_:
+Customer_Update.py is use to update the data of the customer into the above mentioned table. This program will be called from ~/Main_Process/Main_Process.py, if the customer wants to update their details. To update the details, customer should know their unique ID, as this program will ask confirm the ID before to update.
+
+Also, you can run this program as stand alone program.
 
 .. _Customer_Insert.py:         https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Database_Code/Customer_Insert.py
 .. _Customer_Search_Main.py:    https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Database_Code/Customer_Search_Main.py
@@ -21,79 +40,25 @@ This folder contains all the database related code written in Python as follow:
 .. _Customer_Search_Name.py:    https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Database_Code/Customer_Search_Name.py
 .. _Customer_Update.py:         https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Database_Code/Customer_Update.py
 
-Install Python Package :
+Codes Architecture:
 -----------------------------------
-There are a couple of Python packages that need to validate before running any above
-program in this folder. Assuming that you have already installed Python 3.6
-(or above), Pip, and Git. If not, then please go to the Installation_Documents_ and
-do the needful first.
+If you want to read more about the above programs then please go to Database_Code_Document_
+
+.. _Database_Code_Document:
+
+System Set Up:
+-----------------------------------
+There are a couple of Python packages and database that need to validate before running any above program in this folder. Please go to the Installation_Documents_ folder and follow all the steps.
 
 .. _Installation_Documents: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Installation_Documents
 
-Prerequisites :
+Pre-Requisites:
 -----------------------------------
-* A system running Ubuntu 18.04
-* A user account with sudo privileges
-* Access to a terminal window/command-line (Ctrl+Alt+T)
+* A system running on Windows/Ubuntu APP/Ubuntu OS
+* A user account with sudo/administration privileges
+* Access to a terminal window/command-line
 
-Now, after you finished installation from Installation_Documents_ then do the
-following::
-
-    $ python3 --version
-
-    $ pip3 --version
-
-    $ git --version
-
-    $ python3
-
-Run the following import command inside of the python console::
-
-    >> import re
-
-    >> import sys
-
-    >> import subprocess
-
-    >> from datetime import date, datetime
-
-    >> from subprocess import check_output, call
-
-Regex (re), sys, and subprocess module comes with Python installation. Since it is
-build-in packages.
-
-If you get any error after running the above import command, you should validate
-the Python version or upgrade it. You should not acquire any mistake if you installed
-Python correctly or followed all steps from the Installation_Documents_ folder.
-
-There are a couple of essential packages you need to install as well. Please
-follow the below steps for that.
-
-Install Psycopg2 :
------------------------------------
-To check if you have Psycopg2 in your computer or not then run the following command::
-First type as below to go to Python console::
-
-    $ python3
-
-Then import it::
-
-    >> import psycopg2
-
-If psycopg2 import successfully, then you no need to install it again. But if you get
-an error "ImportError: No module named psycopg2" then you need to install it.
-
-Psycopg2 is an extra module that you need to import first to run this code. To
-install Psycopg2, please go to the Postgresql_pgAdmin_Installation_ folder. Also,
-you can find the same folder inside the Installation_Documents_ folder.
-
-Before running any of this code, please read the documents from
-Postgresql_pgAdmin_Installation_ folder. Since you need to create a Database,
-Table, etc., and also need to validate it.
-
-.. _Postgresql_pgAdmin_Installation: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Installation_Documents/Postgresql_pgAdmin_Installation
-
-Executing :
+Executing:
 -------------
 If you have done all the steps mentioned above, then please run any of the code as
 follow::
