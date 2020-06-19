@@ -6,14 +6,16 @@
 # Date:         Friday 24 April, 2020
 # Version:      1
 # ----------------------------------------------------------------------------------------------------------------------
-# Description:  Customer_Insert.py is use for inserting the data of the customer into the following table :
-#               Development (DEV) : carego_customer_dev
-#               Test (TEST) : carego_customer_test
-#               Production (PROD) : carego_customer_prod
+# Description:  All the python code in Database Code folder deals with the following table:
 #
-#               This program will be called from ~/Main_Process/Main_Process.py. If the customer wants to save their
-#               details in the database then Main_Process.py will call this program, and this process will insert the
-#               data into the table mentioned above.
+#               * Development (DEV) : carego_customer_dev
+#               * Test (TEST) : carego_customer_test
+#               * Production (PROD) : carego_customer_prod
+#
+#               Customer_Insert.py is use for inserting the data of the customer into the table mentioned above. This
+#               program will be called from Main_Process.py. If the customer wants to save their details in the
+#               database, then Main_Process.py will call this program, and this process will insert the data into
+#               the table mentioned above.
 # ----------------------------------------------------------------------------------------------------------------------
 # NOTE 1:       Please make sure to change the region's value as per region wise before putting it to server :
 #               Development region: "DEV"
