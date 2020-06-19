@@ -7,15 +7,19 @@ This folder contains all the codes written in Python as follow :
 Note: This project is developed on a Linux System (Ubuntu), so, it is advisable to use Linux for this project.
 
 1. Database_Code_: This folder contains all the database related code, where we have codes for inserting data into the database, search the data from database based on ID or Name and also, codes for update the details on the database.
+
 |
 
 2. Face_Recognition_Code_: This folder contains all the face recognition related code, where we have codes that can take your picture and save it, code for creating face encode from the saved picture, and codes for detecting faces from Camera and Images.
+
 |
 
 3. Speech_Recognition_Code_: This folder contains all the face recognition related code, where we have codes that can convert the text into speech or speech into text and codes that can make conversation with customers.
+
 |
 
 4. Main_Process_: This folder contains all the main process which will call the other jobs.
+
 |
 
 .. _Database_Code:            https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Development_Code/Database_Code
