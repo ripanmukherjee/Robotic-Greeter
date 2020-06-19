@@ -6,12 +6,11 @@
 # Date:         Friday 24 April, 2020
 # Version:      1
 # ----------------------------------------------------------------------------------------------------------------------
-# Description:  Capture_Picture_Main.py program will be called from Main_Process.py (~/Main_Process/Main_Process.py)
-#               It is the main process of face detection program from real-time video. This process will first
-#               capture video from camera and check if the real-time face's coordinate is present
-#               in encoding.pickle file (~/Face_Recognition_Code/encoding.pickle). If the same coordinate
-#               picture details are present in the file, then this program will show the known person's name on
-#               the video frame. If not, then it will show as Unknown.
+# Description:  Capture_Picture_Main.py program will be called from Main_Process.py.  It is the main process of the
+#               face detection program from real-time video. This process will first capture video from the camera
+#               and check if the real-time face's coordinate is present in the encoding.pickle file. If the same
+#               coordinate picture details are present in the file, then this program will show the known person's
+#               name on the video frame. If not, then it will show as Unknown.
 # ----------------------------------------------------------------------------------------------------------------------
 # NOTE 1:       Please check following line of code:
 #               cap = cv2.VideoCapture(-1) - If with -1 video stream is not working then you can replace with 0 or 1.
