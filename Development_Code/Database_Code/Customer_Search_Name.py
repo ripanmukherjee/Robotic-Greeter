@@ -6,15 +6,17 @@
 # Date:         Friday 24 April, 2020
 # Version:      1
 # ----------------------------------------------------------------------------------------------------------------------
-# Description:  Customer_Search_Name.py is use to search the data of the customer from the following table
-#               by using Name :
-#               Development (DEV) : carego_customer_dev
-#               Test (TEST) : carego_customer_test
-#               Production (PROD) : carego_customer_prod
+# Description:  All the python code in Database Code folder deals with the following table:
 #
-#               This program will be called from ~/Database_Code/Customer_Search_Main.py based on search criteria. If
-#               the customer select Name option in Customer_Search_Main.py, then it will call Customer_Search_Name.py.
-#               And this program will ask the Name and search the data.
+#               * Development (DEV) : carego_customer_dev
+#               * Test (TEST) : carego_customer_test
+#               * Production (PROD) : carego_customer_prod
+#
+#               Customer_Search_Name.py is used to search the data of the customer from the above-mentioned table.
+#               This program will be called from Customer_Search_Main.py based on search criteria. If the customer
+#               selects the Name option in Customer_Search_Main.py, then it will call Customer_Search_Name.py. And
+#               this program will ask the Name and search the data. Also, you can run this program as a stand-alone
+#               program.
 # ----------------------------------------------------------------------------------------------------------------------
 # NOTE 1:       Please make sure to change the region value as per region wise before putting to server :
 #               Development region: "DEV"
