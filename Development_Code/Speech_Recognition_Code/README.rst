@@ -1,151 +1,60 @@
 Instruction Documents - README :
 **********************************
+This instruction document is for all the face recognition related code, where we have codes that can convert the text into speech or speech into text, and also codes that can do conversation with customer.
+
+Note: This project is developed on a Linux System (Ubuntu), so, it is advisable to use Linux for this project.
 
 Speech Recognition Code :
 -----------------------------------
 
-This folder contains all the Speech Recognition related code written in Python as
-follow:
+This folder contains all the Speech Recognition related code written in Python as follow:
 
 1. Speech_Question.py_:
+Speech_Question.py is to ask YES or NO related questions to the customer. If this program does not get an input from customer within given time then it will prompt a pop up message to to click ok or cancel. It will be called from Main_Process.py and Main_Process.py will pass the question as an argument in this program. Depending on the person's response, this program will give an output (inside of a text file : Speech_Question_Output.txt) as YES or NO or NONE. And with thatresponse, Main_Process.py will perform different tasks.
+
+Also, you can run this program as stand alone program.
 
 2. Speech_Normal.py_:
+Speech_Normal.py is a standard speech-related program. It will be called from the Main_Process.py with a text message that robots need to speak. This process will not be going to ask anything. It will talk just whatever text message this program will receive.
+
+Also, you can run this program as stand alone program.
 
 3. Speech_Start_End.py_:
+Speech_Start_End.py is to greet the Known and Unknown person. It will be called from Main_Process.py with first argument as follow:
+
+* Case when 0 (For Unknown person): It will greet to Unknown Person
+* Case when Specific Name (For Known person): It will welcome to known Person
+* Case when 1 (For Known & Unknown): It will say Bye
+
+Also, you can run this program as stand alone program.
 
 4. Speech_Name_Organization.py_:
+Speech_Name_Organization.py is to ask the Name & Organization to Unknown Person. Later it will ask to the person if they want to save their details or not. If this program does not get an input from customer within given time then it will prompt a pop up message to enter the details or to click ok or cancel. It will be called from ~/Main_Process/Main_Process.py and depending on the person's response this program will give an output (inside of a text file : Speech_Name_Organization_Output.text) as YES or NO or NONE. And with that response Main_Process.py will perform different task.
+
+Also, you can run this program as stand alone program.
 
 .. _Speech_Question.py:             https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Speech_Recognition_Code/Speech_Question.py
 .. _Speech_Normal.py:               https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Speech_Recognition_Code/Speech_Normal.py
 .. _Speech_Start_End.py:            https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Speech_Recognition_Code/Speech_Start_End.py
 .. _Speech_Name_Organization.py:    https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Speech_Recognition_Code/Speech_Name_Organization.py
 
-Install Python Package :
+Codes Architecture:
 -----------------------------------
-There are a couple of Python packages that need to validate before running any above
-program in this folder. Assuming that you have already installed Python 3.6
-(or above), Pip, and Git. If not, then please go to the Installation_Documents_ and
-do the needful first.
+If you want to read more about the above programs then please go to Speech_Recognition_Code_Document_
+
+.. _Speech_Recognition_Code_Document:
+
+System Set Up:
+-----------------------------------
+There are a couple of Python packages that need to validate before running any above program in this folder. Please go to the Installation_Documents_ folder and follow all the steps.
 
 .. _Installation_Documents: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Installation_Documents
 
-Prerequisites :
+Pre-Requisites:
 -----------------------------------
-* A system running Ubuntu 18.04
-* A user account with sudo privileges
-* Access to a terminal window/command-line (Ctrl+Alt+T)
-
-Now, after you finished installation from Installation_Documents_ then do the
-following::
-
-    $ python3 --version
-
-    $ pip3 --version
-
-    $ git --version
-
-    $ python3
-
-Run the following import command inside of the Python console::
-
-    >> import os
-
-    >> import sys
-
-    >> import glob
-
-    >> from datetime import date, datetime
-
-Os, sys, glob & datetime module comes with Python installation. Since it is
-build-in packages.
-
-If you get an error after running the above import command, you should validate
-the Python version or upgrade it. You should not acquire any mistake if you installed
-Python correctly or followed all steps from the Installation_Documents_ folder.
-
-There are a couple of essential packages you need to install as well. Please
-follow the below steps for that.
-
-Install SpeechRecognition :
------------------------------------
-To check if you have SpeechRecognition in your computer or not then run the following
-command. First type as below to go to Python console::
-
-    $ python3
-
-Then import it::
-
-    >> import gtts
-
-    >> from gtts import gTTS
-
-    >> import speech_recognition
-
-If gtts and speech_recognition import successfully, then you no need to install it
-again. But if you get an error "ImportError: No module named gtts" or
-"ImportError: No module named speech_recognition," then you need to install it.
-
-Speech_recognition and gtts is an extra module that you need to import first to
-run this code. To install it, please go to the Speech_Recognition_Installation_
-folder. Also, you can find the same folder inside the Installation_Documents_ folder.
-
-Before running any of this code, please read the documents (README) from
-Speech_Recognition_Installation_ folder.
-
-.. _Speech_Recognition_Installation: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Installation_Documents/Speech_Recognition_Installation
-
-Install NLTK :
------------------------------------
-To check if you have NLTK in your computer or not then run the following
-command. First type as below to go to Python console::
-
-    $ python3
-
-Then import it::
-
-    >> import nltk
-
-    >> from nltk.corpus import stopwords
-
-    >> from nltk.tokenize import word_tokenize
-
-If nltk import successfully, then you no need to install it again. But if you get an
-error "ImportError: No module named nltk"  or any others, then you need to install it.
-
-NLTK is an extra module that you need to import first to run this code. To
-install it, please go to the NLTK_Installation_ folder. Also,
-you can find the same folder inside the Installation_Documents_ folder.
-
-Before running any of this code, please read the documents (README) from
-NLTK_Installation_ folder.
-
-.. _NLTK_Installation: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Installation_Documents/NLTK_Installation
-
-Install pygame & pyaudio :
------------------------------------
-To check if you have pygame & pyaudio in your computer or not then run the following
-command. First type as below to go to Python console::
-
-    $ python3
-
-Then import it::
-
-    >> import pygame
-
-    >> import pyaudio
-
-If pygame & pyaudio import successfully, then you no need to install it again. But
-if you get an error "ImportError: No module named pygame" or
-"ImportError: No module named pyaudio" or any others, then you need to install it.
-
-pygame & pyaudio is an extra module that you need to import here to run this code. To
-install it, please go to the Py_Audio_Installation_ folder. Also,
-you can find the same folder inside the Installation_Documents_ folder.
-
-Before running any of this code, please read the documents (README) from
-Py_Audio_Installation_ folder.
-
-.. _Py_Audio_Installation: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Installation_Documents/Py_Audio_Installation
+* A system running on Windows/Ubuntu APP/Ubuntu OS
+* A user account with sudo/administration privileges
+* Access to a terminal window/command-line
 
 Executing :
 -------------
