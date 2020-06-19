@@ -6,9 +6,9 @@
 # Date:         Friday 24 April, 2020
 # Version:      1
 # ----------------------------------------------------------------------------------------------------------------------
-# Description:  Speech_Normal.py is a standard speech-related program. It will be called from the Main_Process.py.
-#               ~/Main_Process/Main_Process.py with a text message that robots need to speak. This process will not
-#               be going to ask anything. It will talk just whatever text message this program will receive.
+# Description:  Speech_Normal.py is a standard speech-related program. It will be called from the Main_Process.py with
+#               a text message that robots need to speak. This process will not be going to ask anything. It will
+#               talk just whatever text message this program will receive.
 # ----------------------------------------------------------------------------------------------------------------------
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow for testing purpose :
 #               $ python3 Speech_Normal.py
