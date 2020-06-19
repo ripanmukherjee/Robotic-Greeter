@@ -1,5 +1,8 @@
-Instruction Documents - README :
+Instruction Documents:
 **********************************
+This instruction document is for all the face recognition related code, where we have codes that can take your picture and save it, code for creating face encode from the saved picture and codes for detecting faces from Camera and Images.
+
+Note: This project is developed on a Linux System (Ubuntu), so, it is advisable to use Linux for this project.
 
 Face Recognition Code :
 -----------------------------------
@@ -7,14 +10,39 @@ Face Recognition Code :
 This folder contains all the Face Recognition related code written in Python as follow:
 
 1. Capture_Picture_Main.py_:
+Capture_Picture_Main.py program will be called from Main_Process.py. It will receive one input argument (Unique ID) from the main process and based on the input argument, it will call to Capture_Picture_Save.py for taking and saving the picture. This process is a looping process that asks the user if he want to take multiple pictures and save it.
+
+Also, you can run this program as stand alone program.
 
 2. Capture_Picture_Save.py_:
+Capture_Picture_Save.py program will be called from Capture_Picture_Main.py. It will receive one input argument (Unique ID) from the main process, and based on the argument, it will first take a picture of the person and later save it into Dataset directory with the help of Unique ID. This program should save the picture into the following directory :
 
-3. Face_Detection_Camera.py_:
+Dataset/XXX_UniqueID/XXX_UniqueID_YYY.jpg (XXX - Person Name, YYY - Instance)
 
-4. Face_Detection_Image.py_:
+Also, you can run this program as stand alone program.
 
-5. Face_Encoding.py_:
+3. Face_Encoding.py_:
+This program is the main program which will create encoding.pickle file, which is an essential for Face_Detection_Camera.py & Face_Detection_Image.py. Mainly, for all the application which needs to detect the faces. First, this program will check if the encoding.pickle file is already present or not. If the file is present then it will take all the old data and store into one variable, later this program will check the new images present in Dataset directory. If any new images present then it will create new coordinate for the latest pictures and then will concatenate the new coordinate with old coordinate (which had sorted earlier into one variable), then it will again write the new encoding.pickle file.
+
+You need to run this program as stand alone program.
+
+4. Face_Detection_Camera.py_:
+Capture_Picture_Main.py program will be called from Main_Process.py.  It is the main process of face detection program from real-time video. This process will first capture video from camera and check if the real-time face's coordinate is present in encoding.pickle file. If the same coordinate picture details are present in the file, then this program will show the known person's name on the video frame. If not, then it will show as Unknown.
+
+Also, you can run this program as stand alone program.
+
+5. Face_Detection_Image.py_:
+Capture_Picture_Main.py program is a testing program of Face_Detection_Camera.py; this process is use to detect the faces from an image. First, you need to load the image into the following line present in code: image_path = 'Sample_Images/image1.jpg'.
+
+Sample_Images is the directory you need to put your sample image and then need to run the program. This process will also detect the image coordinate and check if it is present in encoding.pickle file. If the same coordinate picture details are current in the archive, then this program will show the known person's name on the video frame. If not, then it will show as Unknown.
+
+But to run this program you need to validate the follows:
+
+* First put your sample image into Dataset directory/Image_Name_Directory. (Suppose if your name is ABC then first create a directory inside Dataset directory with name ABC and put your image inside of it).
+* Run the Face_Encoding.py (This will create encoding.pickle file with the image coordinate).
+* Then you can put another sample image of you inside of Sample_Images directory.
+* At last, run this program as stand alone.
+
 
 .. _Capture_Picture_Main.py:    https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Face_Recognition_Code/Capture_Picture_Main.py
 .. _Capture_Picture_Save.py:    https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Face_Recognition_Code/Capture_Picture_Save.py
@@ -22,110 +50,25 @@ This folder contains all the Face Recognition related code written in Python as 
 .. _Face_Detection_Image.py:    https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Face_Recognition_Code/Face_Detection_Image.py
 .. _Face_Encoding.py:           https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Face_Recognition_Code/Face_Encoding.py
 
-Install Python Package :
+Codes Architecture:
 -----------------------------------
-There are a couple of Python packages that need to validate before running any above
-program in this folder. Assuming that you have already installed Python 3.6
-(or above), Pip, and Git. If not, then please go to the Installation_Documents_ and
-do the needful first.
+If you want to read more about the above programs then please go to Database_Code_Document_
+
+.. _Database_Code_Document:
+
+System Set Up:
+-----------------------------------
+There are a couple of Python packages and database that need to validate before running any above program in this folder. Please go to the Installation_Documents_ folder and follow all the steps.
 
 .. _Installation_Documents: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Installation_Documents
 
-Prerequisites :
+Pre-Requisites:
 -----------------------------------
-* A system running Ubuntu 18.04
-* A user account with sudo privileges
-* Access to a terminal window/command-line (Ctrl+Alt+T)
+* A system running on Windows/Ubuntu APP/Ubuntu OS
+* A user account with sudo/administration privileges
+* Access to a terminal window/command-line
 
-Now, after you finished installation from Installation_Documents_ then do the
-following::
-
-    $ python3 --version
-
-    $ pip3 --version
-
-    $ git --version
-
-    $ python3
-
-Run the following import command inside of the Python console::
-
-    >> import os
-
-    >> import sys
-
-    >> import time
-
-    >> import pickle
-
-    >> import subprocess
-
-    >> from pathlib import Path
-
-    >> from subprocess import check_output
-
-    >> from datetime import date, datetime
-
-Os, sys, time, pickle, subprocess, pathlib & datetime module comes with Python
-installation. Since it is build-in packages.
-
-If you get any error after running the above import command, you should validate
-the Python version or upgrade it. You should not acquire any mistake if you installed
-Python correctly or followed all steps from the Installation_Documents_ folder.
-
-There are a couple of essential packages you need to install as well. Please
-follow the below steps for that.
-
-Install OpenCV :
------------------------------------
-To check if you have OpenCV on your computer or not, then run the following command.
-First type as below to go to Python console::
-
-    $ python3
-
-Then import it::
-
-    >> import cv2
-
-If cv2 import successfully, then you no need to install it again. But if you get
-an error "ImportError: No module named cv2" then you need to install it.
-
-OpenCV is an extra module that you need to import first to run this code. To
-install OpenCV, please go to the OpenCV_Installation_ folder. Also,
-you can find the same folder inside the Installation_Documents_ folder.
-
-Before running any of this code, please read the documents (README) from
-OpenCV_Installation_ folder.
-
-.. _OpenCV_Installation: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Installation_Documents/OpenCV_Installation
-
-Install Face Recognition :
------------------------------------
-To check if you have Face Recognition in your computer or not then run the following
-command. First type as below to go to Python console::
-
-    $ python3
-
-Then import it::
-
-    >> import face_recognition
-
-    >> from imutils.video import FPS
-
-If face_recognition and FPS import successfully, then you no need to install it
-again. But if you get an error "ImportError: No module named face_recognition" or
-"ImportError: No module named FPS" then you need to install it.
-
-Face Recognition is an extra module that you need to import first to run this code. To
-install Face Recognition, please go to the Face_Recognition_Installation_ folder. Also,
-you can find the same folder inside the Installation_Documents_ folder.
-
-Before running any of this code, please read the documents (README) from
-Face_Recognition_Installation_ folder.
-
-.. _Face_Recognition_Installation: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Installation_Documents/Face_Recognition_Installation
-
-Executing :
+Executing:
 -------------
 If you have done all the steps mentioned above, then first validate two directory as follow::
 
