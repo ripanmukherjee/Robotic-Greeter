@@ -19,24 +19,20 @@ Speech_Normal.py is a standard speech-related program. It will be called from th
 
 Also, you can run this program as a stand-alone program.
 
-3. Speech_Start_End.py_:
-Speech_Start_End.py is to greet the Known and Unknown person. It will be called from Main_Process.py with first argument as follow:
-
-* Case when 0 (For Unknown person): It will greet to Unknown Person
-* Case when Specific Name (For Known person): It will welcome to known Person
-* Case when 1 (For Known & Unknown): It will say Bye
+3. Speech_Name_Organization.py_:
+Speech_Name_Organization.py is to ask the Name & Organization to Unknown Person. Later it will ask the person if they want to save their details or not. If this program does not get input from customers within a given time, then it will prompt a pop-up message to enter the details or to click ok or cancel. It will be called from ~/Main_Process/Main_Process.py, and depending on the person's response, this program will give an output (inside of a text file: Speech_Name_Organization_Output.text) as YES or NO or NONE. And with that response, Main_Process.py will perform different task.
 
 Also, you can run this program as a stand-alone program.
 
-4. Speech_Name_Organization.py_:
-Speech_Name_Organization.py is to ask the Name & Organization to Unknown Person. Later it will ask the person if they want to save their details or not. If this program does not get input from customers within a given time, then it will prompt a pop-up message to enter the details or to click ok or cancel. It will be called from ~/Main_Process/Main_Process.py, and depending on the person's response, this program will give an output (inside of a text file: Speech_Name_Organization_Output.text) as YES or NO or NONE. And with that response, Main_Process.py will perform different task.
+4. Speech_Emergency_Evacuation_Procedures.py_:
+Speech_Emergency_Evacuation_Procedures.py program is to show the emergency and evacuation procedure and while showing the image, this program will describe the image by gTTS. All the pictures of emergency and evacuation procedures are present inside Emergency_Evacuation_Procedures folder. Please check def process_parameter_set() function and check the path before executing this process.
 
 Also, you can run this program as a stand-alone program.
 
 .. _Speech_Question.py:             https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Speech_Recognition_Code/Speech_Question.py
 .. _Speech_Normal.py:               https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Speech_Recognition_Code/Speech_Normal.py
-.. _Speech_Start_End.py:            https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Speech_Recognition_Code/Speech_Start_End.py
 .. _Speech_Name_Organization.py:    https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Speech_Recognition_Code/Speech_Name_Organization.py
+.. _Speech_Emergency_Evacuation_Procedures.py:
 
 Codes Architecture:
 -----------------------------------
