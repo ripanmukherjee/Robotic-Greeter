@@ -1,6 +1,6 @@
 Instruction Documents:
 **********************************
-This instruction document is for all the face recognition related code, where we have codes that can convert the text into speech or speech into text and codes that can make conversation with customers.
+This instruction document is for all the Speech recognition related code, where we have codes that can convert the text into speech or speech into text and codes that can make conversation with customers.
 
 Note: This project is developed on a Linux System (Ubuntu), so it is advisable to use Linux for this project.
 
@@ -32,7 +32,7 @@ Also, you can run this program as a stand-alone program.
 .. _Speech_Question.py:             https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Speech_Recognition_Code/Speech_Question.py
 .. _Speech_Normal.py:               https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Speech_Recognition_Code/Speech_Normal.py
 .. _Speech_Name_Organization.py:    https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Speech_Recognition_Code/Speech_Name_Organization.py
-.. _Speech_Emergency_Evacuation_Procedures.py:
+.. _Speech_Emergency_Evacuation_Procedures.py: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Speech_Recognition_Code/Speech_Emergency_Evacuation_Procedures.py
 
 Codes Architecture:
 -----------------------------------
