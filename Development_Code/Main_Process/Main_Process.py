@@ -369,10 +369,10 @@ def process_unknown(main_directory, database_code_directory, face_recognition_co
     os.chdir(speech_recognition_code_directory)
     search_flag = None
     help_flag = None
-    passing_arg = "0"
-    process_speech_start_end(passing_arg)
-    text = "I am going to ask few question to you. You can answer with Yes or No. If I do not get an input from you " \
-           "within 5 second then I will prompt a pop up message to you."
+
+    text = "Hello, Welcome to Care Go, my name is TELIA. I am Care Go’s virtual greeter. I am going to ask few " \
+           "question to you. You can answer with Yes or No. If I do not get an input from you within 5 second then I " \
+           "will prompt a pop up message to you."
     process_speech_normal(text)
     text = "Do you need any help?"
     response = process_speech_question(text)
@@ -474,9 +474,9 @@ def process_known(main_directory, database_code_directory, face_recognition_code
     print('Hello, {} {}'.format(detect_name, detect_id))
     help_flag = None
     search_flag = None
-    passing_arg = detect_name.lower()
-    os.chdir(speech_recognition_code_directory)
-    process_speech_start_end(passing_arg)
+    text = "Hello " + detect_name.lower() + ". Welcome to Care Go, do you remember me, TELIA, Care Go’s virtual " \
+                                            "greeter?"
+    process_speech_normal(text)
     text = detect_name.lower() + " Do you need any help?"
     response = process_speech_question(text)
     if response == "YES":
@@ -636,8 +636,8 @@ def process_main(main_directory, database_code_directory, face_recognition_code_
         if detect_name == "UNKNOWN":
             process_speech_emergency_evacuation_procedures()
 
-    passing_arg = "1"
-    process_speech_start_end(passing_arg)
+    text = "Thank you for visiting Care Go Tek. Please check out our web-site newsletter. Bye. See you later."
+    process_speech_normal(text)
     os.chdir(main_directory)
 
 
