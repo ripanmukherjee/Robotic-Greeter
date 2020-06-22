@@ -355,9 +355,20 @@ def process_update_detail():
         print("ERROR : subprocess.CalledProcessError - inside process_update_detail function.")
 
 
+def process_speech_emergency_evacuation_procedures():
+    try:
+        program_name = "Emergency_Evacuation_Procedures.py"
+        args_call = "python3 " + program_name
+        check_output(args_call, shell=True)
+    except subprocess.CalledProcessError:
+        print("ERROR : subprocess.CalledProcessError - inside process_update_detail function.")
+
+
 def process_unknown(main_directory, database_code_directory, face_recognition_code_directory,
                     speech_recognition_code_directory, detect_name):
     os.chdir(speech_recognition_code_directory)
+    search_flag = None
+    help_flag = None
     passing_arg = "0"
     process_speech_start_end(passing_arg)
     text = "I am going to ask few question to you. You can answer with Yes or No. If I do not get an input from you " \
@@ -365,8 +376,8 @@ def process_unknown(main_directory, database_code_directory, face_recognition_co
     process_speech_normal(text)
     text = "Do you need any help?"
     response = process_speech_question(text)
-
     if response == "YES":
+        help_flag = "YES"
         response = process_speech_name_organization()
         if response == "YES":
             text = "There will be some pop up message will appear. Please follow it."
@@ -396,6 +407,7 @@ def process_unknown(main_directory, database_code_directory, face_recognition_co
                             process_speech_normal(text)
                             os.chdir(main_directory)
                             process_ask_search(database_code_directory, main_directory, detect_name)
+                            search_flag = "YES"
                         else:
                             os.chdir(main_directory)
 
@@ -420,6 +432,7 @@ def process_unknown(main_directory, database_code_directory, face_recognition_co
                             process_speech_normal(text)
                             os.chdir(main_directory)
                             process_ask_search(database_code_directory, main_directory, detect_name)
+                            search_flag = "YES"
                         else:
                             os.chdir(main_directory)
                 else:
@@ -432,18 +445,20 @@ def process_unknown(main_directory, database_code_directory, face_recognition_co
                         process_speech_normal(text)
                         os.chdir(main_directory)
                         process_ask_search(database_code_directory, main_directory, detect_name)
+                        search_flag = "YES"
                     else:
                         os.chdir(main_directory)
             else:
                 print("INFO - {} customer do not want to save detail.".format(detect_name))
                 os.chdir(speech_recognition_code_directory)
-                text = "Okay. Since you do not want to save your details, do you like to search anyone?"
+                text = "Okay. Since you do not want to save your details, are you looking for someone here?"
                 response = process_speech_question(text)
                 if response == "YES":
                     text = "There will be some pop up message will appear. Please follow it."
                     process_speech_normal(text)
                     os.chdir(main_directory)
                     process_ask_search(database_code_directory, main_directory, detect_name)
+                    search_flag = "YES"
                 else:
                     os.chdir(main_directory)
         else:
@@ -451,27 +466,21 @@ def process_unknown(main_directory, database_code_directory, face_recognition_co
     else:
         os.chdir(main_directory)
 
+    return search_flag, help_flag
+
 
 def process_known(main_directory, database_code_directory, face_recognition_code_directory,
                   speech_recognition_code_directory, detect_name, detect_id, check_main_table):
     print('Hello, {} {}'.format(detect_name, detect_id))
+    help_flag = None
+    search_flag = None
     passing_arg = detect_name.lower()
     os.chdir(speech_recognition_code_directory)
     process_speech_start_end(passing_arg)
     text = detect_name.lower() + " Do you need any help?"
-    process_speech_question(text)
-    try:
-        with open("Speech_Question_Output.txt", "r") as file:
-            response = file.readline()
-            print(response)
-    except EOFError:
-        print("ERROR : EOFError - Speech_Question_Output.txt,  has no data")
-        response = "NONE"
-    except FileNotFoundError:
-        print("ERROR : FileNotFoundError - Speech_Question_Output.txt, is not present")
-        response = "NONE"
-
+    response = process_speech_question(text)
     if response == "YES":
+        help_flag = "YES"
         os.chdir(main_directory)
         os.chdir(database_code_directory)
         table_details = process_search_all_details(check_main_table, detect_id)
@@ -485,6 +494,7 @@ def process_known(main_directory, database_code_directory, face_recognition_code
                 process_speech_normal(text)
                 os.chdir(main_directory)
                 process_ask_search(database_code_directory, main_directory, detect_name)
+                search_flag = "YES"
             else:
                 os.chdir(main_directory)
 
@@ -530,6 +540,7 @@ def process_known(main_directory, database_code_directory, face_recognition_code
                                 process_speech_normal(text)
                                 os.chdir(main_directory)
                                 process_ask_search(database_code_directory, main_directory, detect_name)
+                                search_flag = "YES"
                             else:
                                 os.chdir(main_directory)
 
@@ -555,6 +566,7 @@ def process_known(main_directory, database_code_directory, face_recognition_code
                             process_speech_normal(text)
                             os.chdir(main_directory)
                             process_ask_search(database_code_directory, main_directory, detect_name)
+                            search_flag = "YES"
                         else:
                             os.chdir(main_directory)
 
@@ -578,6 +590,7 @@ def process_known(main_directory, database_code_directory, face_recognition_code
                         process_speech_normal(text)
                         os.chdir(main_directory)
                         process_ask_search(database_code_directory, main_directory, detect_name)
+                        search_flag = "YES"
                     else:
                         os.chdir(main_directory)
             else:
@@ -590,10 +603,13 @@ def process_known(main_directory, database_code_directory, face_recognition_code
                     process_speech_normal(text)
                     os.chdir(main_directory)
                     process_ask_search(database_code_directory, main_directory, detect_name)
+                    search_flag = "YES"
                 else:
                     os.chdir(main_directory)
     else:
         os.chdir(main_directory)
+
+    return search_flag, help_flag
 
 
 def process_main(main_directory, database_code_directory, face_recognition_code_directory,
@@ -602,15 +618,25 @@ def process_main(main_directory, database_code_directory, face_recognition_code_
     detect_name, detect_id = process_face_detection()
     os.chdir(main_directory)
     if detect_name == "UNKNOWN":
-        process_unknown(main_directory, database_code_directory, face_recognition_code_directory,
-                        speech_recognition_code_directory, detect_name)
+        search_flag, help_flag = process_unknown(main_directory, database_code_directory,
+                                                 face_recognition_code_directory, speech_recognition_code_directory,
+                                                 detect_name)
 
     else:
-        process_known(main_directory, database_code_directory, face_recognition_code_directory,
-                      speech_recognition_code_directory, detect_name, detect_id, check_main_table)
+        search_flag, help_flag = process_known(main_directory, database_code_directory,
+                                               face_recognition_code_directory, speech_recognition_code_directory,
+                                               detect_name, detect_id, check_main_table)
+
+    os.chdir(speech_recognition_code_directory)
+    if search_flag is not None:
+        text = "Wonderful, I hope you got the information you were looking."
+        process_speech_normal(text)
+
+    if help_flag is not None:
+        if detect_name == "UNKNOWN":
+            process_speech_emergency_evacuation_procedures()
 
     passing_arg = "1"
-    os.chdir(speech_recognition_code_directory)
     process_speech_start_end(passing_arg)
     os.chdir(main_directory)
 
