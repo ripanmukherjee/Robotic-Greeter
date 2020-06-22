@@ -92,7 +92,7 @@ def emergency_evacuation_process(emergency_evacuation_procedures_path, mp3_filen
         text = "We want to take care of you, when you visit us and in the unlikely event of a fire or emergency, we " \
                "want you to be safe. If you are alerted of a fire or emergency, leave the building from the nearest " \
                "exit, close doors behind you and report to the designated meeting area. Remember to remain calm, and " \
-               "do not re-enter the building until declared safe. Do not leave the site unless permission is given." \
+               "do not re-enter the building until declared safe. Do not leave the site unless permission is given. " \
                "The designated meeting area is shown on this map between the west parking lot and the street."
         process_gtts_playsound(mp3_filename, text)
         cv2.waitKey(0)
