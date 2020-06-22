@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # ----------------------------------------------------------------------------------------------------------------------
 # Project:      Robotic Greeter - McMaster University - CareGo Tek
-# Program Name: Speech_Name_Organization.py
+# Program Name: Emergency_Evacuation_Procedures.py
 # Author:       Somak Mukherjee
 # Date:         Friday 24 April, 2020
 # Version:      1
@@ -9,23 +9,17 @@
 # Description:
 # ----------------------------------------------------------------------------------------------------------------------
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow for testing purpose:
-#               $ python3 Speech_Name_Organization.py
+#               $ python3 Emergency_Evacuation_Procedures.py
 # ----------------------------------------------------------------------------------------------------------------------
 
 import os
 import sys
 import cv2
-import gtts
-import glob
-import subprocess
 import numpy as np
 from gtts import gTTS
 from pathlib import Path
-import speech_recognition
-import speech_recognition as sr
 from playsound import playsound
 from datetime import date, datetime
-from subprocess import check_output
 
 
 def start_program():
@@ -33,7 +27,7 @@ def start_program():
     current_date = today.strftime("%d/%m/%Y")
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
-    print('Starting program : Speech_Name_Organization.py - At : ' + current_time + ' On : ' + current_date)
+    print('Starting program : Emergency_Evacuation_Procedures.py - at : ' + current_time + ' on : ' + current_date)
 
 
 def exit_program():
@@ -41,7 +35,7 @@ def exit_program():
     current_date = today.strftime("%d/%m/%Y")
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
-    print('Ending program : Speech_Name_Organization.py - at : ' + current_time + ' on : ' + current_date)
+    print('Ending program : Emergency_Evacuation_Procedures.py - at : ' + current_time + ' on : ' + current_date)
     sys.exit()
 
 
