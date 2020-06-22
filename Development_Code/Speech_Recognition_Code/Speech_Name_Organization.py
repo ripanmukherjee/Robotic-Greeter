@@ -38,7 +38,7 @@ def start_program():
     current_date = today.strftime("%d/%m/%Y")
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
-    print('Starting program : Speech_Name_Organization.py - At : ' + current_time + ' On : ' + current_date)
+    print('Starting program : Speech_Name_Organization.py - at : ' + current_time + ' on : ' + current_date)
 
 
 def exit_program():
