@@ -357,11 +357,11 @@ def process_update_detail():
 
 def process_speech_emergency_evacuation_procedures():
     try:
-        program_name = "Emergency_Evacuation_Procedures.py"
+        program_name = "Also, you can run this program as a stand-alone program."
         args_call = "python3 " + program_name
         check_output(args_call, shell=True)
     except subprocess.CalledProcessError:
-        print("ERROR : subprocess.CalledProcessError - inside process_update_detail function.")
+        print("ERROR : subprocess.CalledProcessError - inside process_speech_emergency_evacuation_procedures function.")
 
 
 def process_unknown(main_directory, database_code_directory, face_recognition_code_directory,
