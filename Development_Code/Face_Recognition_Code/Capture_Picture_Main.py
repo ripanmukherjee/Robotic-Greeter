@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""
 # ----------------------------------------------------------------------------------------------------------------------
 # Project:      Robotic Greeter - McMaster University - CareGo Tek
 # Program Name: Capture_Picture_Main.py
@@ -14,6 +15,7 @@
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow:
 #               $ python3 Capture_Picture_Main.py
 # ----------------------------------------------------------------------------------------------------------------------
+"""
 
 import sys
 import subprocess
