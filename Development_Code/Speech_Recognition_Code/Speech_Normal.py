@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""
 # ----------------------------------------------------------------------------------------------------------------------
 # Project:      Robotic Greeter - McMaster University - CareGo Tek
 # Program Name: Speech_Normal.py
@@ -13,6 +14,7 @@
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow for testing purpose :
 #               $ python3 Speech_Normal.py
 # ----------------------------------------------------------------------------------------------------------------------
+"""
 
 import os
 import sys
