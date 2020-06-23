@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""
 # ----------------------------------------------------------------------------------------------------------------------
 # Project:      Robotic Greeter - McMaster University - CareGo Tek
 # Program Name: Speech_Question.py
@@ -16,6 +17,7 @@
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow for testing purpose:
 #               $ python3 Speech_Question.py
 # ----------------------------------------------------------------------------------------------------------------------
+"""
 
 import os
 import sys
@@ -59,8 +61,13 @@ def process_parameter_set():
     mp3_filename = "Speech_Question"
     text = "I am going to ask few question to you. You can answer with Yes or No. If I do not get an input from you " \
            "within 5 second, then, I will prompt a pop up message to you."
+    device_list = sr.Microphone.list_microphone_names()
+    if 'pulse' in device_list:
+        device_index = device_list.index('pulse')
+    else:
+        device_index = 0
 
-    return yes_syn_words, stop_words, record, mp3_filename, text
+    return yes_syn_words, stop_words, record, mp3_filename, text, device_index
 
 
 def process_check_input_argument():
@@ -83,7 +90,7 @@ def process_check_input_argument():
     return text, stand_alone_flag
 
 
-def process_speak_listen(mp3_filename, text, record, flag):
+def process_speak_listen(device_index, mp3_filename, text, record, flag):
     record_text = None
     mp3_filename = mp3_filename + ".mp3"
     try:
@@ -93,7 +100,7 @@ def process_speak_listen(mp3_filename, text, record, flag):
         os.remove(mp3_filename)
 
         if flag != 1:
-            with sr.Microphone(device_index=0) as source:
+            with sr.Microphone(device_index=device_index) as source:
                 record.adjust_for_ambient_noise(source)
                 print("Speak:")
                 os.system("zenity --progress --width=400 --height=200 --title='Speak Now' "
@@ -148,12 +155,12 @@ def process_speak_listen(mp3_filename, text, record, flag):
     return record_text
 
 
-def process_input_details(input_details, mp3_filename, record, yes_syn_words, stop_words):
+def process_input_details(device_index, input_details, mp3_filename, record, yes_syn_words, stop_words):
     response = "NO"
     if input_details is None:
         text = "Sorry, I did not get an input from you."
         flag = 1
-        process_speak_listen(mp3_filename, text, record, flag)
+        process_speak_listen(device_index, mp3_filename, text, record, flag)
         response = "NO"
     else:
         tokenized_word = word_tokenize(input_details)
@@ -200,11 +207,11 @@ def process_delete_mp3_output_files(stand_alone_flag):
 
 def main():
     start_program()
-    yes_syn_words, stop_words, record, mp3_filename, text = process_parameter_set()
+    yes_syn_words, stop_words, record, mp3_filename, text, device_index = process_parameter_set()
     # process_speak_listen(mp3_filename, text, record, flag=1)
     text, stand_alone_flag = process_check_input_argument()
-    input_details = process_speak_listen(mp3_filename, text, record, flag=0)
-    response = process_input_details(input_details, mp3_filename, record, yes_syn_words, stop_words)
+    input_details = process_speak_listen(device_index, mp3_filename, text, record, flag=0)
+    response = process_input_details(device_index, input_details, mp3_filename, record, yes_syn_words, stop_words)
     process_output_file_write(response)
     process_delete_mp3_output_files(stand_alone_flag)
     exit_program()
