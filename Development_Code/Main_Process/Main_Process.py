@@ -629,6 +629,29 @@ def process_main(main_directory, database_code_directory, face_recognition_code_
                 print("Showing Emergency Evacuation Procedures to {}".format(detect_name))
                 process_speech_emergency_evacuation_procedures()
 
+        text = "Do you want to know more about me as TELIA?"
+        response = process_speech_question(text)
+        if response == "YES":
+            text = "Did you know that I am named after TELIA, our forward thinking optimization and automation " \
+                   "system that maximizes storage capacity, increases productivity, improves facility throughput " \
+                   "all under the control of a safety critical environment."
+            process_speech_normal(text)
+
+            text = "And did you know we have installed TELIA as a system in 3 countries, it controls over 100 " \
+                   "automated assets including more than 25 cranes, at 12 different sites for steel coil, long " \
+                   "products and finished goods. We are always innovating as we have 13 patents or pending patents " \
+                   "and more than 50 projects. "
+            process_speech_normal(text)
+
+            text = "You are probably wondering why CareGo would create me to greet you? I am to remind you that we " \
+                   "are a technology company which is obsessed with innovation, we try to improve everything from " \
+                   "our team to our processes to our products and how we greet you at the door. We not only embrace " \
+                   "innovation, we were born from it. Speaking of innovators."
+            process_speech_normal(text)
+
+    text = "Can I have you sign our visitor sheet on my notepad here? Thanks for doing that."
+    process_speech_normal(text)
+
     text = "Thank you for visiting Care Go. Please check out our web-site newsletter. Bye. See you later."
     process_speech_normal(text)
     os.chdir(main_directory)
