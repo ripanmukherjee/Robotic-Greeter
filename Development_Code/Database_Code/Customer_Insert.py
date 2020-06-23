@@ -123,6 +123,7 @@ def process_get_details():
 
     try:
         details = check_output(args_get_details, shell=True)
+        details = details.strip()
         details = details.decode().split('|')
         print(details)
     except subprocess.CalledProcessError:
