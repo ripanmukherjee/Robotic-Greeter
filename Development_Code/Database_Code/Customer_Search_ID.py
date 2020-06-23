@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""
 # ----------------------------------------------------------------------------------------------------------------------
 # Project:      Robotic Greeter - McMaster University - CareGo Tek
 # Program Name: Customer_Search_ID.py
@@ -35,6 +36,7 @@
 # NOTE 2:       This program can be run separately or as a stand-alone program as follow:
 #               $ python3 Customer_Search_ID.py
 # ----------------------------------------------------------------------------------------------------------------------
+"""
 
 import re
 import sys
