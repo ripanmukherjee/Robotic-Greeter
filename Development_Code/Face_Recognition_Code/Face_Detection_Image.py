@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""
 # ----------------------------------------------------------------------------------------------------------------------
 # Project:      Robotic Greeter - McMaster University - CareGo Tek
 # Program Name: Face_Detection_Image.py
@@ -27,6 +28,7 @@
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow:
 #           	$ python3 Face_Detection_Image.py
 # ----------------------------------------------------------------------------------------------------------------------
+"""
 
 import sys
 import cv2
