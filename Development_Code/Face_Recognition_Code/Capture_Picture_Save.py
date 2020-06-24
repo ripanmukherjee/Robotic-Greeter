@@ -1,24 +1,24 @@
 #!/usr/bin/env python3
 """
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # Project:      Robotic Greeter - McMaster University - CareGo Tek
 # Program Name: Capture_Picture_Save.py
 # Author:       Somak Mukherjee
 # Date:         Friday 24 April, 2020
 # Version:      1
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # Description:  Capture_Picture_Save.py program will be called from Capture_Picture_Main.py. It will receive one input
 #               argument (Unique ID) from the main process, and based on the argument, it will first take a picture of
 #               the person and later save it into the Dataset directory with the help of Unique ID. This program should
 #               save the picture into the following directory :
 #               * Dataset/XXX_UniqueID/XXX_UniqueID_YYY.jpg (XXX - Person Name, YYY - Instance)
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # NOTE 1:       Please check following line of code:
 #               cap = cv2.VideoCapture(-1) - If with -1 video stream is not working then you can replace with 0 or 1.
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # NOTE 2:       This program can be run separately or as a stand-alone program as follow:
 #               $ python3 Capture_Picture_Save.py
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 """
 
 import os
