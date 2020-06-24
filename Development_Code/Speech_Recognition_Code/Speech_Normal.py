@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
 """
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # Project:      Robotic Greeter - McMaster University - CareGo Tek
 # Program Name: Speech_Normal.py
 # Author:       Somak Mukherjee
 # Date:         Friday 24 April, 2020
 # Version:      1
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # Description:  Speech_Normal.py is a standard speech-related program. It will be called from the Main_Process.py with
 #               a text message that robots need to speak. This process will not be going to ask anything. It will
 #               talk just whatever text message this program will receive.
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow for testing purpose :
 #               $ python3 Speech_Normal.py
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 """
 
 import os
@@ -25,6 +25,12 @@ from datetime import date, datetime
 
 
 def start_program():
+    """
+    ************************************ Inside start_program function *************************************************
+    This function will be called at the beginning to print today's date and start time.
+    ************************************ Inside start_program function *************************************************
+    """
+
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
     now = datetime.now()
@@ -33,6 +39,12 @@ def start_program():
 
 
 def exit_program():
+    """
+    ************************************ Inside exit_program function **************************************************
+    This function will be called at the end to print today's date and end time.
+    ************************************ Inside exit_program function **************************************************
+    """
+
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
     now = datetime.now()
@@ -42,6 +54,15 @@ def exit_program():
 
 
 def process_parameter_set():
+    """
+    ************************************ Inside process_parameter_set function *****************************************
+    This function will be called to set the essential parameter needed for this program as below:
+
+    1. stand_alone_flag signifies if the program is running from Main_Process.py or not.
+    2. mp3_filename signifies the mp3 filename that will be used by gTTS.
+    So it is essential to verify the parameter before running this process.
+    ************************************ Inside process_parameter_set function *****************************************
+    """
     stand_alone_flag = None
     mp3_filename = "Speech_Normal"
 
@@ -49,6 +70,14 @@ def process_parameter_set():
 
 
 def process_check_input_argument(stand_alone_flag):
+    """
+    ************************************ Inside process_check_input_argument function **********************************
+    This function will be called to check the input argument based on stand_alone_flag. If this process received an
+    input from Main_Process.py then it will pass that argument into text and if not then it will set stand_alone_flag
+    as 1, and this process will run as stand-alone.
+    ************************************ Inside process_check_input_argument function **********************************
+    """
+
     try:
         input_argv = sys.argv
         if len(input_argv) < 2:
@@ -68,6 +97,13 @@ def process_check_input_argument(stand_alone_flag):
 
 
 def process_gtts_playsound(mp3_filename, text):
+    """
+    ************************************ Inside process_gtts_playsound function ****************************************
+    This function will be called to play the sound or save the text message to an mp3 file and later play the mp3
+    file, and after the play is done, this function will remove the mp3 file.
+    ************************************ Inside process_gtts_playsound function ****************************************
+    """
+
     mp3_filename = mp3_filename + ".mp3"
     tts = gTTS(text=text, lang='en', slow=False)
     tts.save(mp3_filename)
@@ -76,6 +112,12 @@ def process_gtts_playsound(mp3_filename, text):
 
 
 def process_delete_mp3_output_files(stand_alone_flag):
+    """
+    ************************************ Inside process_delete_mp3_output_files function *******************************
+    This function will be called to delete all mp3 and output files before to end of the program.
+    ************************************ Inside process_delete_mp3_output_files function *******************************
+    """
+
     if stand_alone_flag == 1:
         print("Deleting mp3 and output file. Value of stand_alone_flag : ", str(stand_alone_flag))
         mp3_files = glob.glob('*.mp3', recursive=True)
@@ -94,6 +136,12 @@ def process_delete_mp3_output_files(stand_alone_flag):
 
 
 def main():
+    """
+    ************************************ Inside main function **********************************************************
+    This is the main process which will call at the very beginning and will call the other functions.
+    ************************************ Inside main function **********************************************************
+    """
+
     start_program()
     stand_alone_flag, mp3_filename = process_parameter_set()
     text, stand_alone_flag = process_check_input_argument(stand_alone_flag)
