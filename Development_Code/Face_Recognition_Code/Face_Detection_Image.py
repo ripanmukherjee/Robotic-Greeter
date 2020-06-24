@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # Project:      Robotic Greeter - McMaster University - CareGo Tek
 # Program Name: Face_Detection_Image.py
 # Author:       Somak Mukherjee
 # Date:         Friday 24 April, 2020
 # Version:      1
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # Description:  Capture_Picture_Main.py program is a testing program of Face_Detection_Camera.py; this process is used
 #               to detect the faces from an image. First, you need to load the image into the following line present
 #               in code: image_path = 'Sample_Images/image1.jpg'.
@@ -24,10 +24,10 @@
 #               * Run the Face_Encoding.py (This will create encoding.pickle file with the image coordinate).
 #               * Then you can put another sample image of you inside of the Sample_Images directory.
 #               * At last, run this program as stand-alone.
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow:
 #           	$ python3 Face_Detection_Image.py
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 """
 
 import sys
