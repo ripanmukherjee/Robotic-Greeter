@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # Project:      Robotic Greeter - McMaster University - CareGo Tek
 # Program Name: Face_Encoding.py
 # Author:       Somak Mukherjee
 # Date:         Friday 24 April, 2020
 # Version:      1
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # Description:  This program is the main program which will create encoding.pickle file, which is essential for
 #               Face_Detection_Camera.py & Face_Detection_Image.py. Mainly, for all the application which needs to
 #               detect the faces. First, this program will check if the encoding.pickle file is already present or
@@ -16,10 +16,10 @@
 #               then this program will read those photos and will create a new encoding coordinate. After reading all
 #               the latest images, this program will merge all the old coordinates with new coordinates and will write
 #               again into encoding.pickle file.
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow:
 #               $ python3 Face_Encoding.py
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 """
 
 import os
