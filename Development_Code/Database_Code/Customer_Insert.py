@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # Project:      Robotic Greeter - McMaster University - CareGo Tek
 # Program Name: Customer_Insert.py
 # Author:       Somak Mukherjee
 # Date:         Friday 24 April, 2020
 # Version:      1
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # Description:  All the python code in Database Code folder deals with the following table:
 #
 #               * Development (DEV) : carego_customer_dev
@@ -17,7 +17,7 @@
 #               program will be called from Main_Process.py. If the customer wants to save their details in the
 #               database, then Main_Process.py will call this program, and this process will insert the data into
 #               the table mentioned above.
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # NOTE 1:       Please make sure to change the region's value as per region wise before putting it to server :
 #               Development region: "DEV"
 #               Test region: "TEST"
@@ -35,10 +35,10 @@
 #               conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1",
 #               port="5432")
 #               Please make sure that everything is correct.
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # NOTE 2:       This program can be run separately or as a stand-alone program as follow:
 #               $ python3 Customer_Insert.py
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 """
 
 import re
