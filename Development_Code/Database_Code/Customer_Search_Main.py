@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # Project:      Robotic Greeter - McMaster University - CareGo Tek
 # Program Name: Customer_Search_Main.py
 # Author:       Somak Mukherjee
 # Date:         Friday 24 April, 2020
 # Version:      1
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # Description:  All the python code in Database Code folder deals with the following table:
 #
 #               * Development (DEV) : carego_customer_dev
@@ -18,10 +18,10 @@
 #               wants to search by ID or Name, and as per the selection, this program will call the below two programs:
 #               * Customer_Search_ID.py
 #               * Customer_Search_Name.py
-# ---------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow:
 #               $ python3 Customer_Search_Main.py
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 """
 
 import sys
