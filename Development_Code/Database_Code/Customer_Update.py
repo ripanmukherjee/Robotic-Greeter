@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # Project:      Robotic Greeter - McMaster University - CareGo Tek
 # Program Name: Customer_Update.py
 # Author:       Somak Mukherjee
 # Date:         Friday 24 April, 2020
 # Version:      1
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # Description:  All the python code in Database Code folder deals with the following table:
 #
 #               * Development (DEV) : carego_customer_dev
@@ -17,7 +17,7 @@
 #               program will be called from ~/Main_Process/Main_Process.py if the customer wants to update their
 #               details. To update the details, customer should know their unique ID, as this program will ask to
 #               confirm the ID before to update.
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # NOTE 1:       Please make sure to change the region value as per region wise before putting to server :
 #               Development region: "DEV"
 #               Test region: "TEST"
@@ -31,10 +31,10 @@
 #               conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1",
 #               port="5432")
 #               Please make sure that everything is correct.
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # NOTE 2:       This program can be run separately or as a stand-alone program as follow:
 #               $ python3 Customer_Update.py
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 """
 
 import re
