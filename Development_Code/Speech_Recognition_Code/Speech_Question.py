@@ -1,22 +1,22 @@
 #!/usr/bin/env python3
 """
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # Project:      Robotic Greeter - McMaster University - CareGo Tek
 # Program Name: Speech_Question.py
 # Author:       Somak Mukherjee
 # Date:         Friday 24 April, 2020
 # Version:      1
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # Description:  Speech_Question.py is to ask YES or NO related questions to the customer. If this program does not
 #               get input from customers within a given time, it will prompt a pop-up message to click ok or cancel.
 #               It will be called from Main_Process.py and Main_Process.py will pass the question as an argument in
 #               this program. Depending on the person's response, this program will give an output (inside of a text
 #               file: Speech_Question_Output.txt) as YES or NO or NONE. And with that response, Main_Process.py will
 #               perform different tasks.
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow for testing purpose:
 #               $ python3 Speech_Question.py
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 """
 
 import os
@@ -35,6 +35,12 @@ from nltk.tokenize import word_tokenize
 
 
 def start_program():
+    """
+    ************************************ Inside start_program function *************************************************
+    This function will be called at the beginning to print today's date and start time.
+    ************************************ Inside start_program function *************************************************
+    """
+
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
     now = datetime.now()
@@ -43,6 +49,12 @@ def start_program():
 
 
 def exit_program():
+    """
+    ************************************ Inside exit_program function **************************************************
+    This function will be called at the end to print today's date and end time.
+    ************************************ Inside exit_program function **************************************************
+    """
+
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
     now = datetime.now()
@@ -52,6 +64,20 @@ def exit_program():
 
 
 def process_parameter_set():
+    """
+    ************************************ Inside process_parameter_set function *****************************************
+    This function will be called to set the essential parameter needed for this program as below:
+
+    1. yes_syn_words signifies all the synonym word of Yes.
+    2. stop_words means all the unwanted noisy word.
+    3. record signifies the setting of the recorder.
+    4. mp3_filename is the mp3 file from where gtts will play the sound.
+    5. text will be the initial text message.
+    6. device_index will be automatically set as the available input device on the computer.
+    So it is essential to verify the parameter before running this process.
+    ************************************ Inside process_parameter_set function *****************************************
+    """
+
     yes_syn_words = ['all right', 'alright', 'very well', 'of course', 'by all means', 'sure', 'certainly',
                      'absolutely', 'indeed', 'affirmative', 'in the affirmative', 'agreed', 'roger', 'aye',
                      'aye aye', 'yeah', 'yah', 'yep', 'yup', 'uh-huh', 'okay', 'ok', 'right', 'surely',
@@ -71,6 +97,14 @@ def process_parameter_set():
 
 
 def process_check_input_argument():
+    """
+    ************************************ Inside process_check_input_argument function **********************************
+    This function will be called to check the input argument based on stand_alone_flag. If this process received an
+    input from Main_Process.py then it will pass that argument into text and if not then it will set stand_alone_flag
+    as 1, and this process will run as stand-alone.
+    ************************************ Inside process_check_input_argument function **********************************
+    """
+
     stand_alone_flag = None
     try:
         input_argv = sys.argv
@@ -91,6 +125,16 @@ def process_check_input_argument():
 
 
 def process_speak_listen(device_index, mp3_filename, text, record, flag):
+    """
+    ************************************ Inside process_speak_listen function ******************************************
+    This function will be called to play the sound or save the text message to an mp3 file and later play the mp3
+    file, and after the play is done, this function will remove the mp3 file.
+    Later it will record the response from the user, there is a timeout of 5 second. If the recorder does not get an
+    input for 5 second or during any lookup error or Unknown Value Error then it will prompt a pop-up message. Based
+    on the input response given by the customer this function will return it.
+    ************************************ Inside process_speak_listen function ******************************************
+    """
+
     record_text = None
     mp3_filename = mp3_filename + ".mp3"
     try:
@@ -156,6 +200,15 @@ def process_speak_listen(device_index, mp3_filename, text, record, flag):
 
 
 def process_input_details(device_index, input_details, mp3_filename, record, yes_syn_words, stop_words):
+    """
+    ************************************ Inside process_input_details function *****************************************
+    This function will tokenize and filter the words based on the response given by User. First, it will tokenize
+    the sentence into word and later remove all the stop words. Then from the filtered_sent, it will search if any word
+    is present in yes_syn_words or not. If yes, then this function will be treated as Yes, and if not, then it will be
+    treated as No. Later that response will be return to write into an output file.
+    ************************************ Inside process_input_details function *****************************************
+    """
+
     response = "NO"
     if input_details is None:
         text = "Sorry, I did not get an input from you."
@@ -183,11 +236,23 @@ def process_input_details(device_index, input_details, mp3_filename, record, yes
 
 
 def process_output_file_write(response):
+    """
+    ************************************ Inside process_output_file_write function *************************************
+    This function will be called to write the response into a output file.
+    ************************************ Inside process_output_file_write function *************************************
+    """
+
     with open("Speech_Question_Output.txt", "w") as output_file:
         output_file.write(response)
 
 
 def process_delete_mp3_output_files(stand_alone_flag):
+    """
+    ************************************ Inside process_delete_mp3_output_files function *******************************
+    This function will be called to delete all mp3 and output files before to end of the program.
+    ************************************ Inside process_delete_mp3_output_files function *******************************
+    """
+
     if stand_alone_flag == 1:
         print("Deleting mp3 and output file. Value of stand_alone_flag : ", str(stand_alone_flag))
         mp3_files = glob.glob('*.mp3', recursive=True)
@@ -206,6 +271,12 @@ def process_delete_mp3_output_files(stand_alone_flag):
 
 
 def main():
+    """
+    ************************************ Inside main function **********************************************************
+    This is the main process which will call at the very beginning and will call the other functions.
+    ************************************ Inside main function **********************************************************
+    """
+
     start_program()
     yes_syn_words, stop_words, record, mp3_filename, text, device_index = process_parameter_set()
     # process_speak_listen(mp3_filename, text, record, flag=1)
