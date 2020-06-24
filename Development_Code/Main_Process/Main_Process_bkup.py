@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # Project:      Robotic Greeter - McMaster University - CareGo Tek
 # Program Name: Speech_Name_Organization.py
 # Author:       Somak Mukherjee
 # Date:         Friday 24 May, 2020
 # Version:      1
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # Description : This program is the main program which will perform face_detection, speech_recognition & database_code.
 #               It will first detect the person face in the real time video camera.
 #
@@ -20,7 +20,7 @@
 #               2. Ask the person if they want to save their details and photos,
 #               2. Ask the person if they want to meet or search somebody, if they want to modify their old data
 #               3. etc.
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # NOTE 1 :      Please make sure to change the region value as per region wise before putting to server :
 #               Development region : "DEV"
 #               Test region : "TEST"
@@ -29,14 +29,14 @@
 #               Check in the following function :
 #               process_parameter_set():
 #                    region = "DEV"
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # NOTE 2 :      In the program there are one main directory in process_parameter_set():
 #               main_directory = "/home/somak/Robotic-Greeter/Development/"
 #               Please make sure to change or validate before putting ii into Production.
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # NOTE 3 :      This program can be run separately or as a stand alone program as follow :
 #               $ python3 Main_Process.py
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 """
 import os
 import sys
@@ -49,6 +49,12 @@ from subprocess import check_output
 
 
 def start_program():
+    """
+    ************************************ Inside start_program function *************************************************
+    This function will be called at the beginning to print today's date and start time.
+    ************************************ Inside start_program function *************************************************
+    """
+
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
     now = datetime.now()
@@ -57,6 +63,12 @@ def start_program():
 
 
 def exit_program():
+    """
+    ************************************ Inside exit_program function **************************************************
+    This function will be called at the end to print today's date and start time.
+    ************************************ Inside exit_program function **************************************************
+    """
+
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
     now = datetime.now()
@@ -66,6 +78,20 @@ def exit_program():
 
 
 def process_parameter_set():
+    """
+    ************************************ Inside process_parameter_set function *****************************************
+    This function will be called to set the essential parameter needed for this program.
+
+    Region = "DEV" signifies that we are running the code in the development region. And as per the region value, this
+    program will choose the table. So, it is essential to set region value correctly.
+
+    main_directory = "/home/somak/Robotic-Greeter/Development_Code" signifies that the Development_Code folder
+    is the main directory and inside of this directory we are having other code related folder such as :
+    Main_Process folder and inside Main_Process folder, we are having Main_Process.py (This process).
+    Also, Database_Code folder, Speech_Recognition folder, and Face_Recognition folder.
+    ************************************ Inside process_parameter_set function *****************************************
+    """
+
     region = "DEV"
     main_directory = "/home/somak/Robotic-Greeter/Development_Code"
 
@@ -73,6 +99,13 @@ def process_parameter_set():
 
 
 def process_checking_region_table(region):
+    """
+    ************************************ Inside process_checking_region_table ******************************************
+    This function will be called to get main_table and sequence_table as per region value. If the region value is not
+    set correctly, then this function will give error and will exit from the program.
+    ************************************ Inside process_checking_region_table ******************************************
+    """
+
     main_table = None
     sequence_table = None
     if region == "DEV":
@@ -93,6 +126,14 @@ def process_checking_region_table(region):
 
 
 def process_checking_directory():
+    """
+    ************************************ Inside process_checking_directory *********************************************
+    This function will be called to check if codes related folder such as Database_Code, Face_Recognition_Code,
+    and Speech_Recognition_Code is present inside of Main_Directory or not. If the directory is not present, then this
+    function will give error and will exit from the program.
+    ************************************ Inside process_checking_directory *********************************************
+    """
+
     database_code_directory = Path("Database_Code")
     face_recognition_code_directory = Path("Face_Recognition_Code")
     speech_recognition_code_directory = Path("Speech_Recognition_Code")
@@ -114,6 +155,16 @@ def process_checking_directory():
 
 
 def process_speech_normal(text):
+    """
+    ************************************ Inside process_speech_normal **************************************************
+    This function will be called to call Speech_Normal.py - This function will receive a text as input and will pass
+    this input as passing argument to Speech_Normal.py. Which will convert text to speech with the gTTS.
+    Speech_Normal.py will only speak from the text message. This function will only call Speech_Normal.py and will not
+    receive any output from Speech_Normal.py. If it is not able to call Speech_Normal.py, it will print an error
+    message and will continue.
+    ************************************ Inside process_speech_normal **************************************************
+    """
+
     passing_arg = text
     program_name = "Speech_Normal.py"
     args_call = "python3 " + program_name + ' ' + passing_arg
@@ -124,6 +175,17 @@ def process_speech_normal(text):
 
 
 def process_speech_question(text):
+    """
+    ************************************ Inside process_speech_question ************************************************
+    This function will be called to call Speech_Question.py - This function will receive a text as input and will pass
+    this input as passing argument to Speech_Question.py. Which will convert text to speech with gTTS. Text has to be
+    question format since Speech_Question.py will first ask the user and receive a response from the user. If it is not
+    able to call Speech_Normal.py, it will print an error message and will continue.
+    This function will then check if Speech_Question_Output.txt is present and will read from it for the response and
+    return it. If the output file does not exist, then it will return the response as None.
+    ************************************ Inside process_speech_question ************************************************
+    """
+
     passing_arg = text
     program_name = "Speech_Question.py"
     args_call = "python3 " + program_name + ' ' + passing_arg
@@ -146,6 +208,17 @@ def process_speech_question(text):
 
 
 def process_speech_name_organization():
+    """
+    ************************************ Inside process_speech_name_organization ***************************************
+    This function will be called to call Speech_Name_Organization.py - which will first ask your name, company, and
+    then will ask if you want to save details or not. If it is not able to call Speech_Normal.py, it will print an
+    error message and will continue.
+    Based on your response, this function will check Speech_Name_Organization_Output.txt present or not and read the
+    file for the response. Then it will return the response, and if the output file is not present, then it will return
+    the response as None.
+    ************************************ Inside process_speech_name_organization ***************************************
+    """
+
     program_name = "Speech_Name_Organization.py"
     passing_arg = 0
     args_call = "python3 " + program_name + ' ' + str(passing_arg)
@@ -170,6 +243,13 @@ def process_speech_name_organization():
 
 
 def process_prompt_question(text):
+    """
+    ************************************ Inside process_prompt_question ************************************************
+    This function will be called to prompt a pop-up question. It will receive a text as input and will prompt the
+    pop-up message. If it is not able to call Speech_Normal.py, it will print an error message and will continue.
+    ************************************ Inside process_prompt_question ************************************************
+    """
+
     try:
         output = check_output(["zenity", "--question", "--width=400", "--height=200", "--text=" + text])
     except subprocess.CalledProcessError:
@@ -180,6 +260,15 @@ def process_prompt_question(text):
 
 
 def process_inserting_data():
+    """
+    ************************************ Inside process_inserting_data *************************************************
+    This function will be called to call Customer_Insert.py, which will insert the data into the database. This process
+    will receive an output from Customer_Insert.py to get Unique ID and later return the Unique ID. If it is not able
+    to not call or have an issue with extracting Unique ID, then it will print an error message and will return the
+    Unique ID as None.
+    ************************************ Inside process_inserting_data *************************************************
+    """
+
     try:
         program_name = "Customer_Insert.py"
         args_call = "python3 " + program_name
@@ -209,6 +298,15 @@ def process_inserting_data():
 
 
 def process_picture(unique_id):
+    """
+    ************************************ Inside process_picture ********************************************************
+    This function will be called to call Capture_Picture_Main.py with Unique ID as input, which is used to take and
+    save your picture. This process will also receive an output from Capture_Picture_Main.py to check if there are any
+    errors or not. If there are errors, then it will print an error message and will return None or else will return
+    the original output value.
+    ************************************ Inside process_picture ********************************************************
+    """
+
     program_name = "Capture_Picture_Main.py"
     passing_arg = str(unique_id)
     args_call = "python3 " + program_name + ' ' + passing_arg
@@ -227,6 +325,13 @@ def process_picture(unique_id):
 
 
 def process_search_details():
+    """
+    ************************************ Inside process_search_details *************************************************
+    This function will be called to call Customer_Search_Main.py, which will search the data from table. If it is not
+    able to call, then it will print an error message and will continue.
+    ************************************ Inside process_search_details *************************************************
+    """
+
     try:
         program_name = "Customer_Search_Main.py"
         args_call = "python3 " + program_name
@@ -237,6 +342,13 @@ def process_search_details():
 
 
 def process_ask_search(detect_name):
+    """
+    ************************************ Inside process_ask_search *****************************************************
+    This function will be called to prompt question first and based on the response this function will call
+    process_search_details() function.
+    ************************************ Inside process_ask_search *****************************************************
+    """
+
     text = "Would you like to proceed?"
     response = process_prompt_question(text)
     if response is not None:
@@ -248,6 +360,14 @@ def process_ask_search(detect_name):
 
 def process_search(text, database_code_directory, main_directory, detect_name, search_flag,
                    speech_recognition_code_directory):
+    """
+    ************************************ Inside process_search *********************************************************
+    This function will be called to call process_speech_question(text) function and based on the response it will call
+    process_speech_normal(text) function and process_ask_search(detect_name) function. If the customer says "Yes" then
+    it will set search_flag as Yes and will return it, if not then will nothing.
+    ************************************ Inside process_search *********************************************************
+    """
+
     os.chdir(speech_recognition_code_directory)
     response = process_speech_question(text)
     os.chdir(main_directory)
@@ -272,6 +392,13 @@ def process_search(text, database_code_directory, main_directory, detect_name, s
 
 
 def process_update_detail():
+    """
+    ************************************ Inside process_update_detail **************************************************
+    This function will be called to call Customer_Update.py, which will update the data in the table. If it is not
+    able to call, then it will print an error message and will continue.
+    ************************************ Inside process_update_detail **************************************************
+    """
+
     try:
         program_name = "Customer_Update.py"
         args_call = "python3 " + program_name
@@ -282,6 +409,13 @@ def process_update_detail():
 
 
 def process_ask_update(detect_name):
+    """
+    ************************************ Inside process_ask_update *****************************************************
+    This function will be called to prompt question first and based on the response this function will call
+    process_update_detail() function.
+    ************************************ Inside process_ask_update *****************************************************
+    """
+
     text = "Would you like to update your details?"
     response = process_prompt_question(text)
     if response is not None:
@@ -292,6 +426,13 @@ def process_ask_update(detect_name):
 
 
 def process_update(text, database_code_directory, main_directory, detect_name, speech_recognition_code_directory):
+    """
+    ************************************ Inside process_search *********************************************************
+    This function will be called to call process_speech_question(text) function and based on the response it will call
+    process_speech_normal(text) function and process_ask_update(detect_name) function.
+    ************************************ Inside process_search *********************************************************
+    """
+
     os.chdir(speech_recognition_code_directory)
     response = process_speech_question(text)
     os.chdir(main_directory)
@@ -313,6 +454,14 @@ def process_update(text, database_code_directory, main_directory, detect_name, s
 
 
 def process_search_all_details(check_main_table, detect_id):
+    """
+    ************************************ Inside process_search *********************************************************
+    This function will be called to search the details of a known person. After the face detection function, if the
+    face is known, with face ID, this function will check if the ID is present in the table. If details exist,then it
+    will return the table details, if not, then it will return an empty list.
+    ************************************ Inside process_search *********************************************************
+    """
+
     cur = None
     conn = None
     table_list = []
@@ -347,6 +496,16 @@ def process_search_all_details(check_main_table, detect_id):
 
 def process_unknown(main_directory, database_code_directory, face_recognition_code_directory,
                     speech_recognition_code_directory, detect_name):
+    """
+    ************************************ Inside process_unknown ********************************************************
+    This function is the primary process for an unknown person. This function will first greet the unknown person and
+    later will ask if the person needs any help or not. Based on the response (Yes/No), this process will do as below:
+    1. If Yes, it will ask if the customer wants to save their details in the database and save their picture.
+    Also, it will ask if they want to search anyone or update their details.
+    2. If No, then it will exit from this function and continue with the rest of the process.
+    ************************************ Inside process_unknown ********************************************************
+    """
+
     search_flag = None
     help_flag = None
 
@@ -448,6 +607,15 @@ def process_unknown(main_directory, database_code_directory, face_recognition_co
 
 def process_known(main_directory, database_code_directory, face_recognition_code_directory,
                   speech_recognition_code_directory, detect_name, detect_id, check_main_table):
+    """
+    ************************************ Inside process_known **********************************************************
+    This function is the primary process for a known person. This function will first greet the unknown person and
+    later will ask if the person needs any help or not. Based on the response (Yes/No), this process will do as below:
+    1. If Yes, it will ask if the customer wants to search anyone or update their details.
+    2. If No, then it will exit from this function and continue with the rest of the process.
+    ************************************ Inside process_known **********************************************************
+    """
+
     help_flag = None
     search_flag = None
 
@@ -562,6 +730,15 @@ def process_known(main_directory, database_code_directory, face_recognition_code
 
 
 def process_face_detection():
+    """
+    ************************************ Inside process_face_detection *************************************************
+    This function will be called to call Face_Detection_Camera.py, which will detect the faces and detect_name and
+    detect_id. detect_name and detect_id will be Unknown, and None if the faces are not known. If it is a known face,
+    then will return the exact name and ID. If it is not able to call then it will print an error message and will
+    continue.
+    ************************************ Inside process_face_detection *************************************************
+    """
+
     program_name = "Face_Detection_Camera.py"
     args_call = "python3 " + program_name
     detect_id = None
@@ -590,6 +767,13 @@ def process_face_detection():
 
 
 def process_speech_emergency_evacuation_procedures():
+    """
+    ************************************ Inside process_speech_emergency_evacuation_procedures *************************
+    This function will be called to call Speech_Emergency_Evacuation_Procedures.py, which will explain the procedures.
+    If it is not able to call then it will print an error message and will continue.
+    ************************************ Inside process_speech_emergency_evacuation_procedures *************************
+    """
+
     try:
         program_name = "Speech_Emergency_Evacuation_Procedures.py"
         args_call = "python3 " + program_name
@@ -600,6 +784,14 @@ def process_speech_emergency_evacuation_procedures():
 
 def process_main(main_directory, database_code_directory, face_recognition_code_directory,
                  speech_recognition_code_directory, check_main_table):
+    """
+    ************************************ Inside process_main ***********************************************************
+    This function will called from main and will perform face_detection first and based on the detect name this will
+    call process_unknown or process_known. Later it will call process_speech_emergency_evacuation_procedures and will
+    do some extra gestures.
+    ************************************ Inside process_main ***********************************************************
+    """
+
     os.chdir(face_recognition_code_directory)
     detect_name, detect_id = process_face_detection()
     os.chdir(main_directory)
@@ -629,12 +821,41 @@ def process_main(main_directory, database_code_directory, face_recognition_code_
                 print("Showing Emergency Evacuation Procedures to {}".format(detect_name))
                 process_speech_emergency_evacuation_procedures()
 
+        text = "Do you want to know more about me as TELIA?"
+        response = process_speech_question(text)
+        if response == "YES":
+            text = "Did you know that I am named after TELIA, our forward thinking optimization and automation " \
+                   "system that maximizes storage capacity, increases productivity, improves facility throughput " \
+                   "all under the control of a safety critical environment."
+            process_speech_normal(text)
+
+            text = "And did you know we have installed TELIA as a system in 3 countries, it controls over 100 " \
+                   "automated assets including more than 25 cranes, at 12 different sites for steel coil, long " \
+                   "products and finished goods. We are always innovating as we have 13 patents or pending patents " \
+                   "and more than 50 projects. "
+            process_speech_normal(text)
+
+            text = "You are probably wondering why CareGo would create me to greet you? I am to remind you that we " \
+                   "are a technology company which is obsessed with innovation, we try to improve everything from " \
+                   "our team to our processes to our products and how we greet you at the door. We not only embrace " \
+                   "innovation, we were born from it. Speaking of innovators."
+            process_speech_normal(text)
+
+    text = "Can I have you sign our visitor sheet on my notepad here? Thanks for doing that."
+    process_speech_normal(text)
+
     text = "Thank you for visiting Care Go. Please check out our web-site newsletter. Bye. See you later."
     process_speech_normal(text)
     os.chdir(main_directory)
 
 
 def process_delete_mp3_output_files(speech_recognition_code_directory):
+    """
+    ************************************ Inside process_delete_mp3_output_files ****************************************
+    This function will be called to delete all mp3 and output files before to end of the program.
+    ************************************ Inside process_delete_mp3_output_files ****************************************
+    """
+
     os.chdir(speech_recognition_code_directory)
     mp3_files = glob.glob('*.mp3', recursive=True)
     output_files = glob.glob('*_Output.txt', recursive=True)
@@ -654,6 +875,12 @@ def process_delete_mp3_output_files(speech_recognition_code_directory):
 
 
 def main():
+    """
+    ************************************ Inside main *******************************************************************
+    This is the main process which will call at the very beginning and will call the other functions.
+    ************************************ Inside main *******************************************************************
+    """
+
     start_program()
     region, main_directory = process_parameter_set()
     check_main_table, check_sequence_table = process_checking_region_table(region)
