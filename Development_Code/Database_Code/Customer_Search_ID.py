@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # Project:      Robotic Greeter - McMaster University - CareGo Tek
 # Program Name: Customer_Search_ID.py
 # Author:       Somak Mukherjee
 # Date:         Friday 24 April, 2020
 # Version:      1
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # Description:  All the python code in Database Code folder deals with the following table:
 #
 #               * Development (DEV) : carego_customer_dev
@@ -18,7 +18,7 @@
 #               the customer select ID option in Customer_Search_Main.py, then it will call Customer_Search_ID.py.
 #               And this program will ask the ID and search the data. Also, you can run this program as a stand-alone
 #               program.
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # NOTE 1:       Please make sure to change the region value as per region wise before putting to server :
 #               Development region: "DEV"
 #               Test region: "TEST"
@@ -32,10 +32,10 @@
 #               conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1",
 #               port="5432")
 #               Please make sure that everything is correct.
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 # NOTE 2:       This program can be run separately or as a stand-alone program as follow:
 #               $ python3 Customer_Search_ID.py
-# ----------------------------------------------------------------------------------------------------------------------
+# **********************************************************************************************************************
 """
 
 import re
