@@ -24,6 +24,12 @@ from subprocess import check_output
 
 
 def start_program():
+    """
+    ************************************ Inside start_program function *************************************************
+    This function will be called at the beginning to print today's date and start time.
+    ************************************ Inside start_program function *************************************************
+    """
+
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
     now = datetime.now()
@@ -32,6 +38,12 @@ def start_program():
 
 
 def exit_program():
+    """
+    ************************************ Inside exit_program function **************************************************
+    This function will be called at the end to print today's date and end time.
+    ************************************ Inside exit_program function **************************************************
+    """
+
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
     now = datetime.now()
@@ -41,6 +53,13 @@ def exit_program():
 
 
 def process_ask_question(flag):
+    """
+    ************************************ Inside process_ask_question function ******************************************
+    This function will ask if the customer wants to take the picture or not by prompting a pop-up message and later it
+    will return the customer response.
+    ************************************ Inside process_ask_question function ******************************************
+    """
+
     response = None
     if flag == 1:
         args = "zenity --question --width=500 --height=250 --text='Do you want me to take your picture?'"
@@ -57,6 +76,14 @@ def process_ask_question(flag):
 
 
 def process_calling(passing_arg):
+    """
+    ************************************ Inside process_calling function ***********************************************
+    This function will first call process_ask_question function, and based on the response, this will call another
+    process, Capture_Picture_Save.py, to save the picture. This process is written inside a loop until the customer
+    decides not to take any more pictures.
+    ************************************ Inside process_calling function ***********************************************
+    """
+
     flag = 1
     response = process_ask_question(flag)
     status = 0
@@ -129,6 +156,13 @@ def process_calling(passing_arg):
 
 
 def process_check_input_argument():
+    """
+    ************************************ Inside process_check_input_argument function **********************************
+    This function will receive an input argument (Unique ID) from the Main_Process and pass it to the main
+    process_calling function. If this function does not receive any argument, it will pass "0".
+    ************************************ Inside process_check_input_argument function **********************************
+    """
+
     try:
         print('Processing Capture_Picture_Main.py from main process.')
         print('Inside Capture_Picture_Main.py - Unique ID is : ', sys.argv[1])
@@ -141,6 +175,12 @@ def process_check_input_argument():
 
 
 def main():
+    """
+    ************************************ Inside main function **********************************************************
+    This is the main process which will call at the very beginning and will call the other functions.
+    ************************************ Inside main function **********************************************************
+    """
+
     start_program()
     process_check_input_argument()
     exit_program()
