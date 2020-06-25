@@ -60,7 +60,7 @@ def process_parameter_set():
 
     1. stand_alone_flag signifies if the program is running from Main_Process.py or not.
     2. mp3_filename signifies the mp3 filename that will be used by gTTS.
-    So it is essential to verify the parameter before running this process.
+    So, it is essential to verify the parameter before running this process.
     ************************************ Inside process_parameter_set function *****************************************
     """
     stand_alone_flag = None
