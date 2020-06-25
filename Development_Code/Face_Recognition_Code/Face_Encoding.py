@@ -10,12 +10,12 @@
 # Description:  This program is the main program which will create encoding.pickle file, which is essential for
 #               Face_Detection_Camera.py & Face_Detection_Image.py. Mainly, for all the application which needs to
 #               detect the faces. First, this program will check if the encoding.pickle file is already present or
-#               not in the same folder. If the file exists, then it will read all the old data (old coordinate data)
+#               not in the same folder. If the file exists, then it will read all the old data (old co-ordinate data)
 #               from the encoding file and store it into one variable, later this program will check if any new images
 #               present in the Dataset directory or not. If the Dataset directory has any new pictures or old photos,
-#               then this program will read those photos and will create a new encoding coordinate. After reading all
-#               the latest images, this program will merge all the old coordinates with new coordinates and will write
-#               again into encoding.pickle file.
+#               then this program will read those photos and will create a new encoding co-ordinate. After reading all
+#               the latest images, this program will merge all the old co-ordinates with new co-ordinates and will
+#               write again into encoding.pickle file.
 # **********************************************************************************************************************
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow:
 #               $ python3 Face_Encoding.py
@@ -33,6 +33,12 @@ from datetime import date, datetime
 
 
 def start_program():
+    """
+    ************************************ Inside start_program function *************************************************
+    This function will be called at the beginning to print today's date and start time.
+    ************************************ Inside start_program function *************************************************
+    """
+
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
     now = datetime.now()
@@ -41,6 +47,12 @@ def start_program():
 
 
 def exit_program():
+    """
+    ************************************ Inside exit_program function **************************************************
+    This function will be called at the end to print today's date and end time.
+    ************************************ Inside exit_program function **************************************************
+    """
+
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
     now = datetime.now()
@@ -49,9 +61,37 @@ def exit_program():
     sys.exit()
 
 
-def process_face_encode():
+def process_parameter_set():
+    """
+    ************************************ Inside process_parameter_set function *****************************************
+    This function will be called to set the essential parameter needed for this program as below:
+
+    1. image_path signifies the folder, where all the new images are stored.
+    2. detect_model signifies detection model.
+    So, it is essential to verify the parameter before running this process.
+    ************************************ Inside process_parameter_set function *****************************************
+    """
+
     image_path = 'Dataset'
     detect_model = 'cnn'
+
+    return image_path, detect_model
+
+
+def process_face_encode(image_path, detect_model):
+    """
+    ************************************ Inside process_face_encode function *******************************************
+    This function is the primary function that will first check if the image_path is present or not. If the path does
+    not exist, then the program will exit, and if the folder exists, then this function will check if any new images
+    present inside of the image_path or not. If there are any new images, this function will create an encoding file,
+    and if not, then it will exit the program.
+    Also, while creating an encoding file, this function will first check if this file is present or not. If not, then
+    this function will create encoding file with new data, but if the data exist then first, it will read all the data
+    from encoding.pickle file and load it into old data variable and later will merge old data with new data. and will
+    write in the encoding file.
+    ************************************ Inside process_face_encode function *******************************************
+    """
+
     args = {'dataset': image_path, 'detection_method': detect_model}
 
     path = Path(image_path)
@@ -125,8 +165,15 @@ def process_face_encode():
 
 
 def main():
+    """
+    ************************************ Inside main function **********************************************************
+    This is the main process which will call at the very beginning and will call the other functions.
+    ************************************ Inside main function **********************************************************
+    """
+
     start_program()
-    process_face_encode()
+    image_path, detect_model = process_parameter_set()
+    process_face_encode(image_path, detect_model)
     exit_program()
 
 
