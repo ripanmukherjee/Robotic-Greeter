@@ -38,6 +38,12 @@ from datetime import date, datetime
 
 
 def start_program():
+    """
+    ************************************ Inside start_program function *************************************************
+    This function will be called at the beginning to print today's date and start time.
+    ************************************ Inside start_program function *************************************************
+    """
+
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
     now = datetime.now()
@@ -46,6 +52,12 @@ def start_program():
 
 
 def exit_program():
+    """
+    ************************************ Inside exit_program function **************************************************
+    This function will be called at the end to print today's date and end time.
+    ************************************ Inside exit_program function **************************************************
+    """
+
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
     now = datetime.now()
@@ -54,12 +66,35 @@ def exit_program():
     sys.exit()
 
 
-def process_face_detection_image():
-    try:
-        encoding_file = 'encodings.pickle'
-        image_path = 'Sample_Images/image2.jpg'
-        detect_model = 'cnn'
+def process_parameter_set():
+    """
+    ************************************ Inside process_parameter_set function *****************************************
+    This function will be called to set the essential parameter needed for this program as below:
 
+    1. encoding_file signifies the encoding file from where this process extract the known faces co-ordinate.
+    2. image_path signifies the folder, where all the new images are stored.
+    3. detect_model signifies detection model.
+    So, it is essential to verify the parameter before running this process.
+    ************************************ Inside process_parameter_set function *****************************************
+    """
+
+    encoding_file = 'encodings.pickle'
+    image_path = 'Sample_Images/image2.jpg'
+    detect_model = 'cnn'
+
+    return encoding_file, image_path, detect_model
+
+
+def process_face_detection_image(encoding_file, image_path, detect_model):
+    """
+    ************************************ Inside process_face_detection_image function **********************************
+    This function is the primary function that will first load all the data from the encoding file, and later this will
+    open the input image and create co-ordinate of each faces in the picture. If any newly created co-ordinate matches
+    with the co-ordinate present in the encoding file, then it will create a square box over the faces on the image.
+    ************************************ Inside process_face_detection_image function **********************************
+    """
+
+    try:
         args = {'encodings': encoding_file, 'image': image_path, 'detection_method': detect_model}
 
         data = pickle.loads(open(args["encodings"], "rb").read())
@@ -102,8 +137,15 @@ def process_face_detection_image():
 
 
 def main():
+    """
+    ************************************ Inside main function **********************************************************
+    This is the main process which will call at the very beginning and will call the other functions.
+    ************************************ Inside main function **********************************************************
+    """
+
     start_program()
-    process_face_detection_image()
+    encoding_file, image_path, detect_model = process_parameter_set()
+    process_face_detection_image(encoding_file, image_path, detect_model)
     exit_program()
 
 
