@@ -46,6 +46,12 @@ from subprocess import check_output
 
 
 def start_program():
+    """
+    ************************************ Inside start_program function *************************************************
+    This function will be called at the beginning to print today's date and start time.
+    ************************************ Inside start_program function *************************************************
+    """
+
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
     now = datetime.now()
@@ -54,6 +60,12 @@ def start_program():
 
 
 def exit_program():
+    """
+    ************************************ Inside exit_program function **************************************************
+    This function will be called at the end to print today's date and end time.
+    ************************************ Inside exit_program function **************************************************
+    """
+
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
     now = datetime.now()
@@ -517,6 +529,12 @@ def process_ask_multiple(check_main_table, flag, status):
 
 
 def main():
+    """
+    ************************************ Inside main function **********************************************************
+    This is the main process which will call at the very beginning and will call the other functions.
+    ************************************ Inside main function **********************************************************
+    """
+
     start_program()
     region = process_parameter_set()
     check_main_table, check_sequence_table = process_checking_region_table(region)
