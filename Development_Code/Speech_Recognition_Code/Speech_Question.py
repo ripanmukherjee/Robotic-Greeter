@@ -74,7 +74,7 @@ def process_parameter_set():
     4. mp3_filename is the mp3 file from where gtts will play the sound.
     5. text will be the initial text message.
     6. device_index will be automatically set as the available input device on the computer.
-    So it is essential to verify the parameter before running this process.
+    So, it is essential to verify the parameter before running this process.
     ************************************ Inside process_parameter_set function *****************************************
     """
 
