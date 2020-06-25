@@ -31,6 +31,12 @@ from datetime import date, datetime
 
 
 def start_program():
+    """
+    ************************************ Inside start_program function *************************************************
+    This function will be called at the beginning to print today's date and start time.
+    ************************************ Inside start_program function *************************************************
+    """
+
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
     now = datetime.now()
@@ -39,6 +45,12 @@ def start_program():
 
 
 def exit_program():
+    """
+    ************************************ Inside exit_program function **************************************************
+    This function will be called at the end to print today's date and end time.
+    ************************************ Inside exit_program function **************************************************
+    """
+
     today = date.today()
     current_date = today.strftime("%d/%m/%Y")
     now = datetime.now()
@@ -47,13 +59,36 @@ def exit_program():
     sys.exit()
 
 
-def process_face_detection():
+def process_parameter_set():
+    """
+    ************************************ Inside process_parameter_set function *****************************************
+    This function will be called to set the essential parameter needed for this program as below:
+
+    1. encoding_file signifies the encoding file from where this process extract the known faces co-ordinate.
+    2. face_cascade signifies OpenCV cascade classifier from haarcascade_frontalface_default.xml file.
+    So, it is essential to verify the parameter before running this process.
+    ************************************ Inside process_parameter_set function *****************************************
+    """
+
+    encoding_file = 'encodings.pickle'
+    face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+
+    return encoding_file, face_cascade
+
+
+def process_face_detection(encoding_file, face_cascade):
+    """
+    ************************************ Inside process_face_detection function ****************************************
+    This function is the primary function that will first load all the data from the encoding file, and later this will
+    open the camera and create co-ordinate of each faces in the camera. If any newly created co-ordinate matches
+    with the co-ordinate present in the encoding file, then it will create a square box over the faces on the camera.
+    ************************************ Inside process_face_detection function ****************************************
+    """
+
     try:
-        with open("encodings.pickle", "rb") as file:
+        with open(encoding_file, "rb") as file:
             unpickler = pickle.Unpickler(file)
             data = unpickler.load()
-
-        face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
         # cap = cv2.VideoCapture(-1, cv2.CAP_DSHOW) - For Windows 10 system
         cap = cv2.VideoCapture(-1)
@@ -123,8 +158,15 @@ def process_face_detection():
 
 
 def main():
+    """
+    ************************************ Inside main function **********************************************************
+    This is the main process which will call at the very beginning and will call the other functions.
+    ************************************ Inside main function **********************************************************
+    """
+
     start_program()
-    process_face_detection()
+    encoding_file, face_cascade = process_parameter_set()
+    process_face_detection(encoding_file, face_cascade)
     exit_program()
 
 
