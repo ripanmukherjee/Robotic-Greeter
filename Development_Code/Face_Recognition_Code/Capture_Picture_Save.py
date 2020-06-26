@@ -85,8 +85,8 @@ def process_get_details():
     ************************************ Inside process_get_details function *******************************************
     This function is to get the name from pop-up message to save the picture.
 
-    This function will be called when the customer takes their pictures. It will prompt a pop-up message where the
-    customers will enter their names, so, that the photos will be saved with the name mentioned by the customer.
+    This function will be called when the user takes their pictures. It will prompt a pop-up message where the
+    users will enter their names, so, that the photos will be saved with the name mentioned by the user.
     ************************************ Inside process_get_details function *******************************************
     """
 
@@ -113,8 +113,8 @@ def process_save_picture(details, img, fps, unique_id, dataset_path):
 
     It will receive two essential parameters as below:
 
-    1. details which will contain the name of the person (The name which customer will insert)
-    2. unique_id is the id which present in the customer table.
+    1. details which will contain the name of the person (The name which user will insert)
+    2. unique_id is the id which present in the user table.
 
     Initially, this will merge this above two-parameter with "_" as "details_unique_id," i.e., "Name_ID."
 
@@ -133,7 +133,7 @@ def process_save_picture(details, img, fps, unique_id, dataset_path):
 
     1. Folder Name - XXX_UniqueID (XXX - Person Name)
     2. Image Name  - XXX_UniqueID_YYY.jpg (YYY - Serial Number, this number will automatically increase if the
-    customer wants more than one photo.
+    user wants more than one photo.
     ************************************ Inside process_save_picture function ******************************************
     """
 
