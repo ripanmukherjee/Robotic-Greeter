@@ -63,9 +63,11 @@ def process_parameter_set():
     ************************************ Inside process_parameter_set function *****************************************
     This function will be called to set the essential parameter needed for this program as below:
 
-    1. emergency_evacuation_procedures_path signifies where all the Images are stored.
+    1. emergency_evacuation_procedures_path signifies where all the Images are store.
     2. mp3_filename signifies the mp3 filename that will be used by gTTS.
-    So, it is essential to verify the parameter before running this process.
+
+    All the above values will be returning from this function, and other functions will use these parameters. So, it
+    is essential to verify the parameter before running this process.
     ************************************ Inside process_parameter_set function *****************************************
     """
 
@@ -79,7 +81,7 @@ def process_gtts_playsound(mp3_filename, text):
     """
     ************************************ Inside process_gtts_playsound function ****************************************
     This function will be called to play the sound or save the text message to an mp3 file and later play the mp3
-    file, and after the play is done, this function will remove the mp3 file.
+    file, and after the sound play, this function will remove the mp3 file.
     ************************************ Inside process_gtts_playsound function ****************************************
     """
 
@@ -93,9 +95,11 @@ def process_gtts_playsound(mp3_filename, text):
 def emergency_evacuation_process(emergency_evacuation_procedures_path, mp3_filename):
     """
     ************************************ Inside emergency_evacuation_process function **********************************
-    This function is the primary function, which will check if the emergency_evacuation_procedures_path is present or
-    not. If the path is present, then this function will enter into this path and open images one by one and call
-    process_gtts_playsound to describe the image.
+    This function will open the images of Emergency Evacuation Procedures and will explain it.
+
+    First, it will check if the emergency_evacuation_procedures_path is present or not. If the path is present, then
+    it will enter into the path and will validate each image. If the images exist, then it will open all the photos
+    one by one and call process_gtts_playsound to describe it.
     ************************************ Inside emergency_evacuation_process function **********************************
     """
 
