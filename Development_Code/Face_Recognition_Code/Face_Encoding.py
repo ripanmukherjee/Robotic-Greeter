@@ -68,7 +68,9 @@ def process_parameter_set():
 
     1. image_path signifies the folder, where all the new images are stored.
     2. detect_model signifies detection model.
-    So, it is essential to verify the parameter before running this process.
+
+    All the above values will be returning from this function, and other functions will use these parameters. So, it
+    is essential to verify the parameter before running this process.
     ************************************ Inside process_parameter_set function *****************************************
     """
 
@@ -81,6 +83,8 @@ def process_parameter_set():
 def process_face_encode(image_path, detect_model):
     """
     ************************************ Inside process_face_encode function *******************************************
+    This is the main function which creates encoding file by reading the images.
+
     This function is the primary function that will first check if the image_path is present or not. If the path does
     not exist, then the program will exit, and if the folder exists, then this function will check if any new images
     present inside of the image_path or not. If there are any new images, this function will create an encoding file,
