@@ -56,7 +56,8 @@ def process_ask_question(flag):
     """
     ************************************ Inside process_ask_question function ******************************************
     This function will ask if the customer wants to take the picture or not by prompting a pop-up message and later it
-    will return the customer response.
+    will return the customer response. If the flag is 1 that means this function is asking for the first time and if
+    flag is not 1 that means it is asking more than 1 times.
     ************************************ Inside process_ask_question function ******************************************
     """
 
