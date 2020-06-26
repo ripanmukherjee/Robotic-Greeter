@@ -68,7 +68,9 @@ def process_parameter_set():
 
     1. dataset_path signifies the folder, where all the new images will be save.
     2. face_cascade signifies OpenCV cascade classifier from haarcascade_frontalface_default.xml file.
-    So, it is essential to verify the parameter before running this process.
+
+    All the above values will be returning from this function, and other functions will use these parameters. So, it
+    is essential to verify the parameter before running this process.
     ************************************ Inside process_parameter_set function *****************************************
     """
 
@@ -81,8 +83,10 @@ def process_parameter_set():
 def process_get_details():
     """
     ************************************ Inside process_get_details function *******************************************
+    This function is to get the name from pop-up message to save the picture.
+
     This function will be called when the customer takes their pictures. It will prompt a pop-up message where the
-    customers will write their names so that the photos will be saved with the name mentioned by the customer.
+    customers will enter their names, so, that the photos will be saved with the name mentioned by the customer.
     ************************************ Inside process_get_details function *******************************************
     """
 
@@ -105,14 +109,31 @@ def process_get_details():
 def process_save_picture(details, img, fps, unique_id, dataset_path):
     """
     ************************************ Inside process_save_picture function ******************************************
-    This function will first check the dataset_path folder is present or not. If not, then it will exit from the
-    program. If the dataset_path folder exists, then it will check if any folder with the same name and Id is present
-    inside of the dataset_path or not. If Yes, then it will just save the image inside of it, and if not, then it will
-    create a new folder and save the image inside it. Concept of folder name and image name as follow:
+    It is the primary function where taken photos will be saved with a proper name and inside an appropriate folder.
+
+    It will receive two essential parameters as below:
+
+    1. details which will contain the name of the person (The name which customer will insert)
+    2. unique_id is the id which present in the customer table.
+
+    Initially, this will merge this above two-parameter with "_" as "details_unique_id," i.e., "Name_ID."
+
+    Then it will check the dataset_path folder is present or not. If not, then it will directly exit from the program.
+    If the dataset_path folder exists, it will check if there are any folder with "Name_ID" is present inside of the
+    dataset_path or not.
+
+    If Yes, then it will first count how many files are already present inside of this folder. Then it will add 1 with
+    the file count. If the file count is 0, then it will add one on it. But if the file count is X, it will add 1 with
+    X. Then, it will add this count after "Name_ID," i.e., "Name_ID_Count.jpg."
+
+    If Not, it will create a new folder as "Name_ID" and then save the image as "Name_ID_1.jpg" Here, the count will
+    be one since this is the first image saving in this folder.
+
+    Concept of folder name and image name as follow:
 
     1. Folder Name - XXX_UniqueID (XXX - Person Name)
-    2. Image Name  - XXX_UniqueID_YYY.jpg (YYY - Serial Number, this number will increase by 1 automatically, if the
-                     customer wants more than 1 photo.
+    2. Image Name  - XXX_UniqueID_YYY.jpg (YYY - Serial Number, this number will automatically increase if the
+    customer wants more than one photo.
     ************************************ Inside process_save_picture function ******************************************
     """
 
@@ -153,7 +174,9 @@ def process_save_picture(details, img, fps, unique_id, dataset_path):
 def process_picture_taking(unique_id, dataset_path, face_cascade):
     """
     ************************************ Inside process_picture_taking function ****************************************
-    This function is the primary function that will open the camera and sill capture the image from the camera. Later,
+    It is the function which will open the camera and will take the photo.
+
+    This function is the primary function that will open the camera and will capture the image from the camera. Later,
     it will call process_save_picture function to save the picture.
     ************************************ Inside process_picture_taking function ****************************************
     """
@@ -204,7 +227,9 @@ def process_picture_taking(unique_id, dataset_path, face_cascade):
 def process_check_input_argument(dataset_path, face_cascade):
     """
     ************************************ Inside process_check_input_argument function **********************************
-    This function will receive an input argument (Unique ID) from the Main_Process and pass the case to the main
+    This function will decide if this program will run as stand-alone or not.
+
+    It will receive an input argument (Unique ID) from the Main_Process and pass the Unique ID to the main
     process_calling function. If this function does not receive any argument, it will pass "0" as an argument.
     ************************************ Inside process_check_input_argument function **********************************
     """
