@@ -74,7 +74,9 @@ def process_parameter_set():
     1. encoding_file signifies the encoding file from where this process extract the known faces co-ordinate.
     2. image_path signifies the folder, where all the new images are stored.
     3. detect_model signifies detection model.
-    So, it is essential to verify the parameter before running this process.
+
+    All the above values will be returning from this function, and other functions will use these parameters. So, it
+    is essential to verify the parameter before running this process.
     ************************************ Inside process_parameter_set function *****************************************
     """
 
@@ -88,9 +90,13 @@ def process_parameter_set():
 def process_face_detection_image(encoding_file, image_path, detect_model):
     """
     ************************************ Inside process_face_detection_image function **********************************
-    This function is the primary function that will first load all the data from the encoding file, and later this will
+    This is the main function which will detect the faces from a image.
+
+    This function is the primary function that will first read all the data from the encoding file, and later this will
     open the input image and create co-ordinate of each faces in the picture. If any newly created co-ordinate matches
-    with the co-ordinate present in the encoding file, then it will create a square box over the faces on the image.
+    with the co-ordinate present in the encoding file, then it will create a square box with name of the person over
+    the faces on the image. But if the function can not able to find the encoding file in the directory, then it will
+    exit from the program.
     ************************************ Inside process_face_detection_image function **********************************
     """
 
