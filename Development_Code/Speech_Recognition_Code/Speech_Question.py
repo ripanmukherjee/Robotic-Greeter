@@ -71,10 +71,13 @@ def process_parameter_set():
     1. yes_syn_words signifies all the synonym word of Yes.
     2. stop_words means all the unwanted noisy word.
     3. record signifies the setting of the recorder.
-    4. mp3_filename is the mp3 file from where gtts will play the sound.
-    5. text will be the initial text message.
-    6. device_index will be automatically set as the available input device on the computer.
-    So, it is essential to verify the parameter before running this process.
+    4. mp3_filename is the mp3 file from where gTTS will play the sound.
+    5. text will be the initial text message which will be played by gTTS.
+    6. device_index will be set automatically as the available microphone input device on the computer.
+    7. output_file is the file where the final response will be written.
+
+    All the above values will be returning from this function, and other functions will use these parameters. So, it
+    is essential to verify the parameter before running this process.
     ************************************ Inside process_parameter_set function *****************************************
     """
 
@@ -93,15 +96,20 @@ def process_parameter_set():
     else:
         device_index = 0
 
-    return yes_syn_words, stop_words, record, mp3_filename, text, device_index
+    output_file = "Speech_Question_Output.txt"
+
+    return yes_syn_words, stop_words, record, mp3_filename, text, device_index, output_file
 
 
 def process_check_input_argument():
     """
     ************************************ Inside process_check_input_argument function **********************************
-    This function will be called to check the input argument based on stand_alone_flag. If this process received an
-    input from Main_Process.py then it will pass that argument into text and if not then it will set stand_alone_flag
-    as 1, and this process will run as stand-alone.
+    This function will be called to set the value of stand_alone_flag and text message.
+
+    If this process received an input from Main_Process.py then it will pass that argument into text, and the value
+    of the stand_alone_flag will be None. If this process gets input argument less than two characters of length or
+    does not get any input argument, it will set stand_alone_flag as 1 (To run the program as stand-alone), and set
+    the text as a sample text message. Later, this function will pass these parameters for other tasks.
     ************************************ Inside process_check_input_argument function **********************************
     """
 
@@ -127,11 +135,21 @@ def process_check_input_argument():
 def process_speak_listen(device_index, mp3_filename, text, record, flag):
     """
     ************************************ Inside process_speak_listen function ******************************************
-    This function will be called to play the sound or save the text message to an mp3 file and later play the mp3
-    file, and after the play is done, this function will remove the mp3 file.
-    Later it will record the response from the user, there is a timeout of 5 second. If the recorder does not get an
-    input for 5 second or during any lookup error or Unknown Value Error then it will prompt a pop-up message. Based
-    on the input response given by the customer this function will return it.
+    This function will be called to play the sound or save the text message to an mp3 file, play the mp3 file, and
+    after the sound play, this function will remove the mp3 file.
+
+    This function will prompt a pop-up message as Speak Now to indicate the customer that they need to speak now.
+    Later, it will record the response from the user. There is a timeout of 5 seconds; if the recorder does not get
+    an input for 5 seconds or any lookup error or Unknown Value Error, it will prompt a pop-up message, where customers
+    can click on YES or NO button. If the customer clicks the YES button, the recorder will store the response as YES,
+    and if the customer clicks the NO button, it will save the as NO. Based on the customer's input response, this
+    function will return the value of the response as YES or NO.
+
+    This function will only record the customer's response when the flag is not "1". If the flag's value is "1", this
+    function will only play the sound of the text and exit from this function.
+
+    This function uses Google-Text-To-Speech (gtts) module that needs an internet connection. Without an internet
+    connection, this function will give an ERROR and will exit from the program.
     ************************************ Inside process_speak_listen function ******************************************
     """
 
@@ -193,7 +211,10 @@ def process_speak_listen(device_index, mp3_filename, text, record, flag):
 
                     print(record_text)
     except gtts.tts.gTTSError:
-        print("Connection Error : No internet connection.")
+        print("ERROR - Connection Error : No internet connection.")
+        exit_program()
+    except PermissionError:
+        print("ERROR : No permission")
         exit_program()
 
     return record_text
@@ -202,10 +223,13 @@ def process_speak_listen(device_index, mp3_filename, text, record, flag):
 def process_input_details(device_index, input_details, mp3_filename, record, yes_syn_words, stop_words):
     """
     ************************************ Inside process_input_details function *****************************************
-    This function will tokenize and filter the words based on the response given by User. First, it will tokenize
-    the sentence into word and later remove all the stop words. Then from the filtered_sent, it will search if any word
-    is present in yes_syn_words or not. If yes, then this function will be treated as Yes, and if not, then it will be
-    treated as No. Later that response will be return to write into an output file.
+    This function will set the final response as YES or NO by tokenizing.
+
+    First, this function will validate the input_details response from the customer. If the customer's response is
+    None, then this function will set the final response as NO. But if the customer gives some response and the value
+    of input details is not None, it will then tokenize the sentence into word and remove all the stop words. Then
+    from the filtered_sent, it will search if any word is present in yes_syn_words or not. If yes, this function will
+    set the final response as YES, and if not, it will set as NO. Later, it will return the value of the final response.
     ************************************ Inside process_input_details function *****************************************
     """
 
@@ -235,14 +259,14 @@ def process_input_details(device_index, input_details, mp3_filename, record, yes
     return response
 
 
-def process_output_file_write(response):
+def process_output_file_write(output_file, response):
     """
     ************************************ Inside process_output_file_write function *************************************
-    This function will be called to write the response into a output file.
+    This function will be called to write the final response into a output file.
     ************************************ Inside process_output_file_write function *************************************
     """
 
-    with open("Speech_Question_Output.txt", "w") as output_file:
+    with open(output_file, "w") as output_file:
         output_file.write(response)
 
 
@@ -278,12 +302,12 @@ def main():
     """
 
     start_program()
-    yes_syn_words, stop_words, record, mp3_filename, text, device_index = process_parameter_set()
+    yes_syn_words, stop_words, record, mp3_filename, text, device_index, output_file = process_parameter_set()
     # process_speak_listen(mp3_filename, text, record, flag=1)
     text, stand_alone_flag = process_check_input_argument()
     input_details = process_speak_listen(device_index, mp3_filename, text, record, flag=0)
     response = process_input_details(device_index, input_details, mp3_filename, record, yes_syn_words, stop_words)
-    process_output_file_write(response)
+    process_output_file_write(output_file, response)
     process_delete_mp3_output_files(stand_alone_flag)
     exit_program()
 
