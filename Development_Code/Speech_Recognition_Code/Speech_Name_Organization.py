@@ -8,7 +8,7 @@
 # Version:      1
 # **********************************************************************************************************************
 # Description:  Speech_Name_Organization.py is to ask the Name & Organization to Unknown Person. Later it will ask the
-#               person if they want to save their details or not. If this program does not get input from customers
+#               person if they want to save their details or not. If this program does not get input from users
 #               within a given time, then it will prompt a pop-up message to enter the details or to click ok or
 #               cancel. It will be called from ~/Main_Process/Main_Process.py, and depending on the person's
 #               response, this program will give an output into a file (Speech_Name_Organization_Output.text)
@@ -129,11 +129,11 @@ def process_speak_listen(device_index, mp3_filename, text, record, flag):
     This function will be called to play the sound or save the text message to an mp3 file, play the mp3 file, and
     after the sound play, this function will remove the mp3 file.
 
-    This function will prompt a pop-up message as Speak Now to indicate the customer that they need to speak now.
+    This function will prompt a pop-up message as Speak Now to indicate the user that they need to speak now.
     Later, it will record the response from the user and will store into text. There is a timeout of 5 seconds; if the
     recorder does not get an input for 5 seconds or any lookup error or Unknown Value Error, it will set text as None.
 
-    This function will only record the customer's response when the flag is not "1". If the flag's value is "1", this
+    This function will only record the user's response when the flag is not "1". If the flag's value is "1", this
     function will only play the sound of the text and exit from this function.
 
     This function uses Google-Text-To-Speech (gtts) module that needs an internet connection. Without an internet
@@ -224,7 +224,7 @@ def process_extract_name_organization_details(device_index, mp3_filename, text, 
     This function will be called to return a person's name and organization's name as details.
 
     First, this function will receive a text and call process_speak_listen function with flag value as 0 to record the
-    customer's answer. That response will be store into the text variable. If the text value is None, then it will
+    user's answer. That response will be store into the text variable. If the text value is None, then it will
     return the detail's value as None. If not, then it will call process_token_sentence function to get the tokenize
     sentence and later call to process_extract_entity_names to find the person's name or organization's name from the
     tokenize sentence.
@@ -254,11 +254,11 @@ def process_extract_name_organization_details(device_index, mp3_filename, text, 
 def process_organization(device_index, mp3_filename, record, text, name):
     """
     ************************************ Inside process_organization function ******************************************
-    This function will ask the customer to enter the Organization name in a pop-up message.
+    This function will ask the user to enter the Organization name in a pop-up message.
 
-    First, it will prompt a pop-up message for the customer to enter their Company's Name, only if the Company's Name
-    value is None in the previous function. If the customers enter their Company's Name, then this function will set
-    the text as a different text message. But, If the customer chooses not to enter the Company's Name, then this
+    First, it will prompt a pop-up message for the user to enter their Company's Name, only if the Company's Name
+    value is None in the previous function. If the users enter their Company's Name, then this function will set
+    the text as a different text message. But, If the user chooses not to enter the Company's Name, then this
     function will set the text as final speak text value.
     ************************************ Inside process_organization function ******************************************
     """
@@ -292,11 +292,11 @@ def process_organization(device_index, mp3_filename, record, text, name):
 def process_name_organization(device_index, mp3_filename, record):
     """
     ************************************ Inside process_name_organization function *************************************
-    This function will ask the customer to enter the Name in a pop-up message and later ask the company name.
+    This function will ask the user to enter the Name in a pop-up message and later ask the company name.
 
-    First, it will prompt a pop-up message for the customer to enter their Name, only if the name value is None in the
-    previous function. If the customer enter their names, then this function will ask the Company's name to the
-    customer. If the customer chooses not to enter the Company's Name then this function will set the text as final
+    First, it will prompt a pop-up message for the user to enter their Name, only if the name value is None in the
+    previous function. If the user enter their names, then this function will ask the Company's name to the
+    user. If the user chooses not to enter the Company's Name then this function will set the text as final
     speak text value.
     ************************************ Inside process_name_organization function *************************************
     """
@@ -325,11 +325,11 @@ def process_name_organization(device_index, mp3_filename, record):
 def process_name(device_index, mp3_filename, record):
     """
     ************************************ Inside process_name function **************************************************
-    This function will ask the Customer's Name and Organization.
+    This function will ask the user's Name and Organization.
 
     First, it will ask the Name of the person; if the value of Name is None, it will call process_name_organization.
     If the Name is not None, then it will ask the company name by calling process_extract_name_organization_details.
-    Later, based on customers' input details, this function will set the final text message as if the customer wants
+    Later, based on users' input details, this function will set the final text message as if the user wants
     to save their details or not and return this text for the closing process.
     ************************************ Inside process_name function **************************************************
     """
@@ -355,10 +355,10 @@ def process_input_details(device_index, input_details, mp3_filename, record, yes
     ************************************ Inside process_input_details function *****************************************
     This function will set the final response as YES or NO by tokenizing.
 
-    First, based on the last response receives from the customers, this function will prompt a pop-up message if the
-    customer wants to save their details or not. In this pop-up message, customers can click on YES or NO button. If
-    the customer clicks on the NO button, then this function will set input details and final response as None. But if
-    the customer clicks on the YES button, then this function will tokenize the sentence into word and later remove all
+    First, based on the last response receives from the users, this function will prompt a pop-up message if the
+    user wants to save their details or not. In this pop-up message, users can click on YES or NO button. If
+    the user clicks on the NO button, then this function will set input details and final response as None. But if
+    the user clicks on the YES button, then this function will tokenize the sentence into word and later remove all
     the stop words. Then from the filtered_sent, it will search if any word is present in yes_syn_words or not. If yes,
     then this function will set the final response as YES, and if not, then it will set as NO. Later, it will return
     the value of the final response.
