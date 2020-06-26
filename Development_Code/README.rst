@@ -14,7 +14,7 @@ Note: This project is developed on a Linux System (Ubuntu), so, it is advisable 
 
 |
 
-3. Speech_Recognition_Code_: This folder contains all the face recognition related code, where we have codes that can convert the text into speech or speech into text and codes that can make conversation with customers.
+3. Speech_Recognition_Code_: This folder contains all the face recognition related code, where we have codes that can convert the text into speech or speech into text and codes that can make conversation with users.
 
 |
 
