@@ -14,7 +14,7 @@
 #               name on the video frame. If not, then it will show as Unknown.
 # **********************************************************************************************************************
 # NOTE 1:       Please check following line of code:
-#               cap = cv2.VideoCapture(-1) - If with -1 video stream is not working then you can replace with 0 or 1.
+#               cap = cv2.VideoCapture(-1) : If with -1 video stream is not working then you can replace with 0 or 1.
 # **********************************************************************************************************************
 # NOTE 2:       This program can be run separately or as a stand-alone program as follow:
 #               $ python3 Face_Detection_Camera.py
