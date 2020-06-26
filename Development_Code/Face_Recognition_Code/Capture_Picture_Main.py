@@ -55,9 +55,13 @@ def exit_program():
 def process_ask_question(flag):
     """
     ************************************ Inside process_ask_question function ******************************************
-    This function will ask if the customer wants to take the picture or not by prompting a pop-up message and later it
-    will return the customer response. If the flag is 1 that means this function is asking for the first time and if
-    flag is not 1 that means it is asking more than 1 times.
+    This function is the initial step to ask the customer if they want to take photos or not.
+
+    It will ask by prompting a pop-up message, and in the pop-up message, customers can click on YES or NO button.
+    Based on the response, it will return it for the next function. This function receives an input flag, for the
+    first time, the value of the flag will be 1, and after all the process flag sets as two, and this function will
+    get called again. This time will ask if they want to take another photo or not. If this function cannot prompt
+    the pop-up message, it will exit from the program.
     ************************************ Inside process_ask_question function ******************************************
     """
 
@@ -79,9 +83,11 @@ def process_ask_question(flag):
 def process_calling(passing_arg):
     """
     ************************************ Inside process_calling function ***********************************************
-    This function will first call process_ask_question function, and based on the response, this will call another
-    process, Capture_Picture_Save.py, to save the picture. This process is written inside a loop until the customer
-    decides not to take any more pictures.
+    This function is to call Capture_Picture_Save.py based on user response.
+
+    It will first call process_ask_question function, and based on the user response; this will call one python process
+    Capture_Picture_Save.py, to save the picture. This function is written inside a loop until the user decides not to
+    take any more pictures.
     ************************************ Inside process_calling function ***********************************************
     """
 
@@ -159,8 +165,10 @@ def process_calling(passing_arg):
 def process_check_input_argument():
     """
     ************************************ Inside process_check_input_argument function **********************************
-    This function will receive an input argument (Unique ID) from the Main_Process and pass it to the main
-    process_calling function. If this function does not receive any argument, it will pass "0".
+    This function will decide if this program will run as stand-alone or not.
+
+    It will receive an input argument (Unique ID) from the Main_Process and pass the Unique ID to the main
+    process_calling function. If this function does not receive any argument, it will pass "0" as an argument.
     ************************************ Inside process_check_input_argument function **********************************
     """
 
