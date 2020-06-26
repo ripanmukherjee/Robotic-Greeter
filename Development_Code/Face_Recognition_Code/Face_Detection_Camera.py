@@ -66,7 +66,9 @@ def process_parameter_set():
 
     1. encoding_file signifies the encoding file from where this process extract the known faces co-ordinate.
     2. face_cascade signifies OpenCV cascade classifier from haarcascade_frontalface_default.xml file.
-    So, it is essential to verify the parameter before running this process.
+
+    All the above values will be returning from this function, and other functions will use these parameters. So, it
+    is essential to verify the parameter before running this process.
     ************************************ Inside process_parameter_set function *****************************************
     """
 
@@ -79,9 +81,13 @@ def process_parameter_set():
 def process_face_detection(encoding_file, face_cascade):
     """
     ************************************ Inside process_face_detection function ****************************************
+    This is the main function which will detect the faces from a real time video.
+
     This function is the primary function that will first load all the data from the encoding file, and later this will
     open the camera and create co-ordinate of each faces in the camera. If any newly created co-ordinate matches
-    with the co-ordinate present in the encoding file, then it will create a square box over the faces on the camera.
+    with the co-ordinate present in the encoding file, then it will create a square box and name of the person over
+    the faces on the camera. But if the function can not able to find the encoding file in the directory, then it will
+    exit from the program.
     ************************************ Inside process_face_detection function ****************************************
     """
 
