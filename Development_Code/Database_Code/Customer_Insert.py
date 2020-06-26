@@ -79,6 +79,16 @@ def exit_program():
 
 
 def process_parameter_set():
+    """
+    ************************************ Inside process_parameter_set function *****************************************
+    This function will be called to set the essential parameter needed for this program as below:
+
+    1. Region = "DEV" signifies that we are running the code in the development region. And as per the region value,
+    this program will choose the table. So, it is essential to set region value correctly.
+    2. creation_date signifies the today's date which will be insert into the table as creation date.
+    ************************************ Inside process_parameter_set function *****************************************
+    """
+
     region = "DEV"
     today = date.today()
     creation_date = today.strftime("%d/%m/%Y")
@@ -87,6 +97,13 @@ def process_parameter_set():
 
 
 def process_checking_region_table(region):
+    """
+    ************************************ Inside process_checking_region_table function *********************************
+    This function will be called to get main_table and sequence_table as per region value. If the region value is not
+    set correctly, then this function will give error and will exit from the program.
+    ************************************ Inside process_checking_region_table function *********************************
+    """
+
     main_table = None
     sequence_table = None
     if region == "DEV":
@@ -107,6 +124,13 @@ def process_checking_region_table(region):
 
 
 def process_ask_question(flag):
+    """
+    ************************************ Inside process_ask_question function ******************************************
+    This function will ask if the customer wants to create their details or not by prompting a pop-up message and later
+    it will return the customer response.
+    ************************************ Inside process_ask_question function ******************************************
+    """
+
     response = None
     if flag == 1:
         args = "zenity --question --width=500 --height=250 --text='You need to create your details. \n\n" \
