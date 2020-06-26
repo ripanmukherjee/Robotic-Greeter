@@ -60,7 +60,9 @@ def process_parameter_set():
 
     1. stand_alone_flag signifies if the program is running from Main_Process.py or not.
     2. mp3_filename signifies the mp3 filename that will be used by gTTS.
-    So, it is essential to verify the parameter before running this process.
+
+    All the above values will be returning from this function, and other functions will use these parameters. So, it
+    is essential to verify the parameter before running this process.
     ************************************ Inside process_parameter_set function *****************************************
     """
     stand_alone_flag = None
@@ -72,9 +74,12 @@ def process_parameter_set():
 def process_check_input_argument(stand_alone_flag):
     """
     ************************************ Inside process_check_input_argument function **********************************
-    This function will be called to check the input argument based on stand_alone_flag. If this process received an
-    input from Main_Process.py then it will pass that argument into text and if not then it will set stand_alone_flag
-    as 1, and this process will run as stand-alone.
+    This function will be called to set the value of stand_alone_flag and text message.
+
+    If this process received an input from Main_Process.py then it will pass that argument into text, and the value
+    of the stand_alone_flag will be None. If this process gets input argument less than two characters of length or
+    does not get any input argument, it will set stand_alone_flag as 1 (To run the program as stand-alone), and set
+    the text as a sample text message. Later, this function will pass these parameters for other tasks.
     ************************************ Inside process_check_input_argument function **********************************
     """
 
@@ -99,8 +104,8 @@ def process_check_input_argument(stand_alone_flag):
 def process_gtts_playsound(mp3_filename, text):
     """
     ************************************ Inside process_gtts_playsound function ****************************************
-    This function will be called to play the sound or save the text message to an mp3 file and later play the mp3
-    file, and after the play is done, this function will remove the mp3 file.
+    This function will be called to play the sound or save the text message to an mp3 file, play the mp3 file, and
+    after the sound play, this function will remove the mp3 file.
     ************************************ Inside process_gtts_playsound function ****************************************
     """
 
