@@ -71,10 +71,13 @@ def process_parameter_set():
     1. yes_syn_words signifies all the synonym word of Yes.
     2. stop_words means all the unwanted noisy word.
     3. record signifies the setting of the recorder.
-    4. mp3_filename is the mp3 file from where gtts will play the sound.
-    5. text will be the initial text message.
-    6. device_index will be automatically set as the available input device on the computer.
-    So, it is essential to verify the parameter before running this process.
+    4. mp3_filename is the mp3 file from where gTTS will play the sound.
+    5. text will be the initial text message which will be played by gTTS.
+    6. device_index will be set automatically as the available microphone input device on the computer.
+    7. output_file is the file where the final response will be written.
+
+    All the above values will be returning from this function, and other functions will use these parameters. So, it
+    is essential to verify the parameter before running this process.
     ************************************ Inside process_parameter_set function *****************************************
     """
 
@@ -93,29 +96,18 @@ def process_parameter_set():
     else:
         device_index = 0
 
-    return yes_syn_words, stop_words, record, mp3_filename, text, device_index
+    output_file = "Speech_Name_Organization_Output.txt"
 
-
-def process_token_sentence(text):
-    """
-    ************************************ Inside process_token_sentence function ****************************************
-    This function will be called to tokenize the sentence from the input text.
-    ************************************ Inside process_token_sentence function ****************************************
-    """
-
-    sentences = nltk.sent_tokenize(text)
-    tokenized_sentences = [nltk.word_tokenize(sentence) for sentence in sentences]
-    tagged_sentences = [nltk.pos_tag(sentence) for sentence in tokenized_sentences]
-    sentences = nltk.ne_chunk_sents(tagged_sentences, binary=True)
-
-    return sentences
+    return yes_syn_words, stop_words, record, mp3_filename, text, device_index, output_file
 
 
 def process_check_input_argument():
     """
     ************************************ Inside process_check_input_argument function **********************************
-    This function will be called to check the input argument based on stand_alone_flag. If this process received an
-    input from Main_Process.py then it will set stand_alone_flag as 1, and this process will run as stand-alone.
+    This function will be called to set the value of stand_alone_flag.
+
+    If this process received an input from Main_Process.py then it will set stand_alone_flag as 0 and if not then will
+    set as 1, and this process will run as stand-alone.
     ************************************ Inside process_check_input_argument function **********************************
     """
 
@@ -131,32 +123,21 @@ def process_check_input_argument():
     return stand_alone_flag
 
 
-def process_extract_entity_names(t):
-    """
-    ************************************ Inside process_extract_entity_names function **********************************
-    This function will be called to extract the name of the person or organization name.
-    ************************************ Inside process_extract_entity_names function **********************************
-    """
-
-    entity_names = []
-    if hasattr(t, 'label') and t.label:
-        if t.label() == 'NE':
-            entity_names.append(' '.join([child[0] for child in t]))
-        else:
-            for child in t:
-                entity_names.extend(process_extract_entity_names(child))
-
-    return entity_names
-
-
 def process_speak_listen(device_index, mp3_filename, text, record, flag):
     """
     ************************************ Inside process_speak_listen function ******************************************
-    This function will be called to play the sound or save the text message to an mp3 file and later play the mp3
-    file, and after the play is done, this function will remove the mp3 file.
-    Later it will record the response from the user, there is a timeout of 5 second. If the recorder does not get an
-    input for 5 second or during any lookup error or Unknown Value Error then it will prompt a pop-up message. Later,
-    based on the response given by customer, this function will return the text.
+    This function will be called to play the sound or save the text message to an mp3 file, play the mp3 file, and
+    after the sound play, this function will remove the mp3 file.
+
+    This function will prompt a pop-up message as Speak Now to indicate the customer that they need to speak now.
+    Later, it will record the response from the user and will store into text. There is a timeout of 5 seconds; if the
+    recorder does not get an input for 5 seconds or any lookup error or Unknown Value Error, it will set text as None.
+
+    This function will only record the customer's response when the flag is not "1". If the flag's value is "1", this
+    function will only play the sound of the text and exit from this function.
+
+    This function uses Google-Text-To-Speech (gtts) module that needs an internet connection. Without an internet
+    connection, this function will give an ERROR and will exit from the program.
     ************************************ Inside process_speak_listen function ******************************************
     """
 
@@ -191,19 +172,62 @@ def process_speak_listen(device_index, mp3_filename, text, record, flag):
                     print("ERROR : UnknownValueError - Could not able to listen anything for 5 seconds")
                     text = None
     except gtts.tts.gTTSError:
-        print("Connection Error : No internet connection.")
+        print("ERROR : Connection Error : No internet connection.")
         exit_program()
     except PermissionError:
-        print("No permission")
+        print("ERROR : No permission")
+        exit_program()
 
     return text
+
+
+def process_token_sentence(text):
+    """
+    ************************************ Inside process_token_sentence function ****************************************
+    This function will be called to tokenize the sentence from the input text.
+    ************************************ Inside process_token_sentence function ****************************************
+    """
+
+    sentences = nltk.sent_tokenize(text)
+    tokenized_sentences = [nltk.word_tokenize(sentence) for sentence in sentences]
+    tagged_sentences = [nltk.pos_tag(sentence) for sentence in tokenized_sentences]
+    sentences = nltk.ne_chunk_sents(tagged_sentences, binary=True)
+
+    return sentences
+
+
+def process_extract_entity_names(t):
+    """
+    ************************************ Inside process_extract_entity_names function **********************************
+    This function will be called to find the person's name and organization's name.
+
+    This process will check each word in tree level is similar to NE or not. NE signifies if that word is Noun related
+    name. If this function finds any word similar with NE then it will append into entity_names and later it will
+    return this list.
+    ************************************ Inside process_extract_entity_names function **********************************
+    """
+
+    entity_names = []
+    if hasattr(t, 'label') and t.label:
+        if t.label() == 'NE':
+            entity_names.append(' '.join([child[0] for child in t]))
+        else:
+            for child in t:
+                entity_names.extend(process_extract_entity_names(child))
+
+    return entity_names
 
 
 def process_extract_name_organization_details(device_index, mp3_filename, text, record):
     """
     ************************************ Inside process_extract_name_organization_details function *********************
-    This function will be called to process_token_sentence function and later will call to process_extract_entity_names
-    to extract the name or organization name from the text.
+    This function will be called to return a person's name and organization's name as details.
+
+    First, this function will receive a text and call process_speak_listen function with flag value as 0 to record the
+    customer's answer. That response will be store into the text variable. If the text value is None, then it will
+    return the detail's value as None. If not, then it will call process_token_sentence function to get the tokenize
+    sentence and later call to process_extract_entity_names to find the person's name or organization's name from the
+    tokenize sentence.
     ************************************ Inside process_extract_name_organization_details function *********************
     """
 
@@ -227,37 +251,15 @@ def process_extract_name_organization_details(device_index, mp3_filename, text, 
     return details
 
 
-def process_name(device_index, mp3_filename, record):
-    """
-    ************************************ Inside process_name function **************************************************
-    This function will first ask the name of the person and then will call process_extract_name_organization_details
-    to extract the name is not None then it will ask about the Organization details, and later it will ask if the
-    customer wants to save their details or not and will return it with the text.
-    ************************************ Inside process_name function **************************************************
-    """
-
-    text = "May I please ask your name?"
-    name = process_extract_name_organization_details(device_index, mp3_filename, text, record)
-
-    if name is None:
-        text = process_name_organization(device_index, mp3_filename, record)
-    else:
-        text = "All right, and what company are you with?"
-        input_details = process_extract_name_organization_details(device_index, mp3_filename, text, record)
-        if input_details is None:
-            text = process_organization(device_index, mp3_filename, record, text, name)
-        else:
-            text = "Actually, I do not have your details. Would you like to save your details for future?"
-
-    return text
-
-
 def process_organization(device_index, mp3_filename, record, text, name):
     """
     ************************************ Inside process_organization function ******************************************
-    This function will first set the speak text value then will check if the extracted organization value is None or
-    not. If it is None, then this function will prompt a pop-up to enter the Organization details and later will set a
-    new-speak text as text. If the extracted organization value is not None, then it will set another text message.
+    This function will ask the customer to enter the Organization name in a pop-up message.
+
+    First, it will prompt a pop-up message for the customer to enter their Company's Name, only if the Company's Name
+    value is None in the previous function. If the customers enter their Company's Name, then this function will set
+    the text as a different text message. But, If the customer chooses not to enter the Company's Name, then this
+    function will set the text as final speak text value.
     ************************************ Inside process_organization function ******************************************
     """
 
@@ -290,9 +292,12 @@ def process_organization(device_index, mp3_filename, record, text, name):
 def process_name_organization(device_index, mp3_filename, record):
     """
     ************************************ Inside process_name_organization function *************************************
-    This function will first set the speak text value then will check if the extracted name value is None or
-    not. If it is None, then this function will prompt a pop-up to enter the name details and later will set a
-    new_speak text as text. If the extracted name value is not None, then it will set another text message.
+    This function will ask the customer to enter the Name in a pop-up message and later ask the company name.
+
+    First, it will prompt a pop-up message for the customer to enter their Name, only if the name value is None in the
+    previous function. If the customer enter their names, then this function will ask the Company's name to the
+    customer. If the customer chooses not to enter the Company's Name then this function will set the text as final
+    speak text value.
     ************************************ Inside process_name_organization function *************************************
     """
 
@@ -317,14 +322,46 @@ def process_name_organization(device_index, mp3_filename, record):
     return text
 
 
+def process_name(device_index, mp3_filename, record):
+    """
+    ************************************ Inside process_name function **************************************************
+    This function will ask the Customer's Name and Organization.
+
+    First, it will ask the Name of the person; if the value of Name is None, it will call process_name_organization.
+    If the Name is not None, then it will ask the company name by calling process_extract_name_organization_details.
+    Later, based on customers' input details, this function will set the final text message as if the customer wants
+    to save their details or not and return this text for the closing process.
+    ************************************ Inside process_name function **************************************************
+    """
+
+    text = "May I please ask your name?"
+    name = process_extract_name_organization_details(device_index, mp3_filename, text, record)
+
+    if name is None:
+        text = process_name_organization(device_index, mp3_filename, record)
+    else:
+        text = "All right, and what company are you with?"
+        input_details = process_extract_name_organization_details(device_index, mp3_filename, text, record)
+        if input_details is None:
+            text = process_organization(device_index, mp3_filename, record, text, name)
+        else:
+            text = "Actually, I do not have your details. Would you like to save your details for future?"
+
+    return text
+
+
 def process_input_details(device_index, input_details, mp3_filename, record, yes_syn_words, stop_words):
     """
     ************************************ Inside process_input_details function *****************************************
-    This function will check the customer response on if they want to save their details of not. If this process
-    can guess the answer, it will directly process for tokenizing the sentence and find if that is Yes or
-    No. If the process cannot think the response, it will prompt a pop-up message for the customer and later will
-    tokenize the sentence and find if that is Yes or No. Later this process will set Yes or No as a response and will
-    return it to write into a output file
+    This function will set the final response as YES or NO by tokenizing.
+
+    First, based on the last response receives from the customers, this function will prompt a pop-up message if the
+    customer wants to save their details or not. In this pop-up message, customers can click on YES or NO button. If
+    the customer clicks on the NO button, then this function will set input details and final response as None. But if
+    the customer clicks on the YES button, then this function will tokenize the sentence into word and later remove all
+    the stop words. Then from the filtered_sent, it will search if any word is present in yes_syn_words or not. If yes,
+    then this function will set the final response as YES, and if not, then it will set as NO. Later, it will return
+    the value of the final response.
     ************************************ Inside process_input_details function *****************************************
     """
 
@@ -366,14 +403,14 @@ def process_input_details(device_index, input_details, mp3_filename, record, yes
     return response
 
 
-def process_output_file_write(response):
+def process_output_file_write(output_file, response):
     """
     ************************************ Inside process_output_file_write function *************************************
-    This function will be called to write the response into a output file.
+    This function will be called to write the final response into a output file.
     ************************************ Inside process_output_file_write function *************************************
     """
 
-    with open("Speech_Name_Organization_Output.txt", "w") as output_file:
+    with open(output_file, "w") as output_file:
         output_file.write(response)
 
 
@@ -409,13 +446,13 @@ def main():
     """
 
     start_program()
-    yes_syn_words, stop_words, record, mp3_filename, text, device_index = process_parameter_set()
-    process_speak_listen(device_index, mp3_filename, text, record, flag=1)
+    yes_syn_words, stop_words, record, mp3_filename, text, device_index, output_file = process_parameter_set()
     stand_alone_flag = process_check_input_argument()
+    process_speak_listen(device_index, mp3_filename, text, record, flag=1)
     text = process_name(device_index, mp3_filename, record)
     input_details = process_speak_listen(device_index, mp3_filename, text, record, flag=0)
     response = process_input_details(device_index, input_details, mp3_filename, record, yes_syn_words, stop_words)
-    process_output_file_write(response)
+    process_output_file_write(output_file, response)
     process_delete_mp3_output_files(stand_alone_flag)
     exit_program()
 
