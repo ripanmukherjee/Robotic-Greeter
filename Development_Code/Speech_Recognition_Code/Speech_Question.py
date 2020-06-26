@@ -7,8 +7,8 @@
 # Date:         Friday 24 April, 2020
 # Version:      1
 # **********************************************************************************************************************
-# Description:  Speech_Question.py is to ask YES or NO related questions to the customer. If this program does not
-#               get input from customers within a given time, it will prompt a pop-up message to click ok or cancel.
+# Description:  Speech_Question.py is to ask YES or NO related questions to the user. If this program does not
+#               get input from users within a given time, it will prompt a pop-up message to click ok or cancel.
 #               It will be called from Main_Process.py and Main_Process.py will pass the question as an argument in
 #               this program. Depending on the person's response, this program will give an output (inside of a text
 #               file: Speech_Question_Output.txt) as YES or NO or NONE. And with that response, Main_Process.py will
@@ -138,14 +138,14 @@ def process_speak_listen(device_index, mp3_filename, text, record, flag):
     This function will be called to play the sound or save the text message to an mp3 file, play the mp3 file, and
     after the sound play, this function will remove the mp3 file.
 
-    This function will prompt a pop-up message as Speak Now to indicate the customer that they need to speak now.
+    This function will prompt a pop-up message as Speak Now to indicate the user that they need to speak now.
     Later, it will record the response from the user. There is a timeout of 5 seconds; if the recorder does not get
-    an input for 5 seconds or any lookup error or Unknown Value Error, it will prompt a pop-up message, where customers
-    can click on YES or NO button. If the customer clicks the YES button, the recorder will store the response as YES,
-    and if the customer clicks the NO button, it will save the as NO. Based on the customer's input response, this
+    an input for 5 seconds or any lookup error or Unknown Value Error, it will prompt a pop-up message, where users
+    can click on YES or NO button. If the user clicks the YES button, the recorder will store the response as YES,
+    and if the user clicks the NO button, it will save the as NO. Based on the user's input response, this
     function will return the value of the response as YES or NO.
 
-    This function will only record the customer's response when the flag is not "1". If the flag's value is "1", this
+    This function will only record the user's response when the flag is not "1". If the flag's value is "1", this
     function will only play the sound of the text and exit from this function.
 
     This function uses Google-Text-To-Speech (gtts) module that needs an internet connection. Without an internet
@@ -225,8 +225,8 @@ def process_input_details(device_index, input_details, mp3_filename, record, yes
     ************************************ Inside process_input_details function *****************************************
     This function will set the final response as YES or NO by tokenizing.
 
-    First, this function will validate the input_details response from the customer. If the customer's response is
-    None, then this function will set the final response as NO. But if the customer gives some response and the value
+    First, this function will validate the input_details response from the user. If the user's response is
+    None, then this function will set the final response as NO. But if the user gives some response and the value
     of input details is not None, it will then tokenize the sentence into word and remove all the stop words. Then
     from the filtered_sent, it will search if any word is present in yes_syn_words or not. If yes, this function will
     set the final response as YES, and if not, it will set as NO. Later, it will return the value of the final response.
