@@ -75,12 +75,28 @@ def exit_program():
 
 
 def process_parameter_set():
+    """
+    ************************************ Inside process_parameter_set function *****************************************
+    This function will be called to set the essential parameter needed for this program as below:
+
+    1. Region = "DEV" signifies that we are running the code in the development region. And as per the region value,
+    this program will choose the table. So, it is essential to set region value correctly.
+    ************************************ Inside process_parameter_set function *****************************************
+    """
+
     region = "DEV"
 
     return region
 
 
 def process_checking_region_table(region):
+    """
+    ************************************ Inside process_checking_region_table function *********************************
+    This function will be called to get main_table and sequence_table as per region value. If the region value is not
+    set correctly, then this function will give error and will exit from the program.
+    ************************************ Inside process_checking_region_table function *********************************
+    """
+
     main_table = None
     sequence_table = None
     if region == "DEV":
@@ -101,6 +117,14 @@ def process_checking_region_table(region):
 
 
 def process_ask_question(flag):
+    """
+    ************************************ Inside process_ask_question function ******************************************
+    This function will ask if the customer wants to update their details or not by prompting a pop-up message and later
+    it will return the customer response. If the flag is 1 that means this function is asking for the first time and if
+    flag is not 1 that means it is asking more than 1 times.
+    ************************************ Inside process_ask_question function ******************************************
+    """
+
     response = None
     if flag == 1:
         args = "zenity --question --width=500 --height=250 --text='Make sure you have your Unique ID. \n\n" \
@@ -118,6 +142,13 @@ def process_ask_question(flag):
 
 
 def process_get_details_initial_option():
+    """
+    ************************************ Inside process_get_details_initial_option function ****************************
+    This function will ask the customer to select the option they want to update. Customers can choose one option at a
+    time. If the customer chooses "First Name," it will return the value of the First Name option, which is 1.
+    ************************************ Inside process_get_details_initial_option function ****************************
+    """
+
     args = "zenity --list --width=500 --height=300 --title='Modify the data - Select only one of the following' " \
            "--checklist --column='Option' --column='Number' --column='Description' \
             1 1 'Modify First Name' \
@@ -140,6 +171,12 @@ def process_get_details_initial_option():
 
 
 def process_assign_update_option(details):
+    """
+    ************************************ Inside process_assign_update_option function **********************************
+    This function will validate the customer's response, set the option variable's value, and return it.
+    ************************************ Inside process_assign_update_option function **********************************
+    """
+
     try:
         if details == "1":
             print("Selected option : Modify First Name")
@@ -178,6 +215,24 @@ def process_assign_update_option(details):
 
 
 def process_get_details_validation(option):
+    """
+    ************************************ Inside process_get_details_validation function ********************************
+    This function will prompt a pop-up message for the customers to enter the new details based on the option chosen
+    by the customers. Later, this will validate the details entered by the customer.
+
+    Validation as follow:
+
+    1. First_Name   : Cannot be less than 2 characters or Numbers
+    2. Last_name    : Cannot be less than 2 characters or Numbers
+    3. Email_ID     : Cannot be less than 7 characters and has to include @ and dot
+    4. Phone_No     : Cannot be less than 7 Numbers and has to be numeric
+    5. Employer     : Cannot be less than 2 characters or Numbers
+    6. Role         : Cannot be less than 2 characters or Numbers
+
+    If the validation passed then it will return the details or else will return details as None.
+    ************************************ Inside process_get_details_validation function ********************************
+    """
+
     details = None
     if option == 1:
         args_get_details = "zenity --forms --width=500 --height=200 --title='Modify user' \
@@ -309,6 +364,14 @@ def process_get_details_validation(option):
 
 
 def process_get_id_confirmation():
+    """
+    ************************************ Inside process_get_id_confirmation function ***********************************
+    This function will prompt a pop-up message for the customers to enter the Unique ID for the confirmation. Correct
+    ID is required since this function will validate the ID, which has to be at least 1 number long and numeric. Also,
+    it will return the ID to check if the ID is present in the table or not.
+    ************************************ Inside process_get_id_confirmation function ***********************************
+    """
+
     args_get_details = "zenity --forms --width=500 --height=200 --title='Confirmation' \
                 --text='Confirm Your ID' \
                 --add-entry='ID'"
@@ -336,6 +399,13 @@ def process_get_id_confirmation():
 
 
 def process_search_id(check_main_table, confirm_id):
+    """
+    ************************************ Inside process_search_id function *********************************************
+    This function will check if the ID is present in the table. If the ID does not exits, then this function will
+    return count as 0 or else return the table's count.
+    ************************************ Inside process_search_id function *********************************************
+    """
+
     try:
         count = 0
         conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1", port="5432")
@@ -364,6 +434,13 @@ def process_search_id(check_main_table, confirm_id):
 
 
 def process_update_table(check_main_table, update_details, update_option, confirm_id):
+    """
+    ************************************ Inside process_update_table function ******************************************
+    This function will update the details in the table based on the option chosen by the customer. If this function
+    cannot able to update due to any psycopg2 error then it will prompt "Please contact admin!!!!"
+    ************************************ Inside process_update_table function ******************************************
+    """
+
     if update_option == 1:
         try:
             conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1",
@@ -492,6 +569,14 @@ def process_update_table(check_main_table, update_details, update_option, confir
 
 
 def process_response(check_main_table, response, flag):
+    """
+    ************************************ Inside process_response function **********************************************
+    This function will call other functions based on the response chosen by the customer. If the answer is None or the
+    end of the loop, this function will set the flag as 2. Which means the first iteration is finish and will enter
+    into the second iteration.
+    ************************************ Inside process_response function **********************************************
+    """
+
     if response is not None:
         details = process_get_details_initial_option()
         if details is not None:
@@ -523,6 +608,12 @@ def process_response(check_main_table, response, flag):
 
 
 def process_ask_multiple(check_main_table, flag, status):
+    """
+    ************************************ Inside process_ask_multiple function ******************************************
+    This function is a loop function that will run until the customer chose not to update anymore.
+    ************************************ Inside process_ask_multiple function ******************************************
+    """
+
     while status == 0:
         response = process_ask_question(flag)
         process_response(check_main_table, response, flag)
