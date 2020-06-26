@@ -55,9 +55,9 @@ def exit_program():
 def process_ask_question(flag):
     """
     ************************************ Inside process_ask_question function ******************************************
-    This function is the initial step to ask the customer if they want to take photos or not.
+    This function is the initial step to ask the user if they want to take photos or not.
 
-    It will ask by prompting a pop-up message, and in the pop-up message, customers can click on YES or NO button.
+    It will ask by prompting a pop-up message, and in the pop-up message, users can click on YES or NO button.
     Based on the response, it will return it for the next function. This function receives an input flag, for the
     first time, the value of the flag will be 1, and after all the process flag sets as two, and this function will
     get called again. This time will ask if they want to take another photo or not. If this function cannot prompt
