@@ -13,9 +13,9 @@
 #               * Test (TEST) : carego_customer_test
 #               * Production (PROD) : carego_customer_prod
 #
-#               Customer_Search_ID.py is used to search the data of the customer from the above-mentioned table by
+#               Customer_Search_ID.py is used to search the data of the user from the above-mentioned table by
 #               using an ID. This program will be called from Customer_Search_Main.py based on search criteria. If
-#               the customer select ID option in Customer_Search_Main.py, then it will call Customer_Search_ID.py.
+#               the user select ID option in Customer_Search_Main.py, then it will call Customer_Search_ID.py.
 #               And this program will ask the ID and search the data. Also, you can run this program as a stand-alone
 #               program.
 # **********************************************************************************************************************
@@ -82,7 +82,10 @@ def process_parameter_set():
     This function will be called to set the essential parameter needed for this program as below:
 
     1. Region = "DEV" signifies that we are running the code in the development region. And as per the region value,
-    this program will choose the table. So, it is essential to set region value correctly.
+    this program will choose the table.
+
+    All the above values will be returning from this function, and other functions will use these parameters. So, it
+    is essential to verify the parameter before running this process.
     ************************************ Inside process_parameter_set function *****************************************
     """
 
@@ -94,8 +97,10 @@ def process_parameter_set():
 def process_checking_region_table(region):
     """
     ************************************ Inside process_checking_region_table function *********************************
+    Function to get the table details.
+
     This function will be called to get main_table and sequence_table as per region value. If the region value is not
-    set correctly, then this function will give error and will exit from the program.
+    set correctly, then this function will print error message and will exit from the program.
     ************************************ Inside process_checking_region_table function *********************************
     """
 
@@ -119,6 +124,15 @@ def process_checking_region_table(region):
 
 
 def process_get_details():
+    """
+    ************************************ Inside process_get_details function *******************************************
+    Function to get the ID details from the user.
+
+    This function will ask the user to enter the details of ID and later will return the details. If the function
+    cannot able to call the pop-up function, then it will exit from the program.
+    ************************************ Inside process_get_details function *******************************************
+    """
+
     details = None
     args_get_details = "zenity --forms --width=500 --height=200 --title='Search user' \
                 --text='Search with ID' \
@@ -136,6 +150,15 @@ def process_get_details():
 
 
 def process_format_details(details):
+    """
+    ************************************ Inside process_format_details function ****************************************
+    Function to validate the ID.
+
+    This function will validate the details entered by the users. The ID cannot be blank or less than 1 number. If the
+    validation is successful then this function will return the ID or else will return as None.
+    ************************************ Inside process_format_details function ****************************************
+    """
+
     id_details = None
     try:
         if len(details) < 1:
@@ -160,6 +183,15 @@ def process_format_details(details):
 
 
 def process_search_id(check_main_table, id_value):
+    """
+    ************************************ Inside process_search_first_name function *************************************
+    Function to search the details.
+
+    This function will search the details from the table by ID and later will return the row. If there are no details
+    in the table, it will prompt as "There are no data as per your search!!!!" and will return row as None.
+    ************************************ Inside process_search_first_name function *************************************
+    """
+
     try:
         conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1", port="5432")
         cur = conn.cursor()
@@ -188,6 +220,14 @@ def process_search_id(check_main_table, id_value):
 
 
 def process_display_details(search_details):
+    """
+    ************************************ Inside process_display_details function ***************************************
+    Function to display the table details.
+
+    This function will receive the searched details and display it as a pop-up list.
+    ************************************ Inside process_display_details function ***************************************
+    """
+
     display_row = ""
     counter = 0
     for list_details in search_details:
@@ -216,6 +256,14 @@ def process_display_details(search_details):
 
 
 def process_id_search_display(check_main_table, id_value):
+    """
+    ************************************ Inside process_search_display function ****************************************
+    Function to validate the ID details.
+
+    This function will call the search function based on the value of ID entered by user.
+    ************************************ Inside process_search_display function ****************************************
+    """
+
     if id_value is not None:
         search_details = process_search_id(check_main_table, id_value)
     else:
@@ -248,6 +296,13 @@ def process_id_search_display(check_main_table, id_value):
 
 
 def process_show_details(first_name, last_name, email_id, phone_no):
+    """
+    ************************************ Inside process_show_details function ******************************************
+    This function will show the Name, Email ID and Phone Number of the person as a pop-up message after the user
+    selected the search person from the result list.
+    ************************************ Inside process_show_details function ******************************************
+    """
+
     try:
         check_output(["zenity", "--info", "--width=400", "--height=200", "--text=You have searched : "
                       + first_name + " " + last_name + "\n\nEmail ID is : " + email_id +
@@ -258,6 +313,12 @@ def process_show_details(first_name, last_name, email_id, phone_no):
 
 
 def process_write_pickle_file(first_name, last_name, email_id, phone_no):
+    """
+    ************************************ Inside process_write_pickle_file function *************************************
+    This function will write the details of the searched person into a pickle file
+    ************************************ Inside process_write_pickle_file function *************************************
+    """
+
     new_data = {"First_Name": first_name, "Last_Name": last_name, "Email_ID": email_id, "Phone_No": phone_no}
     with open("Search_Output.pickle", "wb+") as pickle_file:
         pickle_file.write(pickle.dumps(new_data))
