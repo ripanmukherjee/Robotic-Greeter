@@ -13,9 +13,9 @@
 #               * Test (TEST) : carego_customer_test
 #               * Production (PROD) : carego_customer_prod
 #
-#               Customer_Update.py is used to update the data of the customer into the table mentioned above. This
-#               program will be called from ~/Main_Process/Main_Process.py if the customer wants to update their
-#               details. To update the details, customer should know their unique ID, as this program will ask to
+#               Customer_Update.py is used to update the data of the user into the table mentioned above. This
+#               program will be called from ~/Main_Process/Main_Process.py if the user wants to update their
+#               details. To update the details, user should know their unique ID, as this program will ask to
 #               confirm the ID before to update.
 # **********************************************************************************************************************
 # NOTE 1:       Please make sure to change the region value as per region wise before putting to server :
@@ -154,7 +154,7 @@ def process_get_details_initial_option():
     Function to get the update option.
 
     This function will ask the user to select the option they want to update. User can choose one option at a
-    time. If the customer chooses "First Name," it will return the value of the option, which is 1 for the First Name.
+    time. If the user chooses "First Name," it will return the value of the option, which is 1 for the First Name.
     Later, it will return the option's value. If the function cannot run the pop-up process, then it will print an
     error message and will return option's value as None.
     ************************************ Inside process_get_details_initial_option function ****************************
@@ -636,7 +636,7 @@ def process_response(check_main_table, response, flag):
 def process_ask_multiple(check_main_table, flag, status):
     """
     ************************************ Inside process_ask_multiple function ******************************************
-    This function is a loop function that will run until the customer chose not to update anymore.
+    This function is a loop function that will run until the user chose not to update anymore.
     ************************************ Inside process_ask_multiple function ******************************************
     """
 
