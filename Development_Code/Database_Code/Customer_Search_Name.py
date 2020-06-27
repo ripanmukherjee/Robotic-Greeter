@@ -13,7 +13,7 @@
 #               * Test (TEST) : carego_customer_test
 #               * Production (PROD) : carego_customer_prod
 #
-#               Customer_Search_Name.py is used to search the data of the customer from the above-mentioned table.
+#               Customer_Search_Name.py is used to search the data of the user from the above-mentioned table.
 #               This program will be called from Customer_Search_Main.py based on search criteria. If the customer
 #               selects the Name option in Customer_Search_Main.py, then it will call Customer_Search_Name.py. And
 #               this program will ask the Name and search the data. Also, you can run this program as a stand-alone
@@ -81,7 +81,10 @@ def process_parameter_set():
     This function will be called to set the essential parameter needed for this program as below:
 
     1. Region = "DEV" signifies that we are running the code in the development region. And as per the region value,
-    this program will choose the table. So, it is essential to set region value correctly.
+    this program will choose the table.
+
+    All the above values will be returning from this function, and other functions will use these parameters. So, it
+    is essential to verify the parameter before running this process.
     ************************************ Inside process_parameter_set function *****************************************
     """
 
@@ -93,8 +96,10 @@ def process_parameter_set():
 def process_checking_region_table(region):
     """
     ************************************ Inside process_checking_region_table function *********************************
+    Function to get the table details.
+
     This function will be called to get main_table and sequence_table as per region value. If the region value is not
-    set correctly, then this function will give error and will exit from the program.
+    set correctly, then this function will print error message and will exit from the program.
     ************************************ Inside process_checking_region_table function *********************************
     """
 
@@ -120,7 +125,9 @@ def process_checking_region_table(region):
 def process_get_details():
     """
     ************************************ Inside process_get_details function *******************************************
-    This function will ask the customer to enter the details for either First or Last Name or both and later will
+    Function to get the Name details from the user.
+
+    This function will user the user to enter the details for either First or Last Name or both and later will
     return the details. If the function cannot able to call the pop-up function, then it will exit from the program.
     ************************************ Inside process_get_details function *******************************************
     """
@@ -144,12 +151,14 @@ def process_get_details():
 def process_format_details(details):
     """
     ************************************ Inside process_format_details function ****************************************
-    This function will validate the details entered by the customers. The Name cannot be blank or less than 2
+    Function to validate the Name.
+
+    This function will validate the details entered by the users. The Name cannot be blank or less than 2
     characters. And later will return it as below:
 
-    1. If the customer entered both First and Last Name, then it will both value.
-    2. If the customer entered only First Name, it will return the First Name and will return the Last Name as Space.
-    3. If the customer entered only Last Name, it will return the Last Name and will return the First Name as Space.
+    1. If the user entered both First and Last Name, then it will return both value.
+    2. If the user entered only First Name, it will return the First Name and will return the Last Name as Space.
+    3. If the user entered only Last Name, it will return the Last Name and will return the First Name as Space.
     ************************************ Inside process_format_details function ****************************************
     """
 
@@ -186,8 +195,10 @@ def process_format_details(details):
 def process_search_first_name(check_main_table, first_name):
     """
     ************************************ Inside process_search_first_name function *************************************
-    This function will search the details by only First Name. If there are no details in the table, it will prompt
-    as "There are no data as per your search!!!!".
+    Function to search the details.
+
+    This function will search the details from the table by only First Name and later will return the row. If there are
+    no details in the table, it will prompt as "There are no data as per your search!!!!" and will return row as None.
     ************************************ Inside process_search_first_name function *************************************
     """
 
@@ -221,8 +232,10 @@ def process_search_first_name(check_main_table, first_name):
 def process_search_last_name(check_main_table, last_name):
     """
     ************************************ Inside process_search_last_name function **************************************
-    This function will search the details by only Last Name. If there are no details in the table, it will prompt
-    as "There are no data as per your search!!!!".
+    Function to search the details.
+
+    This function will search the details from the table by only Last Name and later will return the row. If there are
+    no details in the table, it will prompt as "There are no data as per your search!!!!" and will return row as None.
     ************************************ Inside process_search_last_name function **************************************
     """
 
@@ -256,8 +269,11 @@ def process_search_last_name(check_main_table, last_name):
 def process_search_first_last_name(check_main_table, first_name, last_name):
     """
     ************************************ Inside process_search_first_last_name function ********************************
-    This function will search the details by First and Last Name. If there are no details in the table, it will prompt
-    as "There are no data as per your search!!!!".
+    Function to search the details.
+
+    This function will search the details from the table by First and Last Name and later will return the row. If there
+    are no details in the table, it will prompt as "There are no data as per your search!!!!" and will return row as
+    None.
     ************************************ Inside process_search_first_last_name function ********************************
     """
 
@@ -292,7 +308,9 @@ def process_search_first_last_name(check_main_table, first_name, last_name):
 def process_display_details(search_details):
     """
     ************************************ Inside process_display_details function ***************************************
-    This function will receive the search details and display it as a pop-up list.
+    Function to display the table details.
+
+    This function will receive the searched details and display it as a pop-up list.
     ************************************ Inside process_display_details function ***************************************
     """
 
@@ -326,7 +344,9 @@ def process_display_details(search_details):
 def process_search_display(check_main_table, first_name, last_name):
     """
     ************************************ Inside process_search_display function ****************************************
-    This function will call the search function based on the value of First and Last Name
+    Function to validate the First and Last Name details.
+
+    This function will call the search function based on the value of First and Last Name entered by user.
     ************************************ Inside process_search_display function ****************************************
     """
 
@@ -365,8 +385,8 @@ def process_search_display(check_main_table, first_name, last_name):
 def process_show_details(first_name, last_name, email_id, phone_no):
     """
     ************************************ Inside process_show_details function ******************************************
-    This function will show the Name of the person, Email ID and Phone Number as a pop-uo message after the customer
-    selected the search person
+    This function will show the Name, Email ID and Phone Number of the person as a pop-up message after the user
+    selected the search person from the result list.
     ************************************ Inside process_show_details function ******************************************
     """
 
