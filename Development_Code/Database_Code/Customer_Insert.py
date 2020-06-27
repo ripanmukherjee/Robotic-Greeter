@@ -13,8 +13,8 @@
 #               * Test (TEST) : carego_customer_test
 #               * Production (PROD) : carego_customer_prod
 #
-#               Customer_Insert.py is use for inserting the data of the customer into the table mentioned above. This
-#               program will be called from Main_Process.py. If the customer wants to save their details in the
+#               Customer_Insert.py is use for inserting the data of the user into the table mentioned above. This
+#               program will be called from Main_Process.py. If the user wants to save their details in the
 #               database, then Main_Process.py will call this program, and this process will insert the data into
 #               the table mentioned above.
 # **********************************************************************************************************************
@@ -86,6 +86,9 @@ def process_parameter_set():
     1. Region = "DEV" signifies that we are running the code in the development region. And as per the region value,
     this program will choose the table. So, it is essential to set region value correctly.
     2. creation_date signifies the today's date which will be insert into the table as creation date.
+
+    All the above values will be returning from this function, and other functions will use these parameters. So, it
+    is essential to verify the parameter before running this process.
     ************************************ Inside process_parameter_set function *****************************************
     """
 
@@ -99,8 +102,10 @@ def process_parameter_set():
 def process_checking_region_table(region):
     """
     ************************************ Inside process_checking_region_table function *********************************
+    Function to get the table details.
+
     This function will be called to get main_table and sequence_table as per region value. If the region value is not
-    set correctly, then this function will give error and will exit from the program.
+    set correctly, then this function will print error message and will exit from the program.
     ************************************ Inside process_checking_region_table function *********************************
     """
 
@@ -126,8 +131,11 @@ def process_checking_region_table(region):
 def process_ask_question(flag):
     """
     ************************************ Inside process_ask_question function ******************************************
-    This function will ask if the customer wants to create their details or not by prompting a pop-up message and later
-    it will return the customer response.
+    Function to prompt pop-up questions for the user.
+
+    This function will ask if the user wants to update their details or not by prompting a pop-up message, and later
+    it will return the user response. This function will prompt the question based on the value of the flag. If the
+    function cannot run the pop-up process, then it will print an error and will exit from the program.
     ************************************ Inside process_ask_question function ******************************************
     """
 
@@ -148,6 +156,16 @@ def process_ask_question(flag):
 
 
 def process_get_details():
+    """
+    ************************************ Inside process_get_details function *******************************************
+    Function to get the details from the user.
+
+    This function will prompt a pop-up form, where user can enter the details which they want to save. If the function
+    cannot run pop-up process, then it will print a error message and will return the details as None or else this
+    function will return the details entered by the user.
+    ************************************ Inside process_get_details function *******************************************
+    """
+
     args_get_details = "zenity --forms --width=500 --height=200 --title='Create user' \
                     --text='Add new user' \
                     --add-entry='First Name' \
@@ -170,6 +188,26 @@ def process_get_details():
 
 
 def process_format_details(details):
+    """
+    ************************************ Inside process_format_details function ****************************************
+    Function to validate the details.
+
+    This function will validate the details entered by the users.
+
+    Validation as follow:
+
+    1. First_Name   : Cannot be less than 2 characters or numbers
+    2. Last_name    : Cannot be less than 2 characters or numbers
+    3. Email_ID     : Cannot be less than 7 characters and has to include @ and dot
+    4. Phone_No     : Cannot be less than 7 Numbers and has to be numeric
+    5. Employer     : Cannot be less than 2 characters or numbers
+    6. Role         : Cannot be less than 2 characters or numbers
+
+    If the validation passed then it will return the error flag as 0 or else will print error message, prompt the same
+    error message for the user and then will return error flag as 1.
+    ************************************ Inside process_format_details function ****************************************
+    """
+
     first_name = None
     last_name = None
     email_id = None
@@ -233,6 +271,16 @@ def process_format_details(details):
 
 def process_insert(check_main_table, check_sequence_table, first_name, last_name, email_id, phone_no, employer,
                    role, creation_date):
+    """
+    ************************************ Inside process_insert function ************************************************
+    Function to insert the detail into the table.
+
+    This function will insert the details into the table and will prompt a pop-up message for the user to Note their
+    Unique ID. If the function cannot able to insert into due to duplicate records or any other psycopg2 error, then
+    it will print the error message and prompt the same error message to the user.
+    ************************************ Inside process_insert function ************************************************
+    """
+
     try:
         conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1", port="5432")
         cur = conn.cursor()
@@ -271,6 +319,16 @@ def process_insert(check_main_table, check_sequence_table, first_name, last_name
 
 
 def process_response(response, check_main_table, check_sequence_table, creation_date):
+    """
+    ************************************ Inside process_response function **********************************************
+    Function to validate the user response.
+
+    This function will call other functions based on the response chosen by the user. If the response is None or at the
+    end of all steps, this function will set the flag as 2. Which means the first iteration is finish and will enter
+    into the second iteration.
+    ************************************ Inside process_response function **********************************************
+    """
+
     if response is not None:
         details = process_get_details()
         if details is not None:
@@ -291,6 +349,12 @@ def process_response(response, check_main_table, check_sequence_table, creation_
 
 
 def process_ask_multiple(flag, check_main_table, check_sequence_table, creation_date, status):
+    """
+    ************************************ Inside process_ask_multiple function ******************************************
+    This function is a loop function that will run until the user chose not to update anymore.
+    ************************************ Inside process_ask_multiple function ******************************************
+    """
+
     while status == 0:
         response = process_ask_question(flag)
         process_response(response, check_main_table, check_sequence_table, creation_date)
