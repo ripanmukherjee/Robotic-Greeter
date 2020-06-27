@@ -8,37 +8,37 @@ Database Code:
 -----------------------------------
 All the python code in Database Code folder deals with the following table:
 
-* Development (DEV) : carego_user_dev
-* Test (TEST) : carego_user_test
-* Production (PROD) : carego_user_prod
+* Development (DEV) : carego_customer_dev
+* Test (TEST) : carego_customer_test
+* Production (PROD) : carego_customer_prod
 
 Database related code is written in Python as follow:
 
-1. user_Insert.py_:
-user_Insert.py is use for inserting the data of the user into the table mentioned above.
+1. Customer_Insert.py_:
+Customer_Insert.py is use for inserting the data of the user into the table mentioned above.
 
 This program will be called from Main_Process.py. If the user wants to save their details in the database, then Main_Process.py will call this program, and this process will insert the data into the table mentioned above.
 
 Also, you can run this program as a stand-alone program.
 
-2. user_Search_Main.py_:
-user_Search_Main.py is used to search the user's data, and it will be called from Main_Process.py. If the user wants to explore the data, then this process will ask the user wants to search by ID or Name, and as per the selection, this program will call the below two programs:
+2. Customer_Search_Main.py_:
+Customer_Search_Main.py is used to search the user's data, and it will be called from Main_Process.py. If the user wants to explore the data, then this process will ask the user wants to search by ID or Name, and as per the selection, this program will call the below two programs:
 
 Also, you can run this program as a stand-alone program.
 
-* user_Search_ID.py_: user_Search_ID.py is used to search the data of the user from the above-mentioned table by using an ID.  This program will be called from user_Search_Main.py based on search criteria. If the user select ID option in user_Search_Main.py, then it will call user_Search_ID.py. And this program will ask the ID and search the data. Also, you can run this program as a stand-alone program.
-* user_Search_Name.py_: user_Search_Name.py is used to search the data of the user from the above-mentioned table. This program will be called from user_Search_Main.py based on search criteria. If the user selects the Name option in user_Search_Main.py, then it will call user_Search_Name.py. And this program will ask the Name and search the data. Also, you can run this program as a stand-alone program.
+* Customer_Search_ID.py_: Customer_Search_ID.py is used to search the data of the user from the above-mentioned table by using an ID.  This program will be called from Customer_Search_Main.py based on search criteria. If the user select ID option in Customer_Search_Main.py, then it will call Customer_Search_ID.py. And this program will ask the ID and search the data. Also, you can run this program as a stand-alone program.
+* Customer_Search_Name.py_: Customer_Search_Name.py is used to search the data of the user from the above-mentioned table. This program will be called from Customer_Search_Main.py based on search criteria. If the user selects the Name option in Customer_Search_Main.py, then it will call Customer_Search_Name.py. And this program will ask the Name and search the data. Also, you can run this program as a stand-alone program.
 
-3. user_Update.py_:
-user_Update.py is used to update the data of the user into the table mentioned above. This program will be called from ~/Main_Process/Main_Process.py if the user wants to update their details. To update the details, user should know their unique ID, as this program will ask to confirm the ID before to update.
+3. Customer_Update.py_:
+Customer_Update.py is used to update the data of the user into the table mentioned above. This program will be called from ~/Main_Process/Main_Process.py if the user wants to update their details. To update the details, user should know their unique ID, as this program will ask to confirm the ID before to update.
 
 Also, you can run this program as a stand-alone program.
 
-.. _user_Insert.py:         https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Database_Code/user_Insert.py
-.. _user_Search_Main.py:    https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Database_Code/user_Search_Main.py
-.. _user_Search_ID.py:      https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Database_Code/user_Search_ID.py
-.. _user_Search_Name.py:    https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Database_Code/user_Search_Name.py
-.. _user_Update.py:         https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Database_Code/user_Update.py
+.. _Customer_Insert.py:         https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Database_Code/Customer_Insert.py
+.. _Customer_Search_Main.py:    https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Database_Code/Customer_Search_Main.py
+.. _Customer_Search_ID.py:      https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Database_Code/Customer_Search_ID.py
+.. _Customer_Search_Name.py:    https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Database_Code/Customer_Search_Name.py
+.. _Customer_Update.py:         https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Database_Code/Customer_Update.py
 
 Codes Architecture:
 -----------------------------------
@@ -65,13 +65,12 @@ follow::
 
     $ chmod +x *.py
 
-    $ python3 user_Insert.py
+    $ python3 Customer_Insert.py
 
-    $ python3 user_Search_Main.py
+    $ python3 Customer_Search_Main.py
 
-    $ python3 user_Search_ID.py
+    $ python3 Customer_Search_ID.py
 
-    $ python3 user_Search_Name.py
+    $ python3 Customer_Search_Name.py
 
-    $ python3 user_Update.py
-
+    $ python3 Customer_Update.py
