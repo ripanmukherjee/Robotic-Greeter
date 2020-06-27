@@ -80,7 +80,10 @@ def process_parameter_set():
     This function will be called to set the essential parameter needed for this program as below:
 
     1. Region = "DEV" signifies that we are running the code in the development region. And as per the region value,
-    this program will choose the table. So, it is essential to set region value correctly.
+    this program will choose the table.
+
+    All the above values will be returning from this function, and other functions will use these parameters. So, it
+    is essential to verify the parameter before running this process.
     ************************************ Inside process_parameter_set function *****************************************
     """
 
@@ -92,8 +95,10 @@ def process_parameter_set():
 def process_checking_region_table(region):
     """
     ************************************ Inside process_checking_region_table function *********************************
+    Function to get the table details.
+
     This function will be called to get main_table and sequence_table as per region value. If the region value is not
-    set correctly, then this function will give error and will exit from the program.
+    set correctly, then this function will print error message and will exit from the program.
     ************************************ Inside process_checking_region_table function *********************************
     """
 
@@ -119,9 +124,11 @@ def process_checking_region_table(region):
 def process_ask_question(flag):
     """
     ************************************ Inside process_ask_question function ******************************************
-    This function will ask if the customer wants to update their details or not by prompting a pop-up message and later
-    it will return the customer response. If the flag is 1 that means this function is asking for the first time and if
-    flag is not 1 that means it is asking more than 1 times.
+    Function to prompt pop-up questions for the user.
+
+    This function will ask if the user wants to update their details or not by prompting a pop-up message, and later
+    it will return the user response. This function will prompt the question based on the value of the flag. If the
+    function cannot run the pop-up process, then it will print an error and will exit from the program.
     ************************************ Inside process_ask_question function ******************************************
     """
 
@@ -144,8 +151,12 @@ def process_ask_question(flag):
 def process_get_details_initial_option():
     """
     ************************************ Inside process_get_details_initial_option function ****************************
-    This function will ask the customer to select the option they want to update. Customers can choose one option at a
-    time. If the customer chooses "First Name," it will return the value of the First Name option, which is 1.
+    Function to get the update option.
+
+    This function will ask the user to select the option they want to update. User can choose one option at a
+    time. If the customer chooses "First Name," it will return the value of the option, which is 1 for the First Name.
+    Later, it will return the option's value. If the function cannot run the pop-up process, then it will print an
+    error message and will return option's value as None.
     ************************************ Inside process_get_details_initial_option function ****************************
     """
 
@@ -173,7 +184,10 @@ def process_get_details_initial_option():
 def process_assign_update_option(details):
     """
     ************************************ Inside process_assign_update_option function **********************************
-    This function will validate the customer's response, set the option variable's value, and return it.
+    Function to validate the update option.
+
+    This function is to validate the update option and later return it for the update. If the option value is wrong
+    then this function will print error message and will return option value as None.
     ************************************ Inside process_assign_update_option function **********************************
     """
 
@@ -217,19 +231,22 @@ def process_assign_update_option(details):
 def process_get_details_validation(option):
     """
     ************************************ Inside process_get_details_validation function ********************************
-    This function will prompt a pop-up message for the customers to enter the new details based on the option chosen
-    by the customers. Later, this will validate the details entered by the customer.
+    Function to get the new update details from the user.
+
+    This function will prompt a pop-up message for the users to enter the new details based on the option chosen
+    by the users. Later, this will validate the details entered by the users.
 
     Validation as follow:
 
-    1. First_Name   : Cannot be less than 2 characters or Numbers
-    2. Last_name    : Cannot be less than 2 characters or Numbers
+    1. First_Name   : Cannot be less than 2 characters or numbers
+    2. Last_name    : Cannot be less than 2 characters or numbers
     3. Email_ID     : Cannot be less than 7 characters and has to include @ and dot
     4. Phone_No     : Cannot be less than 7 Numbers and has to be numeric
-    5. Employer     : Cannot be less than 2 characters or Numbers
-    6. Role         : Cannot be less than 2 characters or Numbers
+    5. Employer     : Cannot be less than 2 characters or numbers
+    6. Role         : Cannot be less than 2 characters or numbers
 
-    If the validation passed then it will return the details or else will return details as None.
+    If the validation passed then it will return the details or else will print error message, prompt the same error
+    message for the user and then will return details as None.
     ************************************ Inside process_get_details_validation function ********************************
     """
 
@@ -366,9 +383,12 @@ def process_get_details_validation(option):
 def process_get_id_confirmation():
     """
     ************************************ Inside process_get_id_confirmation function ***********************************
-    This function will prompt a pop-up message for the customers to enter the Unique ID for the confirmation. Correct
+    Function to get ID for the confirmation.
+
+    This function will prompt a pop-up message for the users to enter the Unique ID for the confirmation. Correct
     ID is required since this function will validate the ID, which has to be at least 1 number long and numeric. Also,
-    it will return the ID to check if the ID is present in the table or not.
+    it will return the ID to check if the ID is present in the table or not. If the ID is not correct then this
+    function will print error message, prompt the same error message to the user and will return ID as None.
     ************************************ Inside process_get_id_confirmation function ***********************************
     """
 
@@ -401,8 +421,10 @@ def process_get_id_confirmation():
 def process_search_id(check_main_table, confirm_id):
     """
     ************************************ Inside process_search_id function *********************************************
-    This function will check if the ID is present in the table. If the ID does not exits, then this function will
-    return count as 0 or else return the table's count.
+    Function to confirm the ID from the table.
+
+    This function will check if the ID is present in the table or not. If the ID does not exits, then this function
+    will return count as 0 or else return the table's count.
     ************************************ Inside process_search_id function *********************************************
     """
 
@@ -436,7 +458,9 @@ def process_search_id(check_main_table, confirm_id):
 def process_update_table(check_main_table, update_details, update_option, confirm_id):
     """
     ************************************ Inside process_update_table function ******************************************
-    This function will update the details in the table based on the option chosen by the customer. If this function
+    Function to update the details in the table.
+
+    This function will update the details in the table based on the option chosen by the user. If this function
     cannot able to update due to any psycopg2 error then it will prompt "Please contact admin!!!!"
     ************************************ Inside process_update_table function ******************************************
     """
@@ -571,8 +595,10 @@ def process_update_table(check_main_table, update_details, update_option, confir
 def process_response(check_main_table, response, flag):
     """
     ************************************ Inside process_response function **********************************************
-    This function will call other functions based on the response chosen by the customer. If the answer is None or the
-    end of the loop, this function will set the flag as 2. Which means the first iteration is finish and will enter
+    Function to validate the user response.
+
+    This function will call other functions based on the response chosen by the user. If the response is None or at the
+    end of all steps, this function will set the flag as 2. Which means the first iteration is finish and will enter
     into the second iteration.
     ************************************ Inside process_response function **********************************************
     """
