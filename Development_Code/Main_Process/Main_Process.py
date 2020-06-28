@@ -161,7 +161,7 @@ def process_checking_directory():
 def process_speech_normal(text):
     """
     ************************************ Inside process_speech_normal function *****************************************
-    This function to call Speech_Normal.py.
+    Function to call Speech_Normal.py.
 
     This function will receive a text as input and will pass this input as passing argument to Speech_Normal.py. Which
     will convert text to speech with the gTTS. Speech_Normal.py will only speak from the text message. This function
@@ -182,12 +182,14 @@ def process_speech_normal(text):
 def process_speech_question(text):
     """
     ************************************ Inside process_speech_question function ***************************************
-    This function will be called to call Speech_Question.py - This function will receive a text as input and will pass
-    this input as passing argument to Speech_Question.py. Which will convert text to speech with gTTS. Text has to be
-    question format since Speech_Question.py will first ask the user and receive a response from the user. If it is not
-    able to call Speech_Normal.py, it will print an error message and will continue.
-    This function will then check if Speech_Question_Output.txt is present and will read from it for the response and
-    return it. If the output file does not exist, then it will return the response as None.
+    Function to call Speech_Question.py.
+
+    This function will receive a text as input and will pass this input as passing argument to Speech_Question.py.
+    Which will convert text to speech with gTTS. Text has to be question format since Speech_Question.py will first
+    ask the user and receive a response from the user. If it is not able to call Speech_Normal.py, it will print an
+    error message and will continue. This function will then check if Speech_Question_Output.txt is present and will
+    read from it for the response and return it. If the output file does not exist, then it will return the response
+    as None.
     ************************************ Inside process_speech_question function ***************************************
     """
 
@@ -215,9 +217,10 @@ def process_speech_question(text):
 def process_speech_name_organization():
     """
     ************************************ Inside process_speech_name_organization function ******************************
-    This function will be called to call Speech_Name_Organization.py - which will first ask your name, company, and
-    then will ask if you want to save details or not. If it is not able to call Speech_Normal.py, it will print an
-    error message and will continue.
+    Function to call Speech_Name_Organization.py.
+
+    Which will first ask your name, company, and then will ask if you want to save details or not. If it is not able
+    to call Speech_Normal.py, it will print an error message and will continue.
     Based on your response, this function will check Speech_Name_Organization_Output.txt present or not and read the
     file for the response. Then it will return the response, and if the output file is not present, then it will return
     the response as None.
@@ -250,8 +253,11 @@ def process_speech_name_organization():
 def process_prompt_question(text):
     """
     ************************************ Inside process_prompt_question function ***************************************
-    This function will be called to prompt a pop-up question. It will receive a text as input and will prompt the
-    pop-up message. If it is not able to call Speech_Normal.py, it will print an error message and will continue.
+    Function to prompt a pop-up question.
+
+    It will receive a text as input and will prompt the same text pop-up message to the user. Later, it will store
+    the user response into output variable and will return the same. If this function cannot able to run the pop-up,
+    then it will return output as None.
     ************************************ Inside process_prompt_question function ***************************************
     """
 
@@ -267,10 +273,11 @@ def process_prompt_question(text):
 def process_inserting_data():
     """
     ************************************ Inside process_inserting_data function ****************************************
-    This function will be called to call Customer_Insert.py, which will insert the data into the database. This process
-    will receive an output from Customer_Insert.py to get Unique ID and later return the Unique ID. If it is not able
-    to not call or have an issue with extracting Unique ID, then it will print an error message and will return the
-    Unique ID as None.
+    Function to call Customer_Insert.py.
+
+    Which will insert the data into the database. This process will receive an output from Customer_Insert.py to get
+    Unique ID and later return the Unique ID. If it is not able to call or have an issue with extracting Unique ID,
+    then it will print an error message and will return the Unique ID as None.
     ************************************ Inside process_inserting_data function ****************************************
     """
 
@@ -305,10 +312,12 @@ def process_inserting_data():
 def process_picture(unique_id):
     """
     ************************************ Inside process_picture function ***********************************************
-    This function will be called to call Capture_Picture_Main.py with Unique ID as input, which is used to take and
-    save your picture. This process will also receive an output from Capture_Picture_Main.py to check if there are any
-    errors or not. If there are errors, then it will print an error message and will return None or else will return
-    the original output value.
+    Function to call Capture_Picture_Main.py
+
+    This function will call Capture_Picture_Main with Unique ID as input, which is used to take and save your picture.
+    This process will also receive an output from Capture_Picture_Main.py to check if there are any errors or not. If
+    there are errors, then it will print an error message and will return None or else will return the original output
+    value.
     ************************************ Inside process_picture function ***********************************************
     """
 
