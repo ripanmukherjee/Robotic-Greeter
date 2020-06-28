@@ -90,9 +90,12 @@ def process_parameter_set():
     mp3_filename = "Speech_Name_Organization"
     text = "I am going to ask your name and organization. If I do not get an input from you within 5 second, then, " \
            "I will prompt a pop up message to you."
+
     device_list = sr.Microphone.list_microphone_names()
-    if 'pulse' in device_list:
+    if 'pulse' in device_list[0:7]:
         device_index = device_list.index('pulse')
+    elif 'USB PnP Sound Device: Audio (hw:2,0)' in device_list[0:7]:
+        device_index = device_list.index('USB PnP Sound Device: Audio (hw:2,0)')
     else:
         device_index = 0
 
@@ -280,11 +283,11 @@ def process_organization(device_index, mp3_filename, record, text, name):
                 text = "Okay. " + name + ". Say Hi to everyone at " + organization + speak_text
 
             except subprocess.CalledProcessError:
-                text = "Okay. " + name + speak_text
+                text = "Okay. " + speak_text
         except subprocess.CalledProcessError:
-            text = "Okay. " + name + speak_text
+            text = "Okay. " + speak_text
     else:
-        text = "Okay. " + name + speak_text
+        text = "Okay. " + speak_text
 
     return text
 
@@ -341,11 +344,7 @@ def process_name(device_index, mp3_filename, record):
         text = process_name_organization(device_index, mp3_filename, record)
     else:
         text = "All right, and what company are you with?"
-        input_details = process_extract_name_organization_details(device_index, mp3_filename, text, record)
-        if input_details is None:
-            text = process_organization(device_index, mp3_filename, record, text, name)
-        else:
-            text = "Actually, I do not have your details. Would you like to save your details for future?"
+        text = process_organization(device_index, mp3_filename, record, text, name)
 
     return text
 
