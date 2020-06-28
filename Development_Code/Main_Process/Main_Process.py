@@ -84,10 +84,11 @@ def process_parameter_set():
 
     1. Region = "DEV" signifies that we are running the code in the development region. And as per the region value,
     this program will choose the table. So, it is essential to set region value correctly.
-    2. main_directory = "/home/somak/Robotic-Greeter/Development_Code" signifies that the Development_Code folder
-    is the main directory and inside of this directory we are having other code related folder such as :
-    Main_Process folder and inside Main_Process folder, we are having Main_Process.py (This process).
-    Also, Database_Code folder, Speech_Recognition folder, and Face_Recognition folder.
+    2. main_directory = "/home/somak/Robotic-Greeter/Development_Code" signifies that we are assigning this directory
+    as main_directory, because Development_Code folder has all the other codes to run this process.
+
+    All the above values will be returning from this function, and other functions will use these parameters. So, it
+    is essential to verify the parameter before running this process.
     ************************************ Inside process_parameter_set function *****************************************
     """
 
@@ -100,8 +101,10 @@ def process_parameter_set():
 def process_checking_region_table(region):
     """
     ************************************ Inside process_checking_region_table function *********************************
+    Function to get the table details.
+
     This function will be called to get main_table and sequence_table as per region value. If the region value is not
-    set correctly, then this function will give error and will exit from the program.
+    set correctly, then this function will print error message and will exit from the program.
     ************************************ Inside process_checking_region_table function *********************************
     """
 
@@ -127,6 +130,8 @@ def process_checking_region_table(region):
 def process_checking_directory():
     """
     ************************************ Inside process_checking_directory function ************************************
+    Function to validate all directory.
+
     This function will be called to check if codes related folder such as Database_Code, Face_Recognition_Code,
     and Speech_Recognition_Code is present inside of Main_Directory or not. If the directory is not present, then this
     function will give error and will exit from the program.
@@ -156,11 +161,12 @@ def process_checking_directory():
 def process_speech_normal(text):
     """
     ************************************ Inside process_speech_normal function *****************************************
-    This function will be called to call Speech_Normal.py - This function will receive a text as input and will pass
-    this input as passing argument to Speech_Normal.py. Which will convert text to speech with the gTTS.
-    Speech_Normal.py will only speak from the text message. This function will only call Speech_Normal.py and will not
-    receive any output from Speech_Normal.py. If it is not able to call Speech_Normal.py, it will print an error
-    message and will continue.
+    This function to call Speech_Normal.py.
+
+    This function will receive a text as input and will pass this input as passing argument to Speech_Normal.py. Which
+    will convert text to speech with the gTTS. Speech_Normal.py will only speak from the text message. This function
+    will only call Speech_Normal.py and will not receive any output from Speech_Normal.py. If it is not able to call
+    Speech_Normal.py, it will print an error message and will continue.
     ************************************ Inside process_speech_normal function *****************************************
     """
 
