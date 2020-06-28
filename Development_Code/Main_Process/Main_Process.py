@@ -313,7 +313,7 @@ def process_picture(unique_id):
         output = check_output(args_call, shell=True)
         output = output.decode().split('\n')
         print("Output of the Capture_Picture_Main.py program : ", output)
-        output = output[3]
+        output = output[5]
         if output[:5] == "ERROR":
             output = None
     except subprocess.CalledProcessError:
@@ -507,6 +507,7 @@ def process_unknown(main_directory, database_code_directory, face_recognition_co
 
     search_flag = None
     help_flag = None
+    output_process_picture_flag = None
 
     os.chdir(speech_recognition_code_directory)
     text = "Hello, Welcome to Care Go, my name is TELIA. I am Care Go’s virtual greeter. I am going to ask few " \
