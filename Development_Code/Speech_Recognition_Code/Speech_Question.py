@@ -90,9 +90,12 @@ def process_parameter_set():
     mp3_filename = "Speech_Question"
     text = "I am going to ask few question to you. You can answer with Yes or No. If I do not get an input from you " \
            "within 5 second, then, I will prompt a pop up message to you."
+
     device_list = sr.Microphone.list_microphone_names()
-    if 'pulse' in device_list:
+    if 'pulse' in device_list[0:7]:
         device_index = device_list.index('pulse')
+    elif 'USB PnP Sound Device: Audio (hw:2,0)' in device_list[0:7]:
+        device_index = device_list.index('USB PnP Sound Device: Audio (hw:2,0)')
     else:
         device_index = 0
 
