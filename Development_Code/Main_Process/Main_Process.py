@@ -341,8 +341,10 @@ def process_picture(unique_id):
 def process_search_details():
     """
     ************************************ Inside process_search_details function ****************************************
-    This function will be called to call Customer_Search_Main.py, which will search the data from table. If it is not
-    able to call, then it will print an error message and will continue.
+    Function to call Customer_Search_Main.py..
+
+    Which will search the data from table. If it is not able to call, then it will print an error message and will
+    continue.
     ************************************ Inside process_search_details function ****************************************
     """
 
@@ -358,8 +360,10 @@ def process_search_details():
 def process_ask_search(detect_name):
     """
     ************************************ Inside process_ask_search function ********************************************
-    This function will be called to prompt question first and based on the response this function will call
-    process_search_details() function.
+    Function to call process_prompt_question() function with text as input.
+
+    First, this function will call process_prompt_question() function to get the response from the user and based on
+    the response this function will call process_search_details() function.
     ************************************ Inside process_ask_search function ********************************************
     """
 
@@ -376,9 +380,11 @@ def process_search(text, database_code_directory, main_directory, detect_name, s
                    speech_recognition_code_directory):
     """
     ************************************ Inside process_search function ************************************************
-    This function will be called to call process_speech_question(text) function and based on the response it will call
+    Main search function.
+
+    This function will call process_speech_question() function with an input text and based on the response it will call
     process_speech_normal(text) function and process_ask_search(detect_name) function. If the customer says "Yes" then
-    it will set search_flag as Yes and will return it, if not then will nothing.
+    it will set search_flag as Yes and will return it, if not then will return as None.
     ************************************ Inside process_search function ************************************************
     """
 
@@ -408,8 +414,10 @@ def process_search(text, database_code_directory, main_directory, detect_name, s
 def process_update_detail():
     """
     ************************************ Inside process_update_detail function *****************************************
-    This function will be called to call Customer_Update.py, which will update the data in the table. If it is not
-    able to call, then it will print an error message and will continue.
+    Function to call Customer_Update.py
+
+    Which will update the data in the table. If it is not able to call, then it will print an error message and will
+    continue.
     ************************************ Inside process_update_detail function *****************************************
     """
 
@@ -425,8 +433,10 @@ def process_update_detail():
 def process_ask_update(detect_name):
     """
     ************************************ Inside process_ask_update function ********************************************
-    This function will be called to prompt question first and based on the response this function will call
-    process_update_detail() function.
+    Function to call process_prompt_question() function with text as input.
+
+    First, this function will call process_prompt_question() function to get the response from the user and based on
+    the response this function will call process_update_detail() function.
     ************************************ Inside process_ask_update function ********************************************
     """
 
@@ -442,7 +452,9 @@ def process_ask_update(detect_name):
 def process_update(text, database_code_directory, main_directory, detect_name, speech_recognition_code_directory):
     """
     ************************************ Inside process_search function ************************************************
-    This function will be called to call process_speech_question(text) function and based on the response it will call
+    Main update function.
+
+    This function will call process_speech_question() function with text as input and based on the response it will call
     process_speech_normal(text) function and process_ask_update(detect_name) function.
     ************************************ Inside process_search function ************************************************
     """
@@ -522,7 +534,6 @@ def process_unknown(main_directory, database_code_directory, face_recognition_co
 
     search_flag = None
     help_flag = None
-    output_process_picture_flag = None
 
     os.chdir(speech_recognition_code_directory)
     text = "Hello, Welcome to Care Go, my name is TELIA. I am Care Go’s virtual greeter. I am going to ask few " \
