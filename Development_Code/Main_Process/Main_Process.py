@@ -482,8 +482,10 @@ def process_update(text, database_code_directory, main_directory, detect_name, s
 def process_search_all_details(check_main_table, detect_id):
     """
     ************************************ Inside process_search function ************************************************
-    This function will be called to search the details of a known person. After the face detection function, if the
-    face is known, with face ID, this function will check if the ID is present in the table. If details exist,then it
+    Function to search ID from the table.
+
+    This function will search the details of a known person with the ID. After the face detection function, if the
+    face is known, with face ID, this function will check if the ID is present in the table. If details exist, then it
     will return the table details, if not, then it will return an empty list.
     ************************************ Inside process_search function ************************************************
     """
@@ -524,6 +526,8 @@ def process_unknown(main_directory, database_code_directory, face_recognition_co
                     speech_recognition_code_directory, detect_name):
     """
     ************************************ Inside process_unknown function ***********************************************
+    Main function for unknown user.
+
     This function is the primary process for an unknown person. This function will first greet the unknown person and
     later will ask if the person needs any help or not. Based on the response (Yes/No), this process will do as below:
     1. If Yes, it will ask if the customer wants to save their details in the database and save their picture.
@@ -635,6 +639,8 @@ def process_known(main_directory, database_code_directory, face_recognition_code
                   speech_recognition_code_directory, detect_name, detect_id, check_main_table):
     """
     ************************************ Inside process_known function *************************************************
+    Main function for known user.
+
     This function is the primary process for a known person. This function will first greet the unknown person and
     later will ask if the person needs any help or not. Based on the response (Yes/No), this process will do as below:
     1. If Yes, it will ask if the customer wants to search anyone or update their details.
@@ -758,10 +764,11 @@ def process_known(main_directory, database_code_directory, face_recognition_code
 def process_face_detection():
     """
     ************************************ Inside process_face_detection function ****************************************
-    This function will be called to call Face_Detection_Camera.py, which will detect the faces and detect_name and
-    detect_id. detect_name and detect_id will be Unknown, and None if the faces are not known. If it is a known face,
-    then will return the exact name and ID. If it is not able to call then it will print an error message and will
-    continue.
+    Function to call Face_Detection_Camera.py
+
+    Which will detect the faces with the detect_name and detect_id. detect_name and detect_id will be Unknown, and None
+    if the faces are not known. If it is a known face, then will return the exact name and ID. If it is not able to
+    call then it will print an error message and will continue.
     ************************************ Inside process_face_detection function ****************************************
     """
 
@@ -795,8 +802,12 @@ def process_face_detection():
 def process_speech_emergency_evacuation_procedures():
     """
     ************************************ Inside process_speech_emergency_evacuation_procedures function ****************
-    This function will be called to call Speech_Emergency_Evacuation_Procedures.py, which will explain the procedures.
-    If it is not able to call then it will print an error message and will continue.
+    Function to call Speech_Emergency_Evacuation_Procedures.py.
+
+    Which will explain the emergency evacuation procedures to the user. For the unknown user it will be mandatory but
+    for the known user, this function will ask if the user wants to see this procedures again or not. If the user says
+    Yes then this function will call Speech_Emergency_Evacuation_Procedures.py or else not. If it is not able to call
+    then it will print an error message and will continue.
     ************************************ Inside process_speech_emergency_evacuation_procedures function ****************
     """
 
@@ -812,9 +823,10 @@ def process_main(main_directory, database_code_directory, face_recognition_code_
                  speech_recognition_code_directory, check_main_table):
     """
     ************************************ Inside process_main function **************************************************
-    This function will called from main and will perform face_detection first and based on the detect name this will
-    call process_unknown or process_known. Later it will call process_speech_emergency_evacuation_procedures and will
-    do some extra gestures.
+    This the main function.
+
+    This function is the main function and first, this will perform face_detection and based on the detect name this
+    will call process_unknown or process_known function. Later, this process will do some extra feature.
     ************************************ Inside process_main function **************************************************
     """
 
