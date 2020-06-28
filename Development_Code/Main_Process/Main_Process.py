@@ -2,7 +2,7 @@
 """
 # **********************************************************************************************************************
 # Project:      Robotic Greeter - McMaster University - CareGo Tek
-# Program Name: Speech_Name_Organization.py
+# Program Name: Main_Process.py
 # Author:       Somak Mukherjee
 # Date:         Friday 24 May, 2020
 # Version:      1
