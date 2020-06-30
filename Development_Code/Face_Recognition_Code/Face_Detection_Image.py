@@ -81,7 +81,7 @@ def process_parameter_set():
     """
 
     encoding_file = 'encodings.pickle'
-    image_path = 'Sample_Images/image2.jpg'
+    image_path = 'Sample_Images/image1.jpg'
     detect_model = 'cnn'
 
     return encoding_file, image_path, detect_model
