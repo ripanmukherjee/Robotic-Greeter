@@ -1,4 +1,24 @@
 #!/usr/bin/env python3
+"""
+# **********************************************************************************************************************
+# Project:      Robotic Greeter - McMaster University - CareGo Tek
+# Program Name: Carego_Customer_Reports.py
+# Author:       Somak Mukherjee
+# Date:         Friday 24 April, 2020
+# Version:      1
+# **********************************************************************************************************************
+# Description:  This code deals with the following table:
+#
+#               * Development (DEV) : carego_customer_dev
+#               * Test (TEST) : carego_customer_test
+#               * Production (PROD) : carego_customer_prod
+#
+#               Carego_Customer_Reports.py program will fetch the records from the table and will create a CSV file.
+# **********************************************************************************************************************
+# NOTE 1:       This program can be run separately or as a stand-alone program as follow:
+#           	$ python3 Carego_Customer_Reports.py
+# **********************************************************************************************************************
+"""
 
 import os
 import sys
