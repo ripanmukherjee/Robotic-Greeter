@@ -239,12 +239,13 @@ def process_input_details(device_index, input_details, mp3_filename, record, yes
     ************************************ Inside process_input_details function *****************************************
     """
 
-    response = "NO"
+    response = None
     if input_details is None:
-        flag = 1
+        # flag = 1
         # text = "Sorry, I did not get an input from you."
         # process_speak_listen(device_index, mp3_filename, text, record, flag)
         response = "NO"
+        print("No!! Person do not want to continue.")
     else:
         tokenized_word = word_tokenize(input_details)
         filtered_sent = []
@@ -260,7 +261,18 @@ def process_input_details(device_index, input_details, mp3_filename, record, yes
                 break
             else:
                 response = "NO"
-                print("No!! Do not want to continue")
+
+        if response == "NO":
+            args = "zenity --question --width=500 --height=250 --text='Are you sure you do not want continue?\n\n" \
+                   "Click Yes button to continue.\n\nClick No button to cancel.'"
+            try:
+                check_output(args, shell=True)
+                response = "YES"
+                print("Yes!! Person wants to continue.")
+            except subprocess.CalledProcessError:
+                print("ERROR : subprocess.CalledProcessError - inside process_input_details function.")
+                response = "NO"
+                print("No!! Person do not want to continue.")
 
     return response
 
