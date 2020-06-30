@@ -99,6 +99,8 @@ def process_parameter_set():
     else:
         device_index = 0
 
+    # device_index = 2
+
     output_file = "Speech_Name_Organization_Output.txt"
 
     return yes_syn_words, stop_words, record, mp3_filename, text, device_index, output_file
@@ -281,13 +283,17 @@ def process_organization(device_index, mp3_filename, record, text, name):
                 details = details.decode().split('|')
                 organization = details[0]
                 text = "Okay. " + name + ". Say Hi to everyone at " + organization + speak_text
+                print(text)
 
             except subprocess.CalledProcessError:
                 text = "Okay. " + speak_text
+                print(text)
         except subprocess.CalledProcessError:
             text = "Okay. " + speak_text
+            print(text)
     else:
         text = "Okay. " + speak_text
+        print(text)
 
     return text
 
@@ -316,11 +322,14 @@ def process_name_organization(device_index, mp3_filename, record):
             details = details.decode().split('|')
             name = details[0]
             text = "All right " + name + ", and what company are you with?"
+            print(text)
             text = process_organization(device_index, mp3_filename, record, text, name)
         except subprocess.CalledProcessError:
             text = speak_text
+            print(text)
     except subprocess.CalledProcessError:
         text = speak_text
+        print(text)
 
     return text
 
