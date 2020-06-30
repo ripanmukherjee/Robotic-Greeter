@@ -367,13 +367,20 @@ def process_input_details(device_index, input_details, mp3_filename, record, yes
     ************************************ Inside process_input_details function *****************************************
     This function will set the final response as YES or NO by tokenizing.
 
-    First, based on the last response receives from the users, this function will prompt a pop-up message if the
-    user wants to save their details or not. In this pop-up message, users can click on YES or NO button. If
-    the user clicks on the NO button, then this function will set input details and final response as None. But if
-    the user clicks on the YES button, then this function will tokenize the sentence into word and later remove all
-    the stop words. Then from the filtered_sent, it will search if any word is present in yes_syn_words or not. If yes,
-    then this function will set the final response as YES, and if not, then it will set as NO. Later, it will return
-    the value of the final response.
+    First, based on the last response receives from the users, this function will prompt a pop-up message if the user
+    wants to save their details or not. In this pop-up message, users can click on YES or NO button. If the user clicks
+    on the NO button, then this function will set input details as None. But if the user clicks on the YES button, then
+    it will set as Yes.
+
+    Secondly, this function will validate the input_details response from the user. If the user's response is None, then
+    this function will set the final response as NO. But if the user gives some response and the value of input details
+    is not None, it will then tokenize the sentence into word and then it will search each words if that is present in
+    yes_syn_words list or no_syn_words list. If any word present in yes_syn_words list, then this function will take
+    the final response as YES, if present in no_syn_words list, then this function will take the final response as NO.
+    But if any words does not present in yes_syn_words or no_syn_words list, then it will set the response as None, and
+    then this function will prompt a pop-up message ("If they are sure that they do not want to continue") to the user.
+    Based on the user response, this function will set the final response. Later, it will return the value of the final
+    response to write in the output file.
     ************************************ Inside process_input_details function *****************************************
     """
 
@@ -409,10 +416,14 @@ def process_input_details(device_index, input_details, mp3_filename, record, yes
                 response = "YES"
                 print("Yes!! Person wants to continue")
                 break
-            else:
+            elif word in no_syn_words:
                 response = "NO"
+                print("No!! Person do not want to continue.")
+                break
+            else:
+                response = None
 
-        if response == "NO":
+        if response is None:
             args = "zenity --question --width=500 --height=250 --text='Are you sure you do not want continue?\n\n" \
                    "Click Yes button to continue.\n\nClick No button to cancel.'"
             try:
