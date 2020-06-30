@@ -159,7 +159,7 @@ def process_speak_listen(device_index, mp3_filename, text, record, flag):
                 record.adjust_for_ambient_noise(source, duration=1)
                 print("Speak:")
                 os.system("zenity --progress --width=400 --height=200 --title='Speak Now' "
-                          "--text='Speak Now......No need to click Ok button' --no-cancel &")
+                          "--text='Speak Now......No need to click OK button' --no-cancel &")
                 try:
                     audio = record.listen(source, timeout=5)
                     text = record.recognize_google(audio)
@@ -389,9 +389,9 @@ def process_input_details(device_index, input_details, mp3_filename, record, yes
     response = "NONE"
 
     if input_details is None:
-        text = "Sorry, I did not get an input from you."
         flag = 1
-        process_speak_listen(device_index, mp3_filename, text, record, flag)
+        # text = "Sorry, I did not get an input from you."
+        # process_speak_listen(device_index, mp3_filename, text, record, flag)
         response = "NONE"
     else:
         tokenized_word = word_tokenize(input_details)
