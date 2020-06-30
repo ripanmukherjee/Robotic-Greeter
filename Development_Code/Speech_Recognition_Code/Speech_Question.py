@@ -234,15 +234,20 @@ def process_input_details(device_index, input_details, mp3_filename, record, yes
     ************************************ Inside process_input_details function *****************************************
     This function will set the final response as YES or NO by tokenizing.
 
-    First, this function will validate the input_details response from the user. If the user's response is
-    None, then this function will set the final response as NO. But if the user gives some response and the value
-    of input details is not None, it will then tokenize the sentence into word and remove all the stop words. Then
-    from the filtered_sent, it will search if any word is present in yes_syn_words or not. If yes, this function will
-    set the final response as YES, and if not, it will set as NO. Later, it will return the value of the final response.
+    First, this function will validate the input_details response from the user. If the user's response is None, then
+    this function will set the final response as NO. But if the user gives some response and the value of input details
+    is not None, it will then tokenize the sentence into word and then it will search each words if that is present in
+    yes_syn_words list or no_syn_words list. If any word present in yes_syn_words list, then this function will take
+    the final response as YES, if present in no_syn_words list, then this function will take the final response as NO.
+    But if any words does not present in yes_syn_words or no_syn_words list, then it will set the response as None, and
+    then this function will prompt a pop-up message ("If they are sure that they do not want to continue") to the user.
+    Based on the user response, this function will set the final response. Later, it will return the value of the final
+    response to write in the output file.
     ************************************ Inside process_input_details function *****************************************
     """
 
     response = None
+    print(input_details)
     if input_details is None:
         # flag = 1
         # text = "Sorry, I did not get an input from you."
