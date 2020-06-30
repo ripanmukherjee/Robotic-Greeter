@@ -92,6 +92,7 @@ def process_parameter_set():
            "within 5 second, then, I will prompt a pop up message to you."
 
     device_list = sr.Microphone.list_microphone_names()
+
     if 'pulse' in device_list[0:7]:
         device_index = device_list.index('pulse')
     elif 'USB PnP Sound Device: Audio (hw:2,0)' in device_list[0:7]:
