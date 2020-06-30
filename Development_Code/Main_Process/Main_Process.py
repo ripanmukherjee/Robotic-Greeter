@@ -883,7 +883,7 @@ def process_main(main_directory, database_code_directory, face_recognition_code_
             text = "And did you know we have installed TELIA as a system in 3 countries, it controls over 100 " \
                    "automated assets including more than 25 cranes, at 12 different sites for steel coil, long " \
                    "products and finished goods. We are always innovating as we have 13 patents or pending patents " \
-                   "and more than 50 projects. "
+                   "and more than 50 projects."
             process_speech_normal(text)
 
             text = "You are probably wondering why CareGo would create me to greet you? I am to remind you that we " \
