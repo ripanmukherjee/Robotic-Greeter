@@ -38,7 +38,7 @@ def start_program():
     current_date = today.strftime("%d/%m/%Y")
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
-    print('Starting Program : Daily_Reports.py - at : ' + current_time + ' on : ' + current_date)
+    print('Starting Program : Carego_Customer_Reports.py - at : ' + current_time + ' on : ' + current_date)
 
 
 def exit_program():
@@ -52,7 +52,7 @@ def exit_program():
     current_date = today.strftime("%d/%m/%Y")
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
-    print('Ending program : Daily_Reports.py - at : ' + current_time + ' on : ' + current_date)
+    print('Ending program : Carego_Customer_Reports.py - at : ' + current_time + ' on : ' + current_date)
     sys.exit()
 
 
