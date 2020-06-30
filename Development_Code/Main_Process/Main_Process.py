@@ -684,62 +684,76 @@ def process_known(main_directory, database_code_directory, face_recognition_code
         else:
             print("INFO - {} needs help but customer details are not present in the table.".format(detect_name))
 
-            text = "Currently we do not have your correct details\n\nwould you like to save your details?"
-            response = process_prompt_question(text)
+            os.chdir(speech_recognition_code_directory)
+            text = "Currently we do not have your correct details. would you like to save your details?"
+            response = process_speech_question(text)
+            os.chdir(main_directory)
 
-            if response is not None:
-                print("INFO - {} customer wants to save details in the database")
+            if response == "YES":
+                text = "Do you want to proceed?"
+                response = process_prompt_question(text)
 
-                os.chdir(database_code_directory)
-                unique_id = process_inserting_data()
-                os.chdir(main_directory)
+                if response is not None:
+                    print("INFO - {} customer wants to save details in the database")
 
-                if unique_id is not None:
-                    print("INFO - {} customer creates new unique ID in the database")
+                    os.chdir(database_code_directory)
+                    unique_id = process_inserting_data()
+                    os.chdir(main_directory)
 
-                    text = "Your old ID was : " + detect_id + "\n\nYour new ID is : " + unique_id
-                    try:
-                        print("Renaming the old ID dataset directory with new ID dataset")
+                    if unique_id is not None:
+                        print("INFO - {} customer creates new unique ID in the database")
 
-                        check_output(["zenity", "--info", "--width=400", "--height=200", "--text=" + text])
+                        text = "Your old ID was : " + detect_id + "\n\nYour new ID is : " + unique_id
+                        try:
+                            print("Renaming the old ID dataset directory with new ID dataset")
 
-                        os.chdir(face_recognition_code_directory)
-                        image_path = 'Dataset'
-                        os.chdir(image_path)
+                            check_output(["zenity", "--info", "--width=400", "--height=200", "--text=" + text])
 
-                        old_folder = detect_name + '_' + detect_id
-                        new_folder = detect_name + '_' + unique_id
-                        fix_pic_path = Path(old_folder)
+                            os.chdir(face_recognition_code_directory)
+                            image_path = 'Dataset'
+                            os.chdir(image_path)
 
-                        if fix_pic_path.exists() is False:
-                            print("ERROR : " + old_folder + " is not present - inside process_known function. Could "
-                                                            "not able to save the image data with new ID : ",
-                                  str(unique_id))
+                            old_folder = detect_name + '_' + detect_id
+                            new_folder = detect_name + '_' + unique_id
+                            fix_pic_path = Path(old_folder)
 
-                        else:
-                            os.rename(old_folder, new_folder)
-                            print(old_folder + " is present and saving the image data with new ID : ", str(unique_id))
+                            if fix_pic_path.exists() is False:
+                                print("ERROR : " + old_folder + " is not present - inside process_known function. "
+                                                                "Could not able to save the image data with new ID : ",
+                                      str(unique_id))
 
-                            os.chdir(main_directory)
+                            else:
+                                os.rename(old_folder, new_folder)
+                                print(old_folder + " is present and saving the image data with new ID : ",
+                                      str(unique_id))
+
+                                os.chdir(main_directory)
+
+                                text = "Okay " + detect_name.lower() + ". Are you looking for someone here?"
+                                search_flag = process_search(text, database_code_directory, main_directory, detect_name,
+                                                             search_flag, speech_recognition_code_directory)
+
+                                process_update(text, database_code_directory, main_directory, detect_name,
+                                               speech_recognition_code_directory)
+
+                        except subprocess.CalledProcessError:
+                            print("ERROR : subprocess.CalledProcessError - inside process_known function. "
+                                  "could not able to save the image data with new ID : ", str(unique_id))
 
                             text = "Okay " + detect_name.lower() + ". Are you looking for someone here?"
                             search_flag = process_search(text, database_code_directory, main_directory, detect_name,
                                                          search_flag, speech_recognition_code_directory)
 
+                            text = "Okay " + detect_name.lower() + ". Do you like to update or modify your details?"
                             process_update(text, database_code_directory, main_directory, detect_name,
                                            speech_recognition_code_directory)
 
-                    except subprocess.CalledProcessError:
-                        print("ERROR : subprocess.CalledProcessError - inside process_known function. "
-                              "could not able to save the image data with new ID : ", str(unique_id))
+                    else:
+                        print("INFO - {} customer does not want to save detail.".format(detect_name))
 
                         text = "Okay " + detect_name.lower() + ". Are you looking for someone here?"
                         search_flag = process_search(text, database_code_directory, main_directory, detect_name,
                                                      search_flag, speech_recognition_code_directory)
-
-                        text = "Okay " + detect_name.lower() + ". Do you like to update or modify your details?"
-                        process_update(text, database_code_directory, main_directory, detect_name,
-                                       speech_recognition_code_directory)
 
                 else:
                     print("INFO - {} customer does not want to save detail.".format(detect_name))
@@ -747,7 +761,6 @@ def process_known(main_directory, database_code_directory, face_recognition_code
                     text = "Okay " + detect_name.lower() + ". Are you looking for someone here?"
                     search_flag = process_search(text, database_code_directory, main_directory, detect_name,
                                                  search_flag, speech_recognition_code_directory)
-
             else:
                 print("INFO - {} customer does not want to save detail.".format(detect_name))
 
