@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import os
 import sys
 import csv
 import psycopg2
@@ -49,10 +50,20 @@ def process_parameter_set():
     ************************************ Inside process_parameter_set function *****************************************
     """
 
-    csv_file = 'Daily_Reports.csv'
+    csv_file = 'Carego_Customer_Reports.csv'
     region = "DEV"
 
     return csv_file, region
+
+
+def process_checking_directory():
+    main_directory = "/home/somak/Robotic-Greeter/Reports/"
+
+    try:
+        os.chdir(main_directory)
+    except FileNotFoundError:
+        os.mkdir(main_directory)
+        os.chdir(main_directory)
 
 
 def process_checking_region_table(region):
@@ -155,6 +166,7 @@ def main():
 
     start_program()
     csv_file, region = process_parameter_set()
+    process_checking_directory()
     check_main_table, check_sequence_table = process_checking_region_table(region)
     table_details = process_search(check_main_table)
     process_table_data_write(csv_file, table_details)
