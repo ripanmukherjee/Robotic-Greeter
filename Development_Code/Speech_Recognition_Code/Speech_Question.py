@@ -99,6 +99,8 @@ def process_parameter_set():
     else:
         device_index = 0
 
+    # device_index = 2
+
     output_file = "Speech_Question_Output.txt"
 
     return yes_syn_words, stop_words, record, mp3_filename, text, device_index, output_file
