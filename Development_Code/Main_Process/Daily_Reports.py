@@ -49,7 +49,7 @@ def process_parameter_set():
     ************************************ Inside process_parameter_set function *****************************************
     """
 
-    csv_file = 'Daily_Report.csv'
+    csv_file = 'Daily_Reports.csv'
     region = "DEV"
 
     return csv_file, region
