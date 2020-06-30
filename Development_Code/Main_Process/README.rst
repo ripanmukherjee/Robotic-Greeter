@@ -31,8 +31,11 @@ It will first detect the person face in the real time video camera and later it 
   2. Ask the person if they want to meet or search somebody, if they want to modify their old data
   3. etc.
 
+2. Carego_Customer_Reports.py_: Carego_Customer_Reports.py program will fetch the records from the table and will create a CSV file.
+
 
 .. _Main_Process.py: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Main_Process/Main_Process.py
+.. _Carego_Customer_Reports.py: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Main_Process/Carego_Customer_Reports.py
 
 Codes Architecture:
 -----------------------------------
@@ -60,4 +63,6 @@ follow::
     $ chmod +x *.py
 
     $ python3 Main_Process.py
+
+    $ python3 Carego_Customer_Reports.py
 
