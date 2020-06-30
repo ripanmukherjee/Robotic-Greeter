@@ -72,8 +72,7 @@ def process_ask_question(flag):
 
     response = None
     if flag == 1:
-        args = "zenity --question --width=500 --height=250 --text='You can search by ID or Name. \n\n" \
-               "Do you want to proceed?'"
+        args = "zenity --info --width=500 --height=250 --text='You can search by ID or Name'"
     else:
         args = "zenity --question --width=500 --height=250 --text='Do you want to search another people?'"
 
