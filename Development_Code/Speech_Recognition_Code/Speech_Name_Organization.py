@@ -69,12 +69,13 @@ def process_parameter_set():
     This function will be called to set the essential parameter needed for this program:
 
     1. yes_syn_words signifies all the synonym word of Yes.
-    2. stop_words means all the unwanted noisy word.
-    3. record signifies the setting of the recorder.
-    4. mp3_filename is the mp3 file from where gTTS will play the sound.
-    5. text will be the initial text message which will be played by gTTS.
-    6. device_index will be set automatically as the available microphone input device on the computer.
-    7. output_file is the file where the final response will be written.
+    2. no_syn_words signifies all the synonym word of No.
+    3. stop_words means all the unwanted noisy word.
+    4. record signifies the setting of the recorder.
+    5. mp3_filename is the mp3 file from where gTTS will play the sound.
+    6. text will be the initial text message which will be played by gTTS.
+    7. device_index will be set automatically as the available microphone input device on the computer.
+    8. output_file is the file where the final response will be written.
 
     All the above values will be returning from this function, and other functions will use these parameters. So, it
     is essential to verify the parameter before running this process.
@@ -85,6 +86,8 @@ def process_parameter_set():
                      'absolutely', 'indeed', 'affirmative', 'in the affirmative', 'agreed', 'roger', 'aye',
                      'aye aye', 'yeah', 'yah', 'yep', 'yup', 'uh-huh', 'okay', 'ok', 'right', 'surely',
                      'yea', 'well', 'course', 'yes', 'please']
+    no_syn_words = ['no', 'not', "n't", 'nae', 'na', 'never', 'nope']
+
     stop_words = set(stopwords.words("english"))
     record = sr.Recognizer()
     mp3_filename = "Speech_Name_Organization"
@@ -104,7 +107,7 @@ def process_parameter_set():
 
     output_file = "Speech_Name_Organization_Output.txt"
 
-    return yes_syn_words, stop_words, record, mp3_filename, text, device_index, output_file
+    return yes_syn_words, no_syn_words, stop_words, record, mp3_filename, text, device_index, output_file
 
 
 def process_check_input_argument():
@@ -359,7 +362,7 @@ def process_name(device_index, mp3_filename, record):
     return text
 
 
-def process_input_details(device_index, input_details, mp3_filename, record, yes_syn_words, stop_words):
+def process_input_details(device_index, input_details, mp3_filename, record, yes_syn_words, no_syn_words, stop_words):
     """
     ************************************ Inside process_input_details function *****************************************
     This function will set the final response as YES or NO by tokenizing.
@@ -398,8 +401,8 @@ def process_input_details(device_index, input_details, mp3_filename, record, yes
         tokenized_word = word_tokenize(input_details)
         filtered_sent = []
         for word in tokenized_word:
-            if word not in stop_words:
-                filtered_sent.append(word.lower())
+            # if word not in stop_words:
+            filtered_sent.append(word.lower())
 
         for word in filtered_sent:
             if word in yes_syn_words:
@@ -467,12 +470,14 @@ def main():
     """
 
     start_program()
-    yes_syn_words, stop_words, record, mp3_filename, text, device_index, output_file = process_parameter_set()
+    yes_syn_words, no_syn_words, stop_words, record, mp3_filename, text, device_index, output_file = \
+        process_parameter_set()
     stand_alone_flag = process_check_input_argument()
     process_speak_listen(device_index, mp3_filename, text, record, flag=1)
     text = process_name(device_index, mp3_filename, record)
     input_details = process_speak_listen(device_index, mp3_filename, text, record, flag=0)
-    response = process_input_details(device_index, input_details, mp3_filename, record, yes_syn_words, stop_words)
+    response = process_input_details(device_index, input_details, mp3_filename, record, yes_syn_words, no_syn_words,
+                                     stop_words)
     process_output_file_write(output_file, response)
     process_delete_mp3_output_files(stand_alone_flag)
     exit_program()
