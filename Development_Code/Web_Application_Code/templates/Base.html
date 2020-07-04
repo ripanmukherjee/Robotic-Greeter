@@ -104,13 +104,13 @@
 <div class="navbar">
     <a><img class="logo" src="https://carego.com/wp-content/themes/carego/img/logo.jpg" alt="Logo" title="Logo" /></a>
     <div class="topnav-right">
-        <a href="#home">HOME</a>
+        <a href="{{ url_for('base') }}">HOME</a>
         <div class="dropdown">
             <button class="dropbtn">COMPANY
               <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-	            <a title="About CareGo" href="{{ url_for('about_carego') }}">ABOUT CAREGO</a>
+	            <a title="About CareGo" href="{{ url_for('carego_about') }}">ABOUT CAREGO</a>
 	            <a title="News" href="https://carego.com/news/">NEWS</a>
 	            <a title="Community" href="https://carego.com/company/community/">COMMUNITY</a>
 	            <a title="Leadership" href="https://carego.com/company/leadership/">LEADERSHIP</a>
@@ -144,11 +144,7 @@
 <br><br>
 <h3 style="color: #191970; text-indent: 200px;">You can click start to talk with me or you can visit navigation bar.</h3>
 
-{% endblock %}
-
 <br><br><br><br>
-
-
 
 <footer>
 	<div class="centerImage">
@@ -157,6 +153,8 @@
         <p style="font-family: Arial, Helvetica, sans-serif; font-size:16px" align="center">All Rights Reserved. | <a href="/sitemap/">Sitemap</a></p>
 	</div>
 </footer>
+
+{% endblock %}
 
 </body>
 </html>
