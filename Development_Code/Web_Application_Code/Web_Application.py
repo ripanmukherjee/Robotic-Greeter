@@ -23,7 +23,7 @@ def about_telia():
 
 @app.route('/company/emergency-evacuation-procedure')
 def emergency_evacuation_procedure():
-    return "emergency-evacuation-procedure"
+    return render_template('/Emergency-Evacuation-Procedure.html')
 
 
 @app.route('/company/register-new-user')
