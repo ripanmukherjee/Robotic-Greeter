@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>CareGo Robotic Greeter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: Chandas;
+            background-image: url('https://carego.com/wp-content/uploads/2018/01/hero.jpg');
+            height: 500px;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .navbar {
+            background-color: #FFF;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .navbar a {
+            float: left;
+            color: #D2691E;
+            text-align: center;
+            padding: 30px 25px;
+            text-decoration: none;
+            font-family: Chandas;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .topnav-right {
+            float: right;
+        }
+
+        .dropdown {
+            float: left;
+            overflow: hidden;
+        }
+
+        .dropdown .dropbtn {
+            font-size: 18px;
+            border: none;
+            outline: none;
+            color: #D2691E;
+            padding: 30px 25px;
+            background-color: inherit;
+            font-family: Chandas;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .navbar a:hover, .dropdown:hover .dropbtn {
+            background-color: none !important;
+            font-family: Chandas;
+            color: #00008B;
+            font-weight: bold;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #00008B;
+            min-width: 300px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            float: none;
+            color: #FFFFFF;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            font-family: Chandas;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #D2691E;
+            color: #FFFFFF;
+            font-weight: bold;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+
+<body>
+<div class="navbar">
+    <a><img class="logo" src="https://carego.com/wp-content/themes/carego/img/logo.jpg" alt="Logo" title="Logo" /></a>
+    <div class="topnav-right">
+        <a href="{{ url_for('home') }}">HOME</a>
+        <div class="dropdown">
+            <button class="dropbtn">COMPANY
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+	            <a title="About CareGo" href="{{ url_for('about_carego') }}">ABOUT CAREGO</a>
+	            <a title="About TELIA" href="#">ABOUT TELIA</a>
+	            <a title="Emergency Evacuation Procedure" href="#">EMERGENCY EVACUATION PROCEDURE</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">USER
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a href="#">REGISTER NEW USER</a>
+              <a href="#">MODIFY USER</a>
+            </div>
+        </div>
+        <a href="#home">SEARCH</a>
+        <a href="#home">CONTACT US</a>
+        <a href="#home">ADMIN LOGIN</a>
+    </div>
+</div>
+
+<br><br><br><br>
+
+{% block main %}
+
+<h1 style="color: #00008B; font-size:50px; text-indent: 200px;">
+    Hello!! I am
+    <span style="color: #D2691E; font-weight: bold">TELIA.</span><br>
+</h1>
+
+<h1 style="color: #00008B; text-indent: 200px">Your Assistant, here to help you.</h1>
+<br><br>
+<h3 style="color: #191970; text-indent: 200px;">You can click start to talk with me or you can visit navigation bar.</h3>
+
+<br><br><br><br>
+
+<footer>
+	<div class="centerImage">
+        <img src="https://carego.com/wp-content/themes/carego/img/logo-footer.jpg" alt="Carego - Footer Logo"/>
+        <p style="font-family: Arial, Helvetica, sans-serif; font-size:16px" align="center">TELIA is a registered trademark of Carego Innovative Solutions Inc. and is used under license. &copy; 2020 Carego Tek Inc.</p>
+        <p style="font-family: Arial, Helvetica, sans-serif; font-size:16px" align="center">All Rights Reserved. | <a href="/sitemap/">Sitemap</a></p>
+	</div>
+</footer>
+
+{% endblock %}
+
+</body>
+</html>
