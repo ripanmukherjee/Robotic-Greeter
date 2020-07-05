@@ -2,7 +2,7 @@
 
 import os
 import subprocess
-from flask import Flask, render_template, request, session
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret-key'
