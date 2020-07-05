@@ -97,6 +97,24 @@
             margin-left: auto;
             margin-right: auto;
         }
+
+        .button {
+            background-color: #D2691E;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            font-family: Chandas;
+            font-weight: bold;
+            margin: 40px 380px;
+            cursor: pointer;
+        }
+
+        .button1 {border-radius: 12px;}
+
     </style>
 </head>
 
@@ -104,15 +122,15 @@
 <div class="navbar">
     <a><img class="logo" src="https://carego.com/wp-content/themes/carego/img/logo.jpg" alt="Logo" title="Logo" /></a>
     <div class="topnav-right">
-        <a href="{{ url_for('home') }}">HOME</a>
+        <a href="{{ url_for('home_html') }}">HOME</a>
         <div class="dropdown">
             <button class="dropbtn">COMPANY
               <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-	            <a title="About CareGo" href="{{ url_for('about_carego') }}">ABOUT CAREGO</a>
-	            <a title="About TELIA" href="{{ url_for('about_telia') }}">ABOUT TELIA</a>
-	            <a title="Emergency Evacuation Procedure" href="{{ url_for('emergency_evacuation_procedure') }}">EMERGENCY EVACUATION PROCEDURE</a>
+	            <a title="About CareGo" href="{{ url_for('about_carego_html') }}">ABOUT CAREGO</a>
+	            <a title="About TELIA" href="{{ url_for('about_telia_html') }}">ABOUT TELIA</a>
+	            <a title="Emergency Evacuation Procedure" href="{{ url_for('emergency_evacuation_procedure_html') }}">EMERGENCY EVACUATION PROCEDURE</a>
             </div>
         </div>
         <div class="dropdown">
@@ -120,13 +138,13 @@
               <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
-              <a href="#">REGISTER NEW USER</a>
-              <a href="#">MODIFY USER</a>
+              <a href="{{ url_for('register_new_user_html') }}">REGISTER NEW USER</a>
+              <a href="{{ url_for('modify_user_html') }}">MODIFY USER</a>
             </div>
         </div>
-        <a href="#home">SEARCH</a>
-        <a href="{{ url_for('contact_us') }}">CONTACT US</a>
-        <a href="#home">ADMIN LOGIN</a>
+        <a href="{{ url_for('search_html') }}">SEARCH</a>
+        <a href="{{ url_for('contact_us_html') }}">CONTACT US</a>
+        <a href="{{ url_for('admin_login_html') }}">ADMIN LOGIN</a>
     </div>
 </div>
 
@@ -140,10 +158,13 @@
 </h1>
 
 <h1 style="color: #00008B; text-indent: 200px">Your Assistant, here to help you.</h1>
-<br><br>
-<h3 style="color: #191970; text-indent: 200px;">You can click start to talk with me or you can visit navigation bar.</h3>
 
-<br><br><br><br>
+<a href="{{ url_for('main_process_html') }}" class="button button1">START</a>
+
+<br>
+<h3 style="color: #191970; text-indent: 100px;">Please click on START button to talk with me or you can visit navigation bar.</h3>
+
+<br><br>
 
 <footer>
 	<div class="centerImage">
