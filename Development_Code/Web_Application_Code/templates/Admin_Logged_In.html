@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>CareGo Robotic Greeter</title>
+    <title>Logged In - ADMIN</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
@@ -97,6 +97,24 @@
             margin-left: auto;
             margin-right: auto;
         }
+
+        .button {
+            background-color: #D2691E;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            font-family: Chandas;
+            font-weight: bold;
+            margin: 40px 380px;
+            cursor: pointer;
+        }
+
+        .button1 {border-radius: 12px;}
+
     </style>
 </head>
 
@@ -104,57 +122,32 @@
 <div class="navbar">
     <a><img class="logo" src="https://carego.com/wp-content/themes/carego/img/logo.jpg" alt="Logo" title="Logo" /></a>
     <div class="topnav-right">
-        <a href="{{ url_for('base') }}">HOME</a>
-        <div class="dropdown">
-            <button class="dropbtn">COMPANY
-              <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-	            <a title="About CareGo" href="{{ url_for('carego_about') }}">ABOUT CAREGO</a>
-	            <a title="News" href="https://carego.com/news/">NEWS</a>
-	            <a title="Community" href="https://carego.com/company/community/">COMMUNITY</a>
-	            <a title="Leadership" href="https://carego.com/company/leadership/">LEADERSHIP</a>
-            </div>
-        </div>
-        <div class="dropdown">
-            <button class="dropbtn">USER
-              <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-              <a href="#">REGISTER NEW USER</a>
-              <a href="#">MODIFY USER</a>
-            </div>
-        </div>
-        <a href="#home">SEARCH</a>
-        <a href="#home">CONTACT US</a>
-        <a href="#home">ADMIN LOGIN</a>
+        <a href="{{ url_for('home_html') }}">LOGOUT</a>
     </div>
 </div>
 
 <br><br><br><br>
 
-{% block main %}
-
-<h1 style="color: #00008B; font-size:50px; text-indent: 200px;">
-    Hello!! I am
-    <span style="color: #D2691E; font-weight: bold">TELIA.</span><br>
+<h1 style="color: #00008B; font-size:50px; text-indent: 250px;">
+    Hello!! Admin.
 </h1>
 
-<h1 style="color: #00008B; text-indent: 200px">Your Assistant, here to help you.</h1>
 <br><br>
-<h3 style="color: #191970; text-indent: 200px;">You can click start to talk with me or you can visit navigation bar.</h3>
 
-<br><br><br><br>
+<a href="{{ url_for('view_report') }}" class="button button1">VIEW</a>
+
+<br>
+<h3 style="color: #191970; text-indent: 225px;">Please click on VIEW button to see the report.</h3>
+
+<br><br>
 
 <footer>
 	<div class="centerImage">
         <img src="https://carego.com/wp-content/themes/carego/img/logo-footer.jpg" alt="Carego - Footer Logo"/>
         <p style="font-family: Arial, Helvetica, sans-serif; font-size:16px" align="center">TELIA is a registered trademark of Carego Innovative Solutions Inc. and is used under license. &copy; 2020 Carego Tek Inc.</p>
-        <p style="font-family: Arial, Helvetica, sans-serif; font-size:16px" align="center">All Rights Reserved. | <a href="/sitemap/">Sitemap</a></p>
+        <p style="font-family: Arial, Helvetica, sans-serif; font-size:16px" align="center">All Rights Reserved.</p>
 	</div>
 </footer>
-
-{% endblock %}
 
 </body>
 </html>
