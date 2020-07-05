@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Login</title>
+    <style>
+
+        form {
+            width: 70%;
+            margin-left : 17%
+        }
+
+        input {
+            width: 250px;
+            padding: 5px;
+            -webkit-box-sizing: border-box;
+        }
+
+    </style>
+</head>
+<body>
+{% extends "Home.html" %}
+
+{% block main %}
+
+<div class="container">
+      <h1 style="color: #D2691E; text-indent: 320px">ADMIN LOGIN</h1>
+      <br>
+      <form action="" method="post">
+          <input type="text" placeholder="Username" name="username" value="{{ request.form.username }}"><br>
+          <input type="password" placeholder="Password" name="password" value="{{ request.form.password }}"><br><br>
+          <input class="btn btn-default" type="submit" value="Login">
+      </form>
+      {% if error %}
+        <p style="color: #FF0000; text-indent: 260px" class="error"><strong>Error:</strong> {{ error }}
+      {% endif %}
+    </div>
+
+<br><br><br><br><br><br><br>
+<footer>
+	<div class="centerImage">
+        <img src="https://carego.com/wp-content/themes/carego/img/logo-footer.jpg" alt="Carego - Footer Logo"/>
+        <p style="font-family: Arial, Helvetica, sans-serif; font-size:16px" align="center">TELIA is a registered trademark of Carego Innovative Solutions Inc. and is used under license. &copy; 2020 Carego Tek Inc.</p>
+        <p style="font-family: Arial, Helvetica, sans-serif; font-size:16px" align="center">All Rights Reserved.</p>
+	</div>
+</footer>
+
+{% endblock %}
+
+</body>
+</html>
