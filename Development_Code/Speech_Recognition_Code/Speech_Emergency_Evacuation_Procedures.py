@@ -174,6 +174,9 @@ def emergency_evacuation_process(emergency_evacuation_procedures_path, mp3_filen
         else:
             print('Main_Floor_Layout_and_Emergency_Exits.png is not present')
 
+        text = "Thank You for watching Emergency Evacuation Procedure."
+        process_gtts_playsound(mp3_filename, text)
+
 
 def main():
     """
