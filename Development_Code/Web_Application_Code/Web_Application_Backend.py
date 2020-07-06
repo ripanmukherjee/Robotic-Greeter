@@ -122,7 +122,8 @@ def validation_call(passing_arg, main_directory, database_code_directory, speech
         try:
             program_name = "Speech_Emergency_Evacuation_Procedures.py"
             args_call = "python3 " + program_name
-            check_output(args_call, shell=True)
+            output = check_output(args_call, shell=True)
+            print(output)
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside emergency_evacuation_procedure argument")
 
@@ -133,7 +134,8 @@ def validation_call(passing_arg, main_directory, database_code_directory, speech
         try:
             program_name = "Customer_Insert.py"
             args_call = "python3 " + program_name
-            check_output(args_call, shell=True)
+            output = check_output(args_call, shell=True)
+            print(output)
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside customer_insert argument.")
 
@@ -144,7 +146,8 @@ def validation_call(passing_arg, main_directory, database_code_directory, speech
         try:
             program_name = "Customer_Update.py"
             args_call = "python3 " + program_name
-            check_output(args_call, shell=True)
+            output = check_output(args_call, shell=True)
+            print(output)
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside customer_update argument.")
 
@@ -155,7 +158,8 @@ def validation_call(passing_arg, main_directory, database_code_directory, speech
         try:
             program_name = "Customer_Search_Main.py"
             args_call = "python3 " + program_name
-            check_output(args_call, shell=True)
+            output = check_output(args_call, shell=True)
+            print(output)
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside customer_update argument.")
 
@@ -166,7 +170,8 @@ def validation_call(passing_arg, main_directory, database_code_directory, speech
         try:
             program_name = "Main_Process.py"
             args_call = "python3 " + program_name
-            check_output(args_call, shell=True)
+            output = check_output(args_call, shell=True)
+            print(output)
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside main_process argument.")
 
@@ -177,7 +182,8 @@ def validation_call(passing_arg, main_directory, database_code_directory, speech
         try:
             program_name = "Carego_Customer_Reports.py"
             args_call = "python3 " + program_name
-            check_output(args_call, shell=True)
+            output = check_output(args_call, shell=True)
+            print(output)
         except subprocess.CalledProcessError:
             print("ERROR : subprocess.CalledProcessError - inside view_report argument.")
 
