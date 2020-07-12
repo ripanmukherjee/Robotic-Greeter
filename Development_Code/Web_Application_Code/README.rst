@@ -4,7 +4,7 @@ This instruction document is for all the Web Application related code, where we 
 
 Note: This project is developed on a Linux System (Ubuntu), so it is advisable to use Linux for this project.
 
-Speech Recognition Code:
+Web Application Code:
 -----------------------------------
 
 This folder contains all the Web Application related code written in Python as follow:
