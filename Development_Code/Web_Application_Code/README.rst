@@ -22,9 +22,9 @@ Also, you can run this program as a stand-alone program.
 3. templates_:
 This is the folder which contains all the HTML5 + CSS3 codes.
 
-.. _Web_Application_Frontend.py:
-.. _Web_Application_Backend.py:
-.. _templates:
+.. _Web_Application_Frontend.py:  https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Web_Application_Code/Web_Application_Frontend.py
+.. _Web_Application_Backend.py:   https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Development_Code/Web_Application_Code/Web_Application_Backend.py
+.. _templates:                    https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Development_Code/Web_Application_Code/templates
 
 Codes Architecture:
 -----------------------------------
