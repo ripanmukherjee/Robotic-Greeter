@@ -1,4 +1,21 @@
 #!/usr/bin/env python3
+"""
+# **********************************************************************************************************************
+# Project:      Robotic Greeter - McMaster University - CareGo Tek
+# Program Name: Web_Application_Frontend.py
+# Author:       Somak Mukherjee
+# Date:         Friday 24 June, 2020
+# Version:      1
+# **********************************************************************************************************************
+# Description:  Web_Application_Frontend.py is the main python program which needs to run to access web application.
+#               This program will first call home.html to show to home page in the web application. On the home page
+#               in web application, based on customer selection, this program will call other html program. Also, this
+#               program will call Web_Application_Backend.py process if user wants to do certain process.
+# **********************************************************************************************************************
+# NOTE 1:       This program can be run separately or as a stand-alone program as follow for testing purpose:
+#               $ python3 Web_Application_Frontend.py
+# **********************************************************************************************************************
+"""
 
 import os
 import subprocess
