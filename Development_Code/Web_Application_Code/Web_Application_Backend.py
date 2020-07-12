@@ -1,3 +1,20 @@
+#!/usr/bin/env python3
+"""
+# **********************************************************************************************************************
+# Project:      Robotic Greeter - McMaster University - CareGo Tek
+# Program Name: Web_Application_Backend.py
+# Author:       Somak Mukherjee
+# Date:         Friday 24 June, 2020
+# Version:      1
+# **********************************************************************************************************************
+# Description:  Web_Application_Backend.py program will be call from Web_Application_Frontend.py based on user's
+#               selection. Web_Application_Frontend.py will pass an input argument to this process and based on the
+#               input argument this process will call different python program.
+# **********************************************************************************************************************
+# NOTE 1:       This program can be run separately or as a stand-alone program as follow for testing purpose:
+#               $ python3 Web_Application_Backend.py
+# **********************************************************************************************************************
+"""
 
 import os
 import sys
