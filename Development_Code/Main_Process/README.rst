@@ -5,7 +5,7 @@ This instruction document is for the main process which the parent process for t
 Note: This project is developed on a Linux System (Ubuntu), so it is advisable to use
 Linux for this project.
 
-Database Code:
+Main Process Code:
 -----------------------------------
 The Main_Process.py python code deals with the following table:
 
