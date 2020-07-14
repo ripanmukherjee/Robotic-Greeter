@@ -200,8 +200,8 @@ def process_format_details(details):
     2. Last_name    : Cannot be less than 2 characters or numbers
     3. Email_ID     : Cannot be less than 7 characters and has to include @ and dot
     4. Phone_No     : Cannot be less than 7 Numbers and has to be numeric
-    5. Employer     : Cannot be less than 2 characters or numbers
-    6. Role         : Cannot be less than 2 characters or numbers
+    5. Employer     : No Validation
+    6. Role         : No Validation
 
     If the validation passed then it will return the error flag as 0 or else will print error message, prompt the same
     error message for the user and then will return error flag as 1.
