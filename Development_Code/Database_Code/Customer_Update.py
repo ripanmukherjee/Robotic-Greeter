@@ -7,16 +7,9 @@
 # Date:         Friday 24 April, 2020
 # Version:      1
 # **********************************************************************************************************************
-# Description:  All the python code in Database Code folder deals with the following table:
-#
-#               * Development (DEV) : carego_customer_dev
-#               * Test (TEST) : carego_customer_test
-#               * Production (PROD) : carego_customer_prod
-#
-#               Customer_Update.py is used to update the data of the user into the table mentioned above. This
-#               program will be called from ~/Main_Process/Main_Process.py if the user wants to update their
-#               details. To update the details, user should know their unique ID, as this program will ask to
-#               confirm the ID before to update.
+# Description:  Customer_Update.py is used to update the data of the user into the table mentioned above. This program
+#               will be called from Main_Process.py if the user wants to update their details. To update the details,
+#               the user should know their unique ID, as this program will ask to confirm the ID before updating.
 # **********************************************************************************************************************
 # NOTE 1:       Please make sure to change the region value as per region wise before putting to server :
 #               Development region: "DEV"
@@ -27,7 +20,7 @@
 #               def main():
 #                   region = "DEV"
 #
-#               This program also use conn as follow :
+#               This program also use database connection from python as follow :
 #               conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1",
 #               port="5432")
 #               Please make sure that everything is correct.
