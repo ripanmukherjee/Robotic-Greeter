@@ -7,16 +7,10 @@
 # Date:         Friday 24 April, 2020
 # Version:      1
 # **********************************************************************************************************************
-# Description:  All the python code in Database Code folder deals with the following table:
-#
-#               * Development (DEV) : carego_customer_dev
-#               * Test (TEST) : carego_customer_test
-#               * Production (PROD) : carego_customer_prod
-#
-#               Customer_Insert.py is use for inserting the data of the user into the table mentioned above. This
-#               program will be called from Main_Process.py. If the user wants to save their details in the
-#               database, then Main_Process.py will call this program, and this process will insert the data into
-#               the table mentioned above.
+# Description:  Customer_Insert.py is use for inserting the data of the user into the table mentioned above. This
+#               program will be called from Main_Process.py. If the user wants to save their details in the database,
+#               then Main_Process.py will call this program, and this process will insert the data into the table
+#               mentioned above.
 # **********************************************************************************************************************
 # NOTE 1:       Please make sure to change the region's value as per region wise before putting it to server :
 #               Development region: "DEV"
@@ -31,7 +25,7 @@
 #               seq_query = '''SELECT CURRVAL('"carego_customer_dev_ID_seq"'::regclass);'''
 #               Please, make sure if you are creating new table then change the sequence value.
 #
-#               This program also use conn as follow :
+#               This program also use database connection from python as follow :
 #               conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1",
 #               port="5432")
 #               Please make sure that everything is correct.
