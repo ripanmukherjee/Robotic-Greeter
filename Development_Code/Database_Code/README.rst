@@ -47,6 +47,8 @@ Also, it is crucial to verify the tables and database connection details before 
 
 .. _PostgreSQL_pgAdmin4_Installation: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Installation_Documents/PostgreSQL_pgAdmin4_Installation
 
+Database Code :
+-----------------------------------
 Database related code is written in Python as follow:
 
 1. Customer_Insert.py_:
