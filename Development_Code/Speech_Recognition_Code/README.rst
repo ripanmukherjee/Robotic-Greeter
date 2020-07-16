@@ -1,8 +1,11 @@
 Speech Recognition Code Document:
 **********************************
 This instruction document is for all the Speech recognition related code, where we have codes that can convert the text into speech or speech into text and codes that can make conversation with users. Here we used gTTS, playsound, NLTK etc. module for speech recognition concepts.
+
 gTTS (Google Text-to-Speech) is a Python library with Google Translate text-to-speech API. This package writes spoken mp3 data to a file, a file-like object for further audio manipulation, or stdout. It features flexible pre-processing and tokenizing, as well as automatic retrieval of supported languages.
+
 Play sound on Python is easy. There are several modules that can play a sound file. These solutions are cross platform (Windows, Mac, Linux). The main difference is in the ease of use and supported file formats. All of them should work with Python 3. The audio file should be in the same directory as your python program unless you specify a path.
+
 Note: This project is developed on a Linux System (Ubuntu), so it is advisable to use Linux System.
 
 System Set-Up:
