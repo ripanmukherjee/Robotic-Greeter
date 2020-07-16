@@ -28,7 +28,7 @@ In this tutorial, we will explain all the Database Codes that are written in Pyt
 4.	Customer_Search_Name.py
 5.	Customer_Update.py
 
-All the Python codes in Database Code folder deals with main customer details tables. Which contains all the information of the users. The main tables are in the the following table:
+All the Python codes in Database Code folder deals with main customer details tables. Which contains all the information of the users. The main tables are in the following table:
 
 •	Development (DEV) : carego_customer_dev
 •	Test (TEST) : carego_customer_test
@@ -38,7 +38,7 @@ Only, Customer_Insert.py program uses following sequence table. Sequence table i
 
 •	carego_customer_dev_ID_seq
 
-Most of the program uses database connection from python as follow :
+Most of the program uses database connection from Python  as follow :
 conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1", port="5432")
 
 Currently, we only used the carego_customer_dev table since it is only in the development phase. Each of the codes in this folder has one function called process_parameter_set(), which contains the region value. Depending on the region value, the programs will select the respective tables. Hence it is essential to validate this function before running any codes.
