@@ -23,7 +23,7 @@ Before continuing with this tutorial, make sure you are logged in as root or a u
 In this tutorial, we will explain all the Face Recognition Codes that are written in Python3 on Ubuntu. We have some codes related to Face Recognition as follows:
 
 1.	Capture_Picture_Main.py
-2. Capture_Picture_Save.py
+2.  Capture_Picture_Save.py
 3.	Face_Encoding.py
 4.	Face_Detection_Camera.py
 5.	Face_Detection_Image.py
