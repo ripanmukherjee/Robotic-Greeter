@@ -7,17 +7,10 @@
 # Date:         Friday 24 April, 2020
 # Version:      1
 # **********************************************************************************************************************
-# Description:  All the python code in Database Code folder deals with the following table:
-#
-#               * Development (DEV) : carego_customer_dev
-#               * Test (TEST) : carego_customer_test
-#               * Production (PROD) : carego_customer_prod
-#
-#               Customer_Search_Name.py is used to search the data of the user from the above-mentioned table.
-#               This program will be called from Customer_Search_Main.py based on search criteria. If the customer
-#               selects the Name option in Customer_Search_Main.py, then it will call Customer_Search_Name.py. And
-#               this program will ask the Name and search the data. Also, you can run this program as a stand-alone
-#               program.
+# Description:  Customer_Search_Name.py is used to search the data of the user from the table mentioned above. This
+#               program will be called from Customer_Search_Main.py based on search criteria. If the user selects the
+#               Name option in Customer_Search_Main.py, then it will call Customer_Search_Name.py. And this program
+#               will ask the Name and search the data.
 # **********************************************************************************************************************
 # NOTE 1:       Please make sure to change the region value as per region wise before putting to server :
 #               Development region: "DEV"
@@ -28,7 +21,7 @@
 #               def process_parameter_set():
 #                   region = "DEV"
 #
-#               This program also use conn as follow :
+#               This program also use database connection from python as follow :
 #               conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1",
 #               port="5432")
 #               Please make sure that everything is correct.
