@@ -31,6 +31,7 @@ gTTS (Google Text-to-Speech) is a Python library with Google Translate text-to-s
 
 Play sound on Python is easy. There are several modules that can play a sound file. These solutions are cross platform (Windows, Mac, Linux). The main difference is in the ease of use and supported file formats. All of them should work with Python 3. The audio file should be in the same directory as your python program unless you specify a path.
 
+The Natural Language Toolkit, or more commonly NLTK, is a suite of libraries and programs for symbolic and statistical Natural Language Processing (NLP) for English written in the Python programming language.
 |
 
 4. Main_Process_:
