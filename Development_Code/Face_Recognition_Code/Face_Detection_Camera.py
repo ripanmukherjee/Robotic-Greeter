@@ -7,16 +7,28 @@
 # Date:         Friday 24 April, 2020
 # Version:      1
 # **********************************************************************************************************************
-# Description:  Capture_Picture_Main.py program will be called from Main_Process.py.  It is the main process of the
-#               face detection program from real-time video. This process will first capture video from the camera
-#               and check if the real-time face's coordinate is present in the encoding.pickle file. If the same
-#               coordinate picture details are present in the file, then this program will show the known person's
-#               name on the video frame. If not, then it will show as Unknown.
+# Description:  This program will be called from Main_Process.py.  It is the primary process of the face detection
+#               program from the real-time video camera.
+#
+#               First, this process will read all the coordinates present in the encoding.pickle file (If this file is
+#               not present, this program will exit) and store it into one variable (data variable). Later, it will
+#               open the video camera automatically and check if any faces are present in the real-time video or not.
+#               If it detects any faces in the video, then it will create a coordinate for the faces from the camera.
+#
+#               This process will then check if the newly created coordinate matches with any of the coordinates stored
+#               into the data variable. If any matches happen, this program will show the person's name in the video
+#               (also, it will create a square box over the face). If not, then it will show as Unknown.
 # **********************************************************************************************************************
-# NOTE 1:       Please check following line of code:
+# NOTE 1:       This code has one function called process_parameter_set(), which contains the parameter of
+#               encoding_file and face_cascade. It is essential to validate encodings.pickle &
+#               haarcascade_frontalface_default.xml files are present in the same folder or not. To create
+#               encodings.pickle file, please execute Face_Encoding.py as mentioned in above, and
+#               haarcascade_frontalface_default.xml is vital to detect frontal face with OpenCV.
+# **********************************************************************************************************************
+# NOTE 2:       Please check following line of code:
 #               cap = cv2.VideoCapture(-1) : If with -1 video stream is not working then you can replace with 0 or 1.
 # **********************************************************************************************************************
-# NOTE 2:       This program can be run separately or as a stand-alone program as follow:
+# NOTE 3:       This program can be run separately or as a stand-alone program as follow:
 #               $ python3 Face_Detection_Camera.py
 # **********************************************************************************************************************
 """
