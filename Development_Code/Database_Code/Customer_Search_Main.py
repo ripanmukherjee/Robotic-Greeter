@@ -7,17 +7,11 @@
 # Date:         Friday 24 April, 2020
 # Version:      1
 # **********************************************************************************************************************
-# Description:  All the python code in Database Code folder deals with the following table:
-#
-#               * Development (DEV) : carego_customer_dev
-#               * Test (TEST) : carego_customer_test
-#               * Production (PROD) : carego_customer_prod
-#
-#               Customer_Search_Main.py is used to search the customer's data, and it will be called from
-#               Main_Process.py. If the user wants to explore the data, then this process will ask the customer
-#               wants to search by ID or Name, and as per the selection, this program will call the below two programs:
-#               * Customer_Search_ID.py
-#               * Customer_Search_Name.py
+# Description:  Customer_Search_Main.py is used to search the user's data, and it will be called from Main_Process.py.
+#               If the user wants to explore the data, this process will ask the user wants to search by ID or Name,
+#               and as per the selection, this program will call the below two programs:
+#               1. Customer_Search_ID.py
+#               2. Customer_Search_Name.py
 # **********************************************************************************************************************
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow:
 #               $ python3 Customer_Search_Main.py
