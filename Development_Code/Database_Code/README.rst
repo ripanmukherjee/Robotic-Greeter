@@ -1,6 +1,8 @@
 Database Code Document:
 **********************************
-This instruction document is for all the database related code, where we have codes for inserting data into the database, search the data from database based on ID or Name and, codes for update the details on the database. In this project, we are using PostgreSQL Database. PostgreSQL is a powerful, open-source object-relational database system with over 30 years of active development that has earned a strong reputation for reliability, feature robustness, and performance. PostgreSQL is available in all Ubuntu versions by default. However, Ubuntu "snapshots" a specific version of PostgreSQL that is supported throughout the lifetime of that Ubuntu version. Other versions of PostgreSQL are available through the PostgreSQL apt repository. You can also download and install it on Windows 10.
+This instruction document is for all the database related code, where we have codes for inserting data into the database, search the data from database based on ID or Name and, codes for update the details on the database. In this project, we are using PostgreSQL Database.
+
+PostgreSQL is a powerful, open-source object-relational database system with over 30 years of active development that has earned a strong reputation for reliability, feature robustness, and performance. PostgreSQL is available in all Ubuntu versions by default. However, Ubuntu "snapshots" a specific version of PostgreSQL that is supported throughout the lifetime of that Ubuntu version. Other versions of PostgreSQL are available through the PostgreSQL apt repository. You can also download and install it on Windows 10.
 
 Note: This project is developed on a Linux System (Ubuntu), so it is advisable to use Linux System for this project.
 
@@ -32,7 +34,12 @@ All the Python codes in Database Code folder deals with the following table:
 •	Test (TEST) : carego_customer_test
 •	Production (PROD) : carego_customer_prod
 
-Currently, we only used the carego_customer_dev table since it is only in the development phase. Each of the codes in this folder has one function called process_parameter_set(), which contains the region value. Depending on the region value, the programs will select the respective tables. Hence it is essential to validate this function before running any codes. Also, it is crucial to verify the table before running any programs. To check the table, please go through the PostgreSQL_pgAdmin4_Installation_ document, which is present inside of Installation_Documents_ folder.
+Most of the program uses database connection from python as follow :
+conn = psycopg2.connect(dbname="caregodb", user="postgres", password="postgres", host="127.0.0.1", port="5432")
+
+Currently, we only used the carego_customer_dev table since it is only in the development phase. Each of the codes in this folder has one function called process_parameter_set(), which contains the region value. Depending on the region value, the programs will select the respective tables. Hence it is essential to validate this function before running any codes.
+
+Also, it is crucial to verify the tables and database connection details before running any programs. To check the table, please go through the PostgreSQL_pgAdmin4_Installation_ document, which is present inside of Installation_Documents_ folder.
 
 .. _PostgreSQL_pgAdmin4_Installation: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Installation_Documents/PostgreSQL_pgAdmin4_Installation
 
@@ -49,6 +56,7 @@ Customer_Search_Main.py is used to search the user's data, and it will be called
 Also, you can run this program as a stand-alone program.
 
 * Customer_Search_ID.py_: Customer_Search_ID.py is used to search the user's data from the table mentioned above by using an ID. This program will be called from Customer_Search_Main.py based on search criteria. If the user selects the ID option in Customer_Search_Main.py, then it will call Customer_Search_ID.py. And this program will ask the ID and search the data. Also, you can run this program as a stand-alone program.
+
 * Customer_Search_Name.py_: Customer_Search_Name.py is used to search the data of the user from the table mentioned above. This program will be called from Customer_Search_Main.py based on search criteria. If the user selects the Name option in Customer_Search_Main.py, then it will call Customer_Search_Name.py. And this program will ask the Name and search the data. Also, you can run this program as a stand-alone program.
 
 3. Customer_Update.py_:
