@@ -26,6 +26,7 @@ Pre-Requisites
 Before continuing with this tutorial, make sure you are logged in as root or a user with sudo or administration privileges and completed all the necessary steps from the Installation_Documents_ folder.
 
 In this tutorial, we will explain all the Speech Recognition Codes that are written in Python3 on Ubuntu. We have some codes related to Speech Recognition as follows:
+
 1.	Speech_Question.py
 2.	Speech_Normal.py
 3.	Speech_Name_Organization.py
