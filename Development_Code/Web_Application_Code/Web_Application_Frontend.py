@@ -29,8 +29,9 @@ app.config['SECRET_KEY'] = 'secret-key'
 def main_process_html():
     passing_arg = "main_process"
     program_name = "Web_Application_Backend.py"
-    args_call = "ps -ef|grep 'python3 Speech_Emergency_Evacuation_Procedures.py'|grep -v 'grep'|awk '{print $8}'"
+    args_call = "ps -ef|grep 'python3 Main_Process.py'|grep -v 'grep'|awk '{print $8}'"
     try:
+        print("Checking if Main_Process.py is already running or not.")
         output = subprocess.check_output(args_call, shell=True)
         output = output.decode().split('\n')
     except subprocess.CalledProcessError:
@@ -38,7 +39,10 @@ def main_process_html():
 
     print(len(output))
     if len(output) == 1:
+        print("Calling Web_Application_Backend.py for Main_Process.py")
         os.system("python3 " + program_name + " " + passing_arg + " &")
+    else:
+        print("Main_Process.py is already running.")
 
     return render_template('/Main_Process.html')
 
@@ -64,6 +68,7 @@ def speech_emergency_evacuation_procedure_html():
     program_name = "Web_Application_Backend.py"
     args_call = "ps -ef|grep 'python3 Speech_Emergency_Evacuation_Procedures.py'|grep -v 'grep'|awk '{print $8}'"
     try:
+        print("Checking if Speech_Emergency_Evacuation_Procedures.py is already running or not.")
         output = subprocess.check_output(args_call, shell=True)
         output = output.decode().split('\n')
     except subprocess.CalledProcessError:
@@ -71,7 +76,10 @@ def speech_emergency_evacuation_procedure_html():
 
     print(len(output))
     if len(output) == 1:
+        print("Calling Web_Application_Backend.py for Speech_Emergency_Evacuation_Procedures.py")
         os.system("python3 " + program_name + " " + passing_arg + " &")
+    else:
+        print("Speech_Emergency_Evacuation_Procedures.py is already running.")
 
     return render_template('/Speech_Emergency_Evacuation_Procedure.html')
 
@@ -87,6 +95,7 @@ def database_customer_insert_html():
     program_name = "Web_Application_Backend.py"
     args_call = "ps -ef|grep 'python3 Customer_Insert.py'|grep -v 'grep'|awk '{print $8}'"
     try:
+        print("Checking if Customer_Insert.py is already running or not.")
         output = subprocess.check_output(args_call, shell=True)
         output = output.decode().split('\n')
     except subprocess.CalledProcessError:
@@ -94,7 +103,10 @@ def database_customer_insert_html():
 
     print(len(output))
     if len(output) == 1:
+        print("Calling Web_Application_Backend.py for Customer_Insert.py")
         os.system("python3 " + program_name + " " + passing_arg + " &")
+    else:
+        print("Customer_Insert.py is already running.")
 
     return render_template('/Database_Customer_Insert.html')
 
@@ -110,6 +122,7 @@ def database_customer_update_html():
     program_name = "Web_Application_Backend.py"
     args_call = "ps -ef|grep 'python3 Customer_Update.py'|grep -v 'grep'|awk '{print $8}'"
     try:
+        print("Checking if Customer_Update.py is already running or not.")
         output = subprocess.check_output(args_call, shell=True)
         output = output.decode().split('\n')
     except subprocess.CalledProcessError:
@@ -117,7 +130,10 @@ def database_customer_update_html():
 
     print(len(output))
     if len(output) == 1:
+        print("Calling Web_Application_Backend.py for Customer_Update.py")
         os.system("python3 " + program_name + " " + passing_arg + " &")
+    else:
+        print("Customer_Update.py is already running.")
 
     return render_template('/Database_Customer_Update.html')
 
@@ -131,8 +147,9 @@ def modify_user_html():
 def database_customer_search_html():
     passing_arg = "customer_search"
     program_name = "Web_Application_Backend.py"
-    args_call = "ps -ef|grep 'python3 Customer_Update.py'|grep -v 'grep'|awk '{print $8}'"
+    args_call = "ps -ef|grep 'python3 Customer_Search_Main.py'|grep -v 'grep'|awk '{print $8}'"
     try:
+        print("Checking if Customer_Search_Main.py is already running or not.")
         output = subprocess.check_output(args_call, shell=True)
         output = output.decode().split('\n')
     except subprocess.CalledProcessError:
@@ -140,7 +157,10 @@ def database_customer_search_html():
 
     print(len(output))
     if len(output) == 1:
+        print("Calling Web_Application_Backend.py for Customer_Search_Main.py")
         os.system("python3 " + program_name + " " + passing_arg + " &")
+    else:
+        print("Customer_Search_Main.py is already running.")
 
     return render_template('/Database_Customer_Search.html')
 
@@ -161,6 +181,7 @@ def view_report():
     program_name = "Web_Application_Backend.py"
     args_call = "ps -ef|grep 'python3 Carego_Customer_Reports.py'|grep -v 'grep'|awk '{print $8}'"
     try:
+        print("Checking if Carego_Customer_Reports.py is already running or not.")
         output = subprocess.check_output(args_call, shell=True)
         output = output.decode().split('\n')
     except subprocess.CalledProcessError:
@@ -168,7 +189,10 @@ def view_report():
 
     print(len(output))
     if len(output) == 1:
+        print("Calling Web_Application_Backend.py for Carego_Customer_Reports.py")
         os.system("python3 " + program_name + " " + passing_arg + " &")
+    else:
+        print("Carego_Customer_Reports.py is already running.")
 
     return render_template('/View_Report.html')
 
