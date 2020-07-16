@@ -77,6 +77,11 @@ def process_parameter_set():
 
 
 def process_checking_directory(main_directory):
+    """
+    ************************************ Inside process_checking_directory function ************************************
+    Validating the main_directory. If the directory is not present then this function will create the directory.
+    ************************************ Inside process_checking_directory function ************************************
+    """
     try:
         os.chdir(main_directory)
     except FileNotFoundError:
