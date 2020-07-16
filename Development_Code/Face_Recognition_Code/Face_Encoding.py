@@ -9,15 +9,23 @@
 # **********************************************************************************************************************
 # Description:  This program is the main program which will create encoding.pickle file, which is essential for
 #               Face_Detection_Camera.py & Face_Detection_Image.py. Mainly, for all the application which needs to
-#               detect the faces. First, this program will check if the encoding.pickle file is already present or
-#               not in the same folder. If the file exists, then it will read all the old data (old co-ordinate data)
-#               from the encoding file and store it into one variable, later this program will check if any new images
-#               present in the Dataset directory or not. If the Dataset directory has any new pictures or old photos,
-#               then this program will read those photos and will create a new encoding co-ordinate. After reading all
-#               the latest images, this program will merge all the old co-ordinates with new co-ordinates and will
-#               write again into encoding.pickle file.
+#               detect the faces from camera or images.
+#
+#               First, this program will check if the encoding.pickle file is already present or not in the same
+#               folder. If the file exists, then it will read all the old data (old coordinate data) from the encoding
+#               file and store it into one variable, later this program will check if any new images present in the
+#               Dataset directory or not. If the Dataset directory has any new pictures or old photos, then this
+#               program will read those photos and will create coordinate for new images. After creating all the
+#               coordinate of all the latest images, this program will merge all the old coordinates with new
+#               coordinates and will write into encoding.pickle file.
 # **********************************************************************************************************************
-# NOTE 1:       This program can be run separately or as a stand-alone program as follow:
+# NOTE 1:       This code has one function called process_parameter_set(), which contains the parameter of the Dataset
+#               directory. From this directory, this process will validate new images. So, it is essential to look at
+#               this function before running this program.
+# **********************************************************************************************************************
+# NOTE 2:       You need to run separately, since this program will not be going to call from any other program. This
+#               program will create encoding file which is essential for any face detection program.
+#               This program can be run separately or as a stand-alone program as follow:
 #               $ python3 Face_Encoding.py
 # **********************************************************************************************************************
 """
