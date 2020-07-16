@@ -7,16 +7,27 @@
 # Date:         Friday 24 April, 2020
 # Version:      1
 # **********************************************************************************************************************
-# Description:  Capture_Picture_Save.py program will be called from Capture_Picture_Main.py. It will receive one input
-#               argument (Unique ID) from the main process, and based on the argument, it will first take a picture of
-#               the person and later save it into the Dataset directory with the help of Unique ID. This program should
-#               save the picture into the following directory :
-#               * Dataset/XXX_UniqueID/XXX_UniqueID_YYY.jpg (XXX - Person Name, YYY - Serial number)
+# Description:  Capture_Picture_Save.py program will be called from Capture_Picture_Main.py. It will receive the Unique 0
+#               ID from the parent program. It will first take a picture of the person and later it will prompt a
+#               pop-up screen where user can enter the name. Now, this program will merge the name with Unique ID and
+#               will save it into the Dataset directory.
+#
+#               First, this program will create a new folder inside the Dataset directory (If there are no same folder
+#               present) and save the picture inside the newly created folder. If the users wants to take multiple
+#               pictures then this program will automatically increase the instance ID (for the first picture, instance
+#               ID will be 001)
+#
+#               This program should save the picture into the following directory:
+#               Dataset/XXX_UniqueID/XXX_UniqueID_YYY.jpg (XXX - Person Name, YYY – Instance ID)
 # **********************************************************************************************************************
-# NOTE 1:       Please check following line of code:
+# NOTE 1:       This code has one function called process_parameter_set(), which contains the parameter of the Dataset
+#               directory. It is essential to check the Dataset directory present before running this program. If the
+#               Dataset directory is not present then, please create this directory first.
+# **********************************************************************************************************************
+# NOTE 2:       Please check following line of code:
 #               cap = cv2.VideoCapture(-1) - If with -1 video stream is not working then you can replace with 0 or 1.
 # **********************************************************************************************************************
-# NOTE 2:       This program can be run separately or as a stand-alone program as follow:
+# NOTE 3:       This program can be run separately or as a stand-alone program as follow:
 #               $ python3 Capture_Picture_Save.py
 # **********************************************************************************************************************
 """
