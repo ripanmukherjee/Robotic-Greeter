@@ -8,47 +8,38 @@ Please follow all step by step and you can also download the PDF or WORD file.
 
 Note: This project is developed on a Linux System (Ubuntu), so, it is advisable to use Linux for this project.
 
-1. UbuntuAPP_UbuntuOS_Installation_ : A tutorial on how to install the Ubuntu OS along with Windows 10 and how to install Ubuntu APP on Windows 10.
+1. UbuntuAPP_UbuntuOS_Installation_ :
+A tutorial on how to install the Ubuntu OS along with Windows 10 and how to install Ubuntu APP on Windows 10.
 
-|
+2. Python_Installation_ :
+A tutorial on how to install Python 3.7 on Windows 10 and Ubuntu OS or Ubuntu APP.
 
-2. Python_Installation_ : A tutorial on how to install Python 3.7 on Windows 10 and Ubuntu OS or Ubuntu APP.
+3. Pip_Installation_ :
+A tutorial on how to install Pip on Windows 10 and Ubuntu OS or Ubuntu APP.
 
-|
+4. Git_GitHub_Installation_ :
+A tutorial on how to install Git and working with GitHub on Windows 10 and Ubuntu OS or Ubuntu APP.
 
-3. Pip_Installation_ : A tutorial on how to install Pip on Windows 10 and Ubuntu OS or Ubuntu APP.
+5. PyCharm_CE_Installation_ :
+A tutorial on how to install the PyCharm CE and how to work with it on Windows 10 and Ubuntu OS or Ubuntu APP.
 
-|
+6. PostgreSQL_pgAdmin4_Installation_ :
+A tutorial on how to install PostgreSQL and pgAdmin4 and how to work with it on Windows and Ubuntu OS or Ubuntu APP.
 
-4. Git_GitHub_Installation_ : A tutorial on how to install Git and working with GitHub on Windows 10 and Ubuntu OS or Ubuntu APP.
+7. OpenCV_Installation_ :
+A tutorial on how to install OpenCV on Windows 10 and Ubuntu OS or Ubuntu APP.
 
-|
+8. Speech_Recognition_Installation_ :
+A tutorial on how to install Speech Recognition related packages on Windows 10 and Ubuntu OS or Ubuntu APP.
 
-5. PyCharm_CE_Installation_ : A tutorial on how to install the PyCharm CE and how to work with it on Windows 10 and Ubuntu OS or Ubuntu APP.
+9. NLTK_Installation_ :
+A tutorial on how to install NLTK (Natural Language Tool Kit) on Windows 10 and Ubuntu OS or Ubuntu APP.
 
-|
+10. PyGame_PyAudio_Installation_ :
+A tutorial on how to install PyGame and PyAudio on Windows 10 and Ubuntu OS or Ubuntu APP.
 
-6. PostgreSQL_pgAdmin4_Installation_ : A tutorial on how to install PostgreSQL and pgAdmin4 and how to work with it on Windows and Ubuntu OS or Ubuntu APP.
-
-|
-
-7. OpenCV_Installation_ : A tutorial on how to install OpenCV on Windows 10 and Ubuntu OS or Ubuntu APP.
-
-|
-
-8. Speech_Recognition_Installation_ : A tutorial on how to install Speech Recognition related packages on Windows 10 and Ubuntu OS or Ubuntu APP.
-
-|
-
-9. NLTK_Installation_ : A tutorial on how to install NLTK (Natural Language Tool Kit) on Windows 10 and Ubuntu OS or Ubuntu APP.
-
-|
-
-10. PyGame_PyAudio_Installation_ : A tutorial on how to install PyGame and PyAudio on Windows 10 and Ubuntu OS or Ubuntu APP.
-
-|
-
-11. Face_Recognition_Installation_ : A tutorial on how to install Face Recognition on Windows 10 and Ubuntu OS or Ubuntu APP.
+11. Face_Recognition_Installation_ :
+A tutorial on how to install Face Recognition on Windows 10 and Ubuntu OS or Ubuntu APP.
 
 .. _UbuntuAPP_UbuntuOS_Installation: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Installation_Documents/UbuntuAPP_UbuntuOS_Installation
 .. _Python_Installation: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Installation_Documents/Python_Installation
