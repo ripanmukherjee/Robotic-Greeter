@@ -7,12 +7,25 @@
 # Date:         Friday 24 June, 2020
 # Version:      1
 # **********************************************************************************************************************
-# Description:  Web_Application_Frontend.py is the main python program which needs to run to access web application.
-#               This program will first call home.html to show to home page in the web application. On the home page
-#               in web application, based on customer selection, this program will call other html program. Also, this
-#               program will call Web_Application_Backend.py process if user wants to do certain process.
+# Description:  Web_Application_Frontend.py is the main Python program that needs to run to access Web Application.
+#               This program will first call home.html to show to the home page in the Web Application. Based on the
+#               user’s selection, this program will call another HTML program on the home page in Web Application.
+#               Also, this program will call the Web_Application_Backend.py process if the user wants to do a specific
+#               process.
 # **********************************************************************************************************************
-# NOTE 1:       This program can be run separately or as a stand-alone program as follow for testing purpose:
+# NOTE 1:       This program contains specific parameter which needs to validate and check before running this program.
+#
+#               import os
+#               import subprocess
+#               from flask import Flask, render_template, request
+#
+#               app = Flask(__name__)
+#               app.config['SECRET_KEY'] = 'secret-key'
+#
+#               if __name__ == '__main__':
+#                   app.run(debug=True, host='0.0.0.0', port=4000)
+# **********************************************************************************************************************
+# NOTE 2:       This program can be run separately or as a stand-alone program as follow for testing purpose:
 #               $ python3 Web_Application_Frontend.py
 # **********************************************************************************************************************
 """
