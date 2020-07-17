@@ -11,8 +11,6 @@ This folder contains all the database related code, where we have codes for inse
 
 PostgreSQL is a powerful, open-source object-relational database system with over 30 years of active development that has earned a strong reputation for reliability, feature robustness, and performance. PostgreSQL is available in all Ubuntu versions by default. However, Ubuntu "snapshots" a specific version of PostgreSQL that is supported throughout the lifetime of that Ubuntu version. Other versions of PostgreSQL are available through the PostgreSQL apt repository. You can also download and install it on Windows 10.
 
-|
-
 2. Face_Recognition_Code_:
 This folder contains all the face recognition related code, where we have codes that can take your picture and save it, code for creating face encode from the saved picture, and codes for detecting faces from Camera and Images. In this project we used face_recognition and OpenCV module.
 
@@ -22,8 +20,6 @@ OpenCV (Open Source Computer Vision Library) is an open-source computer vision l
 
 OpenCV-Python is a library of Python bindings designed to solve computer vision problems. OpenCV-Python uses of NumPy, a highly optimized library for numerical operations with a MATLAB-style syntax. All the OpenCV array structures are converted to and from NumPy arrays.
 
-|
-
 3. Speech_Recognition_Code_:
 This folder contains all the Speech recognition related code, where we have codes that can convert the text into speech or speech into text and codes that can make conversation with users. Here we used gTTS, playsound, NLTK etc. module for speech recognition concepts.
 
@@ -32,12 +28,11 @@ gTTS (Google Text-to-Speech) is a Python library with Google Translate text-to-s
 Play sound on Python is easy. There are several modules that can play a sound file. These solutions are cross platform (Windows, Mac, Linux). The main difference is in the ease of use and supported file formats. All of them should work with Python 3. The audio file should be in the same directory as your python program unless you specify a path.
 
 The Natural Language Toolkit, or more commonly NLTK, is a suite of libraries and programs for symbolic and statistical Natural Language Processing (NLP) for English written in the Python programming language.
-|
 
 4. Main_Process_:
-This folder contains all the main process which will call the other jobs.
+This instruction document is for the Main Process, which the parent process for this project. Main_Process.py is the process which is the combination of all individual process. Main Process will first call the Face Recognition process to identify the person. It will call Database-related code for register new users, modify user data, search user data, and in every step, this process will call Speech Recognition.
 
-|
+Also, this folder contains Python program for generating reports.
 
 5. Web_Application_:
 This folder contains all the Web Application related code, where we have codes that needs to run before to access Web Application. Also, this folder contains different HTML5 + CSS3 codes for Web Pages. In this project, we have used the Python Flask API module.
@@ -46,16 +41,8 @@ Flask is a web framework. This means Flask provides you with tools, libraries, a
 
 Flask is part of the categories of the micro-framework. Micro-framework is usually a framework with little to no dependencies on external libraries. This has pros and cons. The advantage would be that the frame is light. There is a low dependency to update and watch for security bugs; a disadvantage is that sometimes you will have to do more work by yourself or increase yourself the list of dependencies by adding plugins.
 
-|
-
 .. _Database_Code:            https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Development_Code/Database_Code
 .. _Face_Recognition_Code:    https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Development_Code/Face_Recognition_Code
 .. _Speech_Recognition_Code:  https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Development_Code/Speech_Recognition_Code
 .. _Main_Process:             https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Development_Code/Main_Process
 .. _Web_Application:          https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Development_Code/Web_Application_Code
-
-System Set-Up:
------------------------------------
-There are a couple of Python packages that need to validate before running any above program in this folder. Please go to the Installation_Documents_ folder and follow all the steps.
-
-.. _Installation_Documents: https://github.com/ripanmukherjee/Robotic-Greeter/tree/master/Installation_Documents
