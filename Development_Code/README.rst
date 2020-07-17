@@ -7,14 +7,14 @@ This folder contains all the codes written in Python as follow :
 Note: This project is developed on a Linux System (Ubuntu), so it is advisable to use Linux System.
 
 1. Database_Code_:
-This instruction document is for all the database related code, where we have codes for inserting data into the database, search the data from database based on ID or Name and, codes for update the details on the database. In this project, we are using PostgreSQL Database.
+This folder contains all the database related code, where we have codes for inserting data into the database, search the data from database based on ID or Name and, codes for update the details on the database. In this project, we are using PostgreSQL Database.
 
 PostgreSQL is a powerful, open-source object-relational database system with over 30 years of active development that has earned a strong reputation for reliability, feature robustness, and performance. PostgreSQL is available in all Ubuntu versions by default. However, Ubuntu "snapshots" a specific version of PostgreSQL that is supported throughout the lifetime of that Ubuntu version. Other versions of PostgreSQL are available through the PostgreSQL apt repository. You can also download and install it on Windows 10.
 
 |
 
 2. Face_Recognition_Code_:
-This instruction document is for all the face recognition related code, where we have codes that can take your picture and save it, code for creating face encode from the saved picture, and codes for detecting faces from Camera and Images. In this project we used face_recognition and OpenCV module.
+This folder contains all the face recognition related code, where we have codes that can take your picture and save it, code for creating face encode from the saved picture, and codes for detecting faces from Camera and Images. In this project we used face_recognition and OpenCV module.
 
 The Face Recognition library is widely known around the web for being the world's simplest facial recognition API for Python and the command line, and the best of all is that you won't need to pay a dime for it, the project is open-source, so if you have some development knowledge and you can build a library from scratch, you will surely know how to work with this library.
 
@@ -25,7 +25,7 @@ OpenCV-Python is a library of Python bindings designed to solve computer vision 
 |
 
 3. Speech_Recognition_Code_:
-This instruction document is for all the Speech recognition related code, where we have codes that can convert the text into speech or speech into text and codes that can make conversation with users. Here we used gTTS, playsound, NLTK etc. module for speech recognition concepts.
+This folder contains all the Speech recognition related code, where we have codes that can convert the text into speech or speech into text and codes that can make conversation with users. Here we used gTTS, playsound, NLTK etc. module for speech recognition concepts.
 
 gTTS (Google Text-to-Speech) is a Python library with Google Translate text-to-speech API. This package writes spoken mp3 data to a file, a file-like object for further audio manipulation, or stdout. It features flexible pre-processing and tokenizing, as well as automatic retrieval of supported languages.
 
@@ -40,7 +40,11 @@ This folder contains all the main process which will call the other jobs.
 |
 
 5. Web_Application_:
-This folder contains all the Web Application related code, where we have codes that needs to run before to access Web Application. Also, this folder contains different HTML5 + CSS3 codes for Web Pages.
+This folder contains all the Web Application related code, where we have codes that needs to run before to access Web Application. Also, this folder contains different HTML5 + CSS3 codes for Web Pages. In this project, we have used the Python Flask API module.
+
+Flask is a web framework. This means Flask provides you with tools, libraries, and technologies to build a web application. This web application can be some web pages, a blog, a wiki, or go as big as a web-based calendar application or a commercial website.
+
+Flask is part of the categories of the micro-framework. Micro-framework is usually a framework with little to no dependencies on external libraries. This has pros and cons. The advantage would be that the frame is light. There is a low dependency to update and watch for security bugs; a disadvantage is that sometimes you will have to do more work by yourself or increase yourself the list of dependencies by adding plugins.
 
 |
 
