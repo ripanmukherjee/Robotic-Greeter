@@ -7,19 +7,38 @@
 # Date:         Friday 24 May, 2020
 # Version:      1
 # **********************************************************************************************************************
-# Description : This program is the main program which will perform face_detection, speech_recognition & database_code.
-#               It will first detect the person face in the real time video camera.
+# Description : The main Process will first call the Face Recognition process to identify the person. It will call
+#               Database-related code for register new users, modify user data, search user data, and in every step,
+#               this process will call Speech Recognition.
 #
-#               If the Robot detect the face then will do some steps as follow :
-#               1. Greet by saying the name of the person,
-#               2. Ask the person if they want to meet or search somebody, if they want to modify their old data,
-#               3. etc.
+#               It will first detect the person face in the real-time video camera, and depending on the detection,
+#               this process will perform the following steps:
 #
-#               If the Robot cannot detect the face then will do some steps as follow :
-#               1. Ask the person name and organization,
-#               2. Ask the person if they want to save their details and photos,
-#               2. Ask the person if they want to meet or search somebody, if they want to modify their old data
-#               3. etc.
+#               1.	If the Robot detects the face, then will do some steps as follow :
+#                   •	Greet the user by saying the name.
+#                   •	Ask the user if they want to search for someone.
+#                   •	Ask the user if they are going to modify their old details.
+#                   •	Ask if they are going to see emergency evacuation procedures again.
+#                   •	Ask the user if they want to know more about TELIA.
+#                   •	Lastly, the Robot will ask the user to sign the visitor sheet.
+#
+#               2.	If the Robot cannot detect the face, then will do some steps as follow :
+#                   •	Ask the name of the person.
+#                   •	Ask the organization name.
+#                   •	Ask the user if they want to add or register.
+#                   •	Ask the user if they are going to save their picture.
+#                   •	Ask the user if they are going to search for someone.
+#                   •	Ask the user if they want to modify their old details.
+#                   •	Will show emergency evacuation procedures.
+#                   •	Ask the user if they want to know more about TELIA.
+#                   •	Lastly, the Robot asks the user to sign the visitor sheet.
+#
+#               This program has some parameter related function such as process_parameter_set(). This function
+#               contains the region value and Main_directory. Depending on the region value, the program will select
+#               the respective tables and main_directory is where you should have all the code’s folder. It would be
+#               best to make sure that all the folder of Database_Code, Face_Recognition_Code, Speech_Recongnition_Code
+#               , Main_Process, and Web_Application_Code are present in this following directory. If you want another
+#               specific folder, then you need to make a change here.
 # **********************************************************************************************************************
 # NOTE 1 :      Please make sure to change the region value as per region wise before putting to server :
 #               Development region : "DEV"
