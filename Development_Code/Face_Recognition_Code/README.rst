@@ -97,7 +97,7 @@ Codes Architecture:
 -----------------------------------
 If you want to read more about the above programs, then please go to Face_Recognition_Code_Document_
 
-.. _Face_Recognition_Code_Document:
+.. _Face_Recognition_Code_Document: https://github.com/ripanmukherjee/Robotic-Greeter/blob/master/Robotic_Greeter_Documents/Face_Recognition_Code_Documents/Face_Recognition_Code_Document_Version_1.pdf
 
 Executing:
 -------------
