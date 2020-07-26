@@ -34,15 +34,16 @@ In this tutorial, we will explain all the Speech Recognition Codes that are writ
 
 Each of the codes in this folder has one function called process_parameter_set(), which contains the different parameter value. Depending on the parameter value, the program will perform other process. Hence it is essential to validate this function and all the parameters before running any codes.
 
-Also, it is crucial to test the microphone index. In this process, we are automatically taking all the microphone devices present into the device_list variable. Later, checking if 'pulse' or 'USB PnP' is present in the device list or not. If that is present, we are assigning the device_index to the index position of 'pulse' or 'USB PnP,' but if that is not present then, we are setting as 0.
+It is crucial to validate and test the microphone before writing a speech recognition related code. In the concept of speech recognition, Python programs receive an input voice from the device index (microphone index) and record it before converting speech to text by using the gTTS module. If the device index is not set correctly, then the Python program may give an error or cannot able to listen to any voice. We can also validate the device list present in the system by running the following commands in the Python console.
+
+In this process, we are automatically taking all the microphone devices present into the device_list variable. Later, checking if 'pulse' or 'USB PnP' is present in the device list or not. If that is present, we are assigning the device_index to the index position of 'pulse' or 'USB PnP,' but if that is not present then, we are setting as 0.
 
 For your case, this value (USB details) may change. So, it is better to validate those in python console as below::
 
 
+    >> import speech_recognition as sr
     >> device_list = sr.Microphone.list_microphone_names()
-
     >> print(device_list)
-
 
 
 Speech Recognition Code:
