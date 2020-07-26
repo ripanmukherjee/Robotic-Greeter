@@ -7,13 +7,12 @@
 # Date:         Friday 24 April, 2020
 # Version:      1
 # **********************************************************************************************************************
-# Description:  This code deals with the following table:
+# Description:  Carego_Customer_Reports.py program will fetch the records from the table and will create a CSV file.
 #
-#               * Development (DEV) : carego_customer_dev
-#               * Test (TEST) : carego_customer_test
-#               * Production (PROD) : carego_customer_prod
-#
-#               Carego_Customer_Reports.py program will fetch the records from the table and will create a CSV file.
+#               This program has some parameter related function such as process_parameter_set(). This function
+#               contains the Report name, Report path (main_directory). It would be best to make sure that
+#               main_directory is present. If not, then this program will create this directory automatically. Because
+#               in this path report will generate.
 # **********************************************************************************************************************
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow:
 #           	$ python3 Carego_Customer_Reports.py
@@ -71,14 +70,18 @@ def process_parameter_set():
     """
 
     csv_file = 'Carego_Customer_Reports.csv'
+    main_directory = "/home/somak/Robotic-Greeter/Reports/"
     region = "DEV"
 
-    return csv_file, region
+    return csv_file, main_directory, region
 
 
-def process_checking_directory():
-    main_directory = "/home/somak/Robotic-Greeter/Reports/"
-
+def process_checking_directory(main_directory):
+    """
+    ************************************ Inside process_checking_directory function ************************************
+    Validating the main_directory. If the directory is not present then this function will create the directory.
+    ************************************ Inside process_checking_directory function ************************************
+    """
     try:
         os.chdir(main_directory)
     except FileNotFoundError:
@@ -185,8 +188,8 @@ def main():
     """
 
     start_program()
-    csv_file, region = process_parameter_set()
-    process_checking_directory()
+    csv_file, main_directory, region = process_parameter_set()
+    process_checking_directory(main_directory)
     check_main_table, check_sequence_table = process_checking_region_table(region)
     table_details = process_search(check_main_table)
     process_table_data_write(csv_file, table_details)

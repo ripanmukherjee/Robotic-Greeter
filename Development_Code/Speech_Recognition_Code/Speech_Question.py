@@ -7,12 +7,10 @@
 # Date:         Friday 24 April, 2020
 # Version:      1
 # **********************************************************************************************************************
-# Description:  Speech_Question.py is to ask YES or NO related questions to the user. If this program does not
-#               get input from users within a given time, it will prompt a pop-up message to click ok or cancel.
-#               It will be called from Main_Process.py and Main_Process.py will pass the question as an argument in
-#               this program. Depending on the person's response, this program will give an output (inside of a text
-#               file: Speech_Question_Output.txt) as YES or NO or NONE. And with that response, Main_Process.py will
-#               perform different tasks.
+# Description:  Speech_Question.py is to ask YES or NO related questions to the user. If this program does not get
+#               input from users within a given time, it will prompt a pop-up message to click OK or Cancel. This
+#               process will be called from Main_Process.py with the question as an argument. Depending on the person's
+#               response, this program will write an output file (Speech_Question_Output.txt) as YES or NO or NONE.
 # **********************************************************************************************************************
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow for testing purpose:
 #               $ python3 Speech_Question.py

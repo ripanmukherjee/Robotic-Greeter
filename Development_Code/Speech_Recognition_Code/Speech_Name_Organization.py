@@ -7,12 +7,11 @@
 # Date:         Friday 24 April, 2020
 # Version:      1
 # **********************************************************************************************************************
-# Description:  Speech_Name_Organization.py is to ask the Name & Organization to Unknown Person. Later it will ask the
-#               person if they want to save their details or not. If this program does not get input from users
-#               within a given time, then it will prompt a pop-up message to enter the details or to click ok or
-#               cancel. It will be called from ~/Main_Process/Main_Process.py, and depending on the person's
-#               response, this program will give an output into a file (Speech_Name_Organization_Output.text)
-#               as YES or NO or NONE. And with that response, Main_Process.py will perform different task.
+# Description:  Speech_Name_Organization.py is to ask the Name & Organization to Unknown Person. Later, it will ask the
+#               person if they want to save their details or not. If this program does not get input from users within
+#               a given time, then it will prompt a pop-up message to enter the details or to click OK or Cancel.
+#               Depending on the person's response, this program will write an output file
+#               (Speech_Name_Organization_Output.text) as YES or NO or NONE.
 # **********************************************************************************************************************
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow for testing purpose:
 #               $ python3 Speech_Name_Organization.py

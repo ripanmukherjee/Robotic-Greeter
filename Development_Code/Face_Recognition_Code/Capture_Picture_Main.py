@@ -7,10 +7,10 @@
 # Date:         Friday 24 April, 2020
 # Version:      1
 # **********************************************************************************************************************
-# Description:  Capture_Picture_Main.py program will be called from Main_Process.py. It will receive one input
-#               argument (Unique ID) from the main process, and based on the input argument, it will call to
-#               Capture_Picture_Save.py for taking and saving the picture. This process is a looping process that
-#               asks the user if he want to take multiple pictures and save it.
+# Description:  Capture_Picture_Main.py program will be called from Main_Process.py. It will receive one input argument
+#               (Unique ID) from the main process, and based on the input argument, it will call to
+#               Capture_Picture_Save.py for taking and saving the picture. This process is a looping process that asks
+#               the user if he want to take multiple pictures and save it.
 # **********************************************************************************************************************
 # NOTE 1:       This program can be run separately or as a stand-alone program as follow:
 #               $ python3 Capture_Picture_Main.py

@@ -1,3 +1,27 @@
+#!/usr/bin/env python3
+"""
+# **********************************************************************************************************************
+# Project:      Robotic Greeter - McMaster University - CareGo Tek
+# Program Name: Web_Application_Backend.py
+# Author:       Somak Mukherjee
+# Date:         Friday 24 June, 2020
+# Version:      1
+# **********************************************************************************************************************
+# Description:  Web_Application_Backend.py program will be call from Web_Application_Frontend.py based on user's
+#               selection. Web_Application_Frontend.py will pass an input argument to this process and based on the
+#               input argument; this process will call a different Python programs such as Customer_Insert.py.
+#               Customer_Update.py, Customer_Search_Main.py, Main_Proces.py, Speech_Emergency_Evacuation_Procedure.py
+#               etc.
+# **********************************************************************************************************************
+# NOTE 1:       This program has one function called process_parameter_set(), which contains the value of
+#               main_directory. It would be best to make sure that all the folder of Database_Code,
+#               Face_Recognition_Code, Speech_Recongnition_Code, Main_Process, and Web_Application_Code are present in
+#               this following directory. If you want another specific folder, then you need to make a change here.
+# **********************************************************************************************************************
+# NOTE 2:       This program can be run separately or as a stand-alone program as follow for testing purpose:
+#               $ python3 Web_Application_Backend.py
+# **********************************************************************************************************************
+"""
 
 import os
 import sys

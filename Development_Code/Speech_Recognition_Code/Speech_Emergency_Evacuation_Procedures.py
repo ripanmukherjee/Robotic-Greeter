@@ -7,8 +7,8 @@
 # Date:         Friday 24 April, 2020
 # Version:      1
 # **********************************************************************************************************************
-# Description:  Speech_Emergency_Evacuation_Procedures.py program is to show the emergency and evacuation
-#               procedure and while showing the image, this program will describe the image by gTTS. All the pictures
+# Description:  Speech_Emergency_Evacuation_Procedures.py program is to show the emergency and evacuation procedure to
+#               the users and while showing the image, this program will describe the image by gTTS. All the pictures
 #               of emergency and evacuation procedures are present inside Emergency_Evacuation_Procedures folder.
 #               Please check def process_parameter_set() function and check the path before executing this process.
 # **********************************************************************************************************************
